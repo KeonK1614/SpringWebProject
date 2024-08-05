@@ -40,3 +40,18 @@ create table board (
     isAnnouncement varchar2(1) not null,
     primary key(idx)
 );
+
+
+alter table board
+    add constraint board_mem_fk foreign key (id)
+    references member(id);
+    
+create sequence board_seq
+    increment by 1  -- 1식 증가
+    start with 1    -- 시작값 1
+    minvalue 1      -- 최소값 1
+    nomaxvalue      -- 최대값은 무한대
+    nocycle         -- 순환 x
+    nocache;        -- 캐시 사용 안함
+    
+commit;
