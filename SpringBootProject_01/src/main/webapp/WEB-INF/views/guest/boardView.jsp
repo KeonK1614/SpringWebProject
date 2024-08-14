@@ -178,7 +178,7 @@
                         <th class="text-center" 
                             style="vertical-align:middle;">번호</th>
                         <td>
-                            ${dto.idx }
+                            ${param.vNum}
                         </td>
                     </tr>
                     <tr>
@@ -222,7 +222,7 @@
                 
                  <div class="row">
                     <div class="col text-right mb-4 d-flex justify-content-end">
-                        <button type="button" class="btn btn-outline-primary mx-1" >좋아요</button>
+                        <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='/member/like?idx=${dto.idx}';" >좋아요</button>
                         <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='boardInfo';">리스트보기</button>
                         <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='/member/boardEditor?idx=${dto.idx}';">수정하기</button>
                         <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='/member/delete?idx=${dto.idx}';">삭제하기</button>

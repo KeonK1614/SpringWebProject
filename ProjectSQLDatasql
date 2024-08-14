@@ -1,7 +1,18 @@
 alter session set "_ORACLE_SCRIPT"=true;
-
+create user musthave identified by 1234;
 create user PROJECT identified by 1234;
+grant connect, resource, unlimited tablespace to musthave;
+--테이블 스페이스 리스트 확인
+select tablespace_name, status, contents from dba_tablespaces;
+--테이블스페이스에 용량 확인
+select tablespace_name, sum(bytes), max(bytes) from dba_free_space group by tablespace_name;
+--개인 계정이 어느 테이블스페이스에 들어있는지 확인
+select username, default_tablespace from dba_users where username in upper('musthave');
 
+alter user musthave quota 5m on users;
+
+--PROJECT계정에 users 테이블 스페이스에 데이터를 입력할 수 있도록 5m의 용량 할당
+alter user PROJECT quota 5m on users;
 --테이블 스페이스 권한 주기
 grant connect, resource, unlimited tablespace to PROJECT;
 --테이블 스페이스 리스트 확인

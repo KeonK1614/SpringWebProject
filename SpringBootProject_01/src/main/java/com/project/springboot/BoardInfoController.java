@@ -3,7 +3,9 @@ package com.project.springboot;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.project.springboot.dao.BoardInfoService;
 import com.project.springboot.dao.IBoardInfoDao;
 import com.project.springboot.dto.BoardInfoDto;
+import com.project.springboot.dto.ParameterDTO;
 
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpServletRequest;
@@ -43,34 +46,29 @@ public class BoardInfoController
 		return "guest/main";
 	}
 	
-	@RequestMapping("/security/login")
-	public String login(Model model)
-	{
-		return "security/login";
-	}
-		
-	@RequestMapping("/guest/join")
-	public String join(Model model)
-	{
-		return "guest/join";
-	}
-	
-	@RequestMapping("/member/page")
-	public String page(Model model)
-	{
-		return "member/mypage";
-	}
-	
-	@RequestMapping("/member/pageedit")
-	public String pageedit(Model model)
-	{
-		return "member/mypageedit";
-	}
-	
 	@RequestMapping("/guest/boardInfo")
-	public String userListPage(Model model)
+	public String userListPage(HttpServletRequest req, Model model, ParameterDTO pDto)
 	{
-		model.addAttribute("list", dao.listDao());
+		int totalCount = dao.getTotalCount(pDto);
+		int pageSize = 10;
+		int blockPage = 5;
+		
+		int pageNum = (req.getParameter("pageNum")) == null || req.getParameter("pageNum").equals("")
+				? 1 : Integer.parseInt(req.getParameter("pageNum"));
+		int start = (pageNum - 1) * pageSize + 1;
+		int end = pageNum * pageSize;
+		
+		pDto.setStart(start);
+		pDto.setEnd(end);
+		
+		Map<String, Object> maps = new HashMap<>();
+		maps.put("totalCount", totalCount);
+		maps.put("pageSize", pageSize);
+		maps.put("pageNum", pageNum);
+		model.addAttribute("maps" , maps);
+		
+		List<BoardInfoDto> lists = dao.listDao(pDto);
+		model.addAttribute("list", lists);
 	
 		return "guest/boardInfo";
 	}
@@ -189,9 +187,9 @@ public class BoardInfoController
 	public String edit(HttpServletRequest req, @RequestParam("file") MultipartFile file, Model model) {
 		String sIdx = req.getParameter("idx");
 		
-		BoardInfoDto cDto = dao.viewDao(sIdx);
-		String ofileName = cDto.getOfile();//dto로  
-		String sfileName = cDto.getSfile();
+		BoardInfoDto dto = dao.viewDao(sIdx);
+		String ofileName = dto.getOfile();//dto로  
+		String sfileName = dto.getSfile();
 		
 		if (!file.isEmpty()) {
 			ofileName = file.getOriginalFilename();
@@ -226,6 +224,6 @@ public class BoardInfoController
 	public String addLike(HttpServletRequest req, Model model) {
 		String sIdx = req.getParameter("idx");
 		dao.addLike(sIdx);
-		return "redirect:/guest/boardView?idx" + sIdx;
+		return "guest/boardView?idx=" + sIdx;
 	}	
 }

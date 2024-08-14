@@ -165,12 +165,12 @@
 		             <!-- 검색부분 -->
 		             <form method="get">
 		                 <div class="input-group ms-auto"style="width: 300px;">
-		                     <select name="keyField" class="form-control">
+		                     <select name="searchField" class="form-control">
 		                         <option value="">제목</option>
 		                         <option value="">작성자</option>
 		                         <option value="">내용</option>
 		                     </select>
-					   <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+					   <input class="form-control" type="searchWord" placeholder="Search" aria-label="Search">
 			           <button class="btn btn-outline-primary" type="submit"><i class="bi bi-search" style='font-size:20px'></i></button>
 				   </div>
 		             </form>  
@@ -208,9 +208,13 @@
 				                 </c:when>
 				                 <c:otherwise>
 				                 	<c:forEach items="${list }" var="dto" varStatus="loop">
-				                    	<tr>
-				                 			<td class="text-center">${dto.idx }</td>
-				                         	<td class="text-left"><a href="boardView?idx=${dto.idx}">${dto.title }</a></td>
+				                    	<tr align="center">
+				                    		<td>
+								            <c:set var="vNum" value="${ maps.totalCount - 
+								                (((maps.pageNum-1) * maps.pageSize)	+ loop.index)}" />
+								            	${vNum}
+								            </td>
+				                         	<td class="text-left"><a href="boardView?idx=${dto.idx}&vNum=${vNum}">${dto.title }</a></td>
 				                         	<td class="text-center">${dto.id }</td>
 				                         	<td class="text-center">${dto.postdate }</td>
 				                         	<td class="text-center">${dto.viewCount }</td>
@@ -227,7 +231,6 @@
 		                 </tbody>
 		             </table>
 		         </div>
-		         
 		   <div>
 			               <div class="col d-flex justify-content-end">
 			                   <button type="button" class="btn btn-primary" onclick="location.href='/member/boardWrite';">글쓰기</button>
@@ -244,7 +247,7 @@
 		                      <li class="page-item">
 		                          <a href="#" class="page-link"><i class='bi bi-skip-start-fill'></i></a>
 		                      </li>
-		                      <li class="page-item"><a href="#" class="page-link">${map.pagingImg }</a></li>
+		                      <li class="page-item"><a href="#" class="page-link">${ pagingImg }</a></li>
 		                      <li class="page-item">
 		                          <a href="#" class="page-link"><i class='bi bi-skip-end-fill'></i></a>
 		                      </li>
