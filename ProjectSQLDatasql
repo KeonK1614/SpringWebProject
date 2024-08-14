@@ -16,13 +16,14 @@ alter user PROJECT quota 5m on users;
 
 CREATE TABLE member (
     id varchar2(50) not null,
-    pass varchar2(50) not null,
+    pass varchar2(100) not null,
+    name varchar2(50) not null,
+    phoneNum varchar2(20) not null,
+    email varchar2(50) not null,
     postcode varchar(10) not null,
     address varchar2(200) not null,
-    phoneNum varchar2(20) not null,
-    name varchar2(50) not null,
+    detailaddress varchar2(200) not null,
     regidate Date DEFAULT SYSDATE not null,
-    email varchar2(50) not null,
     isAdmin varchar(1) not null,
     primary key(id)
 );
@@ -53,5 +54,15 @@ create sequence board_seq
     nomaxvalue      -- 최대값은 무한대
     nocycle         -- 순환 x
     nocache;        -- 캐시 사용 안함
+    
+alter table member modify pass varchar(100);
+
+INSERT INTO member VALUES ('test1', '1234', '12345', '경기도 고양시', '01012345678', '홍길동', sysdate, 'test1@test.com', 'N');
+
+select * from member;
+
+drop table board;
+drop table member;
+DROP SEQUENCE board_seq;
     
 commit;
