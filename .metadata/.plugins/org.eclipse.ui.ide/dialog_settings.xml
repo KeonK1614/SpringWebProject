@@ -62,6 +62,7 @@
 		<item key="DIALOG_HEIGHT" value="367"/>
 		<item key="DIALOG_FONT_NAME" value="1|.AppleSystemUIFont|11.0|0|COCOA|1|.AppleSystemUIFont"/>
 	</section>
+<<<<<<< HEAD
 	<section name="SmartImportWizard">
 		<item key="SmartImportRootWizardPage.STORE_HIDE_ALREADY_OPEN" value="false"/>
 		<item key="SmartImportRootWizardPage.STORE_CLOSE_IMPORTED" value="false"/>
@@ -83,4 +84,6 @@
 		<list key="ENABLED_TRANSFERS">
 		</list>
 	</section>
+=======
+>>>>>>> origin/yerim
 </section>
