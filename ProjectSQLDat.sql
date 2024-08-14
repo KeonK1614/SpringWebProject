@@ -27,7 +27,6 @@ CREATE TABLE member (
     primary key(id)
 );
 
-
 create table board (
     idx varchar2(10) not null,
     id varchar2(50) not null,
@@ -41,43 +40,3 @@ create table board (
     isAnnouncement varchar2(1) not null,
     primary key(idx)
 );
-
-
-alter table board
-    add constraint board_mem_fk foreign key (id)
-    references member(id);
-    
-create sequence board_seq
-    increment by 1  -- 1식 증가
-    start with 1    -- 시작값 1
-    minvalue 1      -- 최소값 1
-    nomaxvalue      -- 최대값은 무한대
-    nocycle         -- 순환 x
-    nocache;        -- 캐시 사용 안함
-    
-commit;
-
-insert into member values ('project', '1234', '12345','경기도 고양시 정발산', '010-1234-5678', '관리자', sysdate, 'asdf@naver.com', 'Y');
-
--- 공지 테이블
-create table InquiryBoard (
-    idx varchar2(10) not null,
-    id varchar2(50) not null,
-    title varchar2(50) not null,
-    content varchar2(1000) not null,
-    postdate Date default sysdate not null,
-    viewCount number(6) default 0 not null,
-    likeCount number(6) default 0 not null,
-    ofile varchar2(200), 
-	sfile varchar2(30),
-    isAnnouncement varchar2(1) not null,
-    boardPass  number(6) not null,
-    primary key(idx)
-);
--- 공지 테이블 외래키
-alter table InquiryBoard
-    add constraint board_mem_fk foreign key (id)
-    references member(id);
-
-
-
