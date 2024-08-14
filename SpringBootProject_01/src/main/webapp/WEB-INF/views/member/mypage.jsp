@@ -156,7 +156,7 @@
 			<div class="input-form-backgroud row">
 			      <div class="input-form col-md-12 mx-auto">
 			        <h4 class="mb-3">마이 페이지</h4>
-			        <form class="validation-form" action="/member/mypage" novalidate>
+			        <form class="validation-form" novalidate>
 			        
 						<div class="mb-3">
 						  <label for="id">성명</label>

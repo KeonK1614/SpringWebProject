@@ -159,42 +159,42 @@
 		</header>
 	
 		<main>
-			<div class="row">			
-				<div class="col-2 ps-3">
+<!--			<div class="row">			-->
+<!--				<div class="col-2 ps-3">-->
 				
-					   <div style="height: 100px; line-height: 100px; text-align: center; 
-						color:white; background-color:#03346E; font-size: 1.5em; border-radius:10px; margin: 25px 0 10px 0;">
-		              	카테고리
-		         		</div>
+<!--					   <div style="height: 100px; line-height: 100px; text-align: center; -->
+<!--						color:white; background-color:#03346E; font-size: 1.5em; border-radius:10px; margin: 25px 0 10px 0;">-->
+<!--		              	카테고리-->
+<!--		         		</div>-->
 		         		
-		         		<div class="nav flex-column nav-pills dropdown dropend" style="background-color: #7FA1C3; border-radius:10px;" id="v-pills-tab"   
-		         		role="tablist" aria-orientation="vertical">
-			             	<a class="nav-link" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab"
-			                 aria-controls="v-pills-home" aria-selected="true">home</a>		 
+<!--		         		<div class="nav flex-column nav-pills dropdown dropend" style="background-color: #7FA1C3; border-radius:10px;" id="v-pills-tab"   -->
+<!--		         		role="tablist" aria-orientation="vertical">-->
+<!--			             	<a class="nav-link" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab"-->
+<!--			                 aria-controls="v-pills-home" aria-selected="true">home</a>		 -->
 			                                   
-			             	<a class="nav-link" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab"
-			                 aria-controls="v-pills-home" aria-selected="true">공지사항</a>
+<!--			             	<a class="nav-link" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab"-->
+<!--			                 aria-controls="v-pills-home" aria-selected="true">공지사항</a>-->
 			                 
-			            	 <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab"
-			                 aria-controls="v-pills-profile" aria-selected="false">지도</a>
+<!--			            	 <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab"-->
+<!--			                 aria-controls="v-pills-profile" aria-selected="false">지도</a>-->
 			                 
-			             	<a class="nav-link dropdown-toggle " data-bs-toggle="dropdown" id="v-pills-messages-tab" data-toggle="pill" 
-			             	href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">커뮤니티</a>
-			                <div class="dropdown-menu">
-			                     <a class="dropdown-item" href="#">정보 게시판 </a>
-			                     <a class="dropdown-item" href="#">인기 게시판</a>
-			                </div>
+<!--			             	<a class="nav-link dropdown-toggle " data-bs-toggle="dropdown" id="v-pills-messages-tab" data-toggle="pill" -->
+<!--			             	href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">커뮤니티</a>-->
+<!--			                <div class="dropdown-menu">-->
+<!--			                     <a class="dropdown-item" href="#">정보 게시판 </a>-->
+<!--			                     <a class="dropdown-item" href="#">인기 게시판</a>-->
+<!--			                </div>-->
 			                 
-			             	<a class="nav-link dropdown-toggle " data-bs-toggle="dropdown" id="v-pills-messages-tab" data-toggle="pill" 
-			             	href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">문의사항</a>
-			                <div class="dropdown-menu">
-								<a class="dropdown-item" href="#">자주 물어보는 질문</a>
-								<a class="dropdown-item" href="#">1대1문의</a>
-							</div>
-		     			</div>
-				</div>
-				
-		     <div class="col-10 pt-3 mt-3">
+<!--			             	<a class="nav-link dropdown-toggle " data-bs-toggle="dropdown" id="v-pills-messages-tab" data-toggle="pill" -->
+<!--			             	href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">문의사항</a>-->
+<!--			                <div class="dropdown-menu">-->
+<!--								<a class="dropdown-item" href="#">자주 물어보는 질문</a>-->
+<!--								<a class="dropdown-item" href="#">1대1문의</a>-->
+<!--							</div>-->
+<!--		     			</div>-->
+<!--				</div>-->
+
+		     <div class="col-10 pt-3 mt-3 mx-auto">
 		         <h4>게시판 목록 - <small>자유게시판</small></h4>
 		
 		         <div class="row">
@@ -209,9 +209,9 @@
 					   <input class="form-control" type="search" placeholder="Search" aria-label="Search">
 			           <button class="btn btn-outline-primary" type="submit"><i class="bi bi-search" style='font-size:20px'></i></button>
 				   </div>
-		             </form>
+		             </form>  
 		         </div>
-		         <div class="row mt-3 mx-1">
+		         <div class="row mt-3 mx-1 mx-auto">
 		             <!-- 게시판리스트부분 -->
 		             <table class="table table-bordered table-hover table-striped">
 		                 <colgroup>

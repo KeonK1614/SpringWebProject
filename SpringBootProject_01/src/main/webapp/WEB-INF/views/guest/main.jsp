@@ -147,12 +147,12 @@
 			  	<ul class="navbar-nav">
 			      	<li class="nav-item">
 			       	<a class="nav-link" href="login">
-			       	<button type="button" class="btn btn-outline-light" href="loginform">
+			       	<button type="button" class="btn btn-outline-light">
 			       	<i class='bi bi-box-arrow-in-right'></i> 로그인</button></a>
 			     	</li>
 			      	<li class="nav-item">
 			       	<a class="nav-link" href="join">
-			       	<button type="button" class="btn btn-outline-light" href="#">
+			       	<button type="button" class="btn btn-outline-light">
 			       	<i class='bi bi-person-plus-fill'></i> 회원가입</button></a>
 			     	</li>
 			     	</ul>
