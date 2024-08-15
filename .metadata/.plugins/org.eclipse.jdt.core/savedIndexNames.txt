@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 INDEX VERSION 1.134+/Users/gupro/Documents/DevData/SpringWebProject/.metadata/.plugins/org.eclipse.jdt.core
 1389667978.index
 2705643203.index
@@ -87,6 +88,7 @@ INDEX VERSION 1.134+/Users/gupro/Documents/DevData/SpringWebProject/.metadata/.p
 3337289644.index
 1727101207.index
 2765366793.index
+<<<<<<< HEAD
 3038070677.index
 2343104278.index
 1933212717.index
@@ -120,3 +122,44 @@ INDEX VERSION 1.134+/Users/gupro/Documents/DevData/SpringWebProject/.metadata/.p
 135667627.index
 3677619431.index
 835834048.index
+=======
+3841197726.index
+=======
+INDEX VERSION 1.134+/Users/yerim/DevData/SpringWebProject/.metadata/.plugins/org.eclipse.jdt.core
+1215320133.index
+589133200.index
+921287116.index
+3980480417.index
+413901381.index
+1108755056.index
+1263116535.index
+1898002070.index
+2730749566.index
+3076519344.index
+2410891838.index
+3468314333.index
+2452251467.index
+1281391490.index
+4199502408.index
+4041350893.index
+1865797976.index
+2930560568.index
+3197758336.index
+576595095.index
+2922287134.index
+3023708724.index
+991010509.index
+1373349725.index
+4013367856.index
+1376388557.index
+3871154892.index
+3245380152.index
+793820403.index
+728145039.index
+3510127644.index
+2039112668.index
+4022845316.index
+1143782251.index
+2141442342.index
+>>>>>>> origin/yerim
+>>>>>>> 8414027152e729aab49920ea6c91caa3204324ac
