@@ -2,11 +2,12 @@
 <qualifiedTypeNameHistroy>
     <fullyQualifiedTypeName name="com.project.springboot.dao.ISimpleBbaDao"/>
     <fullyQualifiedTypeName name="java.sql.Date"/>
-    <fullyQualifiedTypeName name="jakarta.servlet.http.HttpServletRequest"/>
     <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
     <fullyQualifiedTypeName name="lombok.Data"/>
     <fullyQualifiedTypeName name="java.util.UUID"/>
     <fullyQualifiedTypeName name="java.io.File"/>
     <fullyQualifiedTypeName name="java.io.IOException"/>
     <fullyQualifiedTypeName name="com.project.springboot.dto.SimpleBbsDto"/>
+    <fullyQualifiedTypeName name="jakarta.servlet.http.HttpServletRequest"/>
+    <fullyQualifiedTypeName name="com.project.springboot.dto.ParameterDTO"/>
 </qualifiedTypeNameHistroy>
