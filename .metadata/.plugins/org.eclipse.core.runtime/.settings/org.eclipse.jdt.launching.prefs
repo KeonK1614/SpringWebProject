@@ -2,4 +2,16 @@
 <<<<<<<=HEAD
 >>>>>>>=NH2
 eclipse.preferences.version=1
+<<<<<<< HEAD
 org.eclipse.jdt.launching.PREF_VM_XML=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\n<vmSettings defaultVM\="52,org.eclipse.jdt.internal.launching.macosx.MacOSXType13,1723785406537" defaultVMConnector\="">\n    <vmType id\="org.eclipse.jdt.internal.launching.macosx.MacOSXType">\n        <vm id\="com.oracle.java.jdk" name\="Java SE 17.0.11 [17.0.11]" path\="/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home"/>\n        <vm id\="1723785406537" name\="JRE [21.0.3]" path\="/Applications/SpringToolSuite4.app/Contents/Eclipse/plugins/org.eclipse.justj.openjdk.hotspot.jre.full.macosx.x86_64_21.0.3.v20240426-1530/jre"/>\n    </vmType>\n</vmSettings>\n
+=======
+<<<<<<< HEAD
+org.eclipse.jdt.launching.PREF_VM_XML=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\n<vmSettings defaultVM\="52,org.eclipse.jdt.internal.launching.macosx.MacOSXType19,com.oracle.java.jdk" defaultVMConnector\="">\n    <vmType id\="org.eclipse.jdt.internal.launching.macosx.MacOSXType">\n        <vm id\="com.oracle.java.jdk" name\="Java SE 17.0.11 [17.0.11]" path\="/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home"/>\n    </vmType>\n</vmSettings>\n
+=======
+<<<<<<< HEAD
+org.eclipse.jdt.launching.PREF_VM_XML=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<vmSettings defaultVM\="57,org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType13,1723646947482" defaultVMConnector\="">\r\n    <vmType id\="org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType">\r\n        <vm id\="1723646947482" name\="jre" path\="C\:\\FrontEnd\\dev\\sts-4.24.0.RELEASE\\plugins\\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_21.0.3.v20240426-1530\\jre"/>\r\n    </vmType>\r\n</vmSettings>\r\n
+=======
+org.eclipse.jdt.launching.PREF_VM_XML=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<vmSettings defaultVM\="57,org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType13,1723616754903" defaultVMConnector\="">\r\n    <vmType id\="org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType">\r\n        <vm id\="1723616754903" name\="jre" path\="C\:\\FrontEnd\\sts-4.24.0.RELEASE\\plugins\\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_21.0.3.v20240426-1530\\jre"/>\r\n    </vmType>\r\n</vmSettings>\r\n
+>>>>>>> NH2
+>>>>>>> 9f6e5ec2ca483d552a87d9602c5f0e7da76d2333
+>>>>>>> 32dff119b6d39c36f0fe745fb612b9b88b59d0b4
