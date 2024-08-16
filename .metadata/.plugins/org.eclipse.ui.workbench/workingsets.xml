@@ -1,8 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workingSetManager>
+<<<<<<< HEAD
+<workingSet editPageId="org.eclipse.jdt.internal.ui.DynamicSourcesWorkingSet" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1723785403348_0" label="Java Main Sources" name="Java Main Sources"/>
+<workingSet editPageId="org.eclipse.jdt.internal.ui.DynamicSourcesWorkingSet" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1723785403357_1" label="Java Test Sources" name="Java Test Sources"/>
+<workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1723785405225_2" label="Window Working Set" name="Aggregate for window 1723785405225"/>
+=======
 <workingSet editPageId="org.eclipse.jdt.internal.ui.DynamicSourcesWorkingSet" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1722472617136_0" label="Java Main Sources" name="Java Main Sources"/>
 <workingSet editPageId="org.eclipse.jdt.internal.ui.DynamicSourcesWorkingSet" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1722472617143_1" label="Java Test Sources" name="Java Test Sources"/>
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1722472617740_2" label="Window Working Set" name="Aggregate for window 1722472617740"/>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1723625343957_3" label="Window Working Set" name="Aggregate for window 1723625343957"/>
+=======
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1723646945612_3" label="Window Working Set" name="Aggregate for window 1723646945612"/>
+<<<<<<< HEAD
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1723783025299_4" label="Window Working Set" name="Aggregate for window 1723783025299"/>
+=======
+<<<<<<< HEAD
+<workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1723782375353_4" label="Window Working Set" name="Aggregate for window 1723782375353"/>
+=======
+>>>>>>> eeb7bb0d32e114c8863a73848edbc61e52f6a964
+>>>>>>> 9f6e5ec2ca483d552a87d9602c5f0e7da76d2333
+>>>>>>> ecd5eb25f5bbf930389c46941ffda3b0a818572b
+>>>>>>> 32dff119b6d39c36f0fe745fb612b9b88b59d0b4
+>>>>>>> 70e44ae7ca6111e9e06cef172e4a1afb270bf380
 </workingSetManager>

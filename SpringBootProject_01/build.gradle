@@ -27,7 +27,6 @@ tasks.withType(JavaCompile) {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
@@ -38,12 +37,18 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.3'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-	testImplementation 'org.springframework.security:spring-security-test'
 	
 	implementation 'jakarta.servlet:jakarta.servlet-api'
     implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api'
     implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl'
     implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+<<<<<<< HEAD
+    implementation 'org.springframework.security:spring-security-taglibs'
+=======
+    
+    implementation 'org.springframework.security:spring-security-taglibs'
+    
+>>>>>>> ecd5eb25f5bbf930389c46941ffda3b0a818572b
 }
 
 tasks.named('test') {

@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <faceted-project>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 70e44ae7ca6111e9e06cef172e4a1afb270bf380
   <runtime name="Apache Tomcat v10.1 (2)"/>
   <fixed facet="jst.java"/>
   <fixed facet="jst.web"/>
   <installed facet="jst.java" version="17"/>
   <installed facet="jst.web" version="5.0"/>
+=======
+	<fixed facet="jst.java"/>
+	<fixed facet="jst.web"/>
+	<installed facet="jst.java" version="17"/>
+	<installed facet="jst.web" version="5.0"/>
+>>>>>>> ecd5eb25f5bbf930389c46941ffda3b0a818572b
 </faceted-project>

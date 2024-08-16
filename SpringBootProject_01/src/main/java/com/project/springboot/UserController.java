@@ -24,16 +24,26 @@ public class UserController {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
+<<<<<<< HEAD
+	@RequestMapping("/")
+	public @ResponseBody String root() throws Exception{
+		return "HI";
+	}
+=======
+<<<<<<< HEAD
+=======
 //	@RequestMapping("/")
 //	public @ResponseBody String root() throws Exception{
 //		return "HI";
 //	}
+>>>>>>> 9f6e5ec2ca483d552a87d9602c5f0e7da76d2333
 	
-//	@RequestMapping("/guest/main")
-//	public String main() {
-//		return "guest/main";
-//	}
+	@RequestMapping("/guest/main")
+	public String main() {
+		return "guest/main";
+	}
 	
+>>>>>>> eeb7bb0d32e114c8863a73848edbc61e52f6a964
 	@RequestMapping("/guest/joinform")
 	public String joinform(Model model) {
 		model.addAttribute("userDTO", new UserDTO());
