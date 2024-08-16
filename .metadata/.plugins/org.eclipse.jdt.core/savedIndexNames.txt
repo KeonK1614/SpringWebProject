@@ -1,2 +1,0 @@
-INDEX VERSION 1.134+/Users/gupro/Documents/DevData/SpringWebProject/.metadata/.plugins/org.eclipse.jdt.core
-3817308127.index
