@@ -2,7 +2,28 @@
 <<<<<<<=HEAD
 >>>>>>>=origin/yerim
 eclipse.preferences.version=1
+<<<<<<< HEAD
 org.eclipse.debug.ui.PREF_LAUNCH_PERSPECTIVES=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\n<launchPerspectives/>\n
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+org.eclipse.debug.ui.PREF_LAUNCH_PERSPECTIVES=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\n<launchPerspectives/>\n
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+org.eclipse.debug.ui.changedDebugElement=255,128,128
+org.eclipse.debug.ui.consoleBackground=53,53,53
+org.eclipse.debug.ui.errorColor=225,30,70
+org.eclipse.debug.ui.inColor=140,175,210
+org.eclipse.debug.ui.outColor=235,235,235
+>>>>>>> 8414027152e729aab49920ea6c91caa3204324ac
+=======
+org.eclipse.debug.ui.PREF_LAUNCH_PERSPECTIVES=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<launchPerspectives/>\r\n
+>>>>>>> DV3
+=======
+org.eclipse.debug.ui.PREF_LAUNCH_PERSPECTIVES=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<launchPerspectives/>\r\n
+>>>>>>> NH2
+>>>>>>> eeb7bb0d32e114c8863a73848edbc61e52f6a964
 org.eclipse.debug.ui.save_dirty_editors_before_launch=never
 org.eclipse.debug.ui.user_view_bindings=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\n<viewBindings>\n    <view id\="org.eclipse.jdt.debug.ui.DisplayView">\n        <perspective id\="org.eclipse.debug.ui.DebugPerspective" userAction\="opened"/>\n    </view>\n</viewBindings>\n
 pref_state_memento.org.eclipse.debug.ui.DebugVieworg.eclipse.debug.ui.DebugView=<?xml version\="1.0" encoding\="UTF-8"?>\n<DebugViewMemento org.eclipse.debug.ui.BREADCRUMB_DROPDOWN_AUTO_EXPAND\="false"/>

@@ -233,16 +233,19 @@
 		         
 		   		 <div>
 	               <div class="col d-flex justify-content-end">
+	                   <button type="button" class="btn btn-primary" onclick="location.href='noticeBoard';">리스트보기</button>&nbsp;&nbsp;
 	                   <button type="button" class="btn btn-primary" onclick="location.href='../admin/noticeWriteForm';">공지사항 등록</button>
 	               </div>
 		         </div>
 		   
-                 ${pagingImg}
+                
 		         <div class="row mt-3">
 		             <div class="col">
 		                 <!-- 페이지번호 부분 -->
+		                 
 		                  <ul class="pagination justify-content-center">
-		                      <li class="page-item">
+		                     ${pagingImg}
+		                    <!--   <li class="page-item">
 		                          <a href="#" class="page-link"><i class='bi bi-skip-backward-fill'></i></a>
 		                      </li>
 		                      <li class="page-item">
@@ -258,7 +261,7 @@
 		                      </li>
 		                      <li class="page-item">
 		                          <a href="#" class="page-link"><i class='bi bi-skip-forward-fill'></i></a>
-		                      </li>
+		                      </li> -->
 		                  </ul>
 		                 
 		                  
