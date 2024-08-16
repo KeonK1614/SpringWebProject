@@ -45,12 +45,9 @@ public class noticeController
 		map.put("end", end);
 		
 		
-<<<<<<< HEAD
-		//String pagingImg = BoardPage.pagingStr(totalCount, pageSize, blockPage, pageNum, "guest/noticeBoard");
-=======
 		String pagingImg = BoardPage.pagingStr(totalCount, pageSize, blockPage, pageNum, "../guest/noticeBoard",
 								searchField, searchWord);
->>>>>>> NH2
+
 		
 		List<noticeBoardDto> list = dao.listDao(map);
 		
