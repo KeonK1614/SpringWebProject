@@ -164,7 +164,7 @@
 		     <h4>공지사항 게시판 - <small>내용보기</small></h4>
 		         
 			  <div class="row mt-3 mx-1 mx-auto">
-		         <form enctype="multipart/form-data" action="write" method="post">
+		         <form enctype="multipart/form-data" action="write" method="post" name="writeFrm">
 	                <table class="table table-bordered">
 		                <colgroup>
 		                    <col width="20%"/>
@@ -200,7 +200,8 @@
 	                        <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='noticeBoard';">리스트보기</button>
 	                        <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='../member/noticeLike?idx=${dto.idx}';">추천</button>
 	                        <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='../admin/noticeEditorForm?idx=${dto.idx}';">수정하기</button>
-	                        <button type="reset" class="btn btn-outline-primary mx-1" onclick="location.href='../admin/noticeDelete?idx=${dto.idx}';">글삭제</button>
+	                        <%-- <button type="reset" class="btn btn-outline-primary mx-1" onclick="location.href='../admin/noticeDelete?idx=${dto.idx}';">글삭제</button> --%>
+	                        <button type="reset" class="btn btn-outline-primary mx-1" onclick="deletePost(${param.idx});">글삭제</button>
 	                    </div>
 	                </div>
                  </form>
@@ -223,3 +224,15 @@
 	  	</footer>		
   </body>
 </html>
+
+<script>
+	function deletePost(idx){
+		var confirmed = confirm("정말로 삭제하시겠습니까?");
+		if(confirmed) {
+			var form = document.writeFrm;
+			form.method = "post";
+			form.action = "../admin/noticeDelete?idx=${dto.idx}";
+			form.submit();
+		}
+	}
+</script>

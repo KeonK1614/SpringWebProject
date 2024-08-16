@@ -6,19 +6,19 @@
 <mapper namespace="com.project.springboot.dao.InoticeBoardDao">
 	
 	<select id="listDao" resultType="com.project.springboot.dto.noticeBoardDto">
-		select * from noticeBoard 
+		<!-- select * from noticeBoard 
 			<if test="searchWord != null and searchWord != ''">
 				where ${searchField} like '%${searchWord}%' 
 			</if>
-			order by idx desc
-		<!-- select * from 
-    (select Tb.*, rownum rNum from
-    (select * from noticeBoard
-    <if test="searchWord != null and searchWord != ''">
-		where ${searchField} like '%${searchWord}%' 
-	</if>
-			order by idx desc
-	)Tb ) WHERE rNum BETWEEN #{start} AND #{end};  -->
+			order by idx desc -->
+			select * from 
+	    (select Tb.*, rownum rNum from
+	    (select * from noticeBoard
+	    <if test="searchWord != null and searchWord != ''">
+			where ${searchField} like '%${searchWord}%' 
+		</if>
+				order by idx desc
+		)Tb ) WHERE rNum BETWEEN #{start} AND #{end}
 	</select>
 	
 	<select id="totalCountDao">
