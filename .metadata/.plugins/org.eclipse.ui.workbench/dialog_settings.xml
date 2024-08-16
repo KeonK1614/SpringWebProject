@@ -1,71 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="ImportExportAction">
-		<item key="ImportExportPage.STORE_SELECTED_IMPORT_WIZARD_ID" value="org.eclipse.ui.wizards.import.ExternalProject"/>
+		<item key="ImportExportPage.STORE_SELECTED_IMPORT_WIZARD_ID" value="org.eclipse.e4.ui.importer.wizard"/>
 		<list key="ImportExportPage.STORE_EXPANDED_IMPORT_CATEGORIES">
 			<item value="org.eclipse.ui.Basic"/>
 		</list>
 		<section name="ImportExportWizard.dialogBounds">
+			<item key="DIALOG_X_ORIGIN" value="206"/>
+			<item key="DIALOG_Y_ORIGIN" value="7"/>
+			<item key="DIALOG_WIDTH" value="613"/>
+			<item key="DIALOG_HEIGHT" value="550"/>
+			<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
 		</section>
 	</section>
 	<section name="PropertyDialog.dialogBounds">
-<<<<<<< HEAD
-		<item key="DIALOG_X_ORIGIN" value="-282"/>
-		<item key="DIALOG_Y_ORIGIN" value="30"/>
-		<item key="DIALOG_WIDTH" value="989"/>
-		<item key="DIALOG_HEIGHT" value="728"/>
-		<item key="DIALOG_FONT_NAME" value="1|.AppleSystemUIFont|11.0|0|COCOA|1|.AppleSystemUIFont"/>
+		<item key="DIALOG_X_ORIGIN" value="438"/>
+		<item key="DIALOG_Y_ORIGIN" value="103"/>
+		<item key="DIALOG_WIDTH" value="1063"/>
+		<item key="DIALOG_HEIGHT" value="713"/>
+		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
 	</section>
 	<section name="NewWizardAction">
-		<item key="NewWizardSelectionPage.STORE_SELECTED_ID" value="org.eclipse.wst.html.ui.internal.wizard.NewHTMLWizard"/>
+		<item key="NewWizardSelectionPage.STORE_SELECTED_ID" value="org.eclipse.wst.server.ui.new.server"/>
 		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">
+			<item value="org.eclipse.jst.ejb.ui"/>
+			<item value="org.eclipse.jdt.ui.java"/>
+			<item value="org.eclipse.emf.codegen.ui.JETNewWizards"/>
+			<item value="org.eclipse.wst.server.ui"/>
 			<item value="org.eclipse.wst.web.ui"/>
+			<item value="org.eclipse.jst.ws.ui.new"/>
 		</list>
 		<section name="NewWizard.dialogBounds">
-			<item key="DIALOG_X_ORIGIN" value="463"/>
-			<item key="DIALOG_Y_ORIGIN" value="154"/>
-			<item key="DIALOG_WIDTH" value="586"/>
-			<item key="DIALOG_HEIGHT" value="500"/>
-			<item key="DIALOG_FONT_NAME" value="1|.AppleSystemUIFont|11.0|0|COCOA|1|.AppleSystemUIFont"/>
 		</section>
-	</section>
-	<section name="WorkbenchPreferenceDialog.dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="171"/>
-		<item key="DIALOG_Y_ORIGIN" value="142"/>
-		<item key="DIALOG_WIDTH" value="734"/>
-		<item key="DIALOG_HEIGHT" value="750"/>
-=======
-		<item key="DIALOG_X_ORIGIN" value="315"/>
-		<item key="DIALOG_Y_ORIGIN" value="73"/>
-		<item key="DIALOG_WIDTH" value="989"/>
-		<item key="DIALOG_HEIGHT" value="728"/>
->>>>>>> origin/yerim
-		<item key="DIALOG_FONT_NAME" value="1|.AppleSystemUIFont|11.0|0|COCOA|1|.AppleSystemUIFont"/>
-	</section>
-	<section name="NewWizardAction">
-		<item key="NewWizardSelectionPage.STORE_SELECTED_ID" value="org.springsource.ide.eclipse.commons.gettingstarted.wizard.boot.NewSpringBootWizard"/>
-		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">
-			<item value="org.springsource.ide.eclipse.boot.wizards.category"/>
-			<item value="org.eclipse.wst.XMLCategory"/>
-		</list>
-		<section name="NewWizard.dialogBounds">
-			<item key="DIALOG_X_ORIGIN" value="427"/>
-			<item key="DIALOG_Y_ORIGIN" value="112"/>
-			<item key="DIALOG_WIDTH" value="586"/>
-			<item key="DIALOG_HEIGHT" value="500"/>
-			<item key="DIALOG_FONT_NAME" value="1|.AppleSystemUIFont|11.0|0|COCOA|1|.AppleSystemUIFont"/>
-		</section>
-	</section>
-	<section name="WorkbenchPreferenceDialog.dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="411"/>
-		<item key="DIALOG_Y_ORIGIN" value="44"/>
-		<item key="DIALOG_WIDTH" value="901"/>
-		<item key="DIALOG_HEIGHT" value="701"/>
-		<item key="DIALOG_FONT_NAME" value="1|.AppleSystemUIFont|11.0|0|COCOA|1|.AppleSystemUIFont"/>
-	</section>
-	<section name="org.eclipse.ui.preferences.keysPreferencePage">
-		<item key="actionSetFilter" value="true"/>
-		<item key="internalFilter" value="true"/>
-		<item key="uncategorizedFilter" value="true"/>
 	</section>
 </section>
