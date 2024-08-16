@@ -43,25 +43,10 @@ public class noticeController
 				
 		map.put("start", start);
 		map.put("end", end);
-		
-		
-<<<<<<< HEAD
+
 		String pagingImg = BoardPage.pagingStr(totalCount, pageSize, blockPage, pageNum, "../guest/noticeBoard",
 								searchField, searchWord);
 
-=======
-<<<<<<< HEAD
-		String pagingImg = BoardPage.pagingStr(totalCount, pageSize, blockPage, pageNum, "guest/noticeBoard");
-=======
-<<<<<<< HEAD
-		//String pagingImg = BoardPage.pagingStr(totalCount, pageSize, blockPage, pageNum, "guest/noticeBoard");
-=======
-		String pagingImg = BoardPage.pagingStr(totalCount, pageSize, blockPage, pageNum, "../guest/noticeBoard",
-								searchField, searchWord);
->>>>>>> NH2
->>>>>>> 9f6e5ec2ca483d552a87d9602c5f0e7da76d2333
->>>>>>> 70e44ae7ca6111e9e06cef172e4a1afb270bf380
-		
 		List<noticeBoardDto> list = dao.listDao(map);
 		
 		model.addAttribute("list", list);

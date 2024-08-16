@@ -4,7 +4,7 @@ public class BoardPage
 {
 	/* List.jsp에서 전달해준 인수를 아래 매개변수를 통해 받는다. */
 	public static String pagingStr(int totalCount, int pageSize, int blockPage,
-            int pageNum, String reqUrl) 
+            int pageNum, String reqUrl, String searchField, String searchWord) 
 	{       
 		// 페이지 바로가기 링크를 저장할 문자열 변수 생성
     	String pagingStr = "";
