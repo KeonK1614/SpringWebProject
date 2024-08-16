@@ -21,65 +21,6 @@ public class noticeController
 	@Autowired
 	InoticeBoardDao dao;
 	
-	@RequestMapping("/")
-	public @ResponseBody String root() throws Exception
-	{
-		return "스프링부트 프로젝트";
-	}
-	
-	@RequestMapping("/main")
-	public String main(Model model)
-	{
-		return "main";
-	}
-	
-	@RequestMapping("/login")
-	public String login(Model model)
-	{
-		return "login";
-	}
-		
-	@RequestMapping("/join")
-	public String join(Model model)
-	{
-		return "join";
-	}
-	
-	@RequestMapping("/page")
-	public String page(Model model)
-	{
-		return "mypage";
-	}
-	
-	@RequestMapping("/pageedit")
-	public String pageedit(Model model)
-	{
-		return "mypageedit";
-	}
-	
-	@RequestMapping("/board")
-	public String board(Model model)
-	{
-		return "board";
-	}
-
-	@RequestMapping("/boardWrite")
-	public String boardWrite(Model model)
-	{
-		return "boardWrite";
-	}
-	
-	@RequestMapping("/boardEditor")
-	public String boardEditor(Model model)
-	{
-		return "boardEditor";
-	}
-	
-	@RequestMapping("/boardView")
-	public String boardView(Model model)
-	{
-		return "boardView";
-	}
 	@RequestMapping("/guest/noticeBoard") // 공지사항 list
 	public String noticeBoard(HttpServletRequest request, Model model)
 	{
@@ -93,19 +34,19 @@ public class noticeController
 		int totalCount = dao.totalCountDao(map);
 		int pageSize = 10;
 		int pageNum = 1;
+		int blockPage = 5;
 		String pageTemp = request.getParameter("pageNum");
 		if (pageTemp != null && ! pageTemp.equals(""))
 			pageNum = Integer.parseInt(pageTemp);
-		int blockPage = 5;
 		int start = (pageNum - 1) * pageSize + 1;
 		int end = pageNum * pageSize;
-		
-		
+				
 		map.put("start", start);
 		map.put("end", end);
 		
 		
-		String pagingImg = BoardPage.pagingStr(totalCount, pageSize, blockPage, pageNum, "guest/noticeBoard");
+		String pagingImg = BoardPage.pagingStr(totalCount, pageSize, blockPage, pageNum, "../guest/noticeBoard",
+								searchField, searchWord);
 		
 		List<noticeBoardDto> list = dao.listDao(map);
 		
@@ -120,6 +61,7 @@ public class noticeController
 		
 		return "guest/noticeBoard";
 	}
+	
 	@RequestMapping("/admin/noticeWriteForm") //공지사항 글쓰기 양식
 	public String noticeWriteForm(Model model)
 	{

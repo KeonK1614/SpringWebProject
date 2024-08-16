@@ -4,10 +4,13 @@ public class BoardPage
 {
 	/* List.jsp에서 전달해준 인수를 아래 매개변수를 통해 받는다. */
 	public static String pagingStr(int totalCount, int pageSize, int blockPage,
-            int pageNum, String reqUrl) 
-	{       
+            int pageNum, String reqUrl, String searchField, String searchWord) 
+	{      
 		// 페이지 바로가기 링크를 저장할 문자열 변수 생성
-    	String pagingStr = "";
+    	 String pagingStr = "";
+		 String pageitem = "page-item";
+	     String hash = "#";
+	     String pageling = "page-link";
         
     	// 전체 페이지 수를 계산한다.
         int totalPages = (int) (Math.ceil(((double) totalCount / pageSize)));
@@ -31,11 +34,24 @@ public class BoardPage
 	     	바로가기 링크를 화면에 출력한다.
 	     */
         if (pageTemp != 1) {
-            pagingStr += "<a href='" + reqUrl + "?pageNum=1'>[첫 페이지]</a>";            
-            pagingStr += "&nbsp;";
+//            pagingStr += "<a href='" + reqUrl + "?pageNum=1'>[첫 페이지]</a>";            
+            pagingStr += "<li class=\" "+ pageitem +" \"><a href=\""+ reqUrl  + "?pageNum=" + 1;
+            
+            if(searchWord != null) {
+            	pagingStr += "&searchField=" + searchField + "&searchWord="+ searchWord ;
+            }
+            
+            pagingStr += "\" class=\""+ pageling +"\">&laquo;</a></li>";
+            pagingStr += "<li class=\" "+ pageitem +" \"><a href=\""+ reqUrl  + "?pageNum=" + (pageTemp - 1);
+            		
+            if(searchWord != null) {
+            	pagingStr += "&searchField=" + searchField + "&searchWord="+ searchWord ;
+            }		
+            
+            pagingStr += "\" class=\""+ pageling +"\">&lt;</a></li>";
             // pageNum은 만약 현재 6페이지라면 5가 됩니다.
-            pagingStr += "<a href='" + reqUrl + "?pageNum=" + (pageTemp - 1)
-                         + "'>[이전 블록]</a>";
+//            pagingStr += "<a href='" + reqUrl + "?pageNum=" + (pageTemp - 1)
+//                         + "'>[이전 블록]</a>";
         }
 
         /*
@@ -43,15 +59,21 @@ public class BoardPage
 	     	앞에서 계산한 pageTemp를 blockPage만큼 반복해서 출력한다.
 	     	이때 1씩 증가시켜준다. 즉 한블럭당 5페이지를 출력한다.
 	     */
+        
         int blockCount = 1;
         while (blockCount <= blockPage && pageTemp <= totalPages) {
         	// 만약 현재페이지라면 링크를 걸지 않는다.
             if (pageTemp == pageNum) {
-                pagingStr += "&nbsp;" + pageTemp + "&nbsp;";
+                pagingStr += "<li class=\" "  + pageitem  +" \"><a href=\" "+ hash +" \" class= \" " + pageling + " \">"+ pageTemp +"</a></li>";
             } else {
             	// 현재페이지가 아닌 경우에만 링크를 추가한다.
-                pagingStr += "&nbsp;<a href='" + reqUrl + "?pageNum=" + pageTemp
-                             + "'>" + pageTemp + "</a>&nbsp;";
+                pagingStr += "<li class=\" "  + pageitem  +" \"><a href=\" "+ reqUrl + "?pageNum=" + pageTemp ;
+               
+                if(searchWord != null) {
+                	pagingStr += "&searchField=" + searchField + "&searchWord="+ searchWord ;
+                }
+                		
+                 pagingStr += " \" class= \" " + pageling + " \">"+ pageTemp +"</a></li>";
             }
             // 반복하면서 1씩 증가시켜 순차적인 페이지번호를 출력한다.
             pageTemp++;
@@ -61,11 +83,28 @@ public class BoardPage
         // 다음페이지 블럭 바로가기 링크 추가
         // 마지막 페이지가 아닌 경우에만 다음 블럭을 출력한다.
         if (pageTemp <= totalPages) {
-            pagingStr += "<a href='" + reqUrl + "?pageNum=" + pageTemp
-                         + "'>[다음 블록]</a>";
-            pagingStr += "&nbsp;";
-            pagingStr += "<a href='" + reqUrl + "?pageNum=" + totalPages
-                         + "'>[마지막 페이지]</a>";
+//            pagingStr += "<a href='" + reqUrl + "?pageNum=" + pageTemp
+//                         + "'>[다음 블록]</a>";
+            
+            pagingStr += "<li class=\" "+ pageitem +" \"><a href=\""+ reqUrl  + "?pageNum=" + pageTemp ;
+            
+            if(searchWord != null) {
+            	pagingStr += "&searchField=" + searchField + "&searchWord="+ searchWord ;
+            }
+            		
+            		
+            pagingStr += "\" class=\""+ pageling +"\">&gt;</a></li>";
+            pagingStr += "<li class=\" "+ pageitem +" \"><a href=\""+ reqUrl  + "?pageNum=" + totalPages;
+            
+			 if(searchWord != null) {
+	         	pagingStr += "&searchField=" + searchField + "&searchWord="+ searchWord ;
+	         }		
+            		
+			 pagingStr +="\" class=\""+ pageling +"\">&raquo;</a></li>";
+
+
+//            pagingStr += "<a href='" + reqUrl + "?pageNum=" + totalPages
+//                         + "'>[마지막 페이지]</a>";
         }
         return pagingStr;
     }
