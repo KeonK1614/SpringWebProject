@@ -46,7 +46,7 @@ public class noticeController
 		map.put("end", end);
 		
 		
-		//String pagingImg = BoardPage.pagingStr(totalCount, pageSize, blockPage, pageNum, "guest/noticeBoard");
+		String pagingImg = BoardPage.pagingStr(totalCount, pageSize, blockPage, pageNum, "guest/noticeBoard");
 		
 		List<noticeBoardDto> list = dao.listDao(map);
 		
@@ -56,7 +56,7 @@ public class noticeController
 		model.addAttribute("pageSize", pageSize);
 		model.addAttribute("blockPage", blockPage);
 		
-		//model.addAttribute("pagingImg", pagingImg);
+		model.addAttribute("pagingImg", pagingImg);
 		
 		
 		return "guest/noticeBoard";

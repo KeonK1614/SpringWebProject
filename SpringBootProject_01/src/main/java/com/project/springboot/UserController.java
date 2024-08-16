@@ -24,15 +24,15 @@ public class UserController {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
-//	@RequestMapping("/")
-//	public @ResponseBody String root() throws Exception{
-//		return "HI";
-//	}
+	@RequestMapping("/")
+	public @ResponseBody String root() throws Exception{
+		return "HI";
+	}
 	
-//	@RequestMapping("/guest/main")
-//	public String main() {
-//		return "guest/main";
-//	}
+	@RequestMapping("/guest/main")
+	public String main() {
+		return "guest/main";
+	}
 	
 	@RequestMapping("/guest/joinform")
 	public String joinform(Model model) {

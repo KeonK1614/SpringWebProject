@@ -1,9 +1,10 @@
-=\=\=\=\=\=\=
-<<<<<<<=HEAD
->>>>>>>=origin/yerim
 IMPORT_FILES_AND_FOLDERS_RELATIVE=true
 IMPORT_FILES_AND_FOLDERS_TYPE=7,1
 eclipse.preferences.version=1
-platformState=1688219797865455
+<<<<<<< HEAD
+platformState=1261625659547177
+=======
+platformState=1679170132150841
+>>>>>>> origin/yerim
 quickStart=false
 tipsAndTricks=true
