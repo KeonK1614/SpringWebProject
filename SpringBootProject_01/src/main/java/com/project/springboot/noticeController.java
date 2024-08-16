@@ -34,19 +34,27 @@ public class noticeController
 		int totalCount = dao.totalCountDao(map);
 		int pageSize = 10;
 		int pageNum = 1;
+		int blockPage = 5;
 		String pageTemp = request.getParameter("pageNum");
 		if (pageTemp != null && ! pageTemp.equals(""))
 			pageNum = Integer.parseInt(pageTemp);
-		int blockPage = 5;
 		int start = (pageNum - 1) * pageSize + 1;
 		int end = pageNum * pageSize;
-		
-		
+				
 		map.put("start", start);
 		map.put("end", end);
 		
 		
+<<<<<<< HEAD
 		String pagingImg = BoardPage.pagingStr(totalCount, pageSize, blockPage, pageNum, "guest/noticeBoard");
+=======
+<<<<<<< HEAD
+		//String pagingImg = BoardPage.pagingStr(totalCount, pageSize, blockPage, pageNum, "guest/noticeBoard");
+=======
+		String pagingImg = BoardPage.pagingStr(totalCount, pageSize, blockPage, pageNum, "../guest/noticeBoard",
+								searchField, searchWord);
+>>>>>>> NH2
+>>>>>>> 9f6e5ec2ca483d552a87d9602c5f0e7da76d2333
 		
 		List<noticeBoardDto> list = dao.listDao(map);
 		
@@ -61,6 +69,7 @@ public class noticeController
 		
 		return "guest/noticeBoard";
 	}
+	
 	@RequestMapping("/admin/noticeWriteForm") //공지사항 글쓰기 양식
 	public String noticeWriteForm(Model model)
 	{

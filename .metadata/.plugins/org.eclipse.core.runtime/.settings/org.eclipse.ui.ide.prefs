@@ -1,10 +1,17 @@
 IMPORT_FILES_AND_FOLDERS_RELATIVE=true
-IMPORT_FILES_AND_FOLDERS_TYPE=7,1
+IMPORT_FILES_AND_FOLDERS_TYPE=7,1\:23,1
 eclipse.preferences.version=1
+<<<<<<< HEAD
 <<<<<<< HEAD
 platformState=1261625659547177
 =======
 platformState=1679170132150841
 >>>>>>> origin/yerim
+=======
+platformState=1688219797865455
+=======
+platformState=1688082697182706
+>>>>>>> NH2
+>>>>>>> 9f6e5ec2ca483d552a87d9602c5f0e7da76d2333
 quickStart=false
 tipsAndTricks=true

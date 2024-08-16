@@ -1,20 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="ImportExportAction">
+<<<<<<< HEAD
 		<item key="ImportExportPage.STORE_SELECTED_IMPORT_WIZARD_ID" value="org.eclipse.ui.wizards.import.ExternalProject"/>
+=======
+<<<<<<< HEAD
+=======
+		<item key="ImportExportPage.STORE_SELECTED_IMPORT_WIZARD_ID" value="org.eclipse.e4.ui.importer.wizard"/>
+>>>>>>> 9f6e5ec2ca483d552a87d9602c5f0e7da76d2333
 		<list key="ImportExportPage.STORE_EXPANDED_IMPORT_CATEGORIES">
 			<item value="org.eclipse.ui.Basic"/>
 		</list>
+>>>>>>> eeb7bb0d32e114c8863a73848edbc61e52f6a964
 		<section name="ImportExportWizard.dialogBounds">
 		</section>
 	</section>
+	<section name="WorkbenchPreferenceDialog.dialogBounds">
+		<item key="DIALOG_X_ORIGIN" value="-16"/>
+		<item key="DIALOG_Y_ORIGIN" value="-22"/>
+		<item key="DIALOG_WIDTH" value="619"/>
+		<item key="DIALOG_HEIGHT" value="540"/>
+		<item key="DIALOG_FONT_NAME" value="1|.AppleSystemUIFont|11.0|0|COCOA|1|.AppleSystemUIFont"/>
+	</section>
 	<section name="PropertyDialog.dialogBounds">
+<<<<<<< HEAD
 <<<<<<< HEAD
 		<item key="DIALOG_X_ORIGIN" value="-282"/>
 		<item key="DIALOG_Y_ORIGIN" value="30"/>
 		<item key="DIALOG_WIDTH" value="989"/>
 		<item key="DIALOG_HEIGHT" value="728"/>
 		<item key="DIALOG_FONT_NAME" value="1|.AppleSystemUIFont|11.0|0|COCOA|1|.AppleSystemUIFont"/>
+=======
+		<item key="DIALOG_X_ORIGIN" value="36"/>
+		<item key="DIALOG_Y_ORIGIN" value="45"/>
+		<item key="DIALOG_WIDTH" value="989"/>
+		<item key="DIALOG_HEIGHT" value="667"/>
+		<item key="DIALOG_FONT_NAME" value="1|.AppleSystemUIFont|11.0|0|COCOA|1|.AppleSystemUIFont"/>
+	</section>
+	<section name="FileSystemImportWizard">
+=======
+<<<<<<< HEAD
+		<item key="DIALOG_X_ORIGIN" value="438"/>
+		<item key="DIALOG_Y_ORIGIN" value="103"/>
+=======
+		<item key="DIALOG_X_ORIGIN" value="9"/>
+		<item key="DIALOG_Y_ORIGIN" value="30"/>
+>>>>>>> NH2
+		<item key="DIALOG_WIDTH" value="1063"/>
+		<item key="DIALOG_HEIGHT" value="713"/>
+		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
+>>>>>>> 9f6e5ec2ca483d552a87d9602c5f0e7da76d2333
 	</section>
 	<section name="NewWizardAction">
 		<item key="NewWizardSelectionPage.STORE_SELECTED_ID" value="org.eclipse.wst.html.ui.internal.wizard.NewHTMLWizard"/>
@@ -28,6 +63,7 @@
 			<item key="DIALOG_HEIGHT" value="500"/>
 			<item key="DIALOG_FONT_NAME" value="1|.AppleSystemUIFont|11.0|0|COCOA|1|.AppleSystemUIFont"/>
 		</section>
+>>>>>>> eeb7bb0d32e114c8863a73848edbc61e52f6a964
 	</section>
 	<section name="WorkbenchPreferenceDialog.dialogBounds">
 		<item key="DIALOG_X_ORIGIN" value="171"/>

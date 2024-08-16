@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<<<<<<< HEAD
+<qualifiedTypeNameHistroy/>
+=======
 <qualifiedTypeNameHistroy>
 <<<<<<< HEAD
     <fullyQualifiedTypeName name="com.project.springboot.dao.ISimpleBbaDao"/>
@@ -50,3 +53,4 @@
 >>>>>>> origin/yerim
 >>>>>>> 8414027152e729aab49920ea6c91caa3204324ac
 </qualifiedTypeNameHistroy>
+>>>>>>> eeb7bb0d32e114c8863a73848edbc61e52f6a964
