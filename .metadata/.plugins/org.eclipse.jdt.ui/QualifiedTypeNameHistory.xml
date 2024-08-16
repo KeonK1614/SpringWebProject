@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <fullyQualifiedTypeName name="com.project.springboot.dao.ISimpleBbaDao"/>
     <fullyQualifiedTypeName name="java.sql.Date"/>
     <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
@@ -49,4 +50,7 @@
     <fullyQualifiedTypeName name="org.springframework.boot.autoconfigure.security.servlet.PathRequest"/>
 >>>>>>> origin/yerim
 >>>>>>> 8414027152e729aab49920ea6c91caa3204324ac
+=======
+    <fullyQualifiedTypeName name="org.springframework.ui.Model"/>
+>>>>>>> DV3
 </qualifiedTypeNameHistroy>
