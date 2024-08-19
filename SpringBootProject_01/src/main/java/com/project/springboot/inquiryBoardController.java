@@ -21,11 +21,7 @@ public class inquiryBoardController
 	@Autowired
 	inquiryBoardSevice bbs;
 	
-	@RequestMapping("/")
-	public @ResponseBody String root() throws Exception
-	{
-		return "project";
-	}
+	
 	// 문의 게시판 리스트
 	@RequestMapping("guest/inquiryBoard") 
 	public String inquiryBoard(HttpServletRequest request, Model model)
@@ -74,6 +70,7 @@ public class inquiryBoardController
 
       return "guest/inquiryBoard";
 	}
+	
 	
 	//문의 게시판 상세보기
 	@RequestMapping("member/inquiryBoardview")

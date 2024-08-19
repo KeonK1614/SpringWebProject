@@ -34,7 +34,7 @@
 	
 	<insert id="writeDao">
 		insert into noticeBoard (idx, id, title, content, ofile, sfile)
-			values (noticeBoard_seq.nextval, #{param1}, #{param2}, #{param3}, null, null)
+			values (noticeBoard_seq.nextval, #{id}, #{title}, #{content}, #{ofile, jdbcType=VARCHAR}, #{sfile, jdbcType=VARCHAR})
 	</insert>
 	
 	<delete id="deleteDao">
@@ -42,7 +42,7 @@
 	</delete>
 	
 	<update id="editorDao">
-		update noticeBoard set title = #{param1}, content = #{param2}, ofile=null, sfile = null where idx=#{param5}
+		update noticeBoard set title = #{title}, content = #{content}, ofile = #{ofile, jdbcType=VARCHAR}, sfile = #{ofile, jdbcType=VARCHAR} where idx=#{idx}
 	</update>
 	
 	<update id="viewCountDao">

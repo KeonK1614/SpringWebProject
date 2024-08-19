@@ -112,17 +112,17 @@
 		<header>
 			<nav class="navbar navbar-expand-md fixed-top" style="background-color: #7FA1C3;">
 			  <div class="container-fluid">
-			    <a class="navbar-brand" href="main">Carousel</a>
+			    <a class="navbar-brand" href="/">Carousel</a>
 			    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
 			      <span class="navbar-toggler-icon"></span>
 			    </button>
 			   <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
 			      <ul class="navbar-nav me-auto mb-2 mb-md-0">
 			      <li class="nav-item">
-			        <a class="nav-link" aria-current="page" href="#">home</a>
+			        <a class="nav-link" aria-current="page" href="#">홈페이지소개</a>
 			      </li>
 			      <li class="nav-item">
-			        <a class="nav-link" href="#">공지사항</a>
+			        <a class="nav-link" href="/guest/noticeBoard">공지사항</a>
 			      </li>
 			      <li class="nav-item">
 			        <a class="nav-link" href="#">지도</a>
@@ -130,7 +130,7 @@
 			      <li class="nav-item dropdown">
 			         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">커뮤니티</a>
 			          <ul class="dropdown-menu">
-			            <li><a class="dropdown-item" href="#">정보 게시판</a></li>
+			            <li><a class="dropdown-item" href="/guest/boardInfo">정보 게시판</a></li>
 			            <li><a class="dropdown-item" href="#">인기 게시판</a></li>
 			         	</ul>
 			         </li>
@@ -138,18 +138,18 @@
 			         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">문의사항</a>
 			        <ul class="dropdown-menu">
 			          <li><a class="dropdown-item" href="#">자주 물어보는 질문</a></li>
-			          <li><a class="dropdown-item" href="#">1대1문의</a></li>
+			          <li><a class="dropdown-item" href="guest/inquiryBoard">문의게시판</a></li>
 			        </ul>
 			      </li>
 			   </ul>
 			  	<ul class="navbar-nav">
 			      	<li class="nav-item">
-			       	<a class="nav-link" href="login">
+			       	<a class="nav-link" href="/guest/login">
 			       	<button type="button" class="btn btn-outline-light">
 			       	<i class='bi bi-box-arrow-in-right'></i> 로그인</button></a>
 			     	</li>
 			      	<li class="nav-item">
-			       	<a class="nav-link" href="join">
+			       	<a class="nav-link" href="/guest/joinform">
 			       	<button type="button" class="btn btn-outline-light">
 			       	<i class='bi bi-person-plus-fill'></i> 회원가입</button></a>
 			     	</li>
@@ -164,7 +164,7 @@
 		     <h4>공지사항 게시판 - <small>글쓰기</small></h4>
 		         
 			<div class="row mt-3 mx-1 mx-auto">
-		         <form enctype="multipart/form-data" action="noticeWrite" method="post">
+		         <form enctype="multipart/form-data" action="noticeWrite" method="post" onsubmit="return formCheck(this)">
                 <table class="table table-bordered">
                 <colgroup>
                     <col width="20%"/>
@@ -196,8 +196,7 @@
                         <th class="text-center" 
                             style="vertical-align:middle;">첨부파일</th>
                         <td>
-                            <input type="file" class="form-control" name="ofile" />
-                            <!-- <input type="file" class="form-control" name="sfile" /> -->
+                            <input type="file" class="form-control" name="file" />
                         </td>
                     </tr>
                 </tbody>
@@ -215,7 +214,7 @@
 		      </div>
 		</main>	 
 		
-		<!-- <script type="text/javascript">
+		<script type="text/javascript">
 			function formCheck(form){
 				
 				if(form.id.value == ""){
@@ -234,7 +233,7 @@
 					return false;
 				}
 			}
-		</script> -->
+		</script>
 			 	
 		<footer class="container">
 		    <p class="float-end"><i class="bi bi-arrow-up-circle"></i><a href="#">Back to top</a></p>

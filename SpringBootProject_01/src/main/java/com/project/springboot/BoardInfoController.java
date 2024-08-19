@@ -34,17 +34,23 @@ public class BoardInfoController
 	@Autowired
 	BoardInfoService boardInfoService;
 	
+//	@RequestMapping("/") 
+//	public @ResponseBody String root() throws Exception 
+//	{
+//	  return "project"; 
+//	}
+	 
 	@RequestMapping("/")
-	public @ResponseBody String root() throws Exception
-	{
-		return "project";
-	}
-	
-	@RequestMapping("/guest/main")
-	public String main(Model model)
+	public String root() throws Exception
 	{
 		return "guest/main";
 	}
+	
+//	@RequestMapping("/guest/main")
+//	public String main(Model model)
+//	{
+//		return "guest/main";
+//	}
 	
 	@RequestMapping("/guest/boardInfo")
 	public String userListPage(HttpServletRequest req, Model model, ParameterDTO pDto)

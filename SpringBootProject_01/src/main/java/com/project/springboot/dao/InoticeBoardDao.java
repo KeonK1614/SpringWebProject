@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.project.springboot.dto.noticeBoardDto;
 
@@ -14,9 +15,9 @@ public interface InoticeBoardDao
 	public int totalCountDao(Map<String, Object> map);
 
 	public noticeBoardDto viewDao(String idx);
-	public int writeDao(String id, String title, String content , String ofile, String sfile);
+	public int writeDao(@Param("id") String id, @Param("title") String title, @Param("content") String content , @Param("ofile")String ofile, @Param("sfile") String sfile);
 	public int deleteDao(String idx);
-	public int editorDao(String title, String content , String ofile, String sfile, String idx);
+	public int editorDao(@Param("idx") String idx, @Param("title") String title, @Param("content") String content , @Param("ofile") String ofile, @Param("sfile") String sfile);
 	public int viewCountDao(String idx);
 	public int likeCountDao(String idx);
 }

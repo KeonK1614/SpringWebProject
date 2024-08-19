@@ -93,6 +93,25 @@
 		
 	    <!-- Custom styles for this template -->
 	    <link href="../carousel/carousel.css" rel="stylesheet">
+	    <script>
+		function validateForm(form) {
+			if (form.id.value == "") {
+				alert("id를 입력하세요.");
+				form.id.focus();
+				return false;
+			}
+			if (form.title.value == "") {
+				alert("제목을 입력하세요.");
+				form.title.focus();
+				return false;
+			}
+			if (form.content.value == "") {
+				alert("내용을 입력하세요.");
+				form.content.focus();
+				return false;
+			}
+		}
+		</script>
 	  </head>
 	  <body>
 	    
@@ -168,46 +187,12 @@
 			</nav>
 		</header>	
 
-		<main>
-			<div class="row">			
-				<div class="col-2 ps-3">
-				
-					   <div style="height: 100px; line-height: 100px; text-align: center; 
-						color:white; background-color:#03346E; font-size: 1.5em; border-radius:10px; margin: 25px 0 10px 0;">
-		              	카테고리
-		         		</div>
-		         		
-		         		<div class="nav flex-column nav-pills dropdown dropend" style="background-color: #7FA1C3; border-radius:10px;" id="v-pills-tab"   
-		         		role="tablist" aria-orientation="vertical">
-			             	<a class="nav-link" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab"
-			                 aria-controls="v-pills-home" aria-selected="true">home</a>		 
-			                                   
-			             	<a class="nav-link" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab"
-			                 aria-controls="v-pills-home" aria-selected="true">공지사항</a>
-			                 
-			            	 <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab"
-			                 aria-controls="v-pills-profile" aria-selected="false">지도</a>
-			                 
-			             	<a class="nav-link dropdown-toggle " data-bs-toggle="dropdown" id="v-pills-messages-tab" data-toggle="pill" 
-			             	href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">커뮤니티</a>
-			                <div class="dropdown-menu">
-			                     <a class="dropdown-item" href="#">정보 게시판 </a>
-			                     <a class="dropdown-item" href="#">인기 게시판</a>
-			                </div>
-			                 
-			             	<a class="nav-link dropdown-toggle " data-bs-toggle="dropdown" id="v-pills-messages-tab" data-toggle="pill" 
-			             	href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">문의사항</a>
-			                <div class="dropdown-menu">
-								<a class="dropdown-item" href="#">자주 물어보는 질문</a>
-								<a class="dropdown-item" href="#">1대1문의</a>
-							</div>
-		     			</div>
-				</div>
-		       
-			   <div class="col-10 pt-3 mt-3">
-           		 <h3>게시판 작성 - <small>자유게시판</small></h3>
+		
+		<div class="row">			
+			   <div class="col-10 pt-3 mt-3 mx-auto">
+           		 <h4>게시판 작성 - <small>자유게시판</small></h4>
 
-            <form enctype="multipart/form-data">
+            <form enctype="multipart/form-data" action="write" method="post" onsubmit="return validateForm(this)">
                 <table class="table table-bordered">
                 <colgroup>
                     <col width="20%"/>
@@ -218,37 +203,29 @@
                         <th class="text-center" 
                             style="vertical-align:middle;">작성자</th>
                         <td>
-                            <input type="text" class="form-control" 
+                            <input type="text" name="id" class="form-control" 
                                 style="width:100px;" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <th class="text-center" 
-                            style="vertical-align:middle;">패스워드</th>
-                        <td>
-                            <input type="text" class="form-control" 
-                                style="width:200px;" />
                         </td>
                     </tr>
                     <tr>
                         <th class="text-center" 
                             style="vertical-align:middle;">제목</th>
                         <td>
-                            <input type="text" class="form-control" />
+                            <input type="text" name="title" class="form-control" />
                         </td>
                     </tr>
                     <tr>
                         <th class="text-center" 
                             style="vertical-align:middle;">내용</th>
                         <td>
-                            <textarea rows="9" class="form-control"></textarea>
+                            <textarea rows="9" name="content" class="form-control"></textarea>
                         </td>
                     </tr>
                     <tr>
                         <th class="text-center" 
                             style="vertical-align:middle;">첨부파일</th>
                         <td>
-                            <input type="file" class="form-control" />
+                            <input type="file" name="file" class="form-control" />
                         </td>
                     </tr>
                 </tbody>
@@ -256,7 +233,7 @@
                 
                 <div class="row">
                     <div class="col text-right mb-4 d-flex justify-content-end">
-                        <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='board';">리스트보기</button>
+                        <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='/guest/boardInfo';">리스트보기</button>
                         <button type="submit" class="btn btn-outline-primary mx-1">작성하기</button>
                         <button type="reset" class="btn btn-outline-primary mx-1">Reset</button>
                     </div>

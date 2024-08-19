@@ -114,17 +114,17 @@
 		<header>
 			<nav class="navbar navbar-expand-md fixed-top" style="background-color: #7FA1C3;">
 			  <div class="container-fluid">
-			    <a class="navbar-brand" href="main">Carousel</a>
+			    <a class="navbar-brand" href="/">Carousel</a>
 			    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
 			      <span class="navbar-toggler-icon"></span>
 			    </button>
 			   <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
 			      <ul class="navbar-nav me-auto mb-2 mb-md-0">
 			      <li class="nav-item">
-			        <a class="nav-link" aria-current="page" href="#">home</a>
+			        <a class="nav-link" aria-current="page" href="#">홈페이지소개</a>
 			      </li>
 			      <li class="nav-item">
-			        <a class="nav-link" href="#">공지사항</a>
+			        <a class="nav-link" href="/guest/noticeBoard">공지사항</a>
 			      </li>
 			      <li class="nav-item">
 			        <a class="nav-link" href="#">지도</a>
@@ -132,7 +132,7 @@
 			      <li class="nav-item dropdown">
 			         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">커뮤니티</a>
 			          <ul class="dropdown-menu">
-			            <li><a class="dropdown-item" href="#">정보 게시판</a></li>
+			            <li><a class="dropdown-item" href="/guest/boardInfo">정보 게시판</a></li>
 			            <li><a class="dropdown-item" href="#">인기 게시판</a></li>
 			         	</ul>
 			         </li>
@@ -140,18 +140,18 @@
 			         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">문의사항</a>
 			        <ul class="dropdown-menu">
 			          <li><a class="dropdown-item" href="#">자주 물어보는 질문</a></li>
-			          <li><a class="dropdown-item" href="#">1대1문의</a></li>
+			          <li><a class="dropdown-item" href="guest/inquiryBoard">문의게시판</a></li>
 			        </ul>
 			      </li>
 			   </ul>
 			  	<ul class="navbar-nav">
 			      	<li class="nav-item">
-			       	<a class="nav-link" href="login">
+			       	<a class="nav-link" href="/guest/login">
 			       	<button type="button" class="btn btn-outline-light">
 			       	<i class='bi bi-box-arrow-in-right'></i> 로그인</button></a>
 			     	</li>
 			      	<li class="nav-item">
-			       	<a class="nav-link" href="join">
+			       	<a class="nav-link" href="/guest/joinform">
 			       	<button type="button" class="btn btn-outline-light">
 			       	<i class='bi bi-person-plus-fill'></i> 회원가입</button></a>
 			     	</li>
@@ -218,6 +218,7 @@
 											<jsp:useBean id="now" class="java.util.Date" />
 											<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />				                     			
 			                     			<c:if test="${dto.postdate == today}"><span class="badge rounded-pill text-bg-danger">New</span></c:if>
+			                     			<c:if test="${ not empty dto.ofile }"><i class="bi bi-paperclip"></i></c:if>
 			                     		</td>
 			                     		<td align="center">${dto.id}</td>
 			                     		<td align="center">${dto.postdate}</td>

@@ -112,17 +112,17 @@
 		<header>
 			<nav class="navbar navbar-expand-md fixed-top" style="background-color: #7FA1C3;">
 			  <div class="container-fluid">
-			    <a class="navbar-brand" href="main">Carousel</a>
+			    <a class="navbar-brand" href="/">Carousel</a>
 			    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
 			      <span class="navbar-toggler-icon"></span>
 			    </button>
 			   <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
 			      <ul class="navbar-nav me-auto mb-2 mb-md-0">
 			      <li class="nav-item">
-			        <a class="nav-link" aria-current="page" href="#">home</a>
+			        <a class="nav-link" aria-current="page" href="#">홈페이지소개</a>
 			      </li>
 			      <li class="nav-item">
-			        <a class="nav-link" href="#">공지사항</a>
+			        <a class="nav-link" href="/guest/noticeBoard">공지사항</a>
 			      </li>
 			      <li class="nav-item">
 			        <a class="nav-link" href="#">지도</a>
@@ -130,7 +130,7 @@
 			      <li class="nav-item dropdown">
 			         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">커뮤니티</a>
 			          <ul class="dropdown-menu">
-			            <li><a class="dropdown-item" href="#">정보 게시판</a></li>
+			            <li><a class="dropdown-item" href="/guest/boardInfo">정보 게시판</a></li>
 			            <li><a class="dropdown-item" href="#">인기 게시판</a></li>
 			         	</ul>
 			         </li>
@@ -138,18 +138,18 @@
 			         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">문의사항</a>
 			        <ul class="dropdown-menu">
 			          <li><a class="dropdown-item" href="#">자주 물어보는 질문</a></li>
-			          <li><a class="dropdown-item" href="#">1대1문의</a></li>
+			          <li><a class="dropdown-item" href="guest/inquiryBoard">문의게시판</a></li>
 			        </ul>
 			      </li>
 			   </ul>
 			  	<ul class="navbar-nav">
 			      	<li class="nav-item">
-			       	<a class="nav-link" href="login">
+			       	<a class="nav-link" href="/guest/login">
 			       	<button type="button" class="btn btn-outline-light">
 			       	<i class='bi bi-box-arrow-in-right'></i> 로그인</button></a>
 			     	</li>
 			      	<li class="nav-item">
-			       	<a class="nav-link" href="join">
+			       	<a class="nav-link" href="/guest/joinform">
 			       	<button type="button" class="btn btn-outline-light">
 			       	<i class='bi bi-person-plus-fill'></i> 회원가입</button></a>
 			     	</li>
@@ -174,22 +174,39 @@
 		                    <tr>
 		                        <th class="text-center" style="vertical-align:middle;">작성자</th>
 		                        <td>${dto.id}</td>
+		                        <th class="text-center" style="vertical-align:middle;">작성일</th>
+		                        <td>${dto.postdate}</td>
 		                    </tr>
 		                    
 		                    <tr>
-		                        <th class="text-center" 
-		                            style="vertical-align:middle;">제목</th>
-		                        <td>${dto.title}</td>
+		                    	<th class="text-center" style="vertical-align:middle;">추천</th>
+		                    	<td>${dto.likeCount}</td>
+		                    	<th class="text-center" style="vertical-align:middle;">조회수</th>
+		                    	<td>${dto.viewCount}</td>
 		                    </tr>
+		                    
+		                    <tr>
+		                        <th class="text-center" style="vertical-align:middle;">제목</th>
+		                        <td colspan="3">${dto.title}</td>
+		                    </tr>
+		                    
 		                    <tr>
 		                        <th class="text-center" style="vertical-align:middle;">내용</th>
-		                        <td>${dto.content}</td>
+		                        <td colspan="3">
+		                        	<c:if test="${ not empty dto.ofile and isImage eq true }">
+		                        		<br/>
+		                        		<img src="/static/files/${dto.sfile}" style="max-width: 100%;" />
+		                        		<br/>
+		                        	</c:if>
+		                        	${dto.content}
+		                        </td>
 		                    </tr>
 		                    <tr>
-		                        <th class="text-center" 
-		                            style="vertical-align:middle;">첨부파일</th>
+		                        <th class="text-center" style="vertical-align:middle;">첨부파일</th>
 		                        <td>
-		                            <input type="file" class="form-control" name="ofile" />
+		                            <c:if test="${ not empty dto.ofile }">
+		                            	${dto.ofile}
+		                            </c:if>
 		                        </td>
 		                    </tr>
 		                </tbody>
