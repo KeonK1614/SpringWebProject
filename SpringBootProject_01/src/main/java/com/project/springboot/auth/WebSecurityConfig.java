@@ -48,7 +48,10 @@ public class WebSecurityConfig {
 =======
 	            .requestMatchers("/member/**").hasAnyRole("N", "Y")
 	            .requestMatchers("/admin/**").hasAnyRole("N", "Y")
+<<<<<<< HEAD
 >>>>>>> DV4
+=======
+>>>>>>> NH4
 	            .anyRequest().authenticated() // 어떠한 요청이라도 인증 필요 없음 ( anonymous() )  //authenticated()
 	        );
     

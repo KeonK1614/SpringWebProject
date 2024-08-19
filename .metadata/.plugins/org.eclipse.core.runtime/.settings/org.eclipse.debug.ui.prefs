@@ -3,8 +3,11 @@
 >>>>>>>=origin/yerim
 eclipse.preferences.version=1
 <<<<<<< HEAD
+<<<<<<< HEAD
 org.eclipse.debug.ui.PREF_LAUNCH_PERSPECTIVES=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\n<launchPerspectives/>\n
 =======
+=======
+>>>>>>> NH4
 org.eclipse.debug.ui.PREF_LAUNCH_PERSPECTIVES=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<launchPerspectives/>\r\n
 >>>>>>> DV4
 org.eclipse.debug.ui.changedDebugElement=255,128,128

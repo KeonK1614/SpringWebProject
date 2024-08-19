@@ -17,6 +17,7 @@
 		<item key="pageIndex" value="3"/>
 	</section>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	<section name="NewClassCreationWizard.dialogBounds">
 		<item key="DIALOG_X_ORIGIN" value="621"/>
@@ -33,4 +34,6 @@
 		<item key="create_unimplemented" value="true"/>
 	</section>
 >>>>>>> DV4
+=======
+>>>>>>> NH4
 </section>

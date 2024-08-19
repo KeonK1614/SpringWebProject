@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <fullyQualifiedTypeName name="org.springframework.security.core.userdetails.User"/>
     <fullyQualifiedTypeName name="java.nio.file.attribute.UserPrincipal"/>
     <fullyQualifiedTypeName name="jakarta.servlet.http.HttpSession"/>
@@ -16,4 +17,13 @@
     <fullyQualifiedTypeName name="org.springframework.security.core.context.SecurityContextHolder"/>
     <fullyQualifiedTypeName name="java.lang.String"/>
 >>>>>>> DV4
+=======
+    <fullyQualifiedTypeName name="com.project.springboot.dao.BoardPage"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestParam"/>
+    <fullyQualifiedTypeName name="org.springframework.web.multipart.MultipartFile"/>
+    <fullyQualifiedTypeName name="java.lang.Exception"/>
+    <fullyQualifiedTypeName name="ch.qos.logback.core.Context"/>
+    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+    <fullyQualifiedTypeName name="java.io.File"/>
+>>>>>>> NH4
 </qualifiedTypeNameHistroy>

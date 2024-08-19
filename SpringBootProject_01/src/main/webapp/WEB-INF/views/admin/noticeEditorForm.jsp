@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!doctype html>
 	<html lang="en" data-bs-theme="auto">
 	<head>	 
@@ -9,7 +9,7 @@
 		<meta name="description" content="">
 		<meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
 		<meta name="generator" content="Hugo 0.122.0">
-		<title></title>
+		<title>Carousel Template · Bootstrap v5.3</title>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
 		<link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
@@ -119,10 +119,10 @@
 			   <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
 			      <ul class="navbar-nav me-auto mb-2 mb-md-0">
 			      <li class="nav-item">
-			        <a class="nav-link" aria-current="page" href="#">home</a>
+			        <a class="nav-link" aria-current="page" href="#">홈페이지소개</a>
 			      </li>
 			      <li class="nav-item">
-			        <a class="nav-link" href="#">공지사항</a>
+			        <a class="nav-link" href="/guest/noticeBoard">공지사항</a>
 			      </li>
 			      <li class="nav-item">
 			        <a class="nav-link" href="#">지도</a>
@@ -130,7 +130,7 @@
 			      <li class="nav-item dropdown">
 			         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">커뮤니티</a>
 			          <ul class="dropdown-menu">
-			            <li><a class="dropdown-item" href="#">정보 게시판</a></li>
+			            <li><a class="dropdown-item" href="/guest/boardInfo">정보 게시판</a></li>
 			            <li><a class="dropdown-item" href="#">인기 게시판</a></li>
 			         	</ul>
 			         </li>
@@ -138,18 +138,18 @@
 			         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">문의사항</a>
 			        <ul class="dropdown-menu">
 			          <li><a class="dropdown-item" href="#">자주 물어보는 질문</a></li>
-			          <li><a class="dropdown-item" href="#">1대1문의</a></li>
+			          <li><a class="dropdown-item" href="guest/inquiryBoard">문의게시판</a></li>
 			        </ul>
 			      </li>
 			   </ul>
 			  	<ul class="navbar-nav">
 			      	<li class="nav-item">
-			       	<a class="nav-link" href="login">
+			       	<a class="nav-link" href="/guest/login">
 			       	<button type="button" class="btn btn-outline-light">
 			       	<i class='bi bi-box-arrow-in-right'></i> 로그인</button></a>
 			     	</li>
 			      	<li class="nav-item">
-			       	<a class="nav-link" href="join">
+			       	<a class="nav-link" href="/guest/joinform">
 			       	<button type="button" class="btn btn-outline-light">
 			       	<i class='bi bi-person-plus-fill'></i> 회원가입</button></a>
 			     	</li>
@@ -158,108 +158,55 @@
 			  </div>
 			</nav>
 		</header>
-		     <div class="col-10 pt-3 mt-3 mx-auto">
-		         <h4>게시판 목록 - <small>자유게시판</small></h4>
-		
-		         <div class="row">
-		             <!-- 검색부분 -->
-		             <form method="get">
-		                 <div class="input-group ms-auto"style="width: 300px;">
-		                     <select name="searchField" class="form-control">
-		                         <option value="">제목</option>
-		                         <option value="">작성자</option>
-		                         <option value="">내용</option>
-		                     </select>
-					   <input class="form-control" type="searchWord" placeholder="Search" aria-label="Search">
-			           <button class="btn btn-outline-primary" type="submit"><i class="bi bi-search" style='font-size:20px'></i></button>
-				   </div>
-		             </form>  
-		         </div>
-		         <div class="row mt-3 mx-1 mx-auto">
-		             <!-- 게시판리스트부분 -->
-		             <table class="table table-bordered table-hover table-striped">
-		                 <colgroup>
-		                     <col width="60px" />
-		                     <col width="*" />
-		                     <col width="120px" />
-		                     <col width="120px" />
-		                     <col width="80px" />
-		                     <col width="60px" />
-		                 </colgroup>
-		                 <thead>
-		                     <tr style="background-color: rgb(133, 133, 133); " class="text-center text-white">
-		                         <th>번호</th>
-		                         <th>제목</th>
-		                         <th>작성자</th>
-		                         <th>작성일</th>
-		                         <th>조회수</th>
-		                         <th>좋아요 수</th>
-		                         <th>첨부파일</th>
-		                     </tr>
-		                 </thead>
-		                 <tbody>
-		                 	<c:choose>
-				                 <c:when test="${ empty list }">
-				                 <tr>
-				                 	<td colspan="7" align="center">
-				                 		등록된 게시물이 없습니다.
-				                 	</td>
-				                 </tr>
-				                 </c:when>
-				                 <c:otherwise>
-				                 	<c:forEach items="${list }" var="dto" varStatus="loop">
-				                    	<tr align="center">
-				                    		<td>
-								            <c:set var="vNum" value="${ maps.totalCount - 
-								                (((maps.pageNum-1) * maps.pageSize)	+ loop.index)}" />
-								            	${vNum}
-								            </td>
-				                         	<td class="text-left"><a href="boardView?idx=${dto.idx}&vNum=${vNum}">${dto.title }</a></td>
-				                         	<td class="text-center">${dto.id }</td>
-				                         	<td class="text-center">${dto.postdate }</td>
-				                         	<td class="text-center">${dto.viewCount }</td>
-				                         	<td class="text-center">${dto.likeCount }</td>
-				                         	<td class="text-center">
-				                         		<c:if test="${ not empty dto.ofile }">
-				                         			<i class="bi bi-pin-angle-fill" style="font-size:20px"></i>
-				                         		</c:if>
-				                         	</td>
-				                     	</tr>
-				                 	</c:forEach>  
-				                 </c:otherwise>
-				             </c:choose>
-		                 </tbody>
-		             </table>
-		         </div>
-		   <div>
-			               <div class="col d-flex justify-content-end">
-			                   <button type="button" class="btn btn-primary" onclick="location.href='/member/boardWrite';">글쓰기</button>
-			               </div>
-			           </div>
-		   
-		         <div class="row mt-3">
-		             <div class="col">
-		                 <!-- 페이지번호 부분 -->
-		                  <ul class="pagination justify-content-center">
-		                      <li class="page-item">
-		                          <a href="#" class="page-link"><i class='bi bi-skip-backward-fill'></i></a>
-		                      </li>
-		                      <li class="page-item">
-		                          <a href="#" class="page-link"><i class='bi bi-skip-start-fill'></i></a>
-		                      </li>
-		                      <li class="page-item"><a href="#" class="page-link">${ pagingImg }</a></li>
-		                      <li class="page-item">
-		                          <a href="#" class="page-link"><i class='bi bi-skip-end-fill'></i></a>
-		                      </li>
-		                      <li class="page-item">
-		                          <a href="#" class="page-link"><i class='bi bi-skip-forward-fill'></i></a>
-		                      </li>
-		                  </ul>
-				   	</div>
-		          </div>
-		      </div>
-			</div>
-		</main>	 	 	
+	
+	<main>
+	     <div class="col-10 pt-3 mt-3 mx-auto">
+		     <h4>공지사항 게시판 - <small>내용 수정</small></h4>
+		      <div class="row mt-3 mx-1 mx-auto">
+		         <form enctype="multipart/form-data" action="noticeEditor?idx=${dto.idx}" method="post">
+	                <table class="table table-bordered">
+		                <colgroup>
+		                    <col width="20%"/>
+		                    <col width="*"/>
+		                </colgroup>
+		                <tbody>
+		                    <tr>
+		                        <th class="text-center" style="vertical-align:middle;">작성자</th>
+		                        <td><input type="text" class="form-control" style="width:100px;" name="id" value="${dto.id}" disabled/></td>
+		                    </tr>
+		                    
+		                    <tr>
+		                        <th class="text-center" 
+		                            style="vertical-align:middle;">제목</th>
+		                        <td><input type="text" class="form-control" name="title" value="${dto.title}"/></td>
+		                    </tr>
+		                    <tr>
+		                        <th class="text-center" style="vertical-align:middle;">내용</th>
+		                        <td><textarea rows="9" class="form-control" name="content">${dto.content}</textarea></td>
+		                    </tr>
+		                    <tr>
+		                        <th class="text-center" 
+		                            style="vertical-align:middle;">첨부파일</th>
+		                        <td>
+		                            <input type="file" class="form-control" name="ofile" />
+		                        </td>
+		                    </tr>
+		                </tbody>
+	                </table>
+	                
+	                <div class="row">
+	                    <div class="col text-right mb-4 d-flex justify-content-end">
+	                        <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='../guest/noticeBoard';">리스트보기</button>
+	                        <button type="submit" class="btn btn-outline-primary mx-1">수정완료</button>
+	                        <button type="reset" class="btn btn-outline-primary mx-1">Reset</button>
+	                        <button type="submit" class="btn btn-outline-primary mx-1" onclick="location.href='admin/noticeDelete?idx=${dto.idx}';">글삭제</button>
+	                    </div>
+	                </div>
+                 </form>
+		   	  </div>      
+		  </div>
+	</main>	 
+			 	
 		<footer class="container">
 		    <p class="float-end"><i class="bi bi-arrow-up-circle"></i><a href="#">Back to top</a></p>
 		    <h3><strong>더조은™</strong></h3>
@@ -273,6 +220,5 @@
 			</p>  
 		    <p>&copy; 2017–2024 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
 	  	</footer>		
-			
-		</body>
-	</html>
+  </body>
+</html>

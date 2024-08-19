@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
+
 <!doctype html>
 	<html lang="en" data-bs-theme="auto">
 	<head>	 
@@ -9,7 +11,7 @@
 		<meta name="description" content="">
 		<meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
 		<meta name="generator" content="Hugo 0.122.0">
-		<title></title>
+		<title>Carousel Template · Bootstrap v5.3</title>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
 		<link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
@@ -119,10 +121,10 @@
 			   <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
 			      <ul class="navbar-nav me-auto mb-2 mb-md-0">
 			      <li class="nav-item">
-			        <a class="nav-link" aria-current="page" href="#">home</a>
+			        <a class="nav-link" aria-current="page" href="#">홈페이지소개</a>
 			      </li>
 			      <li class="nav-item">
-			        <a class="nav-link" href="#">공지사항</a>
+			        <a class="nav-link" href="/guest/noticeBoard">공지사항</a>
 			      </li>
 			      <li class="nav-item">
 			        <a class="nav-link" href="#">지도</a>
@@ -130,7 +132,7 @@
 			      <li class="nav-item dropdown">
 			         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">커뮤니티</a>
 			          <ul class="dropdown-menu">
-			            <li><a class="dropdown-item" href="#">정보 게시판</a></li>
+			            <li><a class="dropdown-item" href="/guest/boardInfo">정보 게시판</a></li>
 			            <li><a class="dropdown-item" href="#">인기 게시판</a></li>
 			         	</ul>
 			         </li>
@@ -138,18 +140,18 @@
 			         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">문의사항</a>
 			        <ul class="dropdown-menu">
 			          <li><a class="dropdown-item" href="#">자주 물어보는 질문</a></li>
-			          <li><a class="dropdown-item" href="#">1대1문의</a></li>
+			          <li><a class="dropdown-item" href="guest/inquiryBoard">문의게시판</a></li>
 			        </ul>
 			      </li>
 			   </ul>
 			  	<ul class="navbar-nav">
 			      	<li class="nav-item">
-			       	<a class="nav-link" href="login">
+			       	<a class="nav-link" href="/guest/login">
 			       	<button type="button" class="btn btn-outline-light">
 			       	<i class='bi bi-box-arrow-in-right'></i> 로그인</button></a>
 			     	</li>
 			      	<li class="nav-item">
-			       	<a class="nav-link" href="join">
+			       	<a class="nav-link" href="/guest/joinform">
 			       	<button type="button" class="btn btn-outline-light">
 			       	<i class='bi bi-person-plus-fill'></i> 회원가입</button></a>
 			     	</li>
@@ -158,21 +160,22 @@
 			  </div>
 			</nav>
 		</header>
-		     <div class="col-10 pt-3 mt-3 mx-auto">
-		         <h4>게시판 목록 - <small>자유게시판</small></h4>
+	
+		<main>
+			<div class="col-10 pt-3 mt-3 mx-auto">
+		         <h4>게시판 목록 - <small>공지사항게시판</small></h4>
 		
 		         <div class="row">
 		             <!-- 검색부분 -->
 		             <form method="get">
-		                 <div class="input-group ms-auto"style="width: 300px;">
+		                <div class="input-group ms-auto"style="width: 300px;">
 		                     <select name="searchField" class="form-control">
-		                         <option value="">제목</option>
-		                         <option value="">작성자</option>
-		                         <option value="">내용</option>
+		                         <option value="title">제목</option>
+		                         <option value="content">내용</option>
 		                     </select>
-					   <input class="form-control" type="searchWord" placeholder="Search" aria-label="Search">
-			           <button class="btn btn-outline-primary" type="submit"><i class="bi bi-search" style='font-size:20px'></i></button>
-				   </div>
+						   <input class="form-control" type="text" name="searchWord" placeholder="Search" aria-label="Search">
+				           <button class="btn btn-outline-primary" type="submit"><i class="bi bi-search" style='font-size:20px'></i></button>
+				   		</div>
 		             </form>  
 		         </div>
 		         <div class="row mt-3 mx-1 mx-auto">
@@ -186,76 +189,84 @@
 		                     <col width="80px" />
 		                     <col width="60px" />
 		                 </colgroup>
-		                 <thead>
-		                     <tr style="background-color: rgb(133, 133, 133); " class="text-center text-white">
-		                         <th>번호</th>
-		                         <th>제목</th>
-		                         <th>작성자</th>
-		                         <th>작성일</th>
-		                         <th>조회수</th>
-		                         <th>좋아요 수</th>
-		                         <th>첨부파일</th>
-		                     </tr>
-		                 </thead>
-		                 <tbody>
-		                 	<c:choose>
-				                 <c:when test="${ empty list }">
-				                 <tr>
-				                 	<td colspan="7" align="center">
-				                 		등록된 게시물이 없습니다.
-				                 	</td>
-				                 </tr>
-				                 </c:when>
-				                 <c:otherwise>
-				                 	<c:forEach items="${list }" var="dto" varStatus="loop">
-				                    	<tr align="center">
-				                    		<td>
-								            <c:set var="vNum" value="${ maps.totalCount - 
-								                (((maps.pageNum-1) * maps.pageSize)	+ loop.index)}" />
-								            	${vNum}
-								            </td>
-				                         	<td class="text-left"><a href="boardView?idx=${dto.idx}&vNum=${vNum}">${dto.title }</a></td>
-				                         	<td class="text-center">${dto.id }</td>
-				                         	<td class="text-center">${dto.postdate }</td>
-				                         	<td class="text-center">${dto.viewCount }</td>
-				                         	<td class="text-center">${dto.likeCount }</td>
-				                         	<td class="text-center">
-				                         		<c:if test="${ not empty dto.ofile }">
-				                         			<i class="bi bi-pin-angle-fill" style="font-size:20px"></i>
-				                         		</c:if>
-				                         	</td>
-				                     	</tr>
-				                 	</c:forEach>  
-				                 </c:otherwise>
-				             </c:choose>
-		                 </tbody>
+		                 	<thead>
+			                     <tr style="background-color: rgb(133, 133, 133); " class="text-center text-white">
+			                         <th>번호</th>
+			                         <th>제목</th>
+			                         <th>작성자</th>
+			                         <th>작성일</th>
+			                         <th>조회수</th>
+			                         <th>추천</th>
+			                     </tr>
+			                 </thead>
+			                 <tbody>
+			                 <c:choose>
+			                 	<c:when test="${ empty list }">
+			                 		<tr>
+			                 			<td colspan="6" align="center">
+			                 				등록된 게시물이 없습니다.
+			                 			</td>
+			                 		</tr>
+			                 	</c:when>
+			                 	<c:otherwise>
+			                 	
+			                     <c:forEach items="${list}" var="dto"  varStatus="loop">
+			                     	<tr>
+			                     		<td align="center">${totalCount - (((pageNum-1) * pageSize) + loop.index)}</td>
+			                     		<td>
+			                     			<a href="noticeView?idx=${dto.idx}">${dto.title}</a>&nbsp;
+											<jsp:useBean id="now" class="java.util.Date" />
+											<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />				                     			
+			                     			<c:if test="${dto.postdate == today}"><span class="badge rounded-pill text-bg-danger">New</span></c:if>
+			                     			<c:if test="${ not empty dto.ofile }"><i class="bi bi-paperclip"></i></c:if>
+			                     		</td>
+			                     		<td align="center">${dto.id}</td>
+			                     		<td align="center">${dto.postdate}</td>
+			                     		<td align="center">${dto.viewCount}</td>
+			                     		<td align="center">${dto.likeCount}</td>
+			                     	</tr>
+			                     </c:forEach>
+			                     </c:otherwise>
+			                 </c:choose>
+			                 </tbody>
 		             </table>
 		         </div>
-		   <div>
-			               <div class="col d-flex justify-content-end">
-			                   <button type="button" class="btn btn-primary" onclick="location.href='/member/boardWrite';">글쓰기</button>
-			               </div>
-			           </div>
+		         
+		   		 <div>
+	               <div class="col d-flex justify-content-end">
+	                   <button type="button" class="btn btn-primary" onclick="location.href='noticeBoard';">리스트보기</button>&nbsp;&nbsp;
+	                   <button type="button" class="btn btn-primary" onclick="location.href='../admin/noticeWriteForm';">공지사항 등록</button>
+	               </div>
+		         </div>
 		   
+                
 		         <div class="row mt-3">
 		             <div class="col">
 		                 <!-- 페이지번호 부분 -->
+		                 
 		                  <ul class="pagination justify-content-center">
-		                      <li class="page-item">
+		                     ${pagingImg}
+		                    <!--   <li class="page-item">
 		                          <a href="#" class="page-link"><i class='bi bi-skip-backward-fill'></i></a>
 		                      </li>
 		                      <li class="page-item">
 		                          <a href="#" class="page-link"><i class='bi bi-skip-start-fill'></i></a>
 		                      </li>
-		                      <li class="page-item"><a href="#" class="page-link">${ pagingImg }</a></li>
+		                      <li class="page-item"><a href="#" class="page-link">1</a></li>
+		                      <li class="page-item active"><a href="#" class="page-link">2</a></li>
+		                      <li class="page-item"><a href="#" class="page-link">3</a></li>
+		                      <li class="page-item"><a href="#" class="page-link">4</a></li>
+		                      <li class="page-item"><a href="#" class="page-link">5</a></li>
 		                      <li class="page-item">
 		                          <a href="#" class="page-link"><i class='bi bi-skip-end-fill'></i></a>
 		                      </li>
 		                      <li class="page-item">
 		                          <a href="#" class="page-link"><i class='bi bi-skip-forward-fill'></i></a>
-		                      </li>
+		                      </li> -->
 		                  </ul>
-				   	</div>
+		                 
+		                  
+				   </div>
 		          </div>
 		      </div>
 			</div>
@@ -274,5 +285,7 @@
 		    <p>&copy; 2017–2024 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
 	  	</footer>		
 			
-		</body>
-	</html>
+	</body>
+</html>
+	
+

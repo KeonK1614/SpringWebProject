@@ -34,6 +34,10 @@ public class inquiryBoardController
 	ServletContext context;
 	
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+	
+>>>>>>> NH4
 	// 문의 게시판 리스트
 =======
 	// 문의 게시판 목록
@@ -85,6 +89,7 @@ public class inquiryBoardController
 
       return "guest/inquiryBoard";
 	}
+	
 	
 	//문의 게시판 상세보기
 	@RequestMapping("member/inquiryBoardview")

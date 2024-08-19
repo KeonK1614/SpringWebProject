@@ -116,7 +116,7 @@
 		<header>
 			<nav class="navbar navbar-expand-md fixed-top" style="background-color: #7FA1C3;">
 			  <div class="container-fluid">
-			    <a class="navbar-brand" href="main">Carousel</a>
+			    <a class="navbar-brand" href="/">Carousel</a>
 			    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
 			      <span class="navbar-toggler-icon"></span>
 			    </button>
@@ -126,7 +126,7 @@
 			        <a class="nav-link" aria-current="page" href="#">홈페이지소개</a>
 			      </li>
 			      <li class="nav-item">
-			        <a class="nav-link" href="boardAnnouncement">공지사항</a>
+			        <a class="nav-link" href="/guest/noticeBoard">공지사항</a>
 			      </li>
 			      <li class="nav-item">
 			        <a class="nav-link" href="#">지도</a>
@@ -134,7 +134,7 @@
 			      <li class="nav-item dropdown">
 			         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">커뮤니티</a>
 			          <ul class="dropdown-menu">
-			            <li><a class="dropdown-item" href="boardInformation">정보 게시판</a></li>
+			            <li><a class="dropdown-item" href="/guest/boardInfo">정보 게시판</a></li>
 			            <li><a class="dropdown-item" href="#">인기 게시판</a></li>
 			         	</ul>
 			         </li>
@@ -142,10 +142,11 @@
 			         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">문의사항</a>
 			        <ul class="dropdown-menu">
 			          <li><a class="dropdown-item" href="#">자주 물어보는 질문</a></li>
-			          <li><a class="dropdown-item" href="#">1대1문의</a></li>
+			          <li><a class="dropdown-item" href="guest/inquiryBoard">문의게시판</a></li>
 			        </ul>
 			      </li>
 			   </ul>
+<<<<<<< HEAD
 			<sec:authorize access="isAnonymous()">
                 <ul class="navbar-nav">
                     <li class="nav-item">
@@ -183,6 +184,20 @@
                     </li>
                 </ul>
            </sec:authorize>
+=======
+			  	<ul class="navbar-nav">
+			      	<li class="nav-item">
+			       	<a class="nav-link" href="/guest/login">
+			       	<button type="button" class="btn btn-outline-light">
+			       	<i class='bi bi-box-arrow-in-right'></i> 로그인</button></a>
+			     	</li>
+			      	<li class="nav-item">
+			       	<a class="nav-link" href="/guest/joinform">
+			       	<button type="button" class="btn btn-outline-light">
+			       	<i class='bi bi-person-plus-fill'></i> 회원가입</button></a>
+			     	</li>
+			     	</ul>
+>>>>>>> NH4
 			    </div>
 			  </div>
 			</nav>
@@ -294,7 +309,23 @@
 	  <!-- FOOTER -->
 	  <footer class="container">
 	    <p class="float-end"><i class="bi bi-arrow-up-circle"></i><a href="#">Back to top</a></p>
-	    <p>&copy; 2017–2024 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+	    <div class="p-4 text-white text-center" style="background-color: #7FA1C3;">
+			<div class="row">
+				<div class="col-2 ps-4">
+				<h3><strong>더조은™</strong></h3>
+				</div>
+				<div class="col">
+					<p class="copy text-center">
+					    더조은아카데미일산 &nbsp;&nbsp;
+				        경기도 고양시 일산구 중앙로 1275번길 38-10 201호(장항동 우림로데오스위트) &nbsp;&nbsp;<br/>
+				        학생 : 김건, 김나현, 나예림, 장다빈 &nbsp;&nbsp;
+				        사업자등록번호 : 584-85-00825 &nbsp;&nbsp;  
+				        TEL : 031.902.1777 &nbsp;&nbsp; 
+						FAX : 031.906.8777 <br>
+					</p>  
+				</div>
+			</div>
+		</div>
 	  </footer>
 	</main>
 	<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
