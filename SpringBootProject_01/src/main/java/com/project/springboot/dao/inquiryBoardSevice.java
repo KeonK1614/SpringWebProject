@@ -33,8 +33,9 @@ public class inquiryBoardSevice implements IinquiryBoardDao{
 	}
 
 	@Override
-	public int writeDao(Map<String, String> map) {
-		int nResult = dao.writeDao(map);
+	public int writeDao(String id, String title, String content, String ofile, String sfile, String boardPass) {
+		
+		int nResult = dao.writeDao(id, title, content, ofile, sfile, boardPass);
 		
 		return nResult;
 	}

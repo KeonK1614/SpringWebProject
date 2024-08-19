@@ -107,12 +107,9 @@
 	            alert("내용을 입력하세요.");
 	            form.content.focus();
 	            return false;
-	        }
-	        
-	        alert("패스워드는 문의 게시판의 게시물 열람시 필요합니다.");
-	        
-	       
+	        }       
 	    }
+	        alert("패스워드는 게시물 열람시 필요합니다.");
 		</script>
 
 	  <link href="../carousel/carousel.css" rel="stylesheet">
@@ -191,10 +188,10 @@
 	
 		<main>
 		     <div class="col-10 pt-3 mt-3 mx-auto">
-		     <h4>문의 게시판 - <small>글쓰기</small></h4>
-		         
+		      <h3>문의 게시판 - <small>글쓰기</small></h3>
+		      <hr>
 			<div class="row mt-3 mx-1 mx-auto">
-			    <form enctype="multipart/form-data" multiple="multiple" action="inquiryBoardWrite" method="post" onsubmit="return validateForm(this);">
+			    <form enctype="multipart/form-data" action="inquiryBoardWrite" method="post" onsubmit="return validateForm(this);">
 	                <table class="table table-bordered">
 	                <colgroup>
 	                    <col width="20%"/>
@@ -206,7 +203,7 @@
 	                            style="vertical-align:middle;">작성자</th>
 	                        <td>
 	                            <input type="text" class="form-control" 
-	                                style="width:100px;" name="id"/>
+	                                style="width:100px;" name="id" value="${userId }" disabled/>
 	                        </td>
 	                    </tr>
 	                    <tr>
@@ -235,12 +232,11 @@
 	                        <th class="text-center" 
 	                            style="vertical-align:middle;">첨부파일</th>
 	                        <td>
-	                            <input type="file" class="form-control" name="ofile" mutiple="true"/>
+	                            <input type="file" class="form-control" name="ofile"/>
 	                        </td>
 	                    </tr>
 	                </tbody>
 	                </table>
-	                <input type="hidden" class="form-control" name="isAnnouncement" value="Y" />                	                
 	                <div class="row"> <!--버튼 부분-->
 	                    <div class="col text-right mb-4 d-flex justify-content-end">
 		                   <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='../guest/inquiryBoard';">리스트보기</button>

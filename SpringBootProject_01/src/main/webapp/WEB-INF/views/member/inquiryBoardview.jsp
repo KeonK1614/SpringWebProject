@@ -14,22 +14,26 @@
 		<link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
 		<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+		<script type="text/javascript">
+		function showPopup(){
+            window.open("test.html","팝업 테스트","width=400, height=300, top=10, left=10");
+        }
+		</script>		
 		
 		<script>
-/* 		function check() {
-			  alert('크림');
-			  window.location.href = "inquiryBoardlikeCount?idx=${dto.idx}";
-			} */
-		
-		
-		var getpass = prompt("비밀번호를 입력하세요.");
-	    
-		if( ${dto.boardPass} == getpass) {
-		    alert("인증 되었습니다.");
+		if ("${dto.id}" === "${Id}") {
+		    var getpass = prompt("비밀번호를 입력하세요.");
+		    
+		    if ("${dto.boardPass}" === getpass) {
+		        alert("인증 되었습니다.");
+		    } else {
+		        alert("비밀번호가 틀렸습니다.");
+		        window.location.href = "../guest/inquiryBoard";
+		    }
 		} else {
-		    alert("비밀번호가 틀렸습니다.");
-		    window.location.href = "../guest/inquiryBoard";
-		}
+		    alert("비밀글 열람권한이 없습니다.");
+	        window.location.href = "../guest/inquiryBoard";
+		}	
 		</script>
 		
 		<script>
@@ -190,7 +194,8 @@
 	
 		<main>
 		     <div class="col-10 pt-3 mt-3 mx-auto">
-		     <h4>게시판 목록 - <small>문의게시판</small></h4>
+		     <h3>문의게시판</h3> 
+		     <hr>
 		     	<form name="writeFrm">
 		     		<input type="hidden" name="idx" value="${dto.idx }" /> 
 		     	</form>
@@ -205,6 +210,13 @@
 		                <col width="*"/>
 		            </colgroup>
 		            <tbody>
+		            	 <tr>
+		                    <th class="text-center" 
+		                        style="vertical-align:middle;">제목</th>
+		                    <td colspan="3">
+		                        ${dto.title}
+		                    </td>
+		                </tr>
 		                <tr>
 		                    <th class="text-center" 
 		                        style="vertical-align:middle;">작성자</th>
@@ -219,40 +231,37 @@
 		                </tr>
 		                <tr>
 		                    <th class="text-center" 
-		                        style="vertical-align:middle;">추천</th>
-		                    <td>
-		                        ${dto.likeCount}
-		                    </td>
-		                    <th class="text-center" 
 		                        style="vertical-align:middle;">조회수</th>
 		                    <td>
 		                        ${dto.viewCount}
 		                    </td>
-		                </tr>
-		                <tr>
 		                    <th class="text-center" 
-		                        style="vertical-align:middle;">제목</th>
-		                    <td colspan="3">
-		                        ${dto.title}
+		                        style="vertical-align:middle;">답변 </th>
+		                    <td>
+		                        ${dto.likeCount}
 		                    </td>
 		                </tr>
-		                <tr>
+		                <tr style="height: 300px">
 		                    <th class="text-center" 
 		                        style="vertical-align:middle;">내용</th>
 		                    <td colspan="3">
 		                        ${dto.content} 
+		                        <c:if test="${ not empty dto.ofile and isImage eq true }">
+		                        	<img src="/static/files/${ dto.sfile }" style="max-width:100%;"/><br>
+		                        </c:if>
 		                    </td>
 		                </tr>
 		                <tr>
 		                    <th class="text-center" 
 		                        style="vertical-align:middle;">첨부파일</th>
 		                    <td colspan="3">
-		                        <c:if test="${ not empty dto.ofile }">
-						            <a href="../mvcboard/download.do?ofile=${ dto.ofile }&sfile=${ dto.sfile }&idx=${ dto.idx }">
+		                    	<c:if test="${ not empty dto.ofile }">
+		            				${ dto.ofile }
+						            <%-- <a href="../mvcboard/download.do?ofile=${ dto.ofile }&sfile=${ dto.sfile }&idx=${ dto.idx }"> --%>
+						            <a href="../views/download.do?ofile=${ dto.ofile }&sfile=${ dto.sfile }&idx=${ dto.idx }">
 						                [다운로드]
 						            </a>
-					            </c:if>
-					            ${dto.sfile }
+						        </c:if>
 		                    </td>
 		                </tr>
 		            </tbody>
@@ -260,8 +269,8 @@
 		            
 		            <div class="row">
 		            	<div class="col d-flex justify-content-start">
-<%-- 		            		<button type="button" id="likeButton" class="btn btn-outline-danger" onclick="location.href='inquiryBoardlikeCount?idx=${dto.idx}';"><i class="bi bi-heart-fill"></i> 좋아요</button>
- --%>		            		<button type="button" id="likeButton" class="btn btn-outline-danger" onclick=check()><i class="bi bi-heart-fill"></i> 좋아요</button>
+		            		<%-- <button type="button" id="likeButton" class="btn btn-outline-danger" onclick="location.href='inquiryBoardlikeCount?idx=${dto.idx}';"><i class="bi bi-heart-fill"></i> 좋아요</button>
+		            		<button type="button" id="likeButton" class="btn btn-outline-danger" onclick=check()><i class="bi bi-heart-fill"></i> 좋아요</button> --%>
 		            	</div>
 		                <div class="col d-flex justify-content-end">
 		                   <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='../guest/inquiryBoard';">리스트보기</button>

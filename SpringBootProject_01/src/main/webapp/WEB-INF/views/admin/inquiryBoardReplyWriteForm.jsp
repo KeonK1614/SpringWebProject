@@ -187,8 +187,8 @@
 	
 		<main>
 		     <div class="col-10 pt-3 mt-3 mx-auto">
-		     <h4>문의 게시판 - <small>글쓰기</small></h4>
-		         
+		      <h3>문의 게시판 - <small>답변 글쓰기</small></h3>
+		     <hr>
 			<div class="row mt-3 mx-1 mx-auto">
 			    <form enctype="multipart/form-data" action="inquiryBoardReplyWrite?idx=${dto.idx}" method="post" onsubmit="return validateForm(this);">
 	                <table class="table table-bordered">
@@ -217,7 +217,7 @@
 	                        <th class="text-center" 
 	                            style="vertical-align:middle;">제목</th>
 	                        <td>
-	                            <input type="text" class="form-control" name="title" value="	[RE]${dto.title }"/>
+	                            <input type="text" class="form-control" name="title" value="	[답변]${dto.title }"/>
 	                        </td>
 	                    </tr>
 	                    <tr>
@@ -231,7 +231,7 @@
 	                        <th class="text-center" 
 	                            style="vertical-align:middle;">첨부파일</th>
 	                        <td>
-	                            <input type="file" class="form-control" name="ofile" mutiple="true"/>
+	                            <input type="file" class="form-control" name="ofile" />
 	                        </td>
 	                    </tr>
 	                </tbody>

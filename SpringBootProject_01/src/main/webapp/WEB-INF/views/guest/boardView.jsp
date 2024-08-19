@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!doctype html>
 	<html lang="en" data-bs-theme="auto">
 	  <head><script src="../assets/js/color-modes.js"></script>
@@ -162,45 +163,10 @@
 			  </div>
 			</nav>
 		</header>
-	
-		<main>
-			<div class="row">			
-				<div class="col-2 ps-3">
-				
-					   <div style="height: 100px; line-height: 100px; text-align: center; 
-						color:white; background-color:#03346E; font-size: 1.5em; border-radius:10px; margin: 25px 0 10px 0;">
-		              	카테고리
-		         		</div>
-		         		
-		         		<div class="nav flex-column nav-pills dropdown dropend" style="background-color: #7FA1C3; border-radius:10px;" id="v-pills-tab"   
-		         		role="tablist" aria-orientation="vertical">
-			             	<a class="nav-link" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab"
-			                 aria-controls="v-pills-home" aria-selected="true">home</a>		 
-			                                   
-			             	<a class="nav-link" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab"
-			                 aria-controls="v-pills-home" aria-selected="true">공지사항</a>
-			                 
-			            	 <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab"
-			                 aria-controls="v-pills-profile" aria-selected="false">지도</a>
-			                 
-			             	<a class="nav-link dropdown-toggle " data-bs-toggle="dropdown" id="v-pills-messages-tab" data-toggle="pill" 
-			             	href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">커뮤니티</a>
-			                <div class="dropdown-menu">
-			                     <a class="dropdown-item" href="#">정보 게시판 </a>
-			                     <a class="dropdown-item" href="#">인기 게시판</a>
-			                </div>
-			                 
-			             	<a class="nav-link dropdown-toggle " data-bs-toggle="dropdown" id="v-pills-messages-tab" data-toggle="pill" 
-			             	href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">문의사항</a>
-			                <div class="dropdown-menu">
-								<a class="dropdown-item" href="#">자주 물어보는 질문</a>
-								<a class="dropdown-item" href="#">1대1문의</a>
-							</div>
-		     			</div>
-				</div>
-			   <div class="col-10 pt-3 mt-3">
-            <h3>게시판 보기 - <small>자유게시판</small></h3>
-
+		
+	<div class="row">			
+		<div class="col-10 pt-3 mt-3 mx-auto">
+            <h4>자유게시판- <small>게시판 보기 </small></h4>
             <form enctype="multipart/form-data">
                 <table class="table table-bordered">
                 <colgroup>
@@ -210,70 +176,78 @@
                 <tbody>
                     <tr>
                         <th class="text-center" 
-                            style="vertical-align:middle;">작성자</th>
+                            style="vertical-align:middle;">번호</th>
                         <td>
-                            <input type="text" class="form-control" 
-                                style="width:100px;" />
+                            ${param.vNum}
                         </td>
                     </tr>
                     <tr>
                         <th class="text-center" 
-                            style="vertical-align:middle;">패스워드</th>
+                            style="vertical-align:middle;">작성자</th>
                         <td>
-                            <input type="text" class="form-control" 
-                                style="width:200px;" />
+                            ${dto.id }
                         </td>
                     </tr>
                     <tr>
                         <th class="text-center" 
                             style="vertical-align:middle;">제목</th>
                         <td>
-                            <input type="text" class="form-control" />
+                        	${dto.title }
                         </td>
                     </tr>
                     <tr>
                         <th class="text-center" 
                             style="vertical-align:middle;">내용</th>
                         <td>
-                            <textarea rows="5" class="form-control"></textarea>
+                        	<c:if test="${ not empty dto.ofile and isImage eq true }">
+                        		<br><img src="/static/files/${dto.sfile }" style="max-width: 100%;" /><br/>
+                        	</c:if>
+                        	${dto.content }
                         </td>
                     </tr>
                     <tr>
                         <th class="text-center" 
                             style="vertical-align:middle;">첨부파일</th>
                         <td>
-                            <input type="file" class="form-control" />
-                        </td>
+							<c:if test="${ not empty dto.ofile }">
+		            		${ dto.ofile }
+		            			<%-- <a href="../views/download.do?ofile=${ dto.ofile }&sfile=${ dto.sfile }&idx=${ dto.idx }">
+		            				[다운로드]
+		            			</a> --%>
+		            		</c:if>                     
+            			</td>
                     </tr>
                 </tbody>
                 </table>
                 
                  <div class="row">
                     <div class="col text-right mb-4 d-flex justify-content-end">
-                        <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='board';">리스트보기</button>
-                        <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='boardEditor';">수정하기</button>
+                        <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='/member/like?idx=${dto.idx}';" >좋아요</button>
+                        <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='boardInfo';">리스트보기</button>
+                        <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='/member/boardEditor?idx=${dto.idx}';">수정하기</button>
+                        <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='/member/delete?idx=${dto.idx}';">삭제하기</button>
                         <button type="reset" class="btn btn-outline-primary mx-1">Reset</button>
                     </div>
                 </div>
             </form>
         </div>
     </div>			   
-		<div class="p-4 text-white text-center" style="background-color: #7FA1C3;">
-			<div class="row">
-				<div class="col-2 ps-4">
-				<h3><strong>더조은™</strong></h3>
-			</div>
-				<div class="col">
-					<p class="copy text-center">
-					    더조은아카데미일산 &nbsp;&nbsp;
-				        경기도 고양시 일산구 중앙로 1275번길 38-10 201호(장항동 우림로데오스위트) &nbsp;&nbsp;<br/>
-				        학생 : 김건, 김나현, 나예림, 장다빈 
-				        사업자등록번호 : 584-85-00825 &nbsp;&nbsp;  
-				        TEL : 031.902.1777 &nbsp;&nbsp; 
-						FAX : 031.906.8777 <br>
-					</p>  
-				</div>
+	<div class="p-4 text-white text-center" style="background-color: #7FA1C3;">
+		<div class="row">
+			<div class="col-2 ps-4">
+			<h3><strong>더조은™</strong></h3>
+		</div>
+			<div class="col">
+				<p class="copy text-center">
+				    더조은아카데미일산 &nbsp;&nbsp;
+			        경기도 고양시 일산구 중앙로 1275번길 38-10 201호(장항동 우림로데오스위트) &nbsp;&nbsp;<br/>
+			        학생 : 김건, 김나현, 나예림, 장다빈 
+			        사업자등록번호 : 584-85-00825 &nbsp;&nbsp;  
+			        TEL : 031.902.1777 &nbsp;&nbsp; 
+					FAX : 031.906.8777 <br>
+				</p>  
 			</div>
 		</div>
+	</div>
 	</body>
 </html>

@@ -14,7 +14,8 @@ public interface IinquiryBoardDao {
 	public List<inquiryBoardDto> listDao(Map<String, Object> map);
 	public int listCountDao(Map<String, Object> map);
 	public inquiryBoardDto viewDao(@Param("_idx") String idx);
-	public int writeDao(Map<String, String> map);
+	public int writeDao(@Param("id")String id,@Param("title") String title,@Param("content") String content, 
+			@Param("ofile") String ofile, @Param("sfile")String sfile, @Param("boardPass") String boardPass);
 	public int replyWriteDao(Map<String, String> map);
 	public int deleteDao(String id);
 	public int viewCountDao(@Param("_idx")String idx);

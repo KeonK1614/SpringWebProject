@@ -16,6 +16,6 @@ public class inquiryBoardDto {
 	private int likeCount;
 	private String ofile;
 	private String sfile;
-	private String isisAnnouncementAu;
+	private String isAnnouncementAu;
 	private String boardPass;
 }

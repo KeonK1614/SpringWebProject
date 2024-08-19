@@ -33,26 +33,13 @@
 		</select>
 		
 		<insert id="writeDao" parameterType="java.util.HashMap">
-			<!-- <if test="ofile != 'null' and ofile != ''">
 			insert into inquiryBoard (idx, id, title, content, ofile, sfile, isAnnouncement, boardPass)
-			values (inquiryBoard_seq.nextval, #{item1}, #{item2}, #{item3}, #{item4}, #{item5}, 'N', #{item6})
-			</if>
-			 -->			
-			<choose>
-					<when test = "ofile != 'null' and ofile != ''">
-					insert into inquiryBoard (idx, id, title, content, ofile, sfile, isAnnouncement, boardPass)
-					values (inquiryBoard_seq.nextval, #{item1}, #{item2}, #{item3}, #{item4}, #{item5}, 'N', #{item6})
-					</when>
-					<otherwise>
-					insert into inquiryBoard (idx, id, title, content, ofile, sfile, isAnnouncement, boardPass)
-					values (inquiryBoard_seq.nextval, #{item1}, #{item2}, #{item3}, null, null, 'N', #{item6})
-					</otherwise>
-			</choose>			
+					values (inquiryBoard_seq.nextval, #{id}, #{title}, #{content}, #{ofile, jdbcType=VARCHAR}, #{sfile, jdbcType=VARCHAR}, 'N', #{boardPass})			
 		</insert>
 		
 		<insert id="replyWriteDao" parameterType="java.util.HashMap">
-			insert into inquiryBoard (idx, id, parentIdx, title, content, ofile, sfile, isAnnouncement, boardPass)
-			values (inquiryBoard_seq.nextval, #{item1}, #{item7}, #{item2}, #{item3}, null, null, 'Y', #{item6})
+			insert into inquiryBoard (idx, id, title, content, ofile, sfile, isAnnouncement, boardPass, parentIdx)
+			values (inquiryBoard_seq.nextval, #{item1}, #{item2}, #{item3}, #{item4, jdbcType=VARCHAR}, #{item5, jdbcType=VARCHAR}, 'Y', #{item6}, #{item7})
 		</insert>
 		
 		<delete id="deleteDao">
@@ -68,11 +55,10 @@
 				SET id = #{mId},
 					title = #{mTitle},
 					content = #{mContent},
-					ofile = null,
-					sfile = null,
-					isAnnouncement = 'N',
+					ofile = #{moFileName, jdbcType=VARCHAR},
+					sfile = #{msFileName, jdbcType=VARCHAR},
 					boardPass = #{mBoardPass}
-				where idx = #{midx}
+				where idx = #{mIdx}
 		</update>
 		
 		<update id="likeCountDao">

@@ -34,7 +34,7 @@
 		        location.href = location.pathname + '?' + new URLSearchParams(queryParams).toString();
 		    }
 		</script>
-	
+		
 		<style>
 		.bd-placeholder-img {
 		  font-size: 1.125rem;
@@ -103,7 +103,8 @@
 		  --bs-btn-active-color: var(--bs-btn-hover-color);
 		  --bs-btn-active-bg: #5a23c8;
 		  --bs-btn-active-border-color: #5a23c8;
-		}	 
+		}	
+		
 		</style>	 
 		
 		<style type="text/css">
@@ -112,7 +113,7 @@
 		 /* visited - 한번 클릭하거나 전에 클릭한적 있을 경우 */
 		 a:visited { color: bule; text-decoration: none;}	
 		 /* hover - 마우스를 해당 링크에 위치했을 경우*/
-		 a:hover { color: #006DD7; text-decoration: underline;}
+		 a:hover { color: black; text-decoration: underline;}
 		</style>
 	  <link href="../carousel/carousel.css" rel="stylesheet">
 	</head>
@@ -190,8 +191,13 @@
 	
 		<main>
 		     <div class="col-10 pt-3 mt-3 mx-auto">
-		     <h4>게시판 목록 - <small>문의게시판</small></h4>
-		     <h2>목록 보기(List)-현재 페이지:${ pageNum} (전체:${totalPage})</h2>
+		     <h3>문의게시판</h3>
+		     <small>
+		     	<c:if test="${ not empty searchWord }">
+				    	전체&nbsp;${totalCount}건&nbsp;${ pageNum}/${totalCount}
+				    </c:if>
+		     </small>
+		     <hr>
 				<div class="row">
 		             <!-- 검색부분 -->
 					<form method="get" id="searchForm"> 
@@ -278,6 +284,7 @@
 		         
 		   		<div>
 	               <div class="col d-flex justify-content-end">
+	               	   <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='../guest/inquiryBoard';">리스트보기</button>
 	                   <button type="button" class="btn btn-primary" onclick="location.href='../member/inquiryBoardWriteForm';">글쓰기</button>
 	               </div>
 	           </div>

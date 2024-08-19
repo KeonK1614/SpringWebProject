@@ -186,8 +186,8 @@
 	
 		<main>
 		     <div class="col-10 pt-3 mt-3 mx-auto">
-		     <h4>문의 게시판 - <small>수정하기</small></h4>
-		         
+		     <h3>문의 게시판 - <small>수정하기</small></h3>
+		     <hr>
 			<div class="row mt-3 mx-1 mx-auto">
 			    <form enctype="multipart/form-data" action="inquiryBoardEditor?idx=${dto.idx}" method="post" onsubmit="return validateForm(this);">
 	                <table class="table table-bordered">
@@ -230,7 +230,13 @@
 	                        <th class="text-center" 
 	                            style="vertical-align:middle;">첨부파일</th>
 	                        <td>
-	                            <input type="file" class="form-control" name="ofile" value="${dto.ofile }" />
+	                            <c:if test="${not empty dto.ofile}">
+						            <p>현재 파일: ${dto.ofile}</p>
+						            <input type="hidden" name="existingOfile" value="${dto.ofile}" />
+						            <input type="hidden" name="existingSfile" value="${dto.sfile}" />
+						        </c:if>
+						        <input type="file" name="file" class="form-control" />
+						        <small>새 파일을 선택하지 않으면 기존 파일이 유지됩니다.</small>
 	                        </td>
 	                    </tr>
 	                </tbody>
@@ -240,7 +246,7 @@
 	                    <div class="col text-right mb-4 d-flex justify-content-end">
 		                   <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='../guest/inquiryBoard';">리스트보기</button>
 	                        <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='inquiryBoardDelete?idx=${dto.idx}';">삭제하기</button>
-	                        <button type="submit" class="btn btn-outline-primary mx-1">작성하기</button>
+	                        <button type="submit" class="btn btn-outline-primary mx-1">수정하기</button>
 	                        <button type="reset" class="btn btn-outline-primary mx-1">Reset</button>
 	                    </div>
 	                </div>
