@@ -30,7 +30,7 @@ public class UserController {
 		return "guest/joinform";
 	}
 	
-	@RequestMapping("/guest/join")
+	@PostMapping("/guest/join")
 	public String join(HttpServletRequest request, UserDTO user) {
 		String sId = request.getParameter("id");
 		String sPass = request.getParameter("pass");
@@ -51,7 +51,6 @@ public class UserController {
 		user.setAddress(sAddress);
 		user.setDetailaddress(sDetailaddress);
 		user.setRegidate(new Date());
-		user.setIsAdmin("N");
 	
 		int nResult = userService.joinDao(user);
 		
@@ -76,16 +75,16 @@ public class UserController {
         return "security/loginform";
     }
 	
-    @RequestMapping("/login")
-    public String login(UserDTO user, @RequestParam(value ="id") String id, @RequestParam(value ="pass")String pass,
-    		HttpSession session) {
-        user.setIsAdmin("N");
-        String rawPassword = user.getPass();
-        String encPassword = passwordEncoder.encode(rawPassword);
-        user.setPass(encPassword);
+    @PostMapping("/login")
+    public String login(@RequestParam(value ="id") String id, @RequestParam(value ="pass")String pass,
+    		HttpSession session, HttpServletRequest request) {
+    	UserDTO user = userService.findByUsername(id);
              
-        if (userService.findByUsername(id, pass) != null && passwordEncoder.matches(user.getPass(), userService.findByUsername(id, pass))) {
-            return "guest/main"; // 로그인 성공 시 리디렉션
+        if (user != null && passwordEncoder.matches(pass, user.getPass())){
+            session.setAttribute("id", user.getId());
+            session.setAttribute("name", user.getName());
+            session.setAttribute("ROLE_", user.getAuthority());
+        	return "guest/main"; // 로그인 성공 시 리디렉션
         } else {
             return "security/loginform"; 
         }

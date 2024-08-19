@@ -1,65 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy/>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-=======
-<<<<<<< HEAD
-<qualifiedTypeNameHistroy/>
-=======
 <qualifiedTypeNameHistroy>
-<<<<<<< HEAD
-    <fullyQualifiedTypeName name="com.project.springboot.dao.ISimpleBbaDao"/>
-    <fullyQualifiedTypeName name="java.sql.Date"/>
-    <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
-    <fullyQualifiedTypeName name="lombok.Data"/>
-    <fullyQualifiedTypeName name="java.util.UUID"/>
-    <fullyQualifiedTypeName name="java.io.File"/>
-    <fullyQualifiedTypeName name="java.io.IOException"/>
-    <fullyQualifiedTypeName name="com.project.springboot.dto.SimpleBbsDto"/>
-<<<<<<< HEAD
-    <fullyQualifiedTypeName name="jakarta.servlet.http.HttpServletRequest"/>
-    <fullyQualifiedTypeName name="com.project.springboot.dto.ParameterDTO"/>
-=======
-=======
-    <fullyQualifiedTypeName name="java.util.List"/>
-    <fullyQualifiedTypeName name="org.springframework.jdbc.core.BeanPropertyRowMapper"/>
-    <fullyQualifiedTypeName name="com.project.springboot.jdbc.MyUserDTO"/>
-    <fullyQualifiedTypeName name="com.project.springboot.jdbc.MyUserDAO"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
-    <fullyQualifiedTypeName name="jakarta.servlet.http.HttpServletRequest"/>
-    <fullyQualifiedTypeName name="java.util.HashMap"/>
-    <fullyQualifiedTypeName name="java.lang.String"/>
-    <fullyQualifiedTypeName name="oracle.sql.DATE"/>
-    <fullyQualifiedTypeName name="java.sql.Date"/>
-    <fullyQualifiedTypeName name="com.project.springboot.UserService"/>
-    <fullyQualifiedTypeName name="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
-    <fullyQualifiedTypeName name="org.springframework.security.web.SecurityFilterChain"/>
-    <fullyQualifiedTypeName name="org.springframework.security.config.annotation.web.builders.HttpSecurity"/>
-    <fullyQualifiedTypeName name="java.lang.Exception"/>
-    <fullyQualifiedTypeName name="org.springframework.security.crypto.password.PasswordEncoder"/>
-    <fullyQualifiedTypeName name="org.springframework.security.web.authentication.AuthenticationFailureHandler"/>
-    <fullyQualifiedTypeName name="jakarta.servlet.DispatcherType"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.ResponseBody"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PostMapping"/>
-    <fullyQualifiedTypeName name="jakarta.validation.constraints.NotBlank"/>
-    <fullyQualifiedTypeName name="jakarta.validation.constraints.Email"/>
-    <fullyQualifiedTypeName name="jakarta.validation.constraints.NotEmpty"/>
-    <fullyQualifiedTypeName name="java.util.Date"/>
-    <fullyQualifiedTypeName name="org.springframework.ui.Model"/>
-    <fullyQualifiedTypeName name="org.springframework.security.core.AuthenticationException"/>
-    <fullyQualifiedTypeName name="org.springframework.security.core.userdetails.UserDetails"/>
-    <fullyQualifiedTypeName name="java.util.Collection"/>
-    <fullyQualifiedTypeName name="com.project.springboot.jdbc.IDao"/>
-    <fullyQualifiedTypeName name="org.springframework.boot.autoconfigure.security.SecurityProperties.User"/>
-    <fullyQualifiedTypeName name="com.project.springboot.jdbc.UserDTO"/>
-    <fullyQualifiedTypeName name="com.project.springboot.auth.AccountDetails"/>
-    <fullyQualifiedTypeName name="org.springframework.boot.autoconfigure.security.servlet.PathRequest"/>
->>>>>>> origin/yerim
->>>>>>> 8414027152e729aab49920ea6c91caa3204324ac
+    <fullyQualifiedTypeName name="org.springframework.security.core.userdetails.User"/>
+    <fullyQualifiedTypeName name="java.nio.file.attribute.UserPrincipal"/>
+    <fullyQualifiedTypeName name="jakarta.servlet.http.HttpSession"/>
 </qualifiedTypeNameHistroy>
->>>>>>> eeb7bb0d32e114c8863a73848edbc61e52f6a964
->>>>>>> ecd5eb25f5bbf930389c46941ffda3b0a818572b
->>>>>>> 32dff119b6d39c36f0fe745fb612b9b88b59d0b4
->>>>>>> 70e44ae7ca6111e9e06cef172e4a1afb270bf380

@@ -1,9 +1,11 @@
 package com.project.springboot.auth;
 
+
 import java.util.ArrayList;
 import java.util.Collection;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.project.springboot.jdbc.UserDTO;
@@ -19,14 +21,11 @@ public class AccountDetails implements UserDetails {
 	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		Collection<GrantedAuthority> collect = new ArrayList<>();
-		collect.add(new GrantedAuthority() {
-			@Override
-			public String getAuthority() {
-				return user.getIsAdmin();
-			}
-		});
-		return collect;
+		 ArrayList<GrantedAuthority> authorities = new ArrayList<>();
+		 String role = user.getAuthority();
+	        authorities.add(new SimpleGrantedAuthority(role)); 
+	        return authorities;
+	
 	}
 
 	@Override

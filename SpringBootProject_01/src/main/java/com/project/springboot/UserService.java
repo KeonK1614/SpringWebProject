@@ -27,14 +27,9 @@ public class UserService {
 
 	}
 	
-	public String findByUsername(String id, String pass) {
+	public UserDTO findByUsername(String id) {
 		
-		UserDTO dto = idao.findByUsername(id);
-		String encpass =passwordEncoder.encode(dto.getPass());
-		if(dto.getPass().equals(encpass))
-		return dto.getId(); 
-
-		return null;
+		return idao.findByUsername(id);
 	};
 	
 	

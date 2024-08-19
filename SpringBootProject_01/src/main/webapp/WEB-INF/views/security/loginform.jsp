@@ -171,6 +171,13 @@
 <!--	    </div>-->
 <!--	  </nav>-->
 <!--	</header>-->
+<%-- 		<c:if test="${empty id }" var="loginResult"> --%>
+<%-- 		<c:if test="${param.error != null}"> --%>
+<!-- 		<p> -->
+<!-- 			Login Error! <br /> -->
+<%-- 			${errorMsg} --%>
+<!-- 		</p> -->
+<%-- 		</c:if> --%>
 
 	<main class="form-signin w-100 m-auto">
 	  <form action="/security/loginform" method="post" name="loginform" id="loginform">
