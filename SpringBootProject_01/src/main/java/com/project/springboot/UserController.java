@@ -100,9 +100,15 @@ public class UserController {
     }
     
     
-	@RequestMapping("/member/mypage")
-	public String mypage() {
-		return "member/mypage";
+	@RequestMapping("/member/myPage")
+	public String mypage(HttpServletRequest req, UserDTO dto) {
+//		viewDao();
+		return "member/myPage";
 	}
+//	
+//	@RequestMapping("/member/myPageEdit")
+//	public String myPageEdit()	{
+//		
+//	}
 
 }

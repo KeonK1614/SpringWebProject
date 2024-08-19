@@ -34,12 +34,6 @@ public class BoardInfoController
 	@Autowired
 	BoardInfoService boardInfoService;
 	
-	@RequestMapping("/")
-	public @ResponseBody String root() throws Exception
-	{
-		return "project";
-	}
-	
 	@RequestMapping("/guest/main")
 	public String main(Model model)
 	{
