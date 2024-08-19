@@ -37,13 +37,13 @@ public class WebSecurityConfig {
 	    		.requestMatchers("/").permitAll()
 //	    		.requestMatchers("/**").permitAll()
 	    		.requestMatchers("/guest/joinform").permitAll()
-//	    		.requestMatchers("/error").permitAll()
+	    		.requestMatchers("/error").permitAll()
 	    		.requestMatchers("/static/**").permitAll()
 	            .requestMatchers("/assets/**", "/carousel/**","/css/**", "/js/**", "/img/**").permitAll()
 	            .requestMatchers("/guest/**").permitAll()  // 모두에게 허용.
 	            .requestMatchers("/security/**").permitAll() 
-	            .requestMatchers("/member/**").hasAnyRole("N", "Y")
-	            .requestMatchers("/admin/**").hasAnyRole("Y")
+	            .requestMatchers("/member/**").hasAnyRole("USER", "ADMIN")
+	            .requestMatchers("/admin/**").hasAnyRole("ADMIN")
 	            .anyRequest().authenticated() // 어떠한 요청이라도 인증 필요 없음 ( anonymous() )  //authenticated()
 	        );
     

@@ -24,7 +24,8 @@ CREATE TABLE member (
     address varchar2(200) not null,
     detailaddress varchar2(200) not null,
     regidate Date DEFAULT SYSDATE not null,
-    isAdmin varchar(1) not null,
+    authority varchar2(20) default 'ROLE_USER',
+    enabled number(1) detault 1,
     primary key(id)
 );
 
@@ -95,4 +96,3 @@ drop table member;
 DROP SEQUENCE board_seq;
     
 commit;
->>>>>>> origin/yerim

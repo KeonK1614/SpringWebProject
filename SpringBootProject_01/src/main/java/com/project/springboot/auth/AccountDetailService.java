@@ -1,6 +1,7 @@
 package com.project.springboot.auth;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -21,10 +22,10 @@ public class AccountDetailService implements UserDetailsService {
         if (dto == null) {
         	throw new UsernameNotFoundException("User not found");
         }
-        return org.springframework.security.core.userdetails.User
+        return User
                 .withUsername(dto.getId())
                 .password(dto.getPass())
-                .roles("N")  // 권한 설정
+                .authorities(dto.getAuthority())  // 권한 설정
                 .build();
     }
 }
