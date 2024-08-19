@@ -5,8 +5,8 @@
 <mapper namespace="com.project.springboot.jdbc.IDao">
 
 	<insert id="joinDao" parameterType="com.project.springboot.jdbc.UserDTO">
-		insert into member (id, pass, name, phoneNum, email, postcode, address, detailaddress, regidate)
-			values (#{id}, #{pass}, #{name}, #{phoneNum}, #{email}, #{postcode}, #{address}, #{detailaddress}, #{regidate})
+		insert into member (id, pass, name, phoneNum, email, postcode, address, detailaddress, regidate, authority, enabled)
+			values (#{id}, #{pass}, #{name}, #{phoneNum}, #{email}, #{postcode}, #{address}, #{detailaddress}, #{regidate}, DEFAULT, DEFAULT)
 	</insert>
 	
 	    <select id="idCheck" resultType="int">

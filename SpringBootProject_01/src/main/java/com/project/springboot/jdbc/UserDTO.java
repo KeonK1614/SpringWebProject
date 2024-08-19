@@ -17,6 +17,7 @@ public class UserDTO {
 	private String address;
 	private String detailaddress;
 	private Date regidate;
-	private String isAdmin;
+	private String authority;
+	private int enabled;
 
 }
