@@ -42,8 +42,13 @@ public class WebSecurityConfig {
 	            .requestMatchers("/assets/**", "/carousel/**","/css/**", "/js/**", "/img/**").permitAll()
 	            .requestMatchers("/guest/**").permitAll()  // 모두에게 허용.
 	            .requestMatchers("/security/**").permitAll() 
+<<<<<<< HEAD
 	            .requestMatchers("/member/**").hasAnyRole("USER", "ADMIN")
 	            .requestMatchers("/admin/**").hasAnyRole("ADMIN")
+=======
+	            .requestMatchers("/member/**").hasAnyRole("N", "Y")
+	            .requestMatchers("/admin/**").hasAnyRole("N", "Y")
+>>>>>>> DV4
 	            .anyRequest().authenticated() // 어떠한 요청이라도 인증 필요 없음 ( anonymous() )  //authenticated()
 	        );
     

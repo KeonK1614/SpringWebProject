@@ -64,7 +64,8 @@ public class BoardPage
         while (blockCount <= blockPage && pageTemp <= totalPages) {
         	// 만약 현재페이지라면 링크를 걸지 않는다.
             if (pageTemp == pageNum) {
-                pagingStr += "<li class=\" "  + pageitem  +" \"><a href=\" "+ hash +" \" class= \" " + pageling + " \">"+ pageTemp +"</a></li>";
+            	pagingStr += "<li class=\" "  + pageitem  +" \"><a href=\" "+ hash +" \" class= \" " + pageling + " \">"+ pageTemp +"</a></li>";
+                //pagingStr += "<li class=\" "  + pageitem  +" \"><a class= \" " + pageling + " \">"+ pageTemp +"</a></li>";
             } else {
             	// 현재페이지가 아닌 경우에만 링크를 추가한다.
                 pagingStr += "<li class=\" "  + pageitem  +" \"><a href=\" "+ reqUrl + "?pageNum=" + pageTemp ;

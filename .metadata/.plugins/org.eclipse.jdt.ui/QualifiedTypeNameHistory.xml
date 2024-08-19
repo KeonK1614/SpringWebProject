@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
+<<<<<<< HEAD
     <fullyQualifiedTypeName name="org.springframework.security.core.userdetails.User"/>
     <fullyQualifiedTypeName name="java.nio.file.attribute.UserPrincipal"/>
     <fullyQualifiedTypeName name="jakarta.servlet.http.HttpSession"/>
+=======
+    <fullyQualifiedTypeName name="com.project.springboot.dao.BoardPage"/>
+    <fullyQualifiedTypeName name="java.io.File"/>
+    <fullyQualifiedTypeName name="java.security.Principal"/>
+    <fullyQualifiedTypeName name="org.springframework.security.crypto.factory.PasswordEncoderFactories"/>
+    <fullyQualifiedTypeName name="lombok.Data"/>
+    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+    <fullyQualifiedTypeName name="com.study.springboot.dto.memberDto"/>
+    <fullyQualifiedTypeName name="com.project.springboot.dto.inquiryBoardDto"/>
+    <fullyQualifiedTypeName name="org.springframework.security.core.context.SecurityContextHolder"/>
+    <fullyQualifiedTypeName name="java.lang.String"/>
+>>>>>>> DV4
 </qualifiedTypeNameHistroy>
