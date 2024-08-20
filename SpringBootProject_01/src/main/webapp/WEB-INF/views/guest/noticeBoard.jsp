@@ -141,7 +141,7 @@
 			         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">문의사항</a>
 			        <ul class="dropdown-menu">
 			          <li><a class="dropdown-item" href="#">자주 물어보는 질문</a></li>
-			          <li><a class="dropdown-item" href="guest/inquiryBoard">문의게시판</a></li>
+			          <li><a class="dropdown-item" href="inquiryBoard">문의게시판</a></li>
 			        </ul>
 			      </li>
 			   </ul>
