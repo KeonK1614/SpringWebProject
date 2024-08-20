@@ -168,62 +168,36 @@
 			        					
 						<div class="mb-3">
 						  <label for="id">성명</label>
-						  <input type="text" class="form-control border" id="id" value="장다빈" style="box-shadow: none;" readonly> 
+						  <input type="text" class="form-control border" name="name" value="${dto.name}" style="box-shadow: none;" readonly> 
 						</div>	
 					
 						<div class="mb-3">
 						  <label for="id">아이디</label>
-						  <input type="text" class="form-control border" id="id" value="dk9ahs" style="box-shadow: none;" readonly> 
+						  <input type="text" class="form-control border" name="id" value="${dto.id}" style="box-shadow: none;" readonly> 
 						</div>
 						
 						<div class="mb-3">
 						  <label for="id">휴대전화</label>
-						  <input type="text" class="form-control border" id="id" value="010-1234-5678" style="box-shadow: none;" readonly> 
+						  <input type="text" class="form-control border" name="phoneNum" value="${dto.phoneNum}" style="box-shadow: none;" readonly> 
 						</div>	
-											
-						<div class="row">
-				            <div class="col-md-6 mb-3">
-				              <label for="pwd">비밀번호</label>
-				              <input type="password" class="form-control" id="pwd" placeholder="영문, 숫자, 특수기호를 모두사용해주세요" value="" required>
-				              <div class="invalid-feedback">
-				                비밀번호를 입력해주세요
-				              </div>
-				            </div>
-				            <div class="col-md-6 mb-3">
-				              <label for="pwdcheck">비밀번호확인</label>
-				              <input type="password" class="form-control" id="pwdcheck" placeholder="비밀번호를 한번 더 입력해주세요" value="" required>
-				              <div class="invalid-feedback">
-				                비밀번호 확인을 입력해주세요.
-				              </div>
-				            </div>
-			          	</div>
 			          	
 			          	<div class="mb-3">
 						  <label for="eamil">이메일</label>
-						  <input type="text" class="form-control" id="eamil" placeholder="영문과 숫자로 작성해주세요" required>
+						  <input type="text" class="form-control" name="email" placeholder="영문과 숫자로 작성해주세요" value="${dto.email}">
 						  <div class="invalid-feedback">
 						    이메일을 입력해주세요.
 						  </div>
 						</div>
-			          	
-			            <div class="mb-3">
-				            <label for="day">생년월일</label>
-				            <input type="text" class="form-control" id="day" placeholder="000000" required>
-				            <div class="invalid-feedback">
-				              생년월일을 입력해주세요.
-				            </div>
-			         	</div>	
-						
 			            <div class="mb-3">
 				            <label for="address">주소</label>
 				            <button type="button" class="btn btn-primary btn-sm my-1" style="float:right" onclick="sample6_execDaumPostcode()" value="주소 찾기">
 				            	주소 찾기</button>
-				            <input type="text" class="form-control" id="sample6_postcode" placeholder="우편번호" required>
+				            <input type="text" class="form-control" id="sample6_postcode" name="postcode" value="${dto.name}" placeholder="우편번호" required>
 				            <div class="invalid-feedback">
 				              주소를 입력해주세요.
 				            </div>
 				            <br/>
-				            <input type="text" class="form-control" id="sample6_address" placeholder="서울특별시 강남구" required>
+				            <input type="text" class="form-control" id="sample6_address" name="address" value="${dto.name}" placeholder="서울특별시 강남구" required>
 				            <div class="invalid-feedback">
 				              주소를 입력해주세요.
 				            </div>
@@ -231,7 +205,7 @@
 	
 			          	<div class="mb-3">
 				            <label for="address2">상세주소<span class="text-muted">&nbsp;(필수 아님)</span></label>
-				            <input type="text" class="form-control" id="sample6_extraAddress" placeholder="상세주소를 입력해주세요.">
+				            <input type="text" class="form-control" id="sample6_extraAddress" name="detailaddress" value="${dto.name}" placeholder="상세주소를 입력해주세요.">
 				            <br/>
 				            <input type="text" class="form-control" id="sample6_detailAddress" placeholder="상세주소를 입력해주세요.">
 			          	</div>	 

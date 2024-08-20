@@ -184,7 +184,7 @@
 	    <img class="mx-auto d-block mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
 	    <h1 class="h3 mb-3 fw-normal text-center">로그인</h1>
 	    <div class="form-floating">
-	      <input type="text" name="id"class="form-control" id="floatingInput" placeholder="id를 입력하세요" required >
+	      <input type="text" name="id" class="form-control" id="floatingInput" placeholder="id를 입력하세요" required >
 	      <label for="floatingInput">Id</label>
 	    </div>
 	    <div class="form-floating">

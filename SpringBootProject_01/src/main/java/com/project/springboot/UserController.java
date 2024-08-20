@@ -84,11 +84,10 @@ public class UserController {
             session.setAttribute("id", user.getId());
             session.setAttribute("name", user.getName());
             session.setAttribute("ROLE_", user.getAuthority());
-        	return "guest/main"; // 로그인 성공 시 리디렉션
+        	return "redirect:/guest/main"; // 로그인 성공 시 리디렉션
         } else {
             return "security/loginform"; 
         }
-        
     }
     
  // 로그아웃
@@ -102,7 +101,7 @@ public class UserController {
 	@RequestMapping("/member/myPage")
 	public String mypage(HttpServletRequest req, UserDTO dto) {
 //		viewDao();
-		return "member/myPage";
+		return "member/myPageView";
 	}
 //	
 //	@RequestMapping("/member/myPageEdit")

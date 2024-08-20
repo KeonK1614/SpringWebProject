@@ -13,10 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.project.springboot.dao.BoardInfoService;
 import com.project.springboot.dao.IBoardInfoDao;
 import com.project.springboot.dto.BoardInfoDto;
 import com.project.springboot.dto.ParameterDTO;
@@ -31,26 +29,14 @@ public class BoardInfoController
 	ServletContext context;
 	@Autowired
 	IBoardInfoDao dao;
-	@Autowired
-	BoardInfoService boardInfoService;
-	
-//	@RequestMapping("/") 
-//	public @ResponseBody String root() throws Exception 
-//	{
-//	  return "project"; 
-//	}
+
 	 
 	@RequestMapping("/")
 	public String root() throws Exception
 	{
 		return "guest/main";
 	}
-	
-//	@RequestMapping("/guest/main")
-//	public String main(Model model)
-//	{
-//		return "guest/main";
-//	}
+
 	
 	@RequestMapping("/guest/boardInfo")
 	public String userListPage(HttpServletRequest req, Model model, ParameterDTO pDto)
@@ -147,7 +133,7 @@ public class BoardInfoController
 	}
 
 	@RequestMapping("/member/delete")
-	public String delete(HttpServletRequest req, Model model)
+	public String delete(HttpServletRequest req)
 	{
 		dao.deleteDao(req.getParameter("idx"));
 		return "redirect:/guest/boardInfo";
