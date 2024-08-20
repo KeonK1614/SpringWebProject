@@ -208,7 +208,7 @@ public class noticeController
 		return "redirect:../guest/noticeBoard";
 	}
 	
-	@RequestMapping("/member/noticeLike")
+	@RequestMapping("/guest/noticeLike")
 	public String noticeLike(HttpServletRequest request, Model model)
 	{
 		String sIdx = request.getParameter("idx");

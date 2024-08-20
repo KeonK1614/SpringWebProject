@@ -279,15 +279,40 @@
 		             </table>
 		         </div>
 		         
-		   		 <div>
+		   		 <!-- <div>
 	               <div class="col d-flex justify-content-end">
 	                   <button type="button" class="btn btn-primary" onclick="location.href='noticeBoard';">리스트보기</button>&nbsp;&nbsp;
 	                   <button type="button" class="btn btn-primary" onclick="location.href='../admin/noticeWriteForm';">공지사항 등록</button>
 	               </div>
-		         </div>
-		   
-                
-		         <div class="row mt-3">
+		         </div> -->
+		         
+		         <!-- 게스트 일 때 -->
+                 <sec:authorize access="isAnonymous()">
+                	 <div>
+		               <div class="col d-flex justify-content-end">
+		                   <button type="button" class="btn btn-primary" onclick="location.href='noticeBoard';">리스트보기</button>&nbsp;&nbsp;
+		               </div>
+			         </div>
+                 </sec:authorize>
+                 <!-- 로그인 멤버 -->
+                 <sec:authorize access="hasRole('USER')">    
+	             	<div>
+		               <div class="col d-flex justify-content-end">
+		                   <button type="button" class="btn btn-primary" onclick="location.href='noticeBoard';">리스트보기</button>&nbsp;&nbsp;
+		               </div>
+			         </div>
+	             </sec:authorize>
+	             <!-- 로그인 관리자 -->
+	             <sec:authorize access="hasRole('ADMIN')">
+	             	<div>
+	             		<div class="col d-flex justify-content-end">
+		                   <button type="button" class="btn btn-primary" onclick="location.href='noticeBoard';">리스트보기</button>&nbsp;&nbsp;
+		                   <button type="button" class="btn btn-primary" onclick="location.href='../admin/noticeWriteForm';">공지사항 등록</button>
+	               		</div>
+	             	</div>
+	             </sec:authorize>
+	             
+	             <div class="row mt-3">
 		             <div class="col">
 		                 <!-- 페이지번호 부분 -->
 		                 
@@ -319,7 +344,7 @@
 			</div>
 		</main>	 	
 		<hr/> 	
-		<footer class="container">
+		<!-- <footer class="container">
 		    <p class="float-end"><i class="bi bi-arrow-up-circle"></i><a href="#">Back to top</a></p>
 		    <h3><strong>더조은™</strong></h3>
 		    <p class="copy text-center">
@@ -331,7 +356,27 @@
 				FAX : 031.906.8777 <br>
 			</p>  
 		    <p>&copy; 2017–2024 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-	  	</footer>		
+	  	</footer>	 -->
+	  	
+	   <!-- footer 태그 없이 화면 꽉차게  -->
+       <p class="float-end"><i class="bi bi-arrow-up-circle"></i><a href="#">Back to top</a></p>
+       <div class="p-4 text-white text-center" style="background-color: #7FA1C3;">
+			 <div class="row">
+				 <div class="col-2 ps-4">
+				 <h3><strong>더조은™</strong></h3>
+			 </div>
+				 <div class="col">
+					 <p class="copy text-center">
+					    더조은아카데미일산 &nbsp;&nbsp;
+				        경기도 고양시 일산구 중앙로 1275번길 38-10 201호(장항동 우림로데오스위트) &nbsp;&nbsp;<br/>
+				        학생 : 김건, 김나현, 나예림, 장다빈 
+				        사업자등록번호 : 584-85-00825 &nbsp;&nbsp;  
+				        TEL : 031.902.1777 &nbsp;&nbsp; 
+						FAX : 031.906.8777 <br>
+					 </p>  
+				 </div>
+			 </div>
+		 </div>	
 			
 	</body>
 </html>
