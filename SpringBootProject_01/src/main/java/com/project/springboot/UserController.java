@@ -55,7 +55,7 @@ public class UserController {
 		int nResult = userService.joinDao(user);
 		
 		if (nResult > 0) {
-            return "redirect:main"; // 성공 시
+            return "redirect:/"; // 성공 시
         } else {
             return "guest/joinform"; // 실패 시 다시 폼 페이지로 이동
         }
@@ -84,7 +84,7 @@ public class UserController {
             session.setAttribute("id", user.getId());
             session.setAttribute("name", user.getName());
             session.setAttribute("ROLE_", user.getAuthority());
-        	return "guest/main"; // 로그인 성공 시 리디렉션
+        	return "redirect:../"; // 로그인 성공 시 리디렉션
         } else {
             return "security/loginform"; 
         }

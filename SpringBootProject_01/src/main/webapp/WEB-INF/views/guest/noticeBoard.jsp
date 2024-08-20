@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
 <!doctype html>
 	<html lang="en" data-bs-theme="auto">
@@ -114,7 +115,7 @@
 		<header>
 			<nav class="navbar navbar-expand-md fixed-top" style="background-color: #7FA1C3;">
 			  <div class="container-fluid">
-			    <a class="navbar-brand" href="/">Carousel</a>
+			    <a class="navbar-brand" href="/">로고</a>
 			    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
 			      <span class="navbar-toggler-icon"></span>
 			    </button>
@@ -144,18 +145,64 @@
 			        </ul>
 			      </li>
 			   </ul>
-			  	<ul class="navbar-nav">
-			      	<li class="nav-item">
-			       	<a class="nav-link" href="/guest/login">
-			       	<button type="button" class="btn btn-outline-light">
-			       	<i class='bi bi-box-arrow-in-right'></i> 로그인</button></a>
-			     	</li>
-			      	<li class="nav-item">
-			       	<a class="nav-link" href="/guest/joinform">
-			       	<button type="button" class="btn btn-outline-light">
-			       	<i class='bi bi-person-plus-fill'></i> 회원가입</button></a>
-			     	</li>
-			     	</ul>
+
+			<sec:authorize access="isAnonymous()">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/security/loginform">
+                            <button type="button" class="btn btn-outline-light">
+                                <i class='bi bi-box-arrow-in-right'></i> 로그인
+                            </button>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/guest/joinform">
+                            <button type="button" class="btn btn-outline-light">
+                                <i class='bi bi-person-plus-fill'></i> 회원가입
+                            </button>
+                        </a>
+                    </li>
+                </ul>
+			</sec:authorize>
+                <!-- 로그인된 상태 -->
+            <sec:authorize access="hasRole('USER')">    
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">
+                            <button type="button" class="btn btn-outline-light">
+                                <i class="bi bi-box-arrow-right"></i> 로그아웃
+                            </button>
+                        </a>
+                    </li>
+                   <li class="nav-item">
+                        <a class="nav-link" href="/member/mypage">
+                            <button type="button" class="btn btn-outline-light">
+                                <i class="bi bi-person-lines-fill"></i> 마이페이지
+                            </button>
+                        </a>
+                    </li>
+                </ul>
+           </sec:authorize>
+           
+           <sec:authorize access="hasRole('ADMIN')">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">
+                            <button type="button" class="btn btn-outline-light">
+                                <i class="bi bi-box-arrow-right"></i> 로그아웃
+                            </button>
+                        </a>
+                    </li>
+                   <li class="nav-item">
+                        <a class="nav-link" href="/member/mypage">
+                            <button type="button" class="btn btn-outline-light">
+                                <i class="bi bi-person-lines-fill"></i> 회원관리페이지
+                            </button>
+                        </a>
+                    </li>
+                </ul>
+           </sec:authorize>
+
 			    </div>
 			  </div>
 			</nav>
@@ -270,7 +317,8 @@
 		          </div>
 		      </div>
 			</div>
-		</main>	 	 	
+		</main>	 	
+		<hr/> 	
 		<footer class="container">
 		    <p class="float-end"><i class="bi bi-arrow-up-circle"></i><a href="#">Back to top</a></p>
 		    <h3><strong>더조은™</strong></h3>

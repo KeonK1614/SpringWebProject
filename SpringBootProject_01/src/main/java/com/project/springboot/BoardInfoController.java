@@ -13,10 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.project.springboot.dao.BoardInfoService;
 import com.project.springboot.dao.IBoardInfoDao;
 import com.project.springboot.dto.BoardInfoDto;
 import com.project.springboot.dto.ParameterDTO;
@@ -31,8 +29,6 @@ public class BoardInfoController
 	ServletContext context;
 	@Autowired
 	IBoardInfoDao dao;
-	@Autowired
-	BoardInfoService boardInfoService;
 	
 //	@RequestMapping("/") 
 //	public @ResponseBody String root() throws Exception 

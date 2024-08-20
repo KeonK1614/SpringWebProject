@@ -9,14 +9,12 @@ import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-<<<<<<< HEAD
-=======
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
->>>>>>> NH4
 
 import com.project.springboot.dao.BoardPage;
 import com.project.springboot.dao.InoticeBoardDao;
@@ -40,6 +38,7 @@ public class noticeController
 		
 		String searchField = request.getParameter("searchField");
 		String searchWord = request.getParameter("searchWord");
+		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("searchField", searchField);
 		map.put("searchWord", searchWord);
@@ -67,7 +66,6 @@ public class noticeController
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("pageSize", pageSize);
 		model.addAttribute("blockPage", blockPage);
-		
 		model.addAttribute("pagingImg", pagingImg);
 		
 		
@@ -75,8 +73,11 @@ public class noticeController
 	}
 	
 	@RequestMapping("/admin/noticeWriteForm") //공지사항 글쓰기 양식
-	public String noticeWriteForm()
+	public String noticeWriteForm(Model model)
 	{
+		String userId = SecurityContextHolder.getContext().getAuthentication().getName();
+		model.addAttribute("userId", userId);
+		
 		return "admin/noticeWriteForm";
 	}
 	
@@ -87,21 +88,27 @@ public class noticeController
 		String uploadDir = context.getRealPath("/static/files");
 		
 		File dir = new File(uploadDir);
-		if (!dir.exists()) {
+		if (!dir.exists()) 
+		{
 	        dir.mkdirs();
 	    }
 		String sfileName = UUID.randomUUID().toString() + "_" + ofileName;
 		
 		File destination = new File(dir,sfileName);
-		try {
+		try 
+		{
 			file.transferTo(destination);
 			
-		} catch (IOException e) {
+		} 
+		catch (IOException e)
+		{
 			e.printStackTrace();
 			return "redirect:/member/boardWrite?status=fail";
 		}
 		
-		dao.writeDao(request.getParameter("id"),
+		String sId = SecurityContextHolder.getContext().getAuthentication().getName();
+		
+		dao.writeDao(sId,
 					 request.getParameter("title"),
 					 request.getParameter("content"),
 					 ofileName,
@@ -150,7 +157,7 @@ public class noticeController
 	}
 	
 	@RequestMapping("/admin/noticeEditor")
-	public String noticeEditor(HttpServletRequest request, @RequestParam("file") MultipartFile file, Model model) 
+	public String noticeEditor(HttpServletRequest request, @RequestParam("ofile") MultipartFile file, Model model) 
 	{
 		String sIdx = request.getParameter("idx");
 		
@@ -182,6 +189,7 @@ public class noticeController
 				e.printStackTrace();
 			}
 		}
+		System.out.println(sIdx);
 		
 		model.addAttribute("dto", dao.editorDao(request.getParameter("idx"),
 												request.getParameter("title"),
