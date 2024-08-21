@@ -4,14 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.project.springboot.jdbc.IDao;
-import com.project.springboot.jdbc.UserDTO;
+import com.project.springboot.dao.IMemberDao;
+import com.project.springboot.dto.UserDTO;
 
 @Service
 public class UserService {
 
 	@Autowired
-	private IDao idao;
+	private IMemberDao idao;
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	

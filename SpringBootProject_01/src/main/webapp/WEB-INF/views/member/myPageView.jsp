@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-	<!doctype html>
-	<html lang="en" data-bs-theme="auto">
-	  <head><script src="../assets/js/color-modes.js"></script>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>    
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+<head><script src="../assets/js/color-modes.js"></script>
 
 	    <meta charset="utf-8">
 	    <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -135,18 +137,42 @@
 			        </ul>
 			      </li>
 			   </ul>
-			  	<ul class="navbar-nav">
-			      	<li class="nav-item">
-			       	<a class="nav-link" href="login">
-			       	<button type="button" class="btn btn-outline-light">
-			       	<i class='bi bi-box-arrow-in-right'></i> 로그인</button></a>
-			     	</li>
-			      	<li class="nav-item">
-			       	<a class="nav-link" href="join">
-			       	<button type="button" class="btn btn-outline-light">
-			       	<i class='bi bi-person-plus-fill'></i> 회원가입</button></a>
-			     	</li>
-			     	</ul>
+				  	<sec:authorize access="isAnonymous()">
+				             <ul class="navbar-nav">
+				                 <li class="nav-item">
+				                     <a class="nav-link" href="/security/loginform">
+				                         <button type="button" class="btn btn-outline-light">
+				                             <i class='bi bi-box-arrow-in-right'></i> 로그인
+				                         </button>
+				                     </a>
+				                 </li>
+				                 <li class="nav-item">
+				                     <a class="nav-link" href="/guest/joinform">
+				                         <button type="button" class="btn btn-outline-light">
+				                             <i class='bi bi-person-plus-fill'></i> 회원가입
+				                         </button></a>
+				                 </li>
+				             </ul>
+				</sec:authorize>
+				             <!-- 로그인된 상태 -->
+				<sec:authorize access="isAuthenticated()">    
+				    <ul class="navbar-nav">
+				        <li class="nav-item">
+				            <a class="nav-link" href="/logout">
+				                <button type="button" class="btn btn-outline-light">
+				                    <i class="bi bi-box-arrow-right"></i> 로그아웃
+				                </button>
+				            </a>
+				        </li>
+				       <li class="nav-item">
+				            <a class="nav-link" href="/member/myPage">
+				                <button type="button" class="btn btn-outline-light">
+				                    <i class="bi bi-person-lines-fill"></i> 마이페이지
+				                </button>
+				            </a>
+				        </li>
+				    </ul>
+           </sec:authorize>
 			    </div>
 			  </div>
 			</nav>
@@ -160,7 +186,7 @@
 			        
 						<div class="mb-3">
 						  <label for="id">성명</label>
-						  <input type="text" class="form-control border" name="name" value="${dto.name}" style="box-shadow: none;" readonly> 
+						  <input type="text" class="form-control border" name="name" value="${dto.name}" readonly> 
 						</div>
 					
 						<div class="mb-3">
@@ -185,16 +211,17 @@
 						
 			           <div class="mb-3">
 						  <label for="id">주소</label>
-						  <input type="text" class="form-control border" name="id" value="${dto.address}" style="box-shadow: none;" readonly> 
+						  <input type="text" class="form-control border" name="address" value="${dto.address}" style="box-shadow: none;" readonly> 
 						</div>				  
 			           <div class="mb-3">
 						  <label for="id">상세주소</label>
-						  <input type="text" class="form-control border" name="id" value="${dto.detailaddress}" style="box-shadow: none;" readonly> 
+						  <input type="text" class="form-control border" name="detailaddress" value="${dto.detailaddress}" style="box-shadow: none;" readonly> 
 						</div>				  
 	
 			          <hr class="mb-4">		          
 			          <div class="mb-4"></div>
 			          <button class="btn btn-outline-primary" onclick="location.href='/member/myPageEdit'" type="button">수정 하기</button>
+			          <button class="btn btn-outline-danger" onclick="location.href='/member/memberDelete'" type="button">회원 탈퇴</button>
 			        </form>
 			      </div>
 			    </div>		 

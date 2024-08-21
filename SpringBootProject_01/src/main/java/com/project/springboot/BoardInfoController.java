@@ -9,12 +9,14 @@ import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.project.springboot.dao.BoardPage;
 import com.project.springboot.dao.IBoardInfoDao;
 import com.project.springboot.dto.BoardInfoDto;
 import com.project.springboot.dto.ParameterDTO;
@@ -44,19 +46,31 @@ public class BoardInfoController
 		int totalCount = dao.getTotalCount(pDto);
 		int pageSize = 10;
 		int blockPage = 5;
-		
+		String searchField = req.getParameter("searchField");
+		String searchWord = req.getParameter("searchWord");
+        
 		int pageNum = (req.getParameter("pageNum")) == null || req.getParameter("pageNum").equals("")
 				? 1 : Integer.parseInt(req.getParameter("pageNum"));
 		int start = (pageNum - 1) * pageSize + 1;
 		int end = pageNum * pageSize;
+		String pagingImg = BoardPage.pagingStr(totalCount, pageSize, blockPage,
+									pageNum, "../guest/boardInfo", searchField, searchWord);
 		
 		pDto.setStart(start);
 		pDto.setEnd(end);
 		
 		Map<String, Object> maps = new HashMap<>();
+		if (searchWord != null) {
+            maps.put("searchField", searchField);
+            maps.put("searchWord", searchWord);
+        }
+		
 		maps.put("totalCount", totalCount);
 		maps.put("pageSize", pageSize);
 		maps.put("pageNum", pageNum);
+	    
+		model.addAttribute("pagingImg", pagingImg); // 목록 하단에 출력할 페이지 번호
+
 		model.addAttribute("maps" , maps);
 		
 		List<BoardInfoDto> lists = dao.listDao(pDto);
@@ -65,23 +79,11 @@ public class BoardInfoController
 		return "guest/boardInfo";
 	}
 	
-//	@RequestMapping("/guest/search")
-//	public String search(@RequestParam String searchField, @RequestParam String searchWord, Model model)
-//	{
-//		BoardSearch criteria = new BoardSearch();
-//		criteria.setKeyWord(search);
-//		List<BoardInfoDto> list = boardInfoService.searchBoardInfo(criteria)
-//		model.addAttribute("list", list);
-//	
-//		return "guest/boardInfo";
-//	}
-	
 	@RequestMapping("/member/write")
 	public String write(HttpServletRequest req, @RequestParam("file") MultipartFile file) throws Exception
 	{	
 		String ofileName = file.getOriginalFilename();
 		String uploadDir = context.getRealPath("/static/files");
-//		System.out.println("upload path" + uploadDir);
 		File dir = new File(uploadDir);
 		if (!dir.exists()) {
 	        dir.mkdirs();
@@ -96,33 +98,15 @@ public class BoardInfoController
 			e.printStackTrace();
 			return "redirect:/member/boardWrite?status=fail";
 		}
-//		String id = req.getParameter("id");
-//		String title = req.getParameter("title");
-//		String content = req.getParameter("content");
-//		String ofile = req.getParameter("ofile");
-//		String sfile = req.getParameter("sfile");
-//		
-//		System.out.println("id: " + id);
-//        System.out.println("title: " + title);
-//        System.out.println("content: " + content);
-//        System.out.println("ofile: " + ofile);
-//        
-//		int inserted = dao.writeDao(req.getParameter("id"),
-//					req.getParameter("title"),
-//					req.getParameter("content"),
-//					req.getParameter("ofile"));
 		
-		dao.writeDao(req.getParameter("id"),
+		String sId = SecurityContextHolder.getContext().getAuthentication().getName();
+
+		dao.writeDao(sId,
 					req.getParameter("title"),
 					req.getParameter("content"),
 					ofileName,
 					sfileName);
 		
-//		if(inserted > 0) {
-//			System.out.println("데이터 삽입 성공");
-//		} else {
-//			System.out.println("실패");
-//		}
 		return "redirect:/guest/boardInfo";
 	}
 	

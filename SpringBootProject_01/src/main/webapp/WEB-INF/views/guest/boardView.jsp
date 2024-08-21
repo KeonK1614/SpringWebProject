@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>    
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!doctype html>
 	<html lang="en" data-bs-theme="auto">
 	  <head><script src="../assets/js/color-modes.js"></script>
@@ -147,18 +148,42 @@
 			        </ul>
 			      </li>
 			   </ul>
-			  	<ul class="navbar-nav">
-			      	<li class="nav-item">
-			       	<a class="nav-link" href="login">
-			       	<button type="button" class="btn btn-outline-light">
-			       	<i class='bi bi-box-arrow-in-right'></i> 로그인</button></a>
-			     	</li>
-			      	<li class="nav-item">
-			       	<a class="nav-link" href="join">
-			       	<button type="button" class="btn btn-outline-light">
-			       	<i class='bi bi-person-plus-fill'></i> 회원가입</button></a>
-			     	</li>
-			     	</ul>
+				  	<sec:authorize access="isAnonymous()">
+				             <ul class="navbar-nav">
+				                 <li class="nav-item">
+				                     <a class="nav-link" href="/security/loginform">
+				                         <button type="button" class="btn btn-outline-light">
+				                             <i class='bi bi-box-arrow-in-right'></i> 로그인
+				                         </button>
+				                     </a>
+				                 </li>
+				                 <li class="nav-item">
+				                     <a class="nav-link" href="/guest/joinform">
+				                         <button type="button" class="btn btn-outline-light">
+				                             <i class='bi bi-person-plus-fill'></i> 회원가입
+				                         </button></a>
+				                 </li>
+				             </ul>
+				</sec:authorize>
+				             <!-- 로그인된 상태 -->
+				<sec:authorize access="isAuthenticated()">    
+				    <ul class="navbar-nav">
+				        <li class="nav-item">
+				            <a class="nav-link" href="/logout">
+				                <button type="button" class="btn btn-outline-light">
+				                    <i class="bi bi-box-arrow-right"></i> 로그아웃
+				                </button>
+				            </a>
+				        </li>
+				       <li class="nav-item">
+				            <a class="nav-link" href="/member/myPage">
+				                <button type="button" class="btn btn-outline-light">
+				                    <i class="bi bi-person-lines-fill"></i> 마이페이지
+				                </button>
+				            </a>
+				        </li>
+				    </ul>
+           </sec:authorize>
 			    </div>
 			  </div>
 			</nav>
@@ -211,9 +236,6 @@
                         <td>
 							<c:if test="${ not empty dto.ofile }">
 		            		${ dto.ofile }
-		            			<%-- <a href="../views/download.do?ofile=${ dto.ofile }&sfile=${ dto.sfile }&idx=${ dto.idx }">
-		            				[다운로드]
-		            			</a> --%>
 		            		</c:if>                     
             			</td>
                     </tr>

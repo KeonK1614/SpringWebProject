@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>    
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!doctype html>
 	<html lang="en" data-bs-theme="auto">
 	<head>	 
@@ -142,18 +143,42 @@
 			        </ul>
 			      </li>
 			   </ul>
-			  	<ul class="navbar-nav">
-			      	<li class="nav-item">
-			       	<a class="nav-link" href="login">
-			       	<button type="button" class="btn btn-outline-light">
-			       	<i class='bi bi-box-arrow-in-right'></i> 로그인</button></a>
-			     	</li>
-			      	<li class="nav-item">
-			       	<a class="nav-link" href="join">
-			       	<button type="button" class="btn btn-outline-light">
-			       	<i class='bi bi-person-plus-fill'></i> 회원가입</button></a>
-			     	</li>
-			     	</ul>
+				  	<sec:authorize access="isAnonymous()">
+				             <ul class="navbar-nav">
+				                 <li class="nav-item">
+				                     <a class="nav-link" href="/security/loginform">
+				                         <button type="button" class="btn btn-outline-light">
+				                             <i class='bi bi-box-arrow-in-right'></i> 로그인
+				                         </button>
+				                     </a>
+				                 </li>
+				                 <li class="nav-item">
+				                     <a class="nav-link" href="/guest/joinform">
+				                         <button type="button" class="btn btn-outline-light">
+				                             <i class='bi bi-person-plus-fill'></i> 회원가입
+				                         </button></a>
+				                 </li>
+				             </ul>
+				</sec:authorize>
+				             <!-- 로그인된 상태 -->
+				<sec:authorize access="isAuthenticated()">    
+				    <ul class="navbar-nav">
+				        <li class="nav-item">
+				            <a class="nav-link" href="/logout">
+				                <button type="button" class="btn btn-outline-light">
+				                    <i class="bi bi-box-arrow-right"></i> 로그아웃
+				                </button>
+				            </a>
+				        </li>
+				       <li class="nav-item">
+				            <a class="nav-link" href="/member/myPageView">
+				                <button type="button" class="btn btn-outline-light">
+				                    <i class="bi bi-person-lines-fill"></i> 마이페이지
+				                </button>
+				            </a>
+				        </li>
+				    </ul>
+           </sec:authorize>
 			    </div>
 			  </div>
 			</nav>
@@ -166,9 +191,9 @@
 		             <form method="get">
 		                 <div class="input-group ms-auto"style="width: 300px;">
 		                     <select name="searchField" class="form-control">
-		                         <option value="">제목</option>
-		                         <option value="">작성자</option>
-		                         <option value="">내용</option>
+		                         <option value="title">제목</option>
+		                         <option value="id">작성자</option>
+		                         <option value="content">내용</option>
 		                     </select>
 					   <input class="form-control" type="searchWord" placeholder="Search" aria-label="Search">
 			           <button class="btn btn-outline-primary" type="submit"><i class="bi bi-search" style='font-size:20px'></i></button>
@@ -247,7 +272,7 @@
 		                      <li class="page-item">
 		                          <a href="#" class="page-link"><i class='bi bi-skip-start-fill'></i></a>
 		                      </li>
-		                      <li class="page-item"><a href="#" class="page-link">${ pagingImg }</a></li>
+		                      <li class="page-item">${ pagingImg }</li>
 		                      <li class="page-item">
 		                          <a href="#" class="page-link"><i class='bi bi-skip-end-fill'></i></a>
 		                      </li>

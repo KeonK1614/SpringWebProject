@@ -1,80 +1,65 @@
 package com.project.springboot;
 
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.project.springboot.dao.IMyPageDao;
-import com.project.springboot.jdbc.UserDTO;
+import com.project.springboot.dao.IMemberDao;
+import com.project.springboot.dto.UserDTO;
 
-import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class MyPageController {
-	@Autowired
-	ServletContext context;
 	
 	@Autowired
-	IMyPageDao dao;
+	IMemberDao member;
 	
 	@RequestMapping("/member/myPageView")
-	public String viewDao(HttpSession session, HttpServletRequest req, Model model)
+	public String myPageView(Principal principal, Model model)
 	{
-//		UserDTO user = (UserDTO) session.getAttribute("user");
-		String sId = req.getParameter("id");
-		if (sId == null || sId.isEmpty()) {
-		       // id 파라미터가 없을 경우 처리
-		       model.addAttribute("error", "ID parameter is missing.");
-		       return "errorPage"; // 에러 페이지로 이동 (예시)
-		}
+		String loginId = principal.getName();
+		UserDTO dto = member.findByUsername(loginId);
 
-		UserDTO dto = dao.viewDao(sId);
-		
-		 if (dto == null) {
-		        // DTO가 null인 경우 처리
-		        model.addAttribute("error", "No data found for ID: " + sId);
-		        return "errorPage"; // 에러 페이지로 이동 (예시)
-		    }
-		
 		model.addAttribute("dto", dto);
 
 		return "member/myPageView";
 	}
 	
 	@RequestMapping("/member/myPageEdit")
-	public String myPageEdit(HttpServletRequest req, Model model)
+	public String myPageEdit(Principal principal, Model model)
 	{
-		String sId = req.getParameter("id");
-		UserDTO dto = dao.viewDao(sId);
-
+		String loginId = principal.getName();
+		UserDTO dto = member.findByUsername(loginId);
 		model.addAttribute("dto", dto);
 		return "member/myPageEdit";
 	}
 	
 	@RequestMapping("/member/myPageUpdate")
-	public String edit(HttpServletRequest req, Model model) {
-		String sId = req.getParameter("id");
-		
-		UserDTO dto = dao.viewDao(sId);
-		model.addAttribute("dto", dao.editDao(req.getParameter("id"),
-											req.getParameter("name"),
+	public String editMemberInfo(Principal principal, HttpServletRequest req, Model model) {
+		String loginId = principal.getName();
+		model.addAttribute("dto", member.editDao(req.getParameter("name"),
 											req.getParameter("phoneNum"),
 											req.getParameter("email"),
 											req.getParameter("postcode"),
 											req.getParameter("address"),
-											req.getParameter("detailaddress")
-											));
-	
-		return "redirect:/member/myPageView?id=" + sId;
+											req.getParameter("detailaddress"),
+											loginId)
+		);
+		
+		UserDTO dto = member.findByUsername(loginId);
+		System.out.println(dto);
+		model.addAttribute("dto", dto);
+		return "/member/myPageView";
 	}
 	
 	@RequestMapping("/member/memberDelete")
-	public String delete(HttpServletRequest req)
+	public String deactivate(HttpServletRequest req)
 	{
-		dao.deleteDao(req.getParameter("id"));
+		member.deleteDao(req.getParameter("id"));
 		return "redirect:/guest/main";
 		
 	}

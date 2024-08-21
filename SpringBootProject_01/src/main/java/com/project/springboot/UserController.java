@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.project.springboot.jdbc.UserDTO;
+import com.project.springboot.dto.UserDTO;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -75,38 +75,26 @@ public class UserController {
         return "security/loginform";
     }
 	
-    @PostMapping("/login")
-    public String login(@RequestParam(value ="id") String id, @RequestParam(value ="pass")String pass,
-    		HttpSession session, HttpServletRequest request) {
-    	UserDTO user = userService.findByUsername(id);
-             
-        if (user != null && passwordEncoder.matches(pass, user.getPass())){
-            session.setAttribute("id", user.getId());
-            session.setAttribute("name", user.getName());
-            session.setAttribute("ROLE_", user.getAuthority());
-        	return "redirect:/guest/main"; // 로그인 성공 시 리디렉션
-        } else {
-            return "security/loginform"; 
-        }
-    }
-    
- // 로그아웃
-    @PostMapping("/logout")
-    public String logout(HttpSession session) {
-        session.invalidate();
-        return "redirect:/login";
-    }
-    
-    
-	@RequestMapping("/member/myPage")
-	public String mypage(HttpServletRequest req, UserDTO dto) {
-//		viewDao();
-		return "member/myPageView";
-	}
-//	
-//	@RequestMapping("/member/myPageEdit")
-//	public String myPageEdit()	{
-//		
-//	}
+//    @RequestMapping("/login")
+//    public String login(@RequestParam(value ="id") String id, @RequestParam(value ="pass")String pass,
+//    		HttpSession session, HttpServletRequest request) {
+//    	System.out.println("login method called");
+//    	UserDTO user = userService.findByUsername(id);
+//        System.out.println("userInfo: " + user);     
+//        if (user != null && passwordEncoder.matches(pass, user.getPass())){
+//            session.setAttribute("user", user);
+//            System.out.println("User saved in session: " + user);
+//        	return "redirect:/guest/main"; // 로그인 성공 시 리디렉션
+//        } else {
+//            return "security/loginform"; 
+//        }
+//    }
+//    
+// // 로그아웃
+//    @PostMapping("/logout")
+//    public String logout(HttpSession session) {
+//        session.invalidate();
+//        return "redirect:/login";
+//    }
 
 }
