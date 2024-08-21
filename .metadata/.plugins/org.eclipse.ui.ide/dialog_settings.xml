@@ -82,26 +82,6 @@
 		<item value="org.jboss.tools.m2e.wro4j.feature:1.2.1.202301111328"/>
 		<item value="org.sonatype.m2e.egit.feature:0.17.0.202209271423"/>
 	</list>
-<<<<<<< HEAD
-=======
-	<section name="SmartImportWizard">
-		<item key="SmartImportRootWizardPage.STORE_HIDE_ALREADY_OPEN" value="false"/>
-		<item key="SmartImportRootWizardPage.STORE_CLOSE_IMPORTED" value="false"/>
-		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
-		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
-		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
-			<item value="C:\FrontEnd\new\Servers"/>
-			<item value="C:\FrontEnd\new\SpringBootProject_01"/>
-		</list>
-		<section name="SmartImportWizard.dialogBounds">
-			<item key="DIALOG_X_ORIGIN" value="590"/>
-			<item key="DIALOG_Y_ORIGIN" value="142"/>
-			<item key="DIALOG_WIDTH" value="938"/>
-			<item key="DIALOG_HEIGHT" value="726"/>
-			<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
-		</section>
-	</section>
->>>>>>> DV4
 	<section name="ExternalProjectImportWizard">
 		<item key="WizardProjectsImportPage.STORE_NESTED_PROJECTS" value="false"/>
 		<item key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID" value="false"/>
@@ -109,37 +89,24 @@
 		<item key="WizardProjectsImportPage.STORE_CLOSE_CREATED_PROJECTS_ID" value="false"/>
 		<item key="WizardProjectsImportPage.STORE_HIDE_CONFLICTING_PROJECTS_ID" value="false"/>
 		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
-<<<<<<< HEAD
-			<item value="/Users/yerim/DevData/SpringWebProject"/>
-=======
+			<item value="C:\Users\java\Desktop\a\WebSocket"/>
+			<item value="C:\Users\java\Desktop\a\springboot_multiroom-main"/>
+			<item value="C:\Users\java\Desktop\a\WebSocketTest"/>
+			<item value="C:\FrontEnd\Springboot2\springboot02-master\Ex30_Security_Database"/>
+			<item value="C:\FrontEnd\Springboot2\springboot02-master\Ex29_Security_taglibs"/>
+			<item value="C:\FrontEnd\Springboot2\springboot02-master\Ex28_Security_StatusCheck"/>
+			<item value="C:\FrontEnd\Springboot2\springboot02-master\Ex27_Security_LoginForm"/>
+			<item value="C:\FrontEnd\Springboot2\springboot02-master\Ex26_Security"/>
 			<item value="C:\FrontEnd\Springboot2\springboot02-master\Ex41_Firebase_Realtime"/>
+			<item value="C:\FrontEnd\Springboot2\SpringBootMH01\B14WebSocket"/>
 			<item value="C:\FrontEnd\Springboot2\springboot02-master\Ex39_WebSocket"/>
-			<item value="C:\FrontEnd\Springboot\homworkdavin-2"/>
 			<item value="C:\FrontEnd\new\Servers"/>
 			<item value="C:\FrontEnd\new\SpringBootProject_01"/>
->>>>>>> DV4
 		</list>
 		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
 			<item value=""/>
 		</list>
 		<section name="ExternalProjectImportWizard.dialogBounds">
-<<<<<<< HEAD
-			<item key="DIALOG_X_ORIGIN" value="219"/>
-			<item key="DIALOG_Y_ORIGIN" value="61"/>
-			<item key="DIALOG_WIDTH" value="586"/>
-			<item key="DIALOG_HEIGHT" value="703"/>
-			<item key="DIALOG_FONT_NAME" value="1|.AppleSystemUIFont|11.0|0|COCOA|1|.AppleSystemUIFont"/>
-		</section>
-	</section>
-	<section name="ChooseWorkspaceDialogSettings">
-		<item key="DIALOG_X_ORIGIN" value="281"/>
-		<item key="DIALOG_Y_ORIGIN" value="274"/>
-	</section>
-	<section name="WORKBENCH_SETTINGS">
-		<list key="ENABLED_TRANSFERS">
-		</list>
-	</section>
-=======
 			<item key="DIALOG_X_ORIGIN" value="663"/>
 			<item key="DIALOG_Y_ORIGIN" value="142"/>
 			<item key="DIALOG_WIDTH" value="613"/>
@@ -147,11 +114,26 @@
 			<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
 		</section>
 	</section>
->>>>>>> DV4
 	<section name="CleanDialogSettings">
 		<item key="TOGGLE_SELECTED" value="false"/>
 		<item key="DIALOG_WIDTH" value="581"/>
 		<item key="DIALOG_HEIGHT" value="434"/>
 		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
+	</section>
+	<section name="SmartImportWizard">
+		<item key="SmartImportRootWizardPage.STORE_HIDE_ALREADY_OPEN" value="false"/>
+		<item key="SmartImportRootWizardPage.STORE_CLOSE_IMPORTED" value="false"/>
+		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
+		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
+		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="C:\Users\java\Desktop\a\spring-boot-board_1-master\src"/>
+		</list>
+		<section name="SmartImportWizard.dialogBounds">
+			<item key="DIALOG_X_ORIGIN" value="663"/>
+			<item key="DIALOG_Y_ORIGIN" value="142"/>
+			<item key="DIALOG_WIDTH" value="938"/>
+			<item key="DIALOG_HEIGHT" value="726"/>
+			<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
+		</section>
 	</section>
 </section>

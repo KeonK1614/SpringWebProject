@@ -235,7 +235,7 @@
 						            <input type="hidden" name="existingOfile" value="${dto.ofile}" />
 						            <input type="hidden" name="existingSfile" value="${dto.sfile}" />
 						        </c:if>
-						        <input type="file" name="file" class="form-control" />
+						        <input type="file" name="ofile" class="form-control" />
 						        <small>새 파일을 선택하지 않으면 기존 파일이 유지됩니다.</small>
 	                        </td>
 	                    </tr>
@@ -246,7 +246,7 @@
 	                    <div class="col text-right mb-4 d-flex justify-content-end">
 		                   <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='../guest/inquiryBoard';">리스트보기</button>
 	                        <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='inquiryBoardDelete?idx=${dto.idx}';">삭제하기</button>
-	                        <button type="submit" class="btn btn-outline-primary mx-1">수정하기</button>
+	                        <button type="submit" class="btn btn-outline-primary mx-1">수정완료</button>
 	                        <button type="reset" class="btn btn-outline-primary mx-1">Reset</button>
 	                    </div>
 	                </div>

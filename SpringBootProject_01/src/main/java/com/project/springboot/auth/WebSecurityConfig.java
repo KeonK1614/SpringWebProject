@@ -1,6 +1,5 @@
 package com.project.springboot.auth;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -10,6 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 import org.springframework.security.web.firewall.DefaultHttpFirewall;
 import org.springframework.security.web.firewall.HttpFirewall;
 
@@ -19,9 +19,6 @@ import lombok.RequiredArgsConstructor;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig {
-	
-	@Autowired
-	public AuthenticationFailureHandler authenticationFailureHandler;
 	
 	@Bean
 	public PasswordEncoder getPasswordEncoder() {
@@ -42,13 +39,9 @@ public class WebSecurityConfig {
 	            .requestMatchers("/assets/**", "/carousel/**","/css/**", "/js/**", "/img/**").permitAll()
 	            .requestMatchers("/guest/**").permitAll()  // 모두에게 허용.
 	            .requestMatchers("/security/**").permitAll() 
-<<<<<<< HEAD
 	            .requestMatchers("/member/**").hasAnyRole("USER", "ADMIN")
 	            .requestMatchers("/admin/**").hasAnyRole("ADMIN")
-=======
-	            .requestMatchers("/member/**").hasAnyRole("N", "Y")
-	            .requestMatchers("/admin/**").hasAnyRole("N", "Y")
->>>>>>> DV4
+
 	            .anyRequest().authenticated() // 어떠한 요청이라도 인증 필요 없음 ( anonymous() )  //authenticated()
 	        );
     
@@ -88,9 +81,10 @@ public class WebSecurityConfig {
 	}
 	
 //	@Override
-//	@Bean
-//	public AuthenticationManager authenticationManagerBean() throws Exception {
-//		return super.authenticationManagerBean();
-//	}
+    @Bean
+    public AuthenticationFailureHandler authenticationFailureHandler() {
+        return new SimpleUrlAuthenticationFailureHandler();
+    }
+
 
 }

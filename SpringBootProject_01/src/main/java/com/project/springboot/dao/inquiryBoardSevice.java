@@ -55,8 +55,8 @@ public class inquiryBoardSevice implements IinquiryBoardDao{
 	}
 
 	@Override
-	public int likeCountDao(String idx) {
-		int nResult = dao.likeCountDao(idx);
+	public int responsesCountDao(String idx) {
+		int nResult = dao.responsesCountDao(idx);
 		
 		return nResult;
 	}

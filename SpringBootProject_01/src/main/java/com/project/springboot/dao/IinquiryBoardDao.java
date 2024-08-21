@@ -19,7 +19,7 @@ public interface IinquiryBoardDao {
 	public int replyWriteDao(Map<String, String> map);
 	public int deleteDao(String id);
 	public int viewCountDao(@Param("_idx")String idx);
-	public int likeCountDao(@Param("_idx")String idx);
+	public int responsesCountDao(@Param("_idx")String idx);
 	public int editorDao(Map<String, String> map);
 	
 }

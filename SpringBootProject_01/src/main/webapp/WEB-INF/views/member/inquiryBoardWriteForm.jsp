@@ -109,7 +109,6 @@
 	            return false;
 	        }       
 	    }
-	        alert("패스워드는 게시물 열람시 필요합니다.");
 		</script>
 
 	  <link href="../carousel/carousel.css" rel="stylesheet">
@@ -211,7 +210,7 @@
 	                            style="vertical-align:middle;">패스워드</th>
 	                        <td>
 	                            <input type="password" class="form-control" 
-	                                style="width:200px;" name="boardPass" />
+	                                style="width:200px;" name="boardPass" />  <small>※패스워드는 게시물 열람시 필요합니다.</small>
 	                        </td>
 	                    </tr>
 	                    <tr>
