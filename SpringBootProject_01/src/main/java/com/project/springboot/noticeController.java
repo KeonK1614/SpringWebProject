@@ -39,6 +39,9 @@ public class noticeController
 		String searchField = request.getParameter("searchField");
 		String searchWord = request.getParameter("searchWord");
 		
+		model.addAttribute("searchField", searchField);
+		model.addAttribute("searchWord", searchWord);
+		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("searchField", searchField);
 		map.put("searchWord", searchWord);
@@ -201,7 +204,7 @@ public class noticeController
 	}
 	
 	@RequestMapping("/admin/noticeDelete")
-	public String noticeDelete(HttpServletRequest request, Model model)
+	public String noticeDelete(HttpServletRequest request)
 	{
 		dao.deleteDao(request.getParameter("idx"));
 		
@@ -214,7 +217,9 @@ public class noticeController
 		String sIdx = request.getParameter("idx");
 		dao.likeCountDao(sIdx);
 		
-		return "redirect:../guest/noticeView?idx=" + sIdx;
+		/* return "redirect:../guest/noticeView?idx=" + sIdx; */
+		return "redirect:../guest/noticeBoard"; 
+		
 	}
 	
 }

@@ -86,6 +86,7 @@
 		  --bs-btn-active-color: var(--bs-btn-hover-color);
 		  --bs-btn-active-bg: #5a23c8;
 		  --bs-btn-active-border-color: #5a23c8;
+		  
 		}	 
 		</style>	 
 	  <link href="../carousel/carousel.css" rel="stylesheet">
@@ -210,21 +211,58 @@
 	
 		<main>
 			<div class="col-10 pt-3 mt-3 mx-auto">
-		         <h4>게시판 목록 - <small>공지사항게시판</small></h4>
+		         <!-- <h4>게시판 목록 - <small>공지사항게시판</small></h4> -->
+		         <!-- <h4><strong>공지사항 게시판</strong></h4> -->
 		
-		         <div class="row">
-		             <!-- 검색부분 -->
-		             <form method="get">
-		                <div class="input-group ms-auto"style="width: 300px;">
-		                     <select name="searchField" class="form-control">
+		         <!-- <div class="row">
+		             검색부분
+		             <h4><strong>공지사항 게시판</strong></h4>
+		             <form method="get" class="d-flex">
+		                <div class="input-group"style="width: 300px;">
+		                
+		                	<select name="searchField" class="form-control" dir="rtl">
 		                         <option value="title">제목</option>
 		                         <option value="content">내용</option>
-		                     </select>
-						   <input class="form-control" type="text" name="searchWord" placeholder="Search" aria-label="Search">
-				           <button class="btn btn-outline-primary" type="submit"><i class="bi bi-search" style='font-size:20px'></i></button>
-				   		</div>
-		             </form>  
-		         </div>
+			                </select>
+						    <input class="form-control" type="text" name="searchWord" placeholder="Search" aria-label="Search" >
+				            <button class="btn btn-outline-primary" type="submit"><i class="bi bi-search" style='font-size:20px'></i></button>
+				        </div>
+				     </form>  
+		         </div> -->
+		         
+		         <nav class="navbar">
+				  <div class="container-fluid">
+				    <h4><strong>공지사항 게시판</strong></h4>
+				    <form method="get" class="d-flex">
+				    <c:choose>
+				     <c:when test="${param.searchField == 'content'}">
+				      <select name="searchField" required class="form-control" dir="rtl">
+                         <option value="title">제목</option>
+                         <option value="content">내용</option>
+                         <option value="idx">글번호</option>
+	                  </select>
+	                 </c:when>
+				     <c:when test="${param.searchField == 'idx'}">
+				      <select name="searchField" required class="form-control" dir="rtl">
+                         <option value="title">제목</option>
+                         <option value="content">내용</option>
+                         <option value="idx">글번호</option>
+	                  </select>
+	                 </c:when>
+	                 <c:otherwise>
+                 	  <select name="searchField" required class="form-control" dir="rtl">
+                         <option value="title">제목</option>
+                         <option value="content">내용</option>
+                         <option value="idx">글번호</option>
+	                  </select>
+	                 </c:otherwise>
+	                </c:choose>
+				      <input class="form-control" type="text" name="searchWord" placeholder="Search" aria-label="Search" value="${searchWord}" >
+		              <button class="btn btn-outline-primary" type="submit"><i class="bi bi-search" style='font-size:20px'></i></button>
+				    </form>
+				  </div>
+				</nav>
+		         
 		         <div class="row mt-3 mx-1 mx-auto">
 		             <!-- 게시판리스트부분 -->
 		             <table class="table table-bordered table-hover table-striped">
