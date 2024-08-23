@@ -15,11 +15,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.project.springboot.dao.BoardPage;
 import com.project.springboot.dao.inquiryBoardSevice;
+import com.project.springboot.dto.BoardInfoDto;
 import com.project.springboot.dto.inquiryBoardDto;
 
 import jakarta.servlet.ServletContext;
@@ -33,17 +33,7 @@ public class inquiryBoardController
 	@Autowired
 	ServletContext context;
 	
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-	
->>>>>>> NH4
-	// 문의 게시판 리스트
-=======
-=======
 
->>>>>>> DV5
 	// 문의 게시판 목록
 	@RequestMapping("guest/inquiryBoard") 
 	public String inquiryBoard(HttpServletRequest request, Model model)
@@ -82,10 +72,6 @@ public class inquiryBoardController
       String pagingImg = BoardPage.pagingStr(totalCount, pageSize,
               blockPage, pageNum, "../guest/inquiryBoard", searchField, searchWord);
 
-      String sId = SecurityContextHolder.getContext().getAuthentication().getName();
-      
-      
-      model.addAttribute("Id", sId); // 로그인된 아이디
 	  model.addAttribute("searchField", searchField); // 받아온 검색위치
 	  model.addAttribute("searchWord", searchWord); // 받아온 검색어
       model.addAttribute("pagingImg", pagingImg); // 목록 하단에 출력할 페이지 번호
@@ -93,41 +79,22 @@ public class inquiryBoardController
       model.addAttribute("pageSize", pageSize); // 한 페이지당 출력할 게시물 갯수(설정값)
       model.addAttribute("pageNum", pageNum); // 현재 페이지 번호 
       model.addAttribute("list", bbs.listDao(map)); 
-      
+
       return "guest/inquiryBoard";
 	}
 	
-<<<<<<< HEAD
-=======
-	@RequestMapping("member/inquiryBoardPass")
-	public String inquiryBoardPasss(HttpServletRequest request, Model model)
-	{
-		String sId = SecurityContextHolder.getContext().getAuthentication().getName();
-		String idx = request.getParameter("idx");
-		inquiryBoardDto dto  =  bbs.viewDao(idx);
-
-		model.addAttribute("dto", dto);
-		model.addAttribute("Id", sId); // 로그인된 아이디
-		model.addAttribute("idx", idx);
-		
-		return "member/inquiryBoardPass";
-	}
->>>>>>> DV5
 	
 	//문의 게시판 상세보기
 	@RequestMapping("member/inquiryBoardview")
 	public String inquiryBoardview(HttpServletRequest request,Model model)
 	{
-		
 		String sId = SecurityContextHolder.getContext().getAuthentication().getName();
-		String password = request.getParameter("memberBoardPassword");
-		
-		//상세 보기
 		String idx = request.getParameter("idx");
 		inquiryBoardDto dto  =  bbs.viewDao(idx);
+		System.out.println(sId);
+		System.out.println(dto.getId());
 		model.addAttribute("dto", dto);
-		// 조회수
-		bbs.viewCountDao(idx);  
+		bbs.viewCountDao(idx);
 		
 		String ext = null, fileName = dto.getSfile();
 		if (fileName != null) {
@@ -141,10 +108,7 @@ public class inquiryBoardController
 		}
 		model.addAttribute("isImage", isImage);
 		model.addAttribute("Id", sId);
-		model.addAttribute("memberPassword", password);
 		
-		System.out.println(password);
-		System.out.println(dto.getBoardPass());
 		
 		return "member/inquiryBoardview";
 	}
@@ -168,14 +132,12 @@ public class inquiryBoardController
 		// 파일 업로드
 		String ofileName = file.getOriginalFilename();
 		String uploadDir = context.getRealPath("/static/files");
-		String sfileName = "";
 //		System.out.println("upload path" + uploadDir);
 		File dir = new File(uploadDir);
 		if (!dir.exists()) {
 	        dir.mkdirs();
 	    }
-		sfileName = UUID.randomUUID().toString() + "_" + ofileName;
-		
+		String sfileName = UUID.randomUUID().toString() + "_" + ofileName;
 		
 		File destination = new File(dir,sfileName);
 		try {
@@ -243,23 +205,20 @@ public class inquiryBoardController
 		}
 		
 		String sId = request.getParameter("id");
-		String smemberId = request.getParameter("memberid");
 		String sTitle = request.getParameter("title");
 		String sContent = request.getParameter("content");
 		String sBoardPass = request.getParameter("boardPass");		
 		String sIdx = request.getParameter("idx");
 		map.put("item1", sId);
-		map.put("item2", smemberId);
-		map.put("item3", sTitle);
-		map.put("item4", sContent);
-		map.put("item5", ofileName);
-		map.put("item6", sfileName);
-		map.put("item7", sBoardPass);
-		map.put("item8", sIdx);
+		map.put("item2", sTitle);
+		map.put("item3", sContent);
+		map.put("item4", ofileName);
+		map.put("item5", sfileName);
+		map.put("item6", sBoardPass);
+		map.put("item7", sIdx);
 		
 		int nResult = bbs.replyWriteDao(map);
 		System.out.println("Write : " + nResult);
-		bbs.responsesCountDao(sIdx);
 		
 		return "redirect:../guest/inquiryBoard";
 	}
@@ -330,11 +289,13 @@ public class inquiryBoardController
 		String Id = dto.getId();
 		String Title = request.getParameter("title");
 		String Content = request.getParameter("content");
+		String BoardPass = request.getParameter("boardPass");
 		
 		System.out.println(idx);
 		System.out.println(Id);
 		System.out.println(Title);
 		System.out.println(Content);
+		System.out.println(BoardPass);
 		
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("mId", Id);
@@ -342,13 +303,11 @@ public class inquiryBoardController
 		map.put("mContent", Content);
 		map.put("moFileName", ofileName);
 		map.put("msFileName", sfileName);
+		map.put("mBoardPass", BoardPass);
 		map.put("mIdx", idx);
 		
 		bbs.editorDao(map);
-//		/*
-//		 * // String referer = request.getHeader("Referer"); // 헤더에서 이전 페이지를 읽는다. //
-//		 * return "redirect:"+ referer; // 이전 페이지로 리다이렉트
-//		 */	
+		
 		return "redirect:../guest/inquiryBoard";
 	}
 	
@@ -362,18 +321,8 @@ public class inquiryBoardController
 //		return "redirect:"+ referer;
 //	}
 	
-
-	@RequestMapping("member/changeBoardPass")
-	public @ResponseBody String changeBoardPass(HttpServletRequest request, @RequestParam("idx") String idx, @RequestParam("boardPass") String boardPass)
-	{
-		System.out.println("Received boardPass: " + boardPass);
-		System.out.println("idx: " + idx);
-		bbs.changeBoardPass(idx, boardPass);
-
-//		String referer = request.getHeader("Referer"); // 헤더에서 이전 페이지를 읽는다.
-//		return "redirect:"+ referer; // 이전 페이지로 리다이렉트
-		return "비밀번호가 성공적으로 변경되었습니다.";
-	}
+	
+	
 	
 	
 	

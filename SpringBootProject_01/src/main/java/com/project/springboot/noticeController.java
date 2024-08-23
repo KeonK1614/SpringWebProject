@@ -9,18 +9,18 @@ import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-<<<<<<< HEAD
-=======
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
->>>>>>> NH4
 
 import com.project.springboot.dao.BoardPage;
 import com.project.springboot.dao.InoticeBoardDao;
+import com.project.springboot.dao.InoticeCommentDao;
 import com.project.springboot.dto.noticeBoardDto;
+import com.project.springboot.dto.noticeCommentDto;
 
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpServletRequest;
@@ -34,12 +34,19 @@ public class noticeController
 	@Autowired
 	InoticeBoardDao dao;
 	
+	@Autowired
+	InoticeCommentDao cdao;
+	
 	@RequestMapping("/guest/noticeBoard") // 공지사항 list
 	public String noticeBoard(HttpServletRequest request, Model model)
 	{
 		
 		String searchField = request.getParameter("searchField");
 		String searchWord = request.getParameter("searchWord");
+		
+		model.addAttribute("searchField", searchField);
+		model.addAttribute("searchWord", searchWord);
+		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("searchField", searchField);
 		map.put("searchWord", searchWord);
@@ -67,16 +74,17 @@ public class noticeController
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("pageSize", pageSize);
 		model.addAttribute("blockPage", blockPage);
-		
 		model.addAttribute("pagingImg", pagingImg);
-		
 		
 		return "guest/noticeBoard";
 	}
 	
 	@RequestMapping("/admin/noticeWriteForm") //공지사항 글쓰기 양식
-	public String noticeWriteForm()
+	public String noticeWriteForm(Model model)
 	{
+		String userId = SecurityContextHolder.getContext().getAuthentication().getName();
+		model.addAttribute("userId", userId);
+		
 		return "admin/noticeWriteForm";
 	}
 	
@@ -87,21 +95,27 @@ public class noticeController
 		String uploadDir = context.getRealPath("/static/files");
 		
 		File dir = new File(uploadDir);
-		if (!dir.exists()) {
+		if (!dir.exists()) 
+		{
 	        dir.mkdirs();
 	    }
 		String sfileName = UUID.randomUUID().toString() + "_" + ofileName;
 		
 		File destination = new File(dir,sfileName);
-		try {
+		try 
+		{
 			file.transferTo(destination);
 			
-		} catch (IOException e) {
+		} 
+		catch (IOException e)
+		{
 			e.printStackTrace();
 			return "redirect:/member/boardWrite?status=fail";
 		}
 		
-		dao.writeDao(request.getParameter("id"),
+		String sId = SecurityContextHolder.getContext().getAuthentication().getName();
+		
+		dao.writeDao(sId,
 					 request.getParameter("title"),
 					 request.getParameter("content"),
 					 ofileName,
@@ -132,9 +146,64 @@ public class noticeController
 		}
 		model.addAttribute("isImage", isImage);
 		
+		//댓글
+		Map<String, Object> map = new HashMap<String, Object>();
+		//로그인 된 아이디 들고 옴
+		String id = SecurityContextHolder.getContext().getAuthentication().getName();
+		String content = request.getParameter("content");
+		
+		map.put("idx", sIdx);
+		map.put("id", id);
+		
+		List<noticeCommentDto> list = cdao.listDao(map);
+		model.addAttribute("list", list); 
 		
 		return "guest/noticeView";
 	}
+	
+	@RequestMapping("/member/noticeComment") 
+	public String noticeComment(HttpServletRequest request, Model model)
+	{
+		String idx = request.getParameter("idx");
+		//로그인 된 아이디 들고 옴
+		String id = SecurityContextHolder.getContext().getAuthentication().getName();
+		String content = request.getParameter("content1");
+		
+		cdao.writeDao(idx, id, content);
+		
+		String referer = request.getHeader("Referer"); // 헤더에서 이전 페이지를 읽는다.
+		return "redirect:"+ referer; // 이전 페이지로 리다이렉트
+	}
+	
+	@RequestMapping("/member/noticeCommentDelete") 
+	public String noticeCommentDelete(HttpServletRequest request, Model model)
+	{
+		String coidx = request.getParameter("coidx");
+		cdao.deleteDao(coidx);
+		
+		String referer = request.getHeader("Referer"); // 헤더에서 이전 페이지를 읽는다.
+		return "redirect:"+ referer; // 이전 페이지로 리다이렉트
+	}
+	
+	@RequestMapping("/member/noticeCommentEditor") 
+	public String noticeCommentEditor(HttpServletRequest request, Model model)
+	{
+		String coidx = request.getParameter("coidx"); 
+		String content = request.getParameter("content");
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("coidx", coidx);
+		map.put("content", content);
+		cdao.editorDao(map);
+		
+		model.addAttribute(map);
+		
+		String referer = request.getHeader("Referer"); // 헤더에서 이전 페이지를 읽는다.
+		return "redirect:"+ referer; // 이전 페이지로 리다이렉트
+	}
+	
+	
+	
 	
 	@RequestMapping("/admin/noticeEditorForm") 
 	public String noticeEditorForm(HttpServletRequest request, Model model)
@@ -150,7 +219,7 @@ public class noticeController
 	}
 	
 	@RequestMapping("/admin/noticeEditor")
-	public String noticeEditor(HttpServletRequest request, @RequestParam("file") MultipartFile file, Model model) 
+	public String noticeEditor(HttpServletRequest request, @RequestParam("ofile") MultipartFile file, Model model) 
 	{
 		String sIdx = request.getParameter("idx");
 		
@@ -182,6 +251,7 @@ public class noticeController
 				e.printStackTrace();
 			}
 		}
+		System.out.println(sIdx);
 		
 		model.addAttribute("dto", dao.editorDao(request.getParameter("idx"),
 												request.getParameter("title"),
@@ -193,20 +263,22 @@ public class noticeController
 	}
 	
 	@RequestMapping("/admin/noticeDelete")
-	public String noticeDelete(HttpServletRequest request, Model model)
+	public String noticeDelete(HttpServletRequest request)
 	{
 		dao.deleteDao(request.getParameter("idx"));
 		
 		return "redirect:../guest/noticeBoard";
 	}
 	
-	@RequestMapping("/member/noticeLike")
+	@RequestMapping("/guest/noticeLike")
 	public String noticeLike(HttpServletRequest request, Model model)
 	{
 		String sIdx = request.getParameter("idx");
 		dao.likeCountDao(sIdx);
 		
-		return "redirect:../guest/noticeView?idx=" + sIdx;
+		/* return "redirect:../guest/noticeView?idx=" + sIdx; */
+		return "redirect:../guest/noticeBoard"; 
+		
 	}
 	
 }

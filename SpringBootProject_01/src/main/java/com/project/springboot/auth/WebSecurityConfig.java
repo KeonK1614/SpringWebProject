@@ -41,17 +41,7 @@ public class WebSecurityConfig {
 	            .requestMatchers("/security/**").permitAll() 
 	            .requestMatchers("/member/**").hasAnyRole("USER", "ADMIN")
 	            .requestMatchers("/admin/**").hasAnyRole("ADMIN")
-<<<<<<< HEAD
-=======
-	            .requestMatchers("/member/**").hasAnyRole("N", "Y")
-	            .requestMatchers("/admin/**").hasAnyRole("N", "Y")
-<<<<<<< HEAD
->>>>>>> DV4
-=======
->>>>>>> NH4
-=======
 
->>>>>>> DV5
 	            .anyRequest().authenticated() // 어떠한 요청이라도 인증 필요 없음 ( anonymous() )  //authenticated()
 	        );
     
@@ -59,7 +49,7 @@ public class WebSecurityConfig {
 				.loginPage("/security/loginform")
 				.permitAll()
 				.loginProcessingUrl("/security/loginform")
-		        .defaultSuccessUrl("/guest/main")
+		        .defaultSuccessUrl("/")
 //		        .failureHandler(authenticationFailureHandler)
 		        .usernameParameter("id")
 		        .passwordParameter("pass")
@@ -68,7 +58,7 @@ public class WebSecurityConfig {
 		
 		http.logout((logout) -> logout
 			.logoutUrl("/logout")
-			.logoutSuccessUrl("/guest/main")
+			.logoutSuccessUrl("/")
 			.invalidateHttpSession(true) // 세션 무효화
             .deleteCookies("JSESSIONID")
 			.permitAll());

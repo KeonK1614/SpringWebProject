@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
 <!doctype html>
 	<html lang="en" data-bs-theme="auto">
@@ -85,6 +86,7 @@
 		  --bs-btn-active-color: var(--bs-btn-hover-color);
 		  --bs-btn-active-bg: #5a23c8;
 		  --bs-btn-active-border-color: #5a23c8;
+		  
 		}	 
 		</style>	 
 	  <link href="../carousel/carousel.css" rel="stylesheet">
@@ -114,7 +116,7 @@
 		<header>
 			<nav class="navbar navbar-expand-md fixed-top" style="background-color: #7FA1C3;">
 			  <div class="container-fluid">
-			    <a class="navbar-brand" href="/">Carousel</a>
+			    <a class="navbar-brand" href="/">로고</a>
 			    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
 			      <span class="navbar-toggler-icon"></span>
 			    </button>
@@ -140,22 +142,68 @@
 			         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">문의사항</a>
 			        <ul class="dropdown-menu">
 			          <li><a class="dropdown-item" href="#">자주 물어보는 질문</a></li>
-			          <li><a class="dropdown-item" href="guest/inquiryBoard">문의게시판</a></li>
+			          <li><a class="dropdown-item" href="inquiryBoard">문의게시판</a></li>
 			        </ul>
 			      </li>
 			   </ul>
-			  	<ul class="navbar-nav">
-			      	<li class="nav-item">
-			       	<a class="nav-link" href="/guest/login">
-			       	<button type="button" class="btn btn-outline-light">
-			       	<i class='bi bi-box-arrow-in-right'></i> 로그인</button></a>
-			     	</li>
-			      	<li class="nav-item">
-			       	<a class="nav-link" href="/guest/joinform">
-			       	<button type="button" class="btn btn-outline-light">
-			       	<i class='bi bi-person-plus-fill'></i> 회원가입</button></a>
-			     	</li>
-			     	</ul>
+
+			<sec:authorize access="isAnonymous()">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/security/loginform">
+                            <button type="button" class="btn btn-outline-light">
+                                <i class='bi bi-box-arrow-in-right'></i> 로그인
+                            </button>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/guest/joinform">
+                            <button type="button" class="btn btn-outline-light">
+                                <i class='bi bi-person-plus-fill'></i> 회원가입
+                            </button>
+                        </a>
+                    </li>
+                </ul>
+			</sec:authorize>
+                <!-- 로그인된 상태 -->
+            <sec:authorize access="hasRole('USER')">    
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">
+                            <button type="button" class="btn btn-outline-light">
+                                <i class="bi bi-box-arrow-right"></i> 로그아웃
+                            </button>
+                        </a>
+                    </li>
+                   <li class="nav-item">
+                        <a class="nav-link" href="/member/mypage">
+                            <button type="button" class="btn btn-outline-light">
+                                <i class="bi bi-person-lines-fill"></i> 마이페이지
+                            </button>
+                        </a>
+                    </li>
+                </ul>
+           </sec:authorize>
+           
+           <sec:authorize access="hasRole('ADMIN')">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">
+                            <button type="button" class="btn btn-outline-light">
+                                <i class="bi bi-box-arrow-right"></i> 로그아웃
+                            </button>
+                        </a>
+                    </li>
+                   <li class="nav-item">
+                        <a class="nav-link" href="/member/mypage">
+                            <button type="button" class="btn btn-outline-light">
+                                <i class="bi bi-person-lines-fill"></i> 회원관리페이지
+                            </button>
+                        </a>
+                    </li>
+                </ul>
+           </sec:authorize>
+
 			    </div>
 			  </div>
 			</nav>
@@ -163,21 +211,58 @@
 	
 		<main>
 			<div class="col-10 pt-3 mt-3 mx-auto">
-		         <h4>게시판 목록 - <small>공지사항게시판</small></h4>
+		         <!-- <h4>게시판 목록 - <small>공지사항게시판</small></h4> -->
+		         <!-- <h4><strong>공지사항 게시판</strong></h4> -->
 		
-		         <div class="row">
-		             <!-- 검색부분 -->
-		             <form method="get">
-		                <div class="input-group ms-auto"style="width: 300px;">
-		                     <select name="searchField" class="form-control">
+		         <!-- <div class="row">
+		             검색부분
+		             <h4><strong>공지사항 게시판</strong></h4>
+		             <form method="get" class="d-flex">
+		                <div class="input-group"style="width: 300px;">
+		                
+		                	<select name="searchField" class="form-control" dir="rtl">
 		                         <option value="title">제목</option>
 		                         <option value="content">내용</option>
-		                     </select>
-						   <input class="form-control" type="text" name="searchWord" placeholder="Search" aria-label="Search">
-				           <button class="btn btn-outline-primary" type="submit"><i class="bi bi-search" style='font-size:20px'></i></button>
-				   		</div>
-		             </form>  
-		         </div>
+			                </select>
+						    <input class="form-control" type="text" name="searchWord" placeholder="Search" aria-label="Search" >
+				            <button class="btn btn-outline-primary" type="submit"><i class="bi bi-search" style='font-size:20px'></i></button>
+				        </div>
+				     </form>  
+		         </div> -->
+		         
+		         <nav class="navbar">
+				  <div class="container-fluid">
+				    <h4><strong>공지사항 게시판</strong></h4>
+				    <form method="get" class="d-flex">
+				    <c:choose>
+				     <c:when test="${param.searchField == 'content'}">
+				      <select name="searchField" required class="form-control" dir="rtl">
+                         <option value="title">제목</option>
+                         <option value="content">내용</option>
+                         <option value="idx">글번호</option>
+	                  </select>
+	                 </c:when>
+				     <c:when test="${param.searchField == 'idx'}">
+				      <select name="searchField" required class="form-control" dir="rtl">
+                         <option value="title">제목</option>
+                         <option value="content">내용</option>
+                         <option value="idx">글번호</option>
+	                  </select>
+	                 </c:when>
+	                 <c:otherwise>
+                 	  <select name="searchField" required class="form-control" dir="rtl">
+                         <option value="title">제목</option>
+                         <option value="content">내용</option>
+                         <option value="idx">글번호</option>
+	                  </select>
+	                 </c:otherwise>
+	                </c:choose>
+				      <input class="form-control" type="text" name="searchWord" placeholder="Search" aria-label="Search" value="${searchWord}" >
+		              <button class="btn btn-outline-primary" type="submit"><i class="bi bi-search" style='font-size:20px'></i></button>
+				    </form>
+				  </div>
+				</nav>
+		         
 		         <div class="row mt-3 mx-1 mx-auto">
 		             <!-- 게시판리스트부분 -->
 		             <table class="table table-bordered table-hover table-striped">
@@ -209,8 +294,7 @@
 			                 		</tr>
 			                 	</c:when>
 			                 	<c:otherwise>
-			                 	
-			                     <c:forEach items="${list}" var="dto"  varStatus="loop">
+								 <c:forEach items="${list}" var="dto"  varStatus="loop">
 			                     	<tr>
 			                     		<td align="center">${totalCount - (((pageNum-1) * pageSize) + loop.index)}</td>
 			                     		<td>
@@ -232,15 +316,40 @@
 		             </table>
 		         </div>
 		         
-		   		 <div>
+		   		 <!-- <div>
 	               <div class="col d-flex justify-content-end">
 	                   <button type="button" class="btn btn-primary" onclick="location.href='noticeBoard';">리스트보기</button>&nbsp;&nbsp;
 	                   <button type="button" class="btn btn-primary" onclick="location.href='../admin/noticeWriteForm';">공지사항 등록</button>
 	               </div>
-		         </div>
-		   
-                
-		         <div class="row mt-3">
+		         </div> -->
+		         
+		         <!-- 게스트 일 때 -->
+                 <sec:authorize access="isAnonymous()">
+                	 <div>
+		               <div class="col d-flex justify-content-end">
+		                   <button type="button" class="btn btn-primary" onclick="location.href='noticeBoard';">리스트보기</button>&nbsp;&nbsp;
+		               </div>
+			         </div>
+                 </sec:authorize>
+                 <!-- 로그인 멤버 -->
+                 <sec:authorize access="hasRole('USER')">    
+	             	<div>
+		               <div class="col d-flex justify-content-end">
+		                   <button type="button" class="btn btn-primary" onclick="location.href='noticeBoard';">리스트보기</button>&nbsp;&nbsp;
+		               </div>
+			         </div>
+	             </sec:authorize>
+	             <!-- 로그인 관리자 -->
+	             <sec:authorize access="hasRole('ADMIN')">
+	             	<div>
+	             		<div class="col d-flex justify-content-end">
+		                   <button type="button" class="btn btn-primary" onclick="location.href='noticeBoard';">리스트보기</button>&nbsp;&nbsp;
+		                   <button type="button" class="btn btn-primary" onclick="location.href='../admin/noticeWriteForm';">공지사항 등록</button>
+	               		</div>
+	             	</div>
+	             </sec:authorize>
+	             
+	             <div class="row mt-3">
 		             <div class="col">
 		                 <!-- 페이지번호 부분 -->
 		                 
@@ -270,8 +379,9 @@
 		          </div>
 		      </div>
 			</div>
-		</main>	 	 	
-		<footer class="container">
+		</main>	 	
+		<hr/> 	
+		<!-- <footer class="container">
 		    <p class="float-end"><i class="bi bi-arrow-up-circle"></i><a href="#">Back to top</a></p>
 		    <h3><strong>더조은™</strong></h3>
 		    <p class="copy text-center">
@@ -283,7 +393,27 @@
 				FAX : 031.906.8777 <br>
 			</p>  
 		    <p>&copy; 2017–2024 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-	  	</footer>		
+	  	</footer>	 -->
+	  	
+	   <!-- footer 태그 없이 화면 꽉차게  -->
+       <p class="float-end"><i class="bi bi-arrow-up-circle"></i><a href="#">Back to top</a></p>
+       <div class="p-4 text-white text-center" style="background-color: #7FA1C3;">
+			 <div class="row">
+				 <div class="col-2 ps-4">
+				 <h3><strong>더조은™</strong></h3>
+			 </div>
+				 <div class="col">
+					 <p class="copy text-center">
+					    더조은아카데미일산 &nbsp;&nbsp;
+				        경기도 고양시 일산구 중앙로 1275번길 38-10 201호(장항동 우림로데오스위트) &nbsp;&nbsp;<br/>
+				        학생 : 김건, 김나현, 나예림, 장다빈 
+				        사업자등록번호 : 584-85-00825 &nbsp;&nbsp;  
+				        TEL : 031.902.1777 &nbsp;&nbsp; 
+						FAX : 031.906.8777 <br>
+					 </p>  
+				 </div>
+			 </div>
+		 </div>	
 			
 	</body>
 </html>
