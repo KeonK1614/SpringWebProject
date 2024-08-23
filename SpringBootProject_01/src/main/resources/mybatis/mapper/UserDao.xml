@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.project.springboot.jdbc.IDao">
+<mapper namespace="com.project.springboot.dao.IMemberDao">
 
-	<insert id="joinDao" parameterType="com.project.springboot.jdbc.UserDTO">
+	<insert id="joinDao" parameterType="com.project.springboot.dto.UserDTO">
 		insert into member (id, pass, name, phoneNum, email, postcode, address, detailaddress, regidate, authority, enabled)
 			values (#{id}, #{pass}, #{name}, #{phoneNum}, #{email}, #{postcode}, #{address}, #{detailaddress}, #{regidate}, DEFAULT, DEFAULT)
 	</insert>
@@ -13,7 +13,7 @@
         select count(*) from member where id = #{id}
     </select>
     
-	<select id="findByUsername" resultType="com.project.springboot.jdbc.UserDTO">
+	<select id="findByUsername" resultType="com.project.springboot.dto.UserDTO">
 	select * from member where id = #{id}
 	</select>
     

@@ -8,7 +8,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.project.springboot.jdbc.UserDTO;
+import com.project.springboot.dto.UserDTO;
 
 import lombok.Data;
 

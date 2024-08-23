@@ -7,17 +7,18 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.project.springboot.jdbc.IDao;
-import com.project.springboot.jdbc.UserDTO;
+import com.project.springboot.dao.IMemberDao;
+import com.project.springboot.dto.UserDTO;
 
 @Service("userDetailsService")
 public class AccountDetailService implements UserDetailsService {
 	
 	@Autowired
-    private IDao idao;
+    private IMemberDao idao;
 
 	@Override
     public UserDetails loadUserByUsername(String id) throws UsernameNotFoundException {
+		System.out.println("user detail method called");
         UserDTO dto = idao.findByUsername(id);
         if (dto == null) {
         	throw new UsernameNotFoundException("User not found");

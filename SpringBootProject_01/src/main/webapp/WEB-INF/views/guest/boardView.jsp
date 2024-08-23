@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="jakarta.tags.core" prefix="c" %>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>    
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!doctype html>
 	<html lang="en" data-bs-theme="auto">
 	  <head><script src="../assets/js/color-modes.js"></script>
-		
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
 	    <meta charset="utf-8">
 	    <meta name="viewport" content="width=device-width, initial-scale=1">
 	    <meta name="description" content="">
@@ -119,17 +118,17 @@
 		<header>
 			<nav class="navbar navbar-expand-md fixed-top" style="background-color: #7FA1C3;">
 			  <div class="container-fluid">
-			    <a class="navbar-brand" href="/">로고</a>
+			    <a class="navbar-brand" href="main">Carousel</a>
 			    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
 			      <span class="navbar-toggler-icon"></span>
 			    </button>
 			   <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
 			      <ul class="navbar-nav me-auto mb-2 mb-md-0">
 			      <li class="nav-item">
-			        <a class="nav-link" aria-current="page" href="#">홈페이지소개</a>
+			        <a class="nav-link" aria-current="page" href="#">home</a>
 			      </li>
 			      <li class="nav-item">
-			        <a class="nav-link" href="/guest/noticeBoard">공지사항</a>
+			        <a class="nav-link" href="#">공지사항</a>
 			      </li>
 			      <li class="nav-item">
 			        <a class="nav-link" href="#">지도</a>
@@ -137,7 +136,7 @@
 			      <li class="nav-item dropdown">
 			         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">커뮤니티</a>
 			          <ul class="dropdown-menu">
-			            <li><a class="dropdown-item" href="/guest/boardInfo">정보 게시판</a></li>
+			            <li><a class="dropdown-item" href="#">정보 게시판</a></li>
 			            <li><a class="dropdown-item" href="#">인기 게시판</a></li>
 			         	</ul>
 			         </li>
@@ -145,68 +144,46 @@
 			         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">문의사항</a>
 			        <ul class="dropdown-menu">
 			          <li><a class="dropdown-item" href="#">자주 물어보는 질문</a></li>
-			          <li><a class="dropdown-item" href="/guest/inquiryBoard">문의게시판</a></li>
+			          <li><a class="dropdown-item" href="#">1대1문의</a></li>
 			        </ul>
 			      </li>
 			   </ul>
-
-			<sec:authorize access="isAnonymous()">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/security/loginform">
-                            <button type="button" class="btn btn-outline-light">
-                                <i class='bi bi-box-arrow-in-right'></i> 로그인
-                            </button>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/guest/joinform">
-                            <button type="button" class="btn btn-outline-light">
-                                <i class='bi bi-person-plus-fill'></i> 회원가입
-                            </button>
-                        </a>
-                    </li>
-                </ul>
-			</sec:authorize>
-                <!-- 로그인된 상태 -->
-            <sec:authorize access="hasRole('USER')">    
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/logout">
-                            <button type="button" class="btn btn-outline-light">
-                                <i class="bi bi-box-arrow-right"></i> 로그아웃
-                            </button>
-                        </a>
-                    </li>
-                   <li class="nav-item">
-                        <a class="nav-link" href="/member/mypage">
-                            <button type="button" class="btn btn-outline-light">
-                                <i class="bi bi-person-lines-fill"></i> 마이페이지
-                            </button>
-                        </a>
-                    </li>
-                </ul>
+				  	<sec:authorize access="isAnonymous()">
+				             <ul class="navbar-nav">
+				                 <li class="nav-item">
+				                     <a class="nav-link" href="/security/loginform">
+				                         <button type="button" class="btn btn-outline-light">
+				                             <i class='bi bi-box-arrow-in-right'></i> 로그인
+				                         </button>
+				                     </a>
+				                 </li>
+				                 <li class="nav-item">
+				                     <a class="nav-link" href="/guest/joinform">
+				                         <button type="button" class="btn btn-outline-light">
+				                             <i class='bi bi-person-plus-fill'></i> 회원가입
+				                         </button></a>
+				                 </li>
+				             </ul>
+				</sec:authorize>
+				             <!-- 로그인된 상태 -->
+				<sec:authorize access="isAuthenticated()">    
+				    <ul class="navbar-nav">
+				        <li class="nav-item">
+				            <a class="nav-link" href="/logout">
+				                <button type="button" class="btn btn-outline-light">
+				                    <i class="bi bi-box-arrow-right"></i> 로그아웃
+				                </button>
+				            </a>
+				        </li>
+				       <li class="nav-item">
+				            <a class="nav-link" href="/member/myPage">
+				                <button type="button" class="btn btn-outline-light">
+				                    <i class="bi bi-person-lines-fill"></i> 마이페이지
+				                </button>
+				            </a>
+				        </li>
+				    </ul>
            </sec:authorize>
-           
-           <sec:authorize access="hasRole('ADMIN')">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/logout">
-                            <button type="button" class="btn btn-outline-light">
-                                <i class="bi bi-box-arrow-right"></i> 로그아웃
-                            </button>
-                        </a>
-                    </li>
-                   <li class="nav-item">
-                        <a class="nav-link" href="/member/mypage">
-                            <button type="button" class="btn btn-outline-light">
-                                <i class="bi bi-person-lines-fill"></i> 회원관리페이지
-                            </button>
-                        </a>
-                    </li>
-                </ul>
-           </sec:authorize>
-
 			    </div>
 			  </div>
 			</nav>
@@ -259,27 +236,73 @@
                         <td>
 							<c:if test="${ not empty dto.ofile }">
 		            		${ dto.ofile }
-		            			<%-- <a href="../views/download.do?ofile=${ dto.ofile }&sfile=${ dto.sfile }&idx=${ dto.idx }">
-		            				[다운로드]
-		            			</a> --%>
 		            		</c:if>                     
             			</td>
                     </tr>
+                    
+                    
                 </tbody>
                 </table>
                 
                  <div class="row">
                     <div class="col text-right mb-4 d-flex justify-content-end">
-                        <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='/member/like?idx=${dto.idx}';" >좋아요</button>
                         <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='boardInfo';">리스트보기</button>
-                        <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='/member/boardEditor?idx=${dto.idx}';">수정하기</button>
-                        <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='/member/delete?idx=${dto.idx}';">삭제하기</button>
-                        <button type="reset" class="btn btn-outline-primary mx-1">Reset</button>
+                        <c:if test="${not empty sessionScope.id}">
+                            <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='/member/like?idx=${dto.idx}';" >좋아요</button>  
+                        </c:if>
+                        <c:if test="${sessionScope.id eq dto.id }">
+                        	<button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='/member/boardEditor?idx=${dto.idx}';">수정하기</button>
+                        	<button type="button" class="btn btn-outline-danger mx-1" onclick="location.href='/member/delete?idx=${dto.idx}';">삭제하기</button>
+                        </c:if>
                     </div>
                 </div>
             </form>
-        </div>
-    </div>			   
+            <div class="card">
+		    	<div class="card-body">
+		    		<textarea class="form-control" row="3"></textarea>
+		    	</div>
+		    	<div class="card-footer">
+					<button class="btn btn-outline-primary mx-1" onclick="location.href='/member/writeComment';">댓글쓰기</button>
+				</div>
+			</div>
+	        <div id="commentList" class="card">
+	        	<div class="card-header">댓글리스트</div>
+        		<ul id="reply-box" class="list-group">
+        			<c:forEach var="cDto" varStatus="loop" items="${comments}">
+        				<c:choose>
+        					<c:when test="${cDto.deleted eq '1' }">
+        						<li>삭제된 댓글입니다.</li>
+        					</c:when>
+        					<c:otherwise>
+        					 	<li id="reply" class="list-group-item">
+        							<div>${cDto.commentText}</div>
+        							<div><strong>${cDto.writer}</strong></div>
+        							<div>${cDto.regidate}</div>
+        						</li>
+        					</c:otherwise>
+        				</c:choose>
+        				<div class="d-flex">
+        					<c:if test="${sessionScope.id eq cDto.writer }">
+        						<button type="button" class="btn btn-outline-warning mx-1" onclick="location.href='/member/boardEditor?idx=${dto.idx}';">수정하기</button>
+                       			<button type="button" class="btn btn-outline-danger mx-1" onclick="location.href='/member/delete?idx=${dto.idx}';">삭제하기</button>
+        					</c:if>
+        				</div>
+	        			<%-- <c:if test="${cDto.cIdx eq cDto.commentGroup}">
+	        				<li id="reli${cDto.cIdx }">
+	        			</c:if>
+	        			<c:if test="${cDto.cIdx ne cDto.commentGroup}">
+	        				<li id="reli${cDto.cIdx }" style="padding-left:50px;">
+	        			</c:if>
+						<form id="reComment${cDto.cIdx}" action="writeComment" method="post">
+						<input type="hidden" name=commentGroup value="${cDto.commentGroup}">
+						<textarea name="commentText"></textarea>
+						<button type="submit">등록</button>
+						</form> --%>
+						</c:forEach>
+					</ul>	
+        		</div>
+    	</div>
+    </div>
 	<div class="p-4 text-white text-center" style="background-color: #7FA1C3;">
 		<div class="row">
 			<div class="col-2 ps-4">
@@ -298,4 +321,37 @@
 		</div>
 	</div>
 	</body>
+	<!-- 댓글 수정 삭제 ajax 사용해 비동기식 설정 -->
+	<script>
+		$('#commentForm').submit(function(event) {
+			event.preventDefault();
+			$.ajax({
+				url: '/member/writeComment'
+				method: 'POST'
+				data: $(this).serialize(),
+				success: function(response) {
+					if(response === 'success') {
+						location.reload();
+					} else {
+						alert('댓글 등록 실패');
+					}
+				}
+			});
+		});
+		
+		//댓글 삭제
+		$('.deleteComment').click(function() {
+			$.ajax({
+				url: '/member/deleteComment',
+				method: 'POST'
+				success: function(response) {
+					if (response === 'success') {
+						location.reload();
+					} else {
+						alert('댓글 삭제 실패');
+					}
+				}
+			});
+		});
+	</script>
 </html>
