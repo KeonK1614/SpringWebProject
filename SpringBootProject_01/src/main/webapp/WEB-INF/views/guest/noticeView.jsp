@@ -304,7 +304,85 @@
 	             </form>
 		   	  </div>      
 		  </div>
-	</main>	 
+		  
+		  <!-- 댓글 부분 -->
+		  <hr/>
+		  <h4>댓글</h4>
+		  <div class="card">
+            <form action="../member/noticeComment">
+            <input type="hidden" value="${dto.idx}"  name="idx">
+              <div class="card-body">
+                  <textarea id="reply-content" class="form-control" rows="1" name="content1"></textarea>
+              </div>
+              <div class="card-footer">
+                  <button type="submit" id="btn-reply-save" class="btn btn-primary" >등록</button>
+              </div>
+            </form>
+        </div>
+                
+        <table class="table caption-top">
+        <colgroup>
+            <col width="60px">
+            <col width="200px">
+            <col width="80px">
+            <col width="100px">
+        </colgroup>
+          <thead>
+            <tr>
+              <td colspan="4" align="center">댓글</td>
+            </tr>
+            <tr>
+              <td align="center">아이디</td>
+              <td align="center">내용</td>
+              <td align="center">작성일</td>
+              <td align="center">비고</td>
+            </tr>
+          </thead>
+          <tbody>
+          	<c:choose>
+          		<c:when test="${ empty list }">
+          			<tr>
+          				<td colspan="4" align="center">
+          					등록된 댓글이 없습니다.
+          				</td>
+          			</tr>
+          		</c:when>
+          		<c:otherwise>
+          			<c:forEach items="${list}" var="dto" varStatus="loop">
+          				<tr>
+          					<td align="center">${dto.id}</td>
+          					<td>${dto.content}</td>
+          					<td align="center">${dto.postdate}</td>
+          					<td>
+          						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				              	<button type="button">답글달기</button>
+				              	&nbsp;
+				              	<button type="button" onclick="location.href='../member/noticeCommentEditor?coidx=${dto.coidx}';" aria-label="Edit">수정</button>
+				              	&nbsp;
+				              	<button type="button" onclick="location.href='../member/noticeCommentDelete?coidx=${dto.coidx}';">삭제</button>
+				            </td>
+          				</tr>
+          			</c:forEach>
+          		</c:otherwise>
+          	</c:choose>
+          </tbody>
+        </table>
+        
+        <script>
+		function deletePost(idx)
+		{
+		    var confirmed = confirm("정말로 삭제하겠습니까?"); 
+		    if (confirmed) 
+		    {
+		        var form = document.writeFrm;      
+		        form.method = "post";  
+		       /*  form.action = "../admin/noticeDelete?idx=${dto.idx}"; */
+		        form.action = "../admin/noticeDelete?idx="+idx; 
+		        form.submit();  
+		    }
+		}
+		</script>
+    </main>	 
 			 	
 		<!-- <footer class="container">
 		    <p class="float-end"><i class="bi bi-arrow-up-circle"></i><a href="#">Back to top</a></p>
@@ -342,14 +420,4 @@
   </body>
 </html>
 
-<script>
-	function deletePost(idx){
-	    var confirmed = confirm("정말로 삭제하겠습니까?"); 
-	    if (confirmed) {
-	        var form = document.writeFrm;      
-	        form.method = "post";  
-	        form.action = "../admin/noticeDelete?idx=${dto.idx}";
-	        form.submit();  
-	    }
-	}
-</script>
+

@@ -294,8 +294,7 @@
 			                 		</tr>
 			                 	</c:when>
 			                 	<c:otherwise>
-			                 	
-			                     <c:forEach items="${list}" var="dto"  varStatus="loop">
+								 <c:forEach items="${list}" var="dto"  varStatus="loop">
 			                     	<tr>
 			                     		<td align="center">${totalCount - (((pageNum-1) * pageSize) + loop.index)}</td>
 			                     		<td>

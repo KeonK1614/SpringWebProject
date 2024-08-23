@@ -18,7 +18,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.project.springboot.dao.BoardPage;
 import com.project.springboot.dao.InoticeBoardDao;
+import com.project.springboot.dao.InoticeCommentDao;
 import com.project.springboot.dto.noticeBoardDto;
+import com.project.springboot.dto.noticeCommentDto;
 
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpServletRequest;
@@ -31,6 +33,9 @@ public class noticeController
 	
 	@Autowired
 	InoticeBoardDao dao;
+	
+	@Autowired
+	InoticeCommentDao cdao;
 	
 	@RequestMapping("/guest/noticeBoard") // 공지사항 list
 	public String noticeBoard(HttpServletRequest request, Model model)
@@ -70,7 +75,6 @@ public class noticeController
 		model.addAttribute("pageSize", pageSize);
 		model.addAttribute("blockPage", blockPage);
 		model.addAttribute("pagingImg", pagingImg);
-		
 		
 		return "guest/noticeBoard";
 	}
@@ -142,9 +146,64 @@ public class noticeController
 		}
 		model.addAttribute("isImage", isImage);
 		
+		//댓글
+		Map<String, Object> map = new HashMap<String, Object>();
+		//로그인 된 아이디 들고 옴
+		String id = SecurityContextHolder.getContext().getAuthentication().getName();
+		String content = request.getParameter("content");
+		
+		map.put("idx", sIdx);
+		map.put("id", id);
+		
+		List<noticeCommentDto> list = cdao.listDao(map);
+		model.addAttribute("list", list); 
 		
 		return "guest/noticeView";
 	}
+	
+	@RequestMapping("/member/noticeComment") 
+	public String noticeComment(HttpServletRequest request, Model model)
+	{
+		String idx = request.getParameter("idx");
+		//로그인 된 아이디 들고 옴
+		String id = SecurityContextHolder.getContext().getAuthentication().getName();
+		String content = request.getParameter("content1");
+		
+		cdao.writeDao(idx, id, content);
+		
+		String referer = request.getHeader("Referer"); // 헤더에서 이전 페이지를 읽는다.
+		return "redirect:"+ referer; // 이전 페이지로 리다이렉트
+	}
+	
+	@RequestMapping("/member/noticeCommentDelete") 
+	public String noticeCommentDelete(HttpServletRequest request, Model model)
+	{
+		String coidx = request.getParameter("coidx");
+		cdao.deleteDao(coidx);
+		
+		String referer = request.getHeader("Referer"); // 헤더에서 이전 페이지를 읽는다.
+		return "redirect:"+ referer; // 이전 페이지로 리다이렉트
+	}
+	
+	@RequestMapping("/member/noticeCommentEditor") 
+	public String noticeCommentEditor(HttpServletRequest request, Model model)
+	{
+		String coidx = request.getParameter("coidx"); 
+		String content = request.getParameter("content");
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("coidx", coidx);
+		map.put("content", content);
+		cdao.editorDao(map);
+		
+		model.addAttribute(map);
+		
+		String referer = request.getHeader("Referer"); // 헤더에서 이전 페이지를 읽는다.
+		return "redirect:"+ referer; // 이전 페이지로 리다이렉트
+	}
+	
+	
+	
 	
 	@RequestMapping("/admin/noticeEditorForm") 
 	public String noticeEditorForm(HttpServletRequest request, Model model)
