@@ -5,7 +5,11 @@
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1723786579576_2" label="Window Working Set" name="Aggregate for window 1723786579576"/>
 <<<<<<< HEAD
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1723789307850_3" label="Window Working Set" name="Aggregate for window 1723789307849"/>
+<<<<<<< HEAD
 =======
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1723789855403_3" label="Window Working Set" name="Aggregate for window 1723786622090"/>
 >>>>>>> NH4
+=======
+<workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1724043103808_4" label="Window Working Set" name="Aggregate for window 1724043103808"/>
+>>>>>>> DV5
 </workingSetManager>

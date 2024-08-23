@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!doctype html>
 	<html lang="en" data-bs-theme="auto">
 	<head>	 
@@ -14,28 +15,8 @@
 		<link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
 		<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
-		<script type="text/javascript">
-		function showPopup(){
-            window.open("test.html","팝업 테스트","width=400, height=300, top=10, left=10");
-        }
-		</script>		
 		
-		<script>
-		if ("${dto.id}" === "${Id}") {
-		    var getpass = prompt("비밀번호를 입력하세요.");
-		    
-		    if ("${dto.boardPass}" === getpass) {
-		        alert("인증 되었습니다.");
-		    } else {
-		        alert("비밀번호가 틀렸습니다.");
-		        window.location.href = "../guest/inquiryBoard";
-		    }
-		} else {
-		    alert("비밀글 열람권한이 없습니다.");
-	        window.location.href = "../guest/inquiryBoard";
-		}	
-		</script>
-		
+
 		<script>
 		function deletePost(idx){
 		    var confirmed = confirm("정말로 삭제하겠습니까?"); 
@@ -143,55 +124,101 @@
 		</div>
 
 		<header>
+			<input type='hidden' id='memberPass' name='memberPass' value='' />
 			<nav class="navbar navbar-expand-md fixed-top" style="background-color: #7FA1C3;">
 			  <div class="container-fluid">
-			    <a class="navbar-brand" href="main">Carousel</a>
-			    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-			      <span class="navbar-toggler-icon"></span>
-			    </button>
+				<a class="navbar-brand" href="/">로고</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+				  <span class="navbar-toggler-icon"></span>
+				</button>
 			   <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-			      <ul class="navbar-nav me-auto mb-2 mb-md-0">
-			      <li class="nav-item">
-			        <a class="nav-link" aria-current="page" href="#">home</a>
-			      </li>
-			      <li class="nav-item">
-			        <a class="nav-link" href="#">공지사항</a>
-			      </li>
-			      <li class="nav-item">
-			        <a class="nav-link" href="#">지도</a>
-			      </li>
-			      <li class="nav-item dropdown">
-			         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">커뮤니티</a>
-			          <ul class="dropdown-menu">
-			            <li><a class="dropdown-item" href="#">정보 게시판</a></li>
-			            <li><a class="dropdown-item" href="#">인기 게시판</a></li>
-			         	</ul>
-			         </li>
-			      <li class="nav-item dropdown">
-			         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">문의사항</a>
-			        <ul class="dropdown-menu">
-			          <li><a class="dropdown-item" href="#">자주 물어보는 질문</a></li>
-			          <li><a class="dropdown-item" href="#">1대1문의</a></li>
-			        </ul>
-			      </li>
-			   </ul>
-			  	<ul class="navbar-nav">
-			      	<li class="nav-item">
-			       	<a class="nav-link" href="login">
-			       	<button type="button" class="btn btn-outline-light">
-			       	<i class='bi bi-box-arrow-in-right'></i> 로그인</button></a>
-			     	</li>
-			      	<li class="nav-item">
-			       	<a class="nav-link" href="join">
-			       	<button type="button" class="btn btn-outline-light">
-			       	<i class='bi bi-person-plus-fill'></i> 회원가입</button></a>
-			     	</li>
-			     	</ul>
-			    </div>
+					<ul class="navbar-nav me-auto mb-2 mb-md-0">
+						<li class="nav-item">
+							<a class="nav-link" aria-current="page" href="#">홈페이지소개</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="../guest/noticeBoard">공지사항</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">지도</a>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">커뮤니티</a>
+							<ul class="dropdown-menu">
+								<li><a class="dropdown-item" href="../guest/boardInfo">정보 게시판</a></li>
+								<li><a class="dropdown-item" href="#">인기 게시판</a></li>
+							</ul>
+						</li>
+					    <li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">문의사항</a>
+							<ul class="dropdown-menu">
+								<li><a class="dropdown-item" href="#">자주 물어보는 질문</a></li>
+								<li><a class="dropdown-item" href="../guest/inquiryBoard">문의게시판</a></li>
+							</ul>
+					    </li>
+					</ul>
+		
+					<sec:authorize access="isAnonymous()">
+						<ul class="navbar-nav">
+							<li class="nav-item">
+								<a class="nav-link" href="/security/loginform">
+									<button type="button" class="btn btn-outline-light">
+										<i class='bi bi-box-arrow-in-right'></i> 로그인
+									</button>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="/guest/joinform">
+									<button type="button" class="btn btn-outline-light">
+										<i class='bi bi-person-plus-fill'></i> 회원가입
+									</button>
+								</a>
+							</li>
+						</ul>
+					</sec:authorize>
+						<!-- 로그인된 상태 -->
+					<sec:authorize access="hasRole('USER')">    
+						<ul class="navbar-nav">
+							<li class="nav-item">
+								<a class="nav-link" href="/logout">
+									<button type="button" class="btn btn-outline-light">
+										<i class="bi bi-box-arrow-right"></i> 로그아웃
+									</button>
+								</a>
+							</li>
+						   <li class="nav-item">
+								<a class="nav-link" href="/member/mypage">
+									<button type="button" class="btn btn-outline-light">
+										<i class="bi bi-person-lines-fill"></i> 마이페이지
+									</button>
+								</a>
+							</li>
+						</ul>
+				   </sec:authorize>
+				   
+				   <sec:authorize access="hasRole('ADMIN')">
+						<ul class="navbar-nav">
+							<li class="nav-item">
+								<a class="nav-link" href="/logout">
+									<button type="button" class="btn btn-outline-light">
+										<i class="bi bi-box-arrow-right"></i> 로그아웃
+									</button>
+								</a>
+							</li>
+						   <li class="nav-item">
+								<a class="nav-link" href="/member/mypage">
+									<button type="button" class="btn btn-outline-light">
+										<i class="bi bi-person-lines-fill"></i> 회원관리페이지
+									</button>
+								</a>
+							</li>
+						</ul>
+				   </sec:authorize>
+				</div>
 			  </div>
 			</nav>
 		</header>
-	
+		
 		<main>
 		     <div class="col-10 pt-3 mt-3 mx-auto">
 		     <h3>문의게시판</h3> 
@@ -238,7 +265,12 @@
 		                    <th class="text-center" 
 		                        style="vertical-align:middle;">답변 </th>
 		                    <td>
-		                        ${dto.likeCount}
+		                    	<c:if test="${dto.responses > 0 }">
+		                    		답변 완료
+		                    	</c:if>
+		                    	<c:if test="${dto.responses eq 0 }">
+		                    		답변 대기
+		                    	</c:if>
 		                    </td>
 		                </tr>
 		                <tr style="height: 300px">
@@ -258,8 +290,8 @@
 		                    	<c:if test="${ not empty dto.ofile }">
 		            				${ dto.ofile }
 						            <%-- <a href="../mvcboard/download.do?ofile=${ dto.ofile }&sfile=${ dto.sfile }&idx=${ dto.idx }"> --%>
-						            <a href="../views/download.do?ofile=${ dto.ofile }&sfile=${ dto.sfile }&idx=${ dto.idx }">
-						                [다운로드]
+						            <%-- <a href="../views/download.do?ofile=${ dto.ofile }&sfile=${ dto.sfile }&idx=${ dto.idx }">
+						                [다운로드] --%>
 						            </a>
 						        </c:if>
 		                    </td>
@@ -275,7 +307,9 @@
 		                <div class="col d-flex justify-content-end">
 		                   <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='../guest/inquiryBoard';">리스트보기</button>
 		                   <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='inquiryBoardEditorForm?idx=${dto.idx}';">수정하기</button>
-		                   <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='../admin/inquiryBoardReplyWriteForm?idx=${dto.idx}';">답변하기</button>
+		                   <sec:authorize access="hasRole('ADMIN')">
+		                   		<button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='../admin/inquiryBoardReplyWriteForm?idx=${dto.idx}';">답변하기</button>
+		                   </sec:authorize>
 		                  <%--  <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='inquiryBoardDelete?idx=${dto.idx}';">삭제하기</button> --%>
 		                   <button type="button" class="btn btn-outline-primary mx-1" onclick="deletePost(${dto.idx});">삭제하기</button>
 		                </div>

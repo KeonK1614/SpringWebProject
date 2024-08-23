@@ -38,8 +38,8 @@
 		</insert>
 		
 		<insert id="replyWriteDao" parameterType="java.util.HashMap">
-			insert into inquiryBoard (idx, id, title, content, ofile, sfile, isAnnouncement, boardPass, parentIdx)
-			values (inquiryBoard_seq.nextval, #{item1}, #{item2}, #{item3}, #{item4, jdbcType=VARCHAR}, #{item5, jdbcType=VARCHAR}, 'Y', #{item6}, #{item7})
+			insert into inquiryBoard (idx, id, parentId, title, content, ofile, sfile, isAnnouncement, boardPass, parentIdx)
+			values (inquiryBoard_seq.nextval, #{item1}, #{item2}, #{item3}, #{item4}, #{item5, jdbcType=VARCHAR}, #{item6, jdbcType=VARCHAR}, 'Y', #{item7}, #{item8})
 		</insert>
 		
 		<delete id="deleteDao">
@@ -56,17 +56,22 @@
 					title = #{mTitle},
 					content = #{mContent},
 					ofile = #{moFileName, jdbcType=VARCHAR},
-					sfile = #{msFileName, jdbcType=VARCHAR},
-					boardPass = #{mBoardPass}
+					sfile = #{msFileName, jdbcType=VARCHAR}
 				where idx = #{mIdx}
 		</update>
 		
-		<update id="likeCountDao">
-			update inquiryBoard SET likeCount=likeCount+1 where idx = #{_idx}
+		<update id="responsesCountDao">
+			update inquiryBoard SET responses=responses+1 where idx = #{_idx}
 		</update>
 		
-		 <select id="getTotalCount" resultType="int">
+		<select id="getTotalCount" resultType="int">
 	        SELECT COUNT(*) FROM inquiryBoard
 	    </select>
+	    
+	    <update id="changeBoardPass">
+	    	update inquiryBoard 
+		    SET boardPass= #{_boardPass}
+		    where idx = #{_idx} or parentIdx = #{_idx}
+	    </update>
 		
 	</mapper>

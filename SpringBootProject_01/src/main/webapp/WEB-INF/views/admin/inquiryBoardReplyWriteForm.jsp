@@ -191,6 +191,7 @@
 		     <hr>
 			<div class="row mt-3 mx-1 mx-auto">
 			    <form enctype="multipart/form-data" action="inquiryBoardReplyWrite?idx=${dto.idx}" method="post" onsubmit="return validateForm(this);">
+			    	<input type="hidden" name="memberid" value="${dto.id }">
 	                <table class="table table-bordered">
 	                <colgroup>
 	                    <col width="20%"/>
@@ -202,7 +203,7 @@
 	                            style="vertical-align:middle;">작성자</th>
 	                        <td>
 	                            <input type="text" class="form-control" 
-	                                style="width:100px;" name="id"/>
+	                                style="width:100px;" name="id" value="${pageContext.request.userPrincipal.name}"/>
 	                        </td>
 	                    </tr>
 	                    <tr>

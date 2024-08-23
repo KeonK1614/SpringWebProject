@@ -84,6 +84,7 @@
 	</list>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	<section name="SmartImportWizard">
 		<item key="SmartImportRootWizardPage.STORE_HIDE_ALREADY_OPEN" value="false"/>
@@ -105,6 +106,8 @@
 >>>>>>> DV4
 =======
 >>>>>>> NH4
+=======
+>>>>>>> DV5
 	<section name="ExternalProjectImportWizard">
 		<item key="WizardProjectsImportPage.STORE_NESTED_PROJECTS" value="false"/>
 		<item key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID" value="false"/>
@@ -114,23 +117,38 @@
 		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 			<item value="/Users/yerim/DevData/SpringWebProject"/>
 =======
+=======
+			<item value="C:\FrontEnd\Springboot2\SpringBootMH01\B14WebSocket"/>
+			<item value="C:\Users\java\Desktop\a\WebSocket"/>
+			<item value="C:\Users\java\Desktop\a\springboot_multiroom-main"/>
+			<item value="C:\Users\java\Desktop\a\WebSocketTest"/>
+			<item value="C:\FrontEnd\Springboot2\springboot02-master\Ex30_Security_Database"/>
+			<item value="C:\FrontEnd\Springboot2\springboot02-master\Ex29_Security_taglibs"/>
+			<item value="C:\FrontEnd\Springboot2\springboot02-master\Ex28_Security_StatusCheck"/>
+			<item value="C:\FrontEnd\Springboot2\springboot02-master\Ex27_Security_LoginForm"/>
+			<item value="C:\FrontEnd\Springboot2\springboot02-master\Ex26_Security"/>
+>>>>>>> DV5
 			<item value="C:\FrontEnd\Springboot2\springboot02-master\Ex41_Firebase_Realtime"/>
 			<item value="C:\FrontEnd\Springboot2\springboot02-master\Ex39_WebSocket"/>
-			<item value="C:\FrontEnd\Springboot\homworkdavin-2"/>
 			<item value="C:\FrontEnd\new\Servers"/>
 			<item value="C:\FrontEnd\new\SpringBootProject_01"/>
+<<<<<<< HEAD
 >>>>>>> DV4
 =======
 			<item value="C:\FrontEnd\teamproject\SpringBootProject_01"/>
 			<item value="C:\FrontEnd\teamproject"/>
 >>>>>>> NH4
+=======
+>>>>>>> DV5
 		</list>
 		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
 			<item value=""/>
 		</list>
 		<section name="ExternalProjectImportWizard.dialogBounds">
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 			<item key="DIALOG_X_ORIGIN" value="219"/>
@@ -150,19 +168,22 @@
 	</section>
 =======
 			<item key="DIALOG_X_ORIGIN" value="663"/>
+=======
+			<item key="DIALOG_X_ORIGIN" value="621"/>
+>>>>>>> DV5
 			<item key="DIALOG_Y_ORIGIN" value="142"/>
 			<item key="DIALOG_WIDTH" value="613"/>
 			<item key="DIALOG_HEIGHT" value="861"/>
 			<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
 		</section>
 	</section>
->>>>>>> DV4
 	<section name="CleanDialogSettings">
 		<item key="TOGGLE_SELECTED" value="false"/>
 		<item key="DIALOG_WIDTH" value="581"/>
 		<item key="DIALOG_HEIGHT" value="434"/>
 		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
 	</section>
+<<<<<<< HEAD
 =======
 			<item key="DIALOG_X_ORIGIN" value="663"/>
 			<item key="DIALOG_Y_ORIGIN" value="147"/>
@@ -171,22 +192,35 @@
 			<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
 		</section>
 	</section>
+=======
+>>>>>>> DV5
 	<section name="SmartImportWizard">
 		<item key="SmartImportRootWizardPage.STORE_HIDE_ALREADY_OPEN" value="false"/>
 		<item key="SmartImportRootWizardPage.STORE_CLOSE_IMPORTED" value="false"/>
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+<<<<<<< HEAD
 			<item value="C:\FrontEnd\teamproject"/>
 			<item value="C:\FrontEnd\teamproject\SpringBootProject_01"/>
 		</list>
 		<section name="SmartImportWizard.dialogBounds">
 			<item key="DIALOG_X_ORIGIN" value="663"/>
 			<item key="DIALOG_Y_ORIGIN" value="147"/>
+=======
+			<item value="C:\Users\java\Desktop\a\spring-boot-board_1-master\src"/>
+		</list>
+		<section name="SmartImportWizard.dialogBounds">
+			<item key="DIALOG_X_ORIGIN" value="663"/>
+			<item key="DIALOG_Y_ORIGIN" value="142"/>
+>>>>>>> DV5
 			<item key="DIALOG_WIDTH" value="938"/>
 			<item key="DIALOG_HEIGHT" value="726"/>
 			<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
 		</section>
 	</section>
+<<<<<<< HEAD
 >>>>>>> NH4
+=======
+>>>>>>> DV5
 </section>

@@ -20,6 +20,7 @@
 	</section>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	<section name="PropertyDialog.dialogBounds">
 		<item key="DIALOG_X_ORIGIN" value="100"/>
 		<item key="DIALOG_Y_ORIGIN" value="85"/>
@@ -40,16 +41,23 @@
 		<item key="uncategorizedFilter" value="true"/>
 	</section>
 =======
+=======
+>>>>>>> DV5
 	<section name="NewWizardAction">
 		<item key="NewWizardSelectionPage.STORE_SELECTED_ID" value="org.eclipse.jst.jsp.ui.internal.wizard.NewJSPWizard"/>
 		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">
 			<item value="org.eclipse.wst.web.ui"/>
 		</list>
 		<section name="NewWizard.dialogBounds">
+			<item key="DIALOG_X_ORIGIN" value="663"/>
+			<item key="DIALOG_Y_ORIGIN" value="194"/>
+			<item key="DIALOG_WIDTH" value="613"/>
+			<item key="DIALOG_HEIGHT" value="500"/>
+			<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
 		</section>
 	</section>
 	<section name="PropertyDialog.dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="439"/>
+		<item key="DIALOG_X_ORIGIN" value="15"/>
 		<item key="DIALOG_Y_ORIGIN" value="104"/>
 =======
 	<section name="PropertyDialog.dialogBounds">
@@ -61,7 +69,10 @@
 		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
 	</section>
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> DV4
 =======
 >>>>>>> NH4
+=======
+>>>>>>> DV5
 </section>
