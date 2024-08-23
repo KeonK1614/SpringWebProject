@@ -116,7 +116,7 @@
 		<header>
 			<nav class="navbar navbar-expand-md fixed-top" style="background-color: #7FA1C3;">
 			  <div class="container-fluid">
-			    <a class="navbar-brand" href="/">Carousel</a>
+			    <a class="navbar-brand" href="/">로고</a>
 			    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
 			      <span class="navbar-toggler-icon"></span>
 			    </button>
@@ -146,7 +146,7 @@
 			        </ul>
 			      </li>
 			   </ul>
-<<<<<<< HEAD
+
 			<sec:authorize access="isAnonymous()">
                 <ul class="navbar-nav">
                     <li class="nav-item">
@@ -157,7 +157,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="joinform">
+                        <a class="nav-link" href="/guest/joinform">
                             <button type="button" class="btn btn-outline-light">
                                 <i class='bi bi-person-plus-fill'></i> 회원가입
                             </button>
@@ -165,8 +165,27 @@
                     </li>
                 </ul>
 			</sec:authorize>
-                <!-- 로그인된 상태 -->
-            <sec:authorize access="isAuthenticated()">    
+            <!-- 로그인된 상태 -->
+            <sec:authorize access="hasRole('USER')">    
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">
+                            <button type="button" class="btn btn-outline-light">
+                                <i class="bi bi-box-arrow-right"></i> 로그아웃
+                            </button>
+                        </a>
+                    </li>
+                   <li class="nav-item">
+                        <a class="nav-link" href="../member/myPageEdit">
+                            <button type="button" class="btn btn-outline-light">
+                                <i class="bi bi-person-lines-fill"></i> 마이페이지
+                            </button>
+                        </a>
+                    </li>
+                </ul>
+           </sec:authorize>
+           
+           <sec:authorize access="hasRole('ADMIN')">
                 <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link" href="/logout">
@@ -178,26 +197,13 @@
                    <li class="nav-item">
                         <a class="nav-link" href="/member/mypage">
                             <button type="button" class="btn btn-outline-light">
-                                <i class="bi bi-person-lines-fill"></i> 마이페이지
+                                <i class="bi bi-person-lines-fill"></i> 회원관리페이지
                             </button>
                         </a>
                     </li>
                 </ul>
            </sec:authorize>
-=======
-			  	<ul class="navbar-nav">
-			      	<li class="nav-item">
-			       	<a class="nav-link" href="/guest/login">
-			       	<button type="button" class="btn btn-outline-light">
-			       	<i class='bi bi-box-arrow-in-right'></i> 로그인</button></a>
-			     	</li>
-			      	<li class="nav-item">
-			       	<a class="nav-link" href="/guest/joinform">
-			       	<button type="button" class="btn btn-outline-light">
-			       	<i class='bi bi-person-plus-fill'></i> 회원가입</button></a>
-			     	</li>
-			     	</ul>
->>>>>>> NH4
+
 			    </div>
 			  </div>
 			</nav>
@@ -218,7 +224,6 @@
 	          <div class="carousel-caption text-start">
 	            <h1>Example headline.</h1>
 	            <p class="opacity-75">Some representative placeholder content for the first slide of the carousel.</p>
-	            <!-- <p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p> -->
 	          </div>
 	        </div>
 	      </div>
@@ -229,7 +234,6 @@
 	          <div class="carousel-caption">
 	            <h1>Another example headline.</h1>
 	            <p>Some representative placeholder content for the second slide of the carousel.</p>
-	           <!-- <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>-->
 	          </div>
 	        </div>
 	      </div>
@@ -239,7 +243,6 @@
 	          <div class="carousel-caption text-end">
 	            <h1>One more for good measure.</h1>
 	            <p>Some representative placeholder content for the third slide of this carousel.</p>
-	            <!-- <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p> -->
 	          </div>
 	        </div>
 	      </div>
@@ -254,15 +257,8 @@
 	    </button>
 	  </div>
 
-
-	  <!-- Marketing messaging and featurettes
-	  ================================================== -->
-	  <!-- Wrap the rest of the page in another container to center all the content. -->
-
 	  <div class="container marketing">
-
-	    <!-- Three columns of text below the carousel -->
-	    <div class="row">
+		<div class="row">
 	      <div class="col-lg-4">
 	        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
 	        <h2 class="fw-normal">화장실찾기</h2>
@@ -282,32 +278,15 @@
 	        <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
 	      </div><!-- /.col-lg-4 -->
 	    </div><!-- /.row -->
+	    </div>
 
 
 	    <!-- START THE FEATURETTES -->
 
 	   <hr class="featurette-divider">
-
-	<!--
-		 <div class="row featurette">
-		    <div class="col-md-7">
-		      <h2 class="featurette-heading fw-normal lh-1">First featurette heading. <span class="text-body-secondary">It’ll blow your mind.</span></h2>
-		      <p class="lead">Some great placeholder content for the first featurette here. Imagine some exciting prose here.</p>
-		    </div>
-		    <div class="col-md-5">
-		      <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-bg)"/><text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">500x500</text></svg>
-		    </div>
-		  </div>
-
-		  <hr class="featurette-divider">
-
-
-		</div>
-	-->
-	  
-
-	  <!-- FOOTER -->
-	  <footer class="container">
+		
+	 <!-- FOOTER -->
+	  <!-- <footer class="container">
 	    <p class="float-end"><i class="bi bi-arrow-up-circle"></i><a href="#">Back to top</a></p>
 	    <div class="p-4 text-white text-center" style="background-color: #7FA1C3;">
 			<div class="row">
@@ -326,9 +305,29 @@
 				</div>
 			</div>
 		</div>
-	  </footer>
-	</main>
+      </footer> -->
+      
+      <!-- footer 태그 없이 화면 꽉차게  -->
+      <p class="float-end"><i class="bi bi-arrow-up-circle"></i><a href="#">Back to top</a></p>
+      <div class="p-4 text-white text-center" style="background-color: #7FA1C3;">
+			<div class="row">
+				<div class="col-2 ps-4">
+				<h3><strong>더조은™</strong></h3>
+			</div>
+				<div class="col">
+					<p class="copy text-center">
+					    더조은아카데미일산 &nbsp;&nbsp;
+				        경기도 고양시 일산구 중앙로 1275번길 38-10 201호(장항동 우림로데오스위트) &nbsp;&nbsp;<br/>
+				        학생 : 김건, 김나현, 나예림, 장다빈 
+				        사업자등록번호 : 584-85-00825 &nbsp;&nbsp;  
+				        TEL : 031.902.1777 &nbsp;&nbsp; 
+						FAX : 031.906.8777 <br>
+					</p>  
+				</div>
+			</div>
+		</div>
+	 
+	 </main>
 	<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
-
-	    </body>
-	</html>
+	</body>
+</html>

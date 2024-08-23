@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!doctype html>
 	<html lang="en" data-bs-theme="auto">
 	<head>	 
@@ -10,6 +11,7 @@
 		<meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
 		<meta name="generator" content="Hugo 0.122.0">
 		<title>Carousel Template · Bootstrap v5.3</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
 		<link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
@@ -109,6 +111,101 @@
 	            return false;
 	        }
 	    }
+	    
+	    
+/* 	    function passChangebtn() {
+	        let isPassChange = confirm("비밀번호를 변경하시겠습니까?");
+	        if (isPassChange) {
+	        	let btn = document.getElementById('passbtn'); // 버튼 요소를 가져옵니다.
+	        	let boardPassbox = document.getElementById('boardPassbox'); // 비밀번호 입력 박스 요소를 가져옵니다.
+	             
+	            // 비밀번호 입력 박스를 활성화합니다.
+	            boardPassbox.disabled = false;
+	            
+	            // 버튼의 값을 '변경 완료'로 설정합니다.
+	            btn.value = '변경 완료';
+
+	            // 버튼을 클릭했을 때 passChange 함수를 호출하도록 설정합니다.
+	            btn.onclick = passChange;
+	        }
+	    }
+	    
+	    function passChange(){
+	    	let btn = document.getElementById('passbtn');
+	    	let boardPassbox = document.getElementById('boardPassbox');
+	    	
+	    	btn.disabled = true;
+	    	boardPassbox.disabled = true;
+	    	alert("변경이 완료되었습니다.");
+	    	
+	    	$.ajax({
+	    		type : "POST",
+	    		url : "changeBoardPass",
+	    		data : {
+	    			
+	    		}
+	    	});
+	    	
+	    } */
+	    
+	    function passChangebtn() {
+	        let isPassChange = confirm("비밀번호를 변경하시겠습니까?");
+	        if (isPassChange) {
+	            let btn = document.getElementById('passbtn'); // 버튼 요소를 가져옵니다.
+	            let boardPassbox = document.getElementById('boardPassbox'); // 비밀번호 입력 박스 요소를 가져옵니다.
+
+	            // 비밀번호 입력 박스를 활성화합니다.
+	            boardPassbox.disabled = false;
+
+	            // 버튼의 값을 '변경 완료'로 설정합니다.
+	            btn.value = '변경 완료';
+
+	            // 버튼을 클릭했을 때 passChange 함수를 호출하도록 설정합니다.
+	            btn.onclick = passChange;
+	        }
+	    }
+
+	    function passChange() {
+	        let btn = document.getElementById('passbtn');
+	        let boardPassbox = document.getElementById('boardPassbox');
+	        let boardIdx = "${dto.idx}";
+	        
+	        // 비밀번호 값을 가져옵니다.
+	        let newPassword = boardPassbox.value;
+
+	        // 비밀번호가 입력되지 않은 경우 경고를 표시하고 함수를 종료합니다.
+	        if (!newPassword) {
+	            alert("비밀번호를 입력하세요.");
+	            return;
+	        }
+	        if(newPassword == "${dto.boardPass }"){
+	        	alert("이전 비밀번호와 동일합니다.");
+	            return;
+	        }
+
+	        // 서버로 비밀번호 변경 요청을 보냅니다.
+	        $.ajax({
+	            type: "POST",
+	            url: "../member/changeBoardPass",
+	            data: {
+	            	idx: boardIdx,
+	                boardPass: newPassword // 비밀번호 값을 서버로 전송합니다.
+	            },
+	            success: function(response) {
+	                alert("변경이 완료되었습니다.");
+	    	        // 비밀번호 입력 박스와 버튼을 비활성화합니다.
+	    	        btn.disabled = true;
+	    	        btn.value = "변경";
+	    	        boardPassbox.disabled = true;
+	                
+	                // 필요한 경우, 추가 동작을 여기에 작성합니다.
+	            },
+	            error: function(error) {
+	                alert("비밀번호 변경에 실패했습니다. 다시 시도하세요.");
+	                // 에러 발생 시 추가 동작을 여기에 작성합니다.
+	            }
+	        });
+	    }
 		</script> 
 	  <link href="../carousel/carousel.css" rel="stylesheet">
 	</head>
@@ -137,17 +234,17 @@
 		<header>
 			<nav class="navbar navbar-expand-md fixed-top" style="background-color: #7FA1C3;">
 			  <div class="container-fluid">
-			    <a class="navbar-brand" href="main">Carousel</a>
+			    <a class="navbar-brand" href="/">로고</a>
 			    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
 			      <span class="navbar-toggler-icon"></span>
 			    </button>
 			   <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
 			      <ul class="navbar-nav me-auto mb-2 mb-md-0">
 			      <li class="nav-item">
-			        <a class="nav-link" aria-current="page" href="#">home</a>
+			        <a class="nav-link" aria-current="page" href="#">홈페이지소개</a>
 			      </li>
 			      <li class="nav-item">
-			        <a class="nav-link" href="#">공지사항</a>
+			        <a class="nav-link" href="/guest/noticeBoard">공지사항</a>
 			      </li>
 			      <li class="nav-item">
 			        <a class="nav-link" href="#">지도</a>
@@ -155,7 +252,7 @@
 			      <li class="nav-item dropdown">
 			         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">커뮤니티</a>
 			          <ul class="dropdown-menu">
-			            <li><a class="dropdown-item" href="#">정보 게시판</a></li>
+			            <li><a class="dropdown-item" href="/guest/boardInfo">정보 게시판</a></li>
 			            <li><a class="dropdown-item" href="#">인기 게시판</a></li>
 			         	</ul>
 			         </li>
@@ -163,22 +260,68 @@
 			         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">문의사항</a>
 			        <ul class="dropdown-menu">
 			          <li><a class="dropdown-item" href="#">자주 물어보는 질문</a></li>
-			          <li><a class="dropdown-item" href="#">1대1문의</a></li>
+			          <li><a class="dropdown-item" href="../guest/inquiryBoard">문의게시판</a></li>
 			        </ul>
 			      </li>
 			   </ul>
-			  	<ul class="navbar-nav">
-			      	<li class="nav-item">
-			       	<a class="nav-link" href="login">
-			       	<button type="button" class="btn btn-outline-light">
-			       	<i class='bi bi-box-arrow-in-right'></i> 로그인</button></a>
-			     	</li>
-			      	<li class="nav-item">
-			       	<a class="nav-link" href="join">
-			       	<button type="button" class="btn btn-outline-light">
-			       	<i class='bi bi-person-plus-fill'></i> 회원가입</button></a>
-			     	</li>
-			     	</ul>
+
+			<sec:authorize access="isAnonymous()">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/security/loginform">
+                            <button type="button" class="btn btn-outline-light">
+                                <i class='bi bi-box-arrow-in-right'></i> 로그인
+                            </button>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/guest/joinform">
+                            <button type="button" class="btn btn-outline-light">
+                                <i class='bi bi-person-plus-fill'></i> 회원가입
+                            </button>
+                        </a>
+                    </li>
+                </ul>
+			</sec:authorize>
+                <!-- 로그인된 상태 -->
+            <sec:authorize access="hasRole('USER')">    
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">
+                            <button type="button" class="btn btn-outline-light">
+                                <i class="bi bi-box-arrow-right"></i> 로그아웃
+                            </button>
+                        </a>
+                    </li>
+                   <li class="nav-item">
+                        <a class="nav-link" href="/member/mypage">
+                            <button type="button" class="btn btn-outline-light">
+                                <i class="bi bi-person-lines-fill"></i> 마이페이지
+                            </button>
+                        </a>
+                    </li>
+                </ul>
+           </sec:authorize>
+           
+           <sec:authorize access="hasRole('ADMIN')">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">
+                            <button type="button" class="btn btn-outline-light">
+                                <i class="bi bi-box-arrow-right"></i> 로그아웃
+                            </button>
+                        </a>
+                    </li>
+                   <li class="nav-item">
+                        <a class="nav-link" href="/member/mypage">
+                            <button type="button" class="btn btn-outline-light">
+                                <i class="bi bi-person-lines-fill"></i> 회원관리페이지
+                            </button>
+                        </a>
+                    </li>
+                </ul>
+           </sec:authorize>
+
 			    </div>
 			  </div>
 			</nav>
@@ -206,10 +349,10 @@
 	                    </tr>
 	                    <tr>
 	                        <th class="text-center" 
-	                            style="vertical-align:middle;">패스워드</th>
+	                            style="vertical-align:middle;">비밀번호</th>
 	                        <td>
-	                            <input type="password" class="form-control" 
-	                                style="width:200px;" name="boardPass" value="${dto.boardPass }"/>
+	                        	<input type="password" class="form-control" style="width:200px; display: inline-block;" name="boardPass"  id="boardPassbox" value="${dto.boardPass }" disabled/>
+    							<input type="button" id="passbtn" class="btn btn-outline-dark" style="display: inline-block; margin-left: 10px;" onclick="passChangebtn()" value="변경"></input>
 	                        </td>
 	                    </tr>
 	                    <tr>
@@ -235,7 +378,7 @@
 						            <input type="hidden" name="existingOfile" value="${dto.ofile}" />
 						            <input type="hidden" name="existingSfile" value="${dto.sfile}" />
 						        </c:if>
-						        <input type="file" name="file" class="form-control" />
+						        <input type="file" name="ofile" class="form-control" />
 						        <small>새 파일을 선택하지 않으면 기존 파일이 유지됩니다.</small>
 	                        </td>
 	                    </tr>
@@ -246,7 +389,7 @@
 	                    <div class="col text-right mb-4 d-flex justify-content-end">
 		                   <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='../guest/inquiryBoard';">리스트보기</button>
 	                        <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='inquiryBoardDelete?idx=${dto.idx}';">삭제하기</button>
-	                        <button type="submit" class="btn btn-outline-primary mx-1">수정하기</button>
+	                        <button type="submit" class="btn btn-outline-primary mx-1">수정완료</button>
 	                        <button type="reset" class="btn btn-outline-primary mx-1">Reset</button>
 	                    </div>
 	                </div>

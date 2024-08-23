@@ -25,7 +25,8 @@ public class AccountDetailService implements UserDetailsService {
         return User
                 .withUsername(dto.getId())
                 .password(dto.getPass())
-                .authorities(dto.getAuthority())  // 권한 설정
+                .authorities(dto.getAuthority())
+                .disabled(dto.getEnabled() == 0)  // 계정 비활성화 여부 설정// 권한 설정
                 .build();
     }
 }

@@ -1,9 +1,5 @@
 =\=\=\=\=\=\=
 <<<<<<<=HEAD
->>>>>>>=9f6e5ec2ca483d552a87d9602c5f0e7da76d2333
+>>>>>>>=DV4
 eclipse.preferences.version=1
-<<<<<<< HEAD
 locationorg.eclipse.jst.server.tomcat.runtime.101=/Users/yerim/Dev/apache-tomcat-10.1.25
-=======
-locationorg.eclipse.jst.server.tomcat.runtime.101=C\:/FrontEnd/apache-tomcat-10.1.25-windows-x64/apache-tomcat-10.1.25
->>>>>>> DV4

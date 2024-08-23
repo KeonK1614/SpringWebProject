@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!doctype html>
 	<html lang="en" data-bs-theme="auto">
 	<head>	 
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>	    <meta charset="utf-8">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="">
 		<meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
@@ -112,7 +114,7 @@
 		<header>
 			<nav class="navbar navbar-expand-md fixed-top" style="background-color: #7FA1C3;">
 			  <div class="container-fluid">
-			    <a class="navbar-brand" href="/">Carousel</a>
+			    <a class="navbar-brand" href="/">로고</a>
 			    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
 			      <span class="navbar-toggler-icon"></span>
 			    </button>
@@ -138,22 +140,68 @@
 			         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">문의사항</a>
 			        <ul class="dropdown-menu">
 			          <li><a class="dropdown-item" href="#">자주 물어보는 질문</a></li>
-			          <li><a class="dropdown-item" href="guest/inquiryBoard">문의게시판</a></li>
+			          <li><a class="dropdown-item" href="../guest/inquiryBoard">문의게시판</a></li>
 			        </ul>
 			      </li>
 			   </ul>
-			  	<ul class="navbar-nav">
-			      	<li class="nav-item">
-			       	<a class="nav-link" href="/guest/login">
-			       	<button type="button" class="btn btn-outline-light">
-			       	<i class='bi bi-box-arrow-in-right'></i> 로그인</button></a>
-			     	</li>
-			      	<li class="nav-item">
-			       	<a class="nav-link" href="/guest/joinform">
-			       	<button type="button" class="btn btn-outline-light">
-			       	<i class='bi bi-person-plus-fill'></i> 회원가입</button></a>
-			     	</li>
-			     	</ul>
+
+			<sec:authorize access="isAnonymous()">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/security/loginform">
+                            <button type="button" class="btn btn-outline-light">
+                                <i class='bi bi-box-arrow-in-right'></i> 로그인
+                            </button>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/guest/joinform">
+                            <button type="button" class="btn btn-outline-light">
+                                <i class='bi bi-person-plus-fill'></i> 회원가입
+                            </button>
+                        </a>
+                    </li>
+                </ul>
+			</sec:authorize>
+                <!-- 로그인된 상태 -->
+            <sec:authorize access="hasRole('USER')">    
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">
+                            <button type="button" class="btn btn-outline-light">
+                                <i class="bi bi-box-arrow-right"></i> 로그아웃
+                            </button>
+                        </a>
+                    </li>
+                   <li class="nav-item">
+                        <a class="nav-link" href="/member/mypage">
+                            <button type="button" class="btn btn-outline-light">
+                                <i class="bi bi-person-lines-fill"></i> 마이페이지
+                            </button>
+                        </a>
+                    </li>
+                </ul>
+           </sec:authorize>
+           
+           <sec:authorize access="hasRole('ADMIN')">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">
+                            <button type="button" class="btn btn-outline-light">
+                                <i class="bi bi-box-arrow-right"></i> 로그아웃
+                            </button>
+                        </a>
+                    </li>
+                   <li class="nav-item">
+                        <a class="nav-link" href="/member/mypage">
+                            <button type="button" class="btn btn-outline-light">
+                                <i class="bi bi-person-lines-fill"></i> 회원관리페이지
+                            </button>
+                        </a>
+                    </li>
+                </ul>
+           </sec:authorize>
+
 			    </div>
 			  </div>
 			</nav>
@@ -161,36 +209,37 @@
 	
 	<main>
 	     <div class="col-10 pt-3 mt-3 mx-auto">
-		     <h4>공지사항 게시판 - <small>내용보기</small></h4>
+		     <h4><strong>&nbsp;&nbsp;공지사항 게시판</strong> - <small>내용보기</small></h4>
 		         
 			  <div class="row mt-3 mx-1 mx-auto">
 		         <form enctype="multipart/form-data" action="write" method="post" name="writeFrm">
 	                <table class="table table-bordered">
 		                <colgroup>
 		                    <col width="20%"/>
-		                    <col width="*"/>
+		                    <col width="30%"/>
+							<col width="20%"/>
+							<col width="*"/>
 		                </colgroup>
 		                <tbody>
-		                    <tr>
-		                        <th class="text-center" style="vertical-align:middle;">작성자</th>
-		                        <td>${dto.id}</td>
-		                        <th class="text-center" style="vertical-align:middle;">작성일</th>
-		                        <td>${dto.postdate}</td>
-		                    </tr>
-		                    
-		                    <tr>
-		                    	<th class="text-center" style="vertical-align:middle;">추천</th>
-		                    	<td>${dto.likeCount}</td>
-		                    	<th class="text-center" style="vertical-align:middle;">조회수</th>
-		                    	<td>${dto.viewCount}</td>
-		                    </tr>
-		                    
-		                    <tr>
+		                	<tr>
 		                        <th class="text-center" style="vertical-align:middle;">제목</th>
-		                        <td colspan="3">${dto.title}</td>
+		                        <td>${dto.title}</td>
+		                        <th class="text-center" style="vertical-align:middle;">글번호</th>
+		                        <td align="center">${dto.idx}</td>
 		                    </tr>
-		                    
+		                	<tr>
+		                        <th class="text-center" style="vertical-align:middle;">작성자</th>
+		                        <td align="center">${dto.id}</td>
+		                        <th class="text-center" style="vertical-align:middle;">작성일</th>
+		                        <td align="center">${dto.postdate}</td>
+		                    </tr>
 		                    <tr>
+		                    	<th class="text-center" style="vertical-align:middle;">조회수</th>
+		                    	<td align="center">${dto.viewCount}</td>
+		                    	<th class="text-center" style="vertical-align:middle;">추천</th>
+		                    	<td align="center">${dto.likeCount}</td>
+		                    </tr>
+		                    <tr style="height: 300px">
 		                        <th class="text-center" style="vertical-align:middle;">내용</th>
 		                        <td colspan="3">
 		                        	<c:if test="${ not empty dto.ofile and isImage eq true }">
@@ -203,7 +252,7 @@
 		                    </tr>
 		                    <tr>
 		                        <th class="text-center" style="vertical-align:middle;">첨부파일</th>
-		                        <td>
+		                        <td colspan="3">
 		                            <c:if test="${ not empty dto.ofile }">
 		                            	${dto.ofile}
 		                            </c:if>
@@ -212,21 +261,130 @@
 		                </tbody>
 	                </table>
 	                
-	                <div class="row">
+	                <%-- <div class="row">
 	                    <div class="col text-right mb-4 d-flex justify-content-end">
 	                        <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='noticeBoard';">리스트보기</button>
 	                        <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='../member/noticeLike?idx=${dto.idx}';">추천</button>
 	                        <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='../admin/noticeEditorForm?idx=${dto.idx}';">수정하기</button>
-	                        <%-- <button type="reset" class="btn btn-outline-primary mx-1" onclick="location.href='../admin/noticeDelete?idx=${dto.idx}';">글삭제</button> --%>
+	                        <button type="reset" class="btn btn-outline-primary mx-1" onclick="location.href='../admin/noticeDelete?idx=${dto.idx}';">글삭제</button>
 	                        <button type="reset" class="btn btn-outline-primary mx-1" onclick="deletePost(${param.idx});">글삭제</button>
 	                    </div>
-	                </div>
-                 </form>
+	                </div> --%>
+	                
+	                <!-- 게스트 일 때 -->
+	                <sec:authorize access="isAnonymous()">
+	                	<div class="row">
+		                    <div class="col text-right mb-4 d-flex justify-content-end">
+		                        <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='noticeBoard';">리스트보기</button>
+		                        <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='../guest/noticeLike?idx=${dto.idx}';">추천</button>
+		                    </div>
+	                	</div>
+	                </sec:authorize>
+	                <!-- 로그인 멤버 -->
+                 	<sec:authorize access="hasRole('USER')">
+                 		<div class="row">
+		                    <div class="col text-right mb-4 d-flex justify-content-end">
+		                        <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='noticeBoard';">리스트보기</button>
+		                        <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='../guest/noticeLike?idx=${dto.idx}';">추천</button>
+		                    </div>
+	                	</div>
+                 	</sec:authorize>
+                 	<!-- 로그인 관리자 -->
+	             	<sec:authorize access="hasRole('ADMIN')">
+	             		<div class="row">
+		                    <div class="col text-right mb-4 d-flex justify-content-end">
+		                        <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='noticeBoard';">리스트보기</button>
+		                        <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='../guest/noticeLike?idx=${dto.idx}';">추천</button>
+		                        <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='../admin/noticeEditorForm?idx=${dto.idx}';">수정하기</button>
+	                        	<%-- <button type="reset" class="btn btn-outline-primary mx-1" onclick="location.href='../admin/noticeDelete?idx=${dto.idx}';">글삭제</button> --%>
+	                        	<button type="button" class="btn btn-outline-primary mx-1" onclick="deletePost(${dto.idx});">글삭제</button>
+		                    </div>
+	                	</div>
+	             	</sec:authorize>
+	             </form>
 		   	  </div>      
 		  </div>
-	</main>	 
+		  
+		  <!-- 댓글 부분 -->
+		  <hr/>
+		  <h4>댓글</h4>
+		  <div class="card">
+            <form action="../member/noticeComment">
+            <input type="hidden" value="${dto.idx}"  name="idx">
+              <div class="card-body">
+                  <textarea id="reply-content" class="form-control" rows="1" name="content1"></textarea>
+              </div>
+              <div class="card-footer">
+                  <button type="submit" id="btn-reply-save" class="btn btn-primary" >등록</button>
+              </div>
+            </form>
+        </div>
+                
+        <table class="table caption-top">
+        <colgroup>
+            <col width="60px">
+            <col width="200px">
+            <col width="80px">
+            <col width="100px">
+        </colgroup>
+          <thead>
+            <tr>
+              <td colspan="4" align="center">댓글</td>
+            </tr>
+            <tr>
+              <td align="center">아이디</td>
+              <td align="center">내용</td>
+              <td align="center">작성일</td>
+              <td align="center">비고</td>
+            </tr>
+          </thead>
+          <tbody>
+          	<c:choose>
+          		<c:when test="${ empty list }">
+          			<tr>
+          				<td colspan="4" align="center">
+          					등록된 댓글이 없습니다.
+          				</td>
+          			</tr>
+          		</c:when>
+          		<c:otherwise>
+          			<c:forEach items="${list}" var="dto" varStatus="loop">
+          				<tr>
+          					<td align="center">${dto.id}</td>
+          					<td>${dto.content}</td>
+          					<td align="center">${dto.postdate}</td>
+          					<td>
+          						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				              	<button type="button">답글달기</button>
+				              	&nbsp;
+				              	<button type="button" onclick="location.href='../member/noticeCommentEditor?coidx=${dto.coidx}';" aria-label="Edit">수정</button>
+				              	&nbsp;
+				              	<button type="button" onclick="location.href='../member/noticeCommentDelete?coidx=${dto.coidx}';">삭제</button>
+				            </td>
+          				</tr>
+          			</c:forEach>
+          		</c:otherwise>
+          	</c:choose>
+          </tbody>
+        </table>
+        
+        <script>
+		function deletePost(idx)
+		{
+		    var confirmed = confirm("정말로 삭제하겠습니까?"); 
+		    if (confirmed) 
+		    {
+		        var form = document.writeFrm;      
+		        form.method = "post";  
+		       /*  form.action = "../admin/noticeDelete?idx=${dto.idx}"; */
+		        form.action = "../admin/noticeDelete?idx="+idx; 
+		        form.submit();  
+		    }
+		}
+		</script>
+    </main>	 
 			 	
-		<footer class="container">
+		<!-- <footer class="container">
 		    <p class="float-end"><i class="bi bi-arrow-up-circle"></i><a href="#">Back to top</a></p>
 		    <h3><strong>더조은™</strong></h3>
 		    <p class="copy text-center">
@@ -238,18 +396,28 @@
 				FAX : 031.906.8777 <br>
 			</p>  
 		    <p>&copy; 2017–2024 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-	  	</footer>		
+	  	</footer>	 -->
+	  	
+	   <!-- footer 태그 없이 화면 꽉차게  -->
+       <p class="float-end"><i class="bi bi-arrow-up-circle"></i><a href="#">Back to top</a></p>
+       <div class="p-4 text-white text-center" style="background-color: #7FA1C3;">
+			 <div class="row">
+				 <div class="col-2 ps-4">
+				 <h3><strong>더조은™</strong></h3>
+			 </div>
+				 <div class="col">
+					 <p class="copy text-center">
+					    더조은아카데미일산 &nbsp;&nbsp;
+				        경기도 고양시 일산구 중앙로 1275번길 38-10 201호(장항동 우림로데오스위트) &nbsp;&nbsp;<br/>
+				        학생 : 김건, 김나현, 나예림, 장다빈 
+				        사업자등록번호 : 584-85-00825 &nbsp;&nbsp;  
+				        TEL : 031.902.1777 &nbsp;&nbsp; 
+						FAX : 031.906.8777 <br>
+					 </p>  
+				 </div>
+			 </div>
+		 </div>	
   </body>
 </html>
 
-<script>
-	function deletePost(idx){
-		var confirmed = confirm("정말로 삭제하시겠습니까?");
-		if(confirmed) {
-			var form = document.writeFrm;
-			form.method = "post";
-			form.action = "../admin/noticeDelete?idx=${dto.idx}";
-			form.submit();
-		}
-	}
-</script>
+

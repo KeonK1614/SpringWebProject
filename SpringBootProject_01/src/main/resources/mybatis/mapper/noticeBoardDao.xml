@@ -52,8 +52,4 @@
 	<update id="likeCountDao">
 		update noticeBoard set likeCount=likeCount+1 where idx=#{param1}
 	</update>
-	
-	<select id="searchDao" resultType="com.project.springboot.dto.noticeBoardDto">
-		select 
-	</select>
 </mapper>

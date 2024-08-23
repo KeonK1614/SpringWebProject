@@ -26,11 +26,8 @@
     <!--
     <Manager pathname="SESSIONS.ser" />
     -->
-<<<<<<< HEAD
 
     <ResourceLink global="dbcp_myoracle" name="dbcp_myoracle" type="javax.sql.DataSource"/>
 
 
-=======
->>>>>>> DV4
 </Context>
