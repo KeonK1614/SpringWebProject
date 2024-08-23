@@ -10,6 +10,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.project.springboot.jdbc.UserDTO;
 
+import lombok.Data;
+
+@Data
 public class AccountDetails implements UserDetails {
 
 	private static final long serialVersionUID = 1L; 

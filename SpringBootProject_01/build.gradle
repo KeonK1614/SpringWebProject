@@ -12,6 +12,10 @@ java {
 	}
 }
 
+eclipse.wtp.facet {
+	facet name:  'jst.web', version: '5.0'
+}
+
 repositories {
 	mavenCentral()
 }
@@ -33,6 +37,10 @@ dependencies {
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 	testImplementation 'org.springframework.security:spring-security-test'
 	
+<<<<<<< HEAD
+=======
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
+>>>>>>> yerim5
 	
 	implementation 'jakarta.servlet:jakarta.servlet-api'
     implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api'

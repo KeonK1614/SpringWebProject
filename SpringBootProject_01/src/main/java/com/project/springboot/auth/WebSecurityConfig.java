@@ -20,6 +20,8 @@ import lombok.RequiredArgsConstructor;
 @EnableWebSecurity
 public class WebSecurityConfig {
 	
+	private final AuthenticationFailureHandler myAuthFailureHandler;
+
 	@Bean
 	public PasswordEncoder getPasswordEncoder() {
 		return new BCryptPasswordEncoder();
@@ -50,7 +52,7 @@ public class WebSecurityConfig {
 				.permitAll()
 				.loginProcessingUrl("/security/loginform")
 		        .defaultSuccessUrl("/")
-//		        .failureHandler(authenticationFailureHandler)
+		        .failureHandler(myAuthFailureHandler)
 		        .usernameParameter("id")
 		        .passwordParameter("pass")
 		        .permitAll()
@@ -62,6 +64,9 @@ public class WebSecurityConfig {
 			.invalidateHttpSession(true) // 세션 무효화
             .deleteCookies("JSESSIONID")
 			.permitAll());
+		
+		http.exceptionHandling((expHandling) -> expHandling
+				.accessDeniedPage("/denied"));
   
     
     return http.build(); 
@@ -79,12 +84,4 @@ public class WebSecurityConfig {
 	public HttpFirewall defaultHttpFirewall() {
 	    return new DefaultHttpFirewall();
 	}
-	
-//	@Override
-    @Bean
-    public AuthenticationFailureHandler authenticationFailureHandler() {
-        return new SimpleUrlAuthenticationFailureHandler();
-    }
-
-
 }

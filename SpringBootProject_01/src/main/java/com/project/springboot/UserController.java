@@ -3,6 +3,7 @@ package com.project.springboot;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,10 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.project.springboot.auth.AccountDetails;
 import com.project.springboot.jdbc.UserDTO;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+
+
 
 @Controller
 public class UserController {
@@ -55,7 +59,7 @@ public class UserController {
 		int nResult = userService.joinDao(user);
 		
 		if (nResult > 0) {
-            return "redirect:/"; // 성공 시
+            return "/"; // 성공 시
         } else {
             return "guest/joinform"; // 실패 시 다시 폼 페이지로 이동
         }
@@ -70,8 +74,11 @@ public class UserController {
 	}
 	
     @RequestMapping("/security/loginform")
-    public String loginform(Model model){
+    public String loginform(Model model,  @RequestParam(value="error", required = false) String error,
+            @RequestParam(value = "exception", required = false) String exception){
     	model.addAttribute("userDTO", new UserDTO());
+    	model.addAttribute("error", error);
+        model.addAttribute("exception", exception);
         return "security/loginform";
     }
 	
@@ -84,12 +91,14 @@ public class UserController {
             session.setAttribute("id", user.getId());
             session.setAttribute("name", user.getName());
             session.setAttribute("ROLE_", user.getAuthority());
-        	return "redirect:../"; // 로그인 성공 시 리디렉션
+        	return "guest/main"; // 로그인 성공 시 리디렉션
         } else {
             return "security/loginform"; 
         }
         
     }
+    
+
     
  // 로그아웃
     @PostMapping("/logout")
@@ -98,13 +107,13 @@ public class UserController {
         return "redirect:/login";
     }
     
+    //권한요청 실패시 뜨는 화
+    @RequestMapping("/denied")
+    public String login2() {
+    	return "security/denied";
+    }
     
-	@RequestMapping("/member/myPage")
-	public String mypage(HttpServletRequest req, UserDTO dto) {
-//		viewDao();
-		return "member/myPage";
-	}
-//	
+
 //	@RequestMapping("/member/myPageEdit")
 //	public String myPageEdit()	{
 //		

@@ -1,13 +1,13 @@
 package com.project.springboot.jdbc;
 
 import java.util.Date;
+import java.util.List;
 
 import lombok.Data;
 
 @Data
-public class UserDTO {
+public class AdminMemberDTO {
 	
-
 	private String id;
 	private String pass;
 	private String name;
@@ -19,6 +19,8 @@ public class UserDTO {
 	private Date regidate;
 	private String authority;
 	private int enabled;
-
+	
+	private List<String> searchField;
+	private String searchKeyword;
 
 }

@@ -13,6 +13,8 @@
 	    <title>Carousel Template · Bootstrap v5.3</title>
 	    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
 	    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/">
+	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 	    
 
@@ -180,35 +182,54 @@
 <%-- 		</c:if> --%>
 
 	<main class="form-signin w-100 m-auto">
+	<script type="text/javascript">
+	 $(document).ready(function(){
+			$("#submit").on("click", function(){
+				if($("#username").val()==""){
+					$('#id-feedback').text('아이디를 입력해주세요.').css('color', 'red');
+					$("#id").focus();
+					return false;
+				}
+				if($("#password").val()==""){
+					$('#pass-feedback').text('비밀번호를 입력해주세요.').css('color', 'red');
+					$("#pass").focus();
+					return false;
+				}
+			});
+		})	
+	</script>
+
 	  <form action="/security/loginform" method="post" name="loginform" id="loginform">
 	    <img class="mx-auto d-block mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
 	    <h1 class="h3 mb-3 fw-normal text-center">로그인</h1>
 	    <div class="form-floating">
-	      <input type="text" name="id"class="form-control" id="floatingInput" placeholder="id를 입력하세요" required >
+	      <input type="text" name="id"class="form-control" id="username" placeholder="id를 입력하세요" required >
 	      <label for="floatingInput">Id</label>
+	      <span id="id-feedback"></span>
 	    </div>
 	    <div class="form-floating">
-	      <input type="password" name="pass" class="form-control" id="floatingPassword" placeholder="Password" required >
+	      <input type="password" name="pass" class="form-control" id="password" placeholder="Password" required >
 	      <label for="floatingPassword">Password</label>
+	      <span id="pass-feedback"></span>
 	    </div>
-	    
-<!-- 	     <div> -->
-<%--         <p style="color:red">${error_message}</p> --%>
-<!--     	</div> -->
+	<span>
+	    <c:if test="${error}">
+	        <p id="valid" class="alert alert-danger">${exception}</p>
+	    </c:if>
+	</span>
 
 		<div>
-		<a style="text-decoration: none; color: black;" href="#">아이디찾기</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a style="text-decoration: none; color: black;" href="/security/findId">아이디찾기</a>&nbsp;&nbsp;&nbsp;&nbsp;
 		<a style="text-decoration: none; color: black;" href="#">비밀번호찾기</a>&nbsp;&nbsp;&nbsp;&nbsp;
-		<a style="text-decoration: none; color: black;" href="../guest/joinform">회원가입</a>
+		<a style="text-decoration: none; color: black;" href="/guest/joinform">회원가입</a>
 		</div>	
 
-	    <button class="btn text-white w-100 my-2"style="background-color: #009E73;" type="submit">로그인</button>
+	    <button class="btn text-white w-100 my-2"style="background-color: #009E73;" id="submit" type="submit">로그인</button>
 	    <button class="btn btn-outline-danger w-100 my-1" type="submit">구글로그인</button>
 		<button class="btn btn-outline-success w-100 my-1" type="submit">네이버로그인</button>
 		<button class="btn btn-warning w-100 my-1" type="submit">카카오톡로그인</button>
 		<button class="btn btn-primary w-100 my-1" type="submit">페이스북로그인</button>
 	  </form>
-	
 
 	    <!-- START THE FEATURETTES -->
 
