@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <jsp:useBean id="now" class="java.util.Date" />
 <fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />
 
@@ -26,14 +26,51 @@
 		        const form = document.getElementById('searchForm');
 
 		        const queryParams = {
-	        		/* pageNum: (pageNum) ? pageNum : 1, */
-		            /* recordSize: 10,
-		            pageSize: 10, */
 		            searchField: form.searchField.value,
 		            searchWord: form.searchWord.value
 		        }
 		        location.href = location.pathname + '?' + new URLSearchParams(queryParams).toString();
 		    }
+		    
+		   function boardPassPop(){ //로그인 안되어 있을때
+				  var answer = window.confirm("비회원은 열람이 불가능합니다. 로그인 하시겠습니까?");
+				    	   		if(answer==true){
+				    	   			window.open("../security/loginform");
+				    	   		return window.histroy.back();
+				    	   		}
+				/* <sec:authorize access="!isAnonymous()"> // 로그인이 되어있을때
+					alert("작성자 본인만 열람이 가능합니다.");
+				</sec:authorize> */
+		   } 
+		   
+		   function memberBoardPassPop(idx){ // 작성자와 아이디가 같다면 비밀번호 검색창으로 
+			   var s_width = window.screen.width;
+               var s_height = window.screen.height;            
+               
+               var leftVar = s_width/2 - 500/2;
+               var topVar = s_height/2 - 500/2;
+              
+               window.open("../member/inquiryBoardPass?idx="+idx, "popup", 
+                   "width=600,height=380,left="+leftVar+",top="+topVar);
+		   } 
+		   
+		   function boardPassPop2(){
+			   alert("작성자 본인만 열람이 가능합니다.");
+		   } 
+		   
+		</script>
+		<script>
+			function chatPop(){
+				var s_width = window.screen.width;
+				var s_height = window.screen.height;            
+				
+				var leftVar = s_width/2 - 500/2;
+				var topVar = s_height/2 - 500/2;
+				
+				window.open("webscoketPopup", "popup", 
+				    "width=600,height=250,left="+leftVar+",top="+topVar);
+			}
+		
 		</script>
 		
 		<style>
@@ -127,33 +164,37 @@
 		  </symbol>
 		</svg>
 		
-		<div class="position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggl">
-			<button class="btn btn-bd-primary py-2 d-flex align-items-center"
-			        id="bd-theme"
-			        type="button"
-			        aria-expanded="false"
-			        data-bs-toggle="button"
-			        aria-label="채팅상담">
-			  <svg class="bi my-1 theme-icon-active" width="1em" height="1em"><use href="#chat"></use></svg>
-			  <a href="#" style="color: aliceblue; text-decoration: none;">채팅상담</a>
-			  <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
-			</button>
-		</div>
+		<%-- <c:if test="${not empty pageContext.request.userPrincipal }"> --%>
+			<div class="position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggl">
+				<button class="btn btn-bd-primary py-2 d-flex align-items-center"
+				        id="bd-theme"
+				        type="button"
+				        aria-expanded="false"
+				        data-bs-toggle="button"
+				        aria-label="채팅상담"
+				        onclick="chatPop();">
+				        채팅상담
+				        <!-- onclick="location.href='../member/client';"> -->
+				  <svg class="bi my-1 theme-icon-active" width="1em" height="1em"><use href="#chat"></use></svg>
+				  <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
+				</button>
+			</div>
+		<%-- </c:if> --%>
 
 		<header>
 			<nav class="navbar navbar-expand-md fixed-top" style="background-color: #7FA1C3;">
 			  <div class="container-fluid">
-			    <a class="navbar-brand" href="/">로고</a>
+			    <a class="navbar-brand" href="main">Carousel</a>
 			    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
 			      <span class="navbar-toggler-icon"></span>
 			    </button>
 			   <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
 			      <ul class="navbar-nav me-auto mb-2 mb-md-0">
 			      <li class="nav-item">
-			        <a class="nav-link" aria-current="page" href="#">홈페이지소개</a>
+			        <a class="nav-link" aria-current="page" href="#">home</a>
 			      </li>
 			      <li class="nav-item">
-			        <a class="nav-link" href="/guest/noticeBoard">공지사항</a>
+			        <a class="nav-link" href="#">공지사항</a>
 			      </li>
 			      <li class="nav-item">
 			        <a class="nav-link" href="#">지도</a>
@@ -161,7 +202,7 @@
 			      <li class="nav-item dropdown">
 			         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">커뮤니티</a>
 			          <ul class="dropdown-menu">
-			            <li><a class="dropdown-item" href="/guest/boardInfo">정보 게시판</a></li>
+			            <li><a class="dropdown-item" href="#">정보 게시판</a></li>
 			            <li><a class="dropdown-item" href="#">인기 게시판</a></li>
 			         	</ul>
 			         </li>
@@ -169,68 +210,22 @@
 			         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">문의사항</a>
 			        <ul class="dropdown-menu">
 			          <li><a class="dropdown-item" href="#">자주 물어보는 질문</a></li>
-			          <li><a class="dropdown-item" href="/guest/inquiryBoard">문의게시판</a></li>
+			          <li><a class="dropdown-item" href="#">1대1문의</a></li>
 			        </ul>
 			      </li>
 			   </ul>
-
-			<sec:authorize access="isAnonymous()">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/security/loginform">
-                            <button type="button" class="btn btn-outline-light">
-                                <i class='bi bi-box-arrow-in-right'></i> 로그인
-                            </button>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/guest/joinform">
-                            <button type="button" class="btn btn-outline-light">
-                                <i class='bi bi-person-plus-fill'></i> 회원가입
-                            </button>
-                        </a>
-                    </li>
-                </ul>
-			</sec:authorize>
-                <!-- 로그인된 상태 -->
-            <sec:authorize access="hasRole('USER')">    
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/logout">
-                            <button type="button" class="btn btn-outline-light">
-                                <i class="bi bi-box-arrow-right"></i> 로그아웃
-                            </button>
-                        </a>
-                    </li>
-                   <li class="nav-item">
-                        <a class="nav-link" href="/member/mypage">
-                            <button type="button" class="btn btn-outline-light">
-                                <i class="bi bi-person-lines-fill"></i> 마이페이지
-                            </button>
-                        </a>
-                    </li>
-                </ul>
-           </sec:authorize>
-           
-           <sec:authorize access="hasRole('ADMIN')">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/logout">
-                            <button type="button" class="btn btn-outline-light">
-                                <i class="bi bi-box-arrow-right"></i> 로그아웃
-                            </button>
-                        </a>
-                    </li>
-                   <li class="nav-item">
-                        <a class="nav-link" href="/member/mypage">
-                            <button type="button" class="btn btn-outline-light">
-                                <i class="bi bi-person-lines-fill"></i> 회원관리페이지
-                            </button>
-                        </a>
-                    </li>
-                </ul>
-           </sec:authorize>
-
+			  	<ul class="navbar-nav">
+			      	<li class="nav-item">
+			       	<a class="nav-link" href="login">
+			       	<button type="button" class="btn btn-outline-light">
+			       	<i class='bi bi-box-arrow-in-right'></i> 로그인</button></a>
+			     	</li>
+			      	<li class="nav-item">
+			       	<a class="nav-link" href="join">
+			       	<button type="button" class="btn btn-outline-light">
+			       	<i class='bi bi-person-plus-fill'></i> 회원가입</button></a>
+			     	</li>
+			     	</ul>
 			    </div>
 			  </div>
 			</nav>
@@ -242,19 +237,48 @@
 		     <small>
 		     	<c:if test="${ not empty searchWord }">
 				    	전체&nbsp;${totalCount}건&nbsp;${ pageNum}/${totalCount}
-				    </c:if>
+				</c:if>
 		     </small>
 		     <hr>
 				<div class="row">
 		             <!-- 검색부분 -->
 					<form method="get" id="searchForm"> 
 						<div class="input-group ms-auto" style="width: 300px; ">
-						
-							<select name="searchField" class="form-control">
+							<c:choose>
+								<c:when test="${searchField == 'title'}">
+									<select name="searchField" class="form-control">
+									    <option value="title" selected="selected">제목</option>
+									    <option value="id">작성자</option>
+									    <option value="content" >내용</option>
+									</select>
+								</c:when>
+								<c:when test="${searchField == 'id'}">
+									<select name="searchField" class="form-control">
+									    <option value="title">제목</option>
+									    <option value="id" selected="selected">작성자</option>
+									    <option value="content" >내용</option>
+									</select>
+								</c:when>
+								<c:when test="${searchField == 'content'}">
+									<select name="searchField" class="form-control">
+									    <option value="title">제목</option>
+									    <option value="id" >작성자</option>
+									    <option value="content" selected="selected">내용</option>
+									</select>
+								</c:when>
+								<c:otherwise>
+									<select name="searchField" class="form-control">
+									    <option value="title">제목</option>
+									    <option value="id">작성자</option>
+									    <option value="content">내용</option>
+									</select>
+								</c:otherwise>
+							</c:choose>
+							<!-- <select name="searchField" class="form-control">
 							    <option value="title">제목</option>
 							    <option value="id">작성자</option>
 							    <option value="content" >내용</option>
-							</select>
+							</select> -->
 							<input class="form-control" type="search" placeholder="Search" aria-label="Search" name="searchWord" value="${searchWord }">
 							<button class="btn btn-outline-primary" type="button" onclick="movePage(1);"><i class="bi bi-search" style='font-size:20px'></i></button>
 						</div>
@@ -269,8 +293,9 @@
 		                     <col width="350px" />
 		                     <col width="80px" />
 		                     <col width="80px" />
-		                     <col width="60px" />
-		                     <col width="60px" />		                    
+		                     <col width="50px" />
+		                     <col width="50px" />
+		                     <col width="30px" />		                    
 		                 </colgroup>
 		                 <thead>
 		                     <tr style="background-color: rgb(133, 133, 133); " class="text-center text-white">
@@ -278,6 +303,7 @@
 		                         <th>제목</th>
 		                         <th>작성자</th>
 		                         <th>작성일</th>
+		                         <th>상태</th> 		                         
 		                         <th>조회수</th>
 		                         <th>첨부</th> 		                         
 		                     </tr>
@@ -295,21 +321,67 @@
 				                    <c:forEach items="${list}" var="dto" varStatus="loop">
 										<tr align="center">
 											<td>${totalCount - (((pageNum-1) * pageSize) + loop.index)}</td>
-											
-											 <c:choose>
+						    		 		<c:choose>
 										        <c:when test="${ dto.parentIdx eq 0}">
-      												<td align="left"><i class="bi bi-lock-fill"></i> <a href="../member/inquiryBoardview?idx=${dto.idx}">${dto.title}</a>
+										        	<td align="left">
+										        		<i class="bi bi-lock-fill"></i> 
+		      												<sec:authorize access="isAnonymous()"> <!-- 로그인 안 되어 있을때 -->
+		      													<a href="javascript:boardPassPop();">${dto.title}</a>
+		      												</sec:authorize>
+															<sec:authorize access="!isAnonymous() and  hasRole('ADMIN')"> <!-- 로그인 되어있을때 -->
+																<a href="../member/inquiryBoardview?idx=${dto.idx }">${dto.title}</a>
+															</sec:authorize>
+															<sec:authorize access="!isAnonymous() and  hasRole('USER')"> <!-- 로그인 되어있을때 -->
+																<c:if test="${ dto.id == Id }">
+																	<a href="../member/inquiryBoardPass?idx=${dto.idx }">${dto.title}</a>
+																</c:if>
+																<c:if test="${ dto.id != Id }">
+					 												<a href="javascript:boardPassPop2();">${dto.title}</a>
+		      													</c:if> 
+															</sec:authorize>
+	      												
       													<c:if test="${dto.postDate == today}"><span class="badge rounded-pill bg-danger">new</span></c:if>
       												</td>
 										        </c:when>
 										        <c:otherwise>
-       												<td align="left" style="color:red; font-weight:bold;">&nbsp; &nbsp; &nbsp; &nbsp; <i class="bi bi-arrow-return-right"></i><a href="../member/inquiryBoardview?idx=${dto.idx}"> ${dto.title}</a></td>
+										        	<td align="left" style="color:red; font-weight:bold;">&nbsp; &nbsp; &nbsp; &nbsp; <i class="bi bi-arrow-return-right"></i>
+										        	<sec:authorize access="isAnonymous()"><!--  로그인 안했을때 -->
+       													<a href="javascript:boardPassPop();"> ${dto.title}</a>
+       												</sec:authorize>
+       												<sec:authorize access="!isAnonymous() and  hasRole('ADMIN')">
+       													<a href="../member/inquiryBoardview?idx=${dto.idx}"> ${dto.title}</a>
+       												</sec:authorize>
+       												<sec:authorize access="!isAnonymous() and  hasRole('USER')">
+       													<c:if test="${ dto.parentId == Id }">
+       														<%-- <a href="../member/inquiryBoardview?idx=${dto.idx}"> ${dto.title}</a> --%>
+       														<a href="../member/inquiryBoardPass?idx=${dto.idx }">${dto.title}</a>
+       													</c:if>
+       													<c:if test="${ dto.parentId != Id }">
+       														<a href="javascript:boardPassPop2();">${dto.title}</a>
+       													</c:if>
+       												</sec:authorize>
+       												</td>
 										        </c:otherwise>
-										    </c:choose> 
-											
-											
-											<td>${dto.id} </td>
+										    </c:choose>  
+										    
+										    
+											<td>${dto.id}</td>
 											<td>${dto.postDate}</td>
+											<td>
+												<c:choose>
+											        <c:when test="${dto.parentIdx eq 0 }">
+											        	<c:if test="${dto.responses > 0 }">
+								                    		답변 완료
+								                    	</c:if>
+								                    	<c:if test="${dto.responses eq 0 }">
+								                    		답변 대기
+								                    	</c:if>
+											        </c:when>
+											        <c:otherwise>
+											        	
+											        </c:otherwise>
+											    </c:choose> 
+											</td>
 											<td>${dto.viewCount}</td>
 											<c:choose>
 										        <c:when test="${ not empty dto.ofile }">
