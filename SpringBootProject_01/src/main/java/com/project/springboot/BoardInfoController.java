@@ -47,8 +47,11 @@ public class BoardInfoController
 		int pageSize = 10;
 		int blockPage = 5;
 		String searchField = req.getParameter("searchField");
+		System.out.println(searchField);
 		String searchWord = req.getParameter("searchWord");
-        
+		System.out.println(searchWord);
+
+		
 		int pageNum = (req.getParameter("pageNum")) == null || req.getParameter("pageNum").equals("")
 				? 1 : Integer.parseInt(req.getParameter("pageNum"));
 		int start = (pageNum - 1) * pageSize + 1;
@@ -200,6 +203,6 @@ public class BoardInfoController
 	public String addLike(HttpServletRequest req, Model model) {
 		String sIdx = req.getParameter("idx");
 		dao.addLike(sIdx);
-		return "guest/boardView?idx=" + sIdx;
+		return "redirect:/guest/boardInfo";
 	}	
 }

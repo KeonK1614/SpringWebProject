@@ -239,21 +239,70 @@
 		            		</c:if>                     
             			</td>
                     </tr>
+                    
+                    
                 </tbody>
                 </table>
                 
                  <div class="row">
                     <div class="col text-right mb-4 d-flex justify-content-end">
-                        <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='/member/like?idx=${dto.idx}';" >좋아요</button>
                         <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='boardInfo';">리스트보기</button>
-                        <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='/member/boardEditor?idx=${dto.idx}';">수정하기</button>
-                        <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='/member/delete?idx=${dto.idx}';">삭제하기</button>
-                        <button type="reset" class="btn btn-outline-primary mx-1">Reset</button>
+                        <c:if test="${not empty sessionScope.id}">
+                            <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='/member/like?idx=${dto.idx}';" >좋아요</button>  
+                        </c:if>
+                        <c:if test="${sessionScope.id eq dto.id }">
+                        	<button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='/member/boardEditor?idx=${dto.idx}';">수정하기</button>
+                        	<button type="button" class="btn btn-outline-danger mx-1" onclick="location.href='/member/delete?idx=${dto.idx}';">삭제하기</button>
+                        </c:if>
                     </div>
                 </div>
             </form>
-        </div>
-    </div>			   
+            <div class="card">
+		    	<div class="card-body">
+		    		<textarea class="form-control" row="3"></textarea>
+		    	</div>
+		    	<div class="card-footer">
+					<button class="btn btn-outline-primary mx-1" onclick="location.href='/member/writeComment';">댓글쓰기</button>
+				</div>
+			</div>
+	        <div id="commentList" class="card">
+	        	<div class="card-header">댓글리스트</div>
+        		<ul id="reply-box" class="list-group">
+        			<c:forEach var="cDto" varStatus="loop" items="${comments}">
+        				<c:choose>
+        					<c:when test="${cDto.deleted eq '1' }">
+        						<li>삭제된 댓글입니다.</li>
+        					</c:when>
+        					<c:otherwise>
+        					 	<li id="reply" class="list-group-item">
+        							<div>${cDto.commentText}</div>
+        							<div><strong>${cDto.writer}</strong></div>
+        							<div>${cDto.regidate}</div>
+        						</li>
+        					</c:otherwise>
+        				</c:choose>
+        				<div class="d-flex">
+        					<c:if test="${sessionScope.id eq cDto.writer }">
+        						<button type="button" class="btn btn-outline-warning mx-1" onclick="location.href='/member/boardEditor?idx=${dto.idx}';">수정하기</button>
+                       			<button type="button" class="btn btn-outline-danger mx-1" onclick="location.href='/member/delete?idx=${dto.idx}';">삭제하기</button>
+        					</c:if>
+        				</div>
+	        			<%-- <c:if test="${cDto.cIdx eq cDto.commentGroup}">
+	        				<li id="reli${cDto.cIdx }">
+	        			</c:if>
+	        			<c:if test="${cDto.cIdx ne cDto.commentGroup}">
+	        				<li id="reli${cDto.cIdx }" style="padding-left:50px;">
+	        			</c:if>
+						<form id="reComment${cDto.cIdx}" action="writeComment" method="post">
+						<input type="hidden" name=commentGroup value="${cDto.commentGroup}">
+						<textarea name="commentText"></textarea>
+						<button type="submit">등록</button>
+						</form> --%>
+						</c:forEach>
+					</ul>	
+        		</div>
+    	</div>
+    </div>
 	<div class="p-4 text-white text-center" style="background-color: #7FA1C3;">
 		<div class="row">
 			<div class="col-2 ps-4">
@@ -272,4 +321,37 @@
 		</div>
 	</div>
 	</body>
+	<!-- 댓글 수정 삭제 ajax 사용해 비동기식 설정 -->
+	<script>
+		$('#commentForm').submit(function(event) {
+			event.preventDefault();
+			$.ajax({
+				url: '/member/writeComment'
+				method: 'POST'
+				data: $(this).serialize(),
+				success: function(response) {
+					if(response === 'success') {
+						location.reload();
+					} else {
+						alert('댓글 등록 실패');
+					}
+				}
+			});
+		});
+		
+		//댓글 삭제
+		$('.deleteComment').click(function() {
+			$.ajax({
+				url: '/member/deleteComment',
+				method: 'POST'
+				success: function(response) {
+					if (response === 'success') {
+						location.reload();
+					} else {
+						alert('댓글 삭제 실패');
+					}
+				}
+			});
+		});
+	</script>
 </html>

@@ -183,19 +183,20 @@
 			  </div>
 			</nav>
 		</header>
+		<main>
 		     <div class="col-10 pt-3 mt-3 mx-auto">
 		         <h4>게시판 목록 - <small>자유게시판</small></h4>
 		
 		         <div class="row">
 		             <!-- 검색부분 -->
-		             <form method="get">
+		             <form method="get" id="searchForm">
 		                 <div class="input-group ms-auto"style="width: 300px;">
 		                     <select name="searchField" class="form-control">
 		                         <option value="title">제목</option>
 		                         <option value="id">작성자</option>
 		                         <option value="content">내용</option>
 		                     </select>
-					   <input class="form-control" type="searchWord" placeholder="Search" aria-label="Search">
+					   <input class="form-control" type="text" name="searchWord" placeholder="Search" aria-label="Search">
 			           <button class="btn btn-outline-primary" type="submit"><i class="bi bi-search" style='font-size:20px'></i></button>
 				   </div>
 		             </form>  
@@ -266,24 +267,11 @@
 		             <div class="col">
 		                 <!-- 페이지번호 부분 -->
 		                  <ul class="pagination justify-content-center">
-		                      <li class="page-item">
-		                          <a href="#" class="page-link"><i class='bi bi-skip-backward-fill'></i></a>
-		                      </li>
-		                      <li class="page-item">
-		                          <a href="#" class="page-link"><i class='bi bi-skip-start-fill'></i></a>
-		                      </li>
-		                      <li class="page-item">${ pagingImg }</li>
-		                      <li class="page-item">
-		                          <a href="#" class="page-link"><i class='bi bi-skip-end-fill'></i></a>
-		                      </li>
-		                      <li class="page-item">
-		                          <a href="#" class="page-link"><i class='bi bi-skip-forward-fill'></i></a>
-		                      </li>
+							${ pagingImg }
 		                  </ul>
 				   	</div>
 		          </div>
 		      </div>
-			</div>
 		</main>	 	 	
 		<footer class="container">
 		    <p class="float-end"><i class="bi bi-arrow-up-circle"></i><a href="#">Back to top</a></p>

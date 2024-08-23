@@ -34,6 +34,7 @@ desc member;
 
 UPDATE member SET authority='ROLE_ADMIN' WHERE ID='아이디 입력';
 
+SELECT * FROM member;
 --멤버게시판 테이블 삭제
 drop table member;
 
@@ -64,7 +65,7 @@ desc boardInfo;
 alter table boardInfo
     add constraint board_mem_fk foreign key (id)
     references member(id);
-
+select * from board;
 --정보게시판 시퀀스
 create sequence boardInfo_seq
     increment by 1  -- 1식 증가
@@ -76,11 +77,39 @@ create sequence boardInfo_seq
     
 --정보게시판 테이블 삭제
 drop table board;
+drop table boardInfo;
+drop table boardInfoComment;
 --정보게시판 시퀀스 삭제
-DROP SEQUENCE board_seq;
+DROP SEQUENCE boardInfo_seq;
+DROP SEQUENCE boardInfoComment_seq;
+
+--정보게시판 댓글 테이블
+create table boardInfoComment (
+    cIdx number(6) primary key, -- 댓글 인덱스 번호
+    writer VARCHAR2(50), -- 댓글 작성자 아이디
+    commentText VARCHAR2(500), --댓글 내용
+    refGroup number(6), -- 원글 번호
+    commentGroup number(6), -- 댓글 그룹 번호
+    deleted number default 0, -- 지워진 댓글 여부 1:yes 0 no
+    regidate date default SYSDATE
+);
+
+--정보게시판 외래키 설정
+alter table boardInfoComment
+    add constraint boardInfoComm_ref_fk foreign key (refGroup)
+    references board(idx);
+
+create sequence boardInfoComment_seq
+    increment by 1  -- 1식 증가
+    start with 1    -- 시작값 1
+    minvalue 1      -- 최소값 1
+    nomaxvalue      -- 최대값은 무한대
+    nocycle         -- 순환 x
+    nocache;        -- 캐시 사용 안함
     
 commit;
 
+select * from boardInfoComment;
 -------------------------------------------------------------정보게시판
 
 -------------------------------------------------------------공지사항게시판
