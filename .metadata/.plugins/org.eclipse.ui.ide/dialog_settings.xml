@@ -89,6 +89,7 @@
 		<item key="WizardProjectsImportPage.STORE_CLOSE_CREATED_PROJECTS_ID" value="false"/>
 		<item key="WizardProjectsImportPage.STORE_HIDE_CONFLICTING_PROJECTS_ID" value="false"/>
 		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="C:\FrontEnd\Springboot2\SpringBootMH01\B14WebSocket"/>
 			<item value="C:\Users\java\Desktop\a\WebSocket"/>
 			<item value="C:\Users\java\Desktop\a\springboot_multiroom-main"/>
 			<item value="C:\Users\java\Desktop\a\WebSocketTest"/>
@@ -98,7 +99,6 @@
 			<item value="C:\FrontEnd\Springboot2\springboot02-master\Ex27_Security_LoginForm"/>
 			<item value="C:\FrontEnd\Springboot2\springboot02-master\Ex26_Security"/>
 			<item value="C:\FrontEnd\Springboot2\springboot02-master\Ex41_Firebase_Realtime"/>
-			<item value="C:\FrontEnd\Springboot2\SpringBootMH01\B14WebSocket"/>
 			<item value="C:\FrontEnd\Springboot2\springboot02-master\Ex39_WebSocket"/>
 			<item value="C:\FrontEnd\new\Servers"/>
 			<item value="C:\FrontEnd\new\SpringBootProject_01"/>
@@ -107,7 +107,7 @@
 			<item value=""/>
 		</list>
 		<section name="ExternalProjectImportWizard.dialogBounds">
-			<item key="DIALOG_X_ORIGIN" value="663"/>
+			<item key="DIALOG_X_ORIGIN" value="621"/>
 			<item key="DIALOG_Y_ORIGIN" value="142"/>
 			<item key="DIALOG_WIDTH" value="613"/>
 			<item key="DIALOG_HEIGHT" value="861"/>

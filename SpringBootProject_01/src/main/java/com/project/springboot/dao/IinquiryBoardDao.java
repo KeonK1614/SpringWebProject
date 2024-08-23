@@ -21,5 +21,6 @@ public interface IinquiryBoardDao {
 	public int viewCountDao(@Param("_idx")String idx);
 	public int responsesCountDao(@Param("_idx")String idx);
 	public int editorDao(Map<String, String> map);
+	public int changeBoardPass(@Param("_idx")String idx, @Param("_boardPass")String boardPass);
 	
 }

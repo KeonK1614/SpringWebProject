@@ -56,8 +56,7 @@
 					title = #{mTitle},
 					content = #{mContent},
 					ofile = #{moFileName, jdbcType=VARCHAR},
-					sfile = #{msFileName, jdbcType=VARCHAR},
-					boardPass = #{mBoardPass}
+					sfile = #{msFileName, jdbcType=VARCHAR}
 				where idx = #{mIdx}
 		</update>
 		
@@ -65,8 +64,14 @@
 			update inquiryBoard SET responses=responses+1 where idx = #{_idx}
 		</update>
 		
-		 <select id="getTotalCount" resultType="int">
+		<select id="getTotalCount" resultType="int">
 	        SELECT COUNT(*) FROM inquiryBoard
 	    </select>
+	    
+	    <update id="changeBoardPass">
+	    	update inquiryBoard 
+		    SET boardPass= #{_boardPass}
+		    where idx = #{_idx} or parentIdx = #{_idx}
+	    </update>
 		
 	</mapper>

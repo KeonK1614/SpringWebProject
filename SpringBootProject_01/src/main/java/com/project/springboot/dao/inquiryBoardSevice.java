@@ -75,5 +75,11 @@ public class inquiryBoardSevice implements IinquiryBoardDao{
 		return nResult;		
 	}
 	
+	@Override
+	public int changeBoardPass(String idx, String boardPass) {
+		int nResult = dao.changeBoardPass(idx, boardPass);
+		
+		return nResult;
+	}
 	
 }

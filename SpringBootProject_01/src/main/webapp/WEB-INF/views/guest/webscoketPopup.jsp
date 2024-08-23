@@ -40,8 +40,8 @@
 	        var s_width = window.screen.width;
 	        var s_height = window.screen.height;
 
-	        var newWidth = 600;  // 새 창 너비
-	        var newHeight = 600; // 새 창 높이
+	        var newWidth = 500;  // 새 창 너비
+	        var newHeight = 500; // 새 창 높이
 
 	        var leftVar = s_width / 2 - newWidth / 2;
 	        var topVar = s_height / 2 - newHeight / 2;
@@ -152,7 +152,7 @@
 		        	onclick="chatWinOpen();">
 		        	<strong>네, 채팅 상담을 시작합니다.</strong>
 		        </button>
-		        <button type="button" class="btn btn-lg btn-link fs-6 text-decoration-none col-6 py-3 m-0 rounded-0" data-bs-dismiss="modal">
+		        <button type="button" class="btn btn-lg btn-link fs-6 text-decoration-none col-6 py-3 m-0 rounded-0" data-bs-dismiss="modal"  onClick='window.close();' >
 		        	아니요. 다음에 할게요.
 		        </button>
 		      </div>

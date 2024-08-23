@@ -3,32 +3,60 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>   
 <html>
 <head>
-<title>웹소켓 채팅</title>
+<title>채팅 상담</title>
 
-<style>
-#chatWindow{border:1px solid black; width:500px; height:500px; 
-	overflow:scroll; padding:5px;}
-#chatMessage{width:236px; height:30px;}
-#sendBtn{height:30px; position:relative; top:2px; left:-2px;}
-#closeBtn{margin-bottom:3px; position:relative; top:2px; left:-2px;}
-#chatId{width:143px; height:24px; border:1px solid #AAAAAA; 
-	background-color:#EEEEEE;}
-.myMsg{text-align:right;}
-</style>
+	<link href="/docs/5.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+	<style>
+	#chatWindow{border:1px solid black; width:500px; height:500px; 
+		overflow:scroll; padding:10px; border-radius: 10px; overflow-x:hidden}
+		overflow:auto; padding:5px; border-radius: 30px; margin: 10px} */ 
+	#chatMessage{width:236px; height:30px;}
+	#sendBtn {position:relative; margin: 2px;}
+	#closeBtn {position:relative;}
+	
+	#chatId{width:143px; height:24px; border:1px solid #AAAAAA; 
+		background-color:#EEEEEE;}
+	.myMsg{text-align:right;}
+	.yourMsg{text-align:left;}
+	.Msg{background-color:#B4E380; border-radius: 10px; margin: 2px; padding: 5px;}
+	.sendMsg{background-color:#FFFBE6; border-radius: 10px; margin: 2px; padding: 5px;}
+	.socket{background-color:#F6FB7A; border-radius: 10px; padding: 5px;}
+	.socketdiv{text-align:center; margin: 10px;}
+	.myId{text-align:right; margin: 4px;}
+	.yourId{text-align:left; margin: 4px;}
+	#messageArea{margin: 5px;}
+	body{margin: 10px;}
+	
+	 .scroll::-webkit-scrollbar {
+	    width: 15px;
+	  }
+	  .scroll::-webkit-scrollbar-thumb {
+	    background-color: rgba(0, 0, 0, 0.7);
+	    border-radius: 10px;
+	  }
+	  .scroll::-webkit-scrollbar-track {
+	    background-color: rgba(0, 0, 0, 0.3);
+	    border-radius: 10px;
+	  }
+	</style>
 </head>
 
 <body> 
-	<!-- 파라미터로 전달된 대화명을 얻어와서 사용 -->
-    대화명 : 
-    <input type="text" id="chatId" value="${ Id}" readonly />
-    <button id="closeBtn" onclick="disconnect();">채팅 종료</button>
+	 <!-- 파라미터로 전달된 대화명을 얻어와서 사용 -->
+    
+    <input type="hidden" id="chatId" value="${ Id}"  />
+<%--     <input type="hidden" id="chatId" value="${ Id}"  /> --%>
+
     <!-- 채팅 내역이 출력되는 부분 -->
-    <div id="chatWindow"></div>
+    <div id="chatWindow"  class="scroll bg-success p-2 text-dark bg-opacity-10"></div>
     <!-- 메세지를 입력하고 전송을 위한 버튼 -->
-    <div>
-        <input type="text" id="chatMessage" onkeyup="enterKey();">
-        <button id="sendBtn" onclick="sendMessage();">전송</button>
-    </div>    
+	 <div id="messageArea" class="position-relative" style="display: flex; align-items: center;">
+        <input type="text" id="chatMessage" onkeyup="enterKey();" style="width: 350px;" class="form-control">
+        <button id="sendBtn" onclick="sendMessage();" class="btn btn-outline-secondary btn-sm">전송</button>
+        <button id="closeBtn" onclick="disconnect();" class="btn btn-outline-danger btn-sm">채팅 종료</button>
+    </div>  
 </body>
 </html>
 <script>
@@ -57,15 +85,22 @@ window.onload = function() {
 
 //입력된 메세지를 전송할 때 호출한다. 
 function sendMessage() {
-	//메세지를 대화창에 추가한다. 
-    chatWindow.innerHTML += "<div class='myMsg'>" + 
-    					chatId + ' : ' + chatMessage.value + "</div>"
-	//웹소켓 서버로 메세지를 전송한다. 전송형식은 '채팅아이디|메세지'     							
-    webSocket.send(chatId + '|' + chatMessage.value);
-    //다음 메세지를 즉시 입력할 수 있도록 비워준다. 
-    chatMessage.value = ""; 
-    //대화창의 스크롤을 항상 제일 아래로 내려준다. 
-    chatWindow.scrollTop = chatWindow.scrollHeight; 
+	if(chatMessage.value == null || chatMessage.value == ''){
+		alert("빈칸은 전송이 불가합니다.");
+	}
+	else{
+		//메세지를 대화창에 추가한다. 
+		chatWindow.innerHTML += "<div class='myId'> " +chatId + "</div>";
+		chatWindow.innerHTML += "<div class='myMsg'>" + 
+	    							"<span class='Msg'>" + chatMessage.value + "</span>" +							
+								"</div>"
+		//웹소켓 서버로 메세지를 전송한다. 전송형식은 '채팅아이디|메세지'     							
+	    webSocket.send(chatId + '|' + chatMessage.value);
+	    //다음 메세지를 즉시 입력할 수 있도록 비워준다. 
+	    chatMessage.value = ""; 
+	    //대화창의 스크롤을 항상 제일 아래로 내려준다. 
+	    chatWindow.scrollTop = chatWindow.scrollHeight; 
+	}
 }
 
 //웹소켓 서버에서 접속종료
@@ -84,21 +119,21 @@ function enterKey() {
 
 //웹소켓 서버에 연결되었을때 자동으로 호출
 webSocket.onopen = function(event) {   
-    chatWindow.innerHTML += "웹소켓 서버에 연결되었습니다.<br/>";
+    chatWindow.innerHTML += "<div class='socketdiv'> <span class='socket'> 채팅 상담을 시작합니다.<br/> </span> </div>";
 };
 
 //웹소켓 서버가 종료되었을때 자동으로 호출 
 webSocket.onclose = function(event) {
-	var confirmed = confirm("정말로 종료하시겠습니까?");
+	var confirmed = confirm("채팅 상담을 종료하시겠습니까?");
 	if (confirmed) {
-	    chatWindow.innerHTML += "웹소켓 서버가 종료되었습니다.<br/>";
+	    chatWindow.innerHTML += "<div class='socketdiv'> <span class='socket'> 채팅 상담이 종료되었습니다.<br/> </span> </div>";
 	}
 };
 
 //에러발생시 자동으로 호출 
 webSocket.onerror = function(event) { 
     alert(event.data);
-    chatWindow.innerHTML += "채팅 중 에러가 발생하였습니다.<br/>";
+    chatWindow.innerHTML += "<div class='socketdiv'> <span class='socket'> 채팅 중 에러가 발생하였습니다.<br/> </span> </div>";
 }; 
 
 //웹소켓 서버가 메세지를 받았을때 자동으로 호출 
@@ -120,14 +155,18 @@ webSocket.onmessage = function(event) {
           		*/
                 var temp = content.replace(("/" + chatId), 
                 		"[귓속말] : ");
-                chatWindow.innerHTML += "<div>" + sender 
-                	+ temp + "</div>";
+                chatWindow.innerHTML += "<div class='yourId'> " + sender + "</div>";
+                chatWindow.innerHTML += "<div class='yourMsg'>" + 
+											"<span class='sendMsg'>"  + temp + "</span>" +
+										"</div>";
             }
         }
         else {  
         	//슬러쉬가 없다면 일반적인 메세지로 판단한다. 
-            chatWindow.innerHTML += "<div>" + sender + " : " 
-            	+ content + "</div>";
+            chatWindow.innerHTML += "<div class='yourId'> " + sender + "</div>";
+            chatWindow.innerHTML += "<div class='yourMsg'>" + 
+										"<span class='sendMsg'>"  + content + "</span>" +
+									"</div>";
         }
     }
     

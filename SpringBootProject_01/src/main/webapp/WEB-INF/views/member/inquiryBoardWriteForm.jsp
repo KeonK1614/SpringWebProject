@@ -209,8 +209,10 @@
 	                        <th class="text-center" 
 	                            style="vertical-align:middle;">패스워드</th>
 	                        <td>
+	                        	<div style="display: flex; align-items: center;">
 	                            <input type="password" class="form-control" 
-	                                style="width:200px;" name="boardPass" />  <small>※패스워드는 게시물 열람시 필요합니다.</small>
+	                                style="width:200px;" name="boardPass" />&nbsp;&nbsp; <small>※패스워드는 게시물 열람시 필요합니다.</small>
+	                        	</div>
 	                        </td>
 	                    </tr>
 	                    <tr>

@@ -59,6 +59,19 @@
 		   } 
 		   
 		</script>
+		<script>
+			function chatPop(){
+				var s_width = window.screen.width;
+				var s_height = window.screen.height;            
+				
+				var leftVar = s_width/2 - 500/2;
+				var topVar = s_height/2 - 500/2;
+				
+				window.open("webscoketPopup", "popup", 
+				    "width=600,height=250,left="+leftVar+",top="+topVar);
+			}
+		
+		</script>
 		
 		<style>
 		.bd-placeholder-img {
@@ -151,7 +164,7 @@
 		  </symbol>
 		</svg>
 		
-		<c:if test="${not empty pageContext.request.userPrincipal }">
+		<%-- <c:if test="${not empty pageContext.request.userPrincipal }"> --%>
 			<div class="position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggl">
 				<button class="btn btn-bd-primary py-2 d-flex align-items-center"
 				        id="bd-theme"
@@ -159,14 +172,14 @@
 				        aria-expanded="false"
 				        data-bs-toggle="button"
 				        aria-label="채팅상담"
-				        onclick="screenCenterPop();">
+				        onclick="chatPop();">
 				        채팅상담
 				        <!-- onclick="location.href='../member/client';"> -->
 				  <svg class="bi my-1 theme-icon-active" width="1em" height="1em"><use href="#chat"></use></svg>
 				  <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
 				</button>
 			</div>
-		</c:if>
+		<%-- </c:if> --%>
 
 		<header>
 			<nav class="navbar navbar-expand-md fixed-top" style="background-color: #7FA1C3;">
@@ -308,34 +321,6 @@
 				                    <c:forEach items="${list}" var="dto" varStatus="loop">
 										<tr align="center">
 											<td>${totalCount - (((pageNum-1) * pageSize) + loop.index)}</td>
-											
-										 <%-- <c:choose>
-										        <c:when test="${ dto.parentIdx eq 0}">
-										        	<td align="left">
-										        		<i class="bi bi-lock-fill"></i> 
-		      												<sec:authorize access="isAnonymous()"> <!-- 로그인 안 되어 있을때 -->
-		      													<a href="javascript:boardPassPop();">${dto.title}</a>
-		      												</sec:authorize>
-															<sec:authorize access="!isAnonymous() and  hasRole('ADMIN')"> <!-- 로그인 되어있을때 -->
-																<a href="../member/inquiryBoardview?idx=${dto.idx }">${dto.title}</a>
-															</sec:authorize>
-															<sec:authorize access="!isAnonymous() and  hasRole('USER')"> <!-- 로그인 되어있을때 -->
-																<c:if test="${ dto.id == Id }">
-																	<a href="../member/inquiryBoardPass?idx=${dto.idx }">${dto.title}</a>
-																</c:if>
-																<c:if test="${ dto.id != Id }">
-					 												<a href="javascript:boardPassPop2();">${dto.title}</a>
-		      													</c:if> 
-															</sec:authorize>
-	      												
-      													<c:if test="${dto.postDate == today}"><span class="badge rounded-pill bg-danger">new</span></c:if>
-      												</td>
-										        </c:when>
-										        <c:otherwise>
-       												<td align="left" style="color:red; font-weight:bold;">&nbsp; &nbsp; &nbsp; &nbsp; <i class="bi bi-arrow-return-right"></i><a href="../member/inquiryBoardview?idx=${dto.idx}"> ${dto.title}</a></td>
-										        </c:otherwise>
-										    </c:choose> --%>
-										    
 						    		 		<c:choose>
 										        <c:when test="${ dto.parentIdx eq 0}">
 										        	<td align="left">
@@ -368,7 +353,8 @@
        												</sec:authorize>
        												<sec:authorize access="!isAnonymous() and  hasRole('USER')">
        													<c:if test="${ dto.parentId == Id }">
-       														<a href="../member/inquiryBoardview?idx=${dto.idx}"> ${dto.title}</a>
+       														<%-- <a href="../member/inquiryBoardview?idx=${dto.idx}"> ${dto.title}</a> --%>
+       														<a href="../member/inquiryBoardPass?idx=${dto.idx }">${dto.title}</a>
        													</c:if>
        													<c:if test="${ dto.parentId != Id }">
        														<a href="javascript:boardPassPop2();">${dto.title}</a>
@@ -382,12 +368,19 @@
 											<td>${dto.id}</td>
 											<td>${dto.postDate}</td>
 											<td>
-												<c:if test="${dto.responses > 0 }">
-						                    		답변 완료
-						                    	</c:if>
-						                    	<c:if test="${dto.responses eq 0 }">
-						                    		답변 대기
-						                    	</c:if>
+												<c:choose>
+											        <c:when test="${dto.parentIdx eq 0 }">
+											        	<c:if test="${dto.responses > 0 }">
+								                    		답변 완료
+								                    	</c:if>
+								                    	<c:if test="${dto.responses eq 0 }">
+								                    		답변 대기
+								                    	</c:if>
+											        </c:when>
+											        <c:otherwise>
+											        	
+											        </c:otherwise>
+											    </c:choose> 
 											</td>
 											<td>${dto.viewCount}</td>
 											<c:choose>

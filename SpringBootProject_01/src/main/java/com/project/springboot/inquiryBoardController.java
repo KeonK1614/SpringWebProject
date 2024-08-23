@@ -4,24 +4,22 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.project.springboot.dao.BoardPage;
 import com.project.springboot.dao.inquiryBoardSevice;
-import com.project.springboot.dto.BoardInfoDto;
 import com.project.springboot.dto.inquiryBoardDto;
 
 import jakarta.servlet.ServletContext;
@@ -319,13 +317,11 @@ public class inquiryBoardController
 		String Id = dto.getId();
 		String Title = request.getParameter("title");
 		String Content = request.getParameter("content");
-		String BoardPass = request.getParameter("boardPass");
 		
 		System.out.println(idx);
 		System.out.println(Id);
 		System.out.println(Title);
 		System.out.println(Content);
-		System.out.println(BoardPass);
 		
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("mId", Id);
@@ -333,11 +329,13 @@ public class inquiryBoardController
 		map.put("mContent", Content);
 		map.put("moFileName", ofileName);
 		map.put("msFileName", sfileName);
-		map.put("mBoardPass", BoardPass);
 		map.put("mIdx", idx);
 		
 		bbs.editorDao(map);
-		
+//		/*
+//		 * // String referer = request.getHeader("Referer"); // 헤더에서 이전 페이지를 읽는다. //
+//		 * return "redirect:"+ referer; // 이전 페이지로 리다이렉트
+//		 */	
 		return "redirect:../guest/inquiryBoard";
 	}
 	
@@ -352,7 +350,17 @@ public class inquiryBoardController
 //	}
 	
 
-	
+	@RequestMapping("member/changeBoardPass")
+	public @ResponseBody String changeBoardPass(HttpServletRequest request, @RequestParam("idx") String idx, @RequestParam("boardPass") String boardPass)
+	{
+		System.out.println("Received boardPass: " + boardPass);
+		System.out.println("idx: " + idx);
+		bbs.changeBoardPass(idx, boardPass);
+
+//		String referer = request.getHeader("Referer"); // 헤더에서 이전 페이지를 읽는다.
+//		return "redirect:"+ referer; // 이전 페이지로 리다이렉트
+		return "비밀번호가 성공적으로 변경되었습니다.";
+	}
 	
 	
 	
