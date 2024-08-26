@@ -14,10 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.project.springboot.dao.BoardPage;
-import com.project.springboot.dto.BoardInfoDto;
+import com.project.springboot.dto.AdminMemberDTO;
+import com.project.springboot.dto.AdminService;
 import com.project.springboot.dto.ParameterDTO;
-import com.project.springboot.jdbc.AdminMemberDTO;
-import com.project.springboot.jdbc.AdminService;
 
 import jakarta.servlet.http.HttpServletRequest;
 

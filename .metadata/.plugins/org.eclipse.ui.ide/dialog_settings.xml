@@ -82,70 +82,6 @@
 		<item value="org.jboss.tools.m2e.wro4j.feature:1.2.1.202301111328"/>
 		<item value="org.sonatype.m2e.egit.feature:0.17.0.202209271423"/>
 	</list>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-	<section name="SmartImportWizard">
-		<item key="SmartImportRootWizardPage.STORE_HIDE_ALREADY_OPEN" value="false"/>
-		<item key="SmartImportRootWizardPage.STORE_CLOSE_IMPORTED" value="false"/>
-		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
-		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
-		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
-			<item value="/Users/yerim/DevData/SpringWebProject/SpringBootProject_01"/>
-		</list>
-		<section name="SmartImportWizard.dialogBounds">
-			<item key="DIALOG_X_ORIGIN" value="383"/>
-			<item key="DIALOG_Y_ORIGIN" value="134"/>
-			<item key="DIALOG_WIDTH" value="880"/>
-			<item key="DIALOG_HEIGHT" value="627"/>
-			<item key="DIALOG_FONT_NAME" value="1|.AppleSystemUIFont|11.0|0|COCOA|1|.AppleSystemUIFont"/>
-		</section>
-	</section>
-	<section name="CleanDialogSettings">
-		<item key="TOGGLE_SELECTED" value="false"/>
-		<item key="DIALOG_WIDTH" value="540"/>
-		<item key="DIALOG_HEIGHT" value="367"/>
-		<item key="DIALOG_FONT_NAME" value="1|.AppleSystemUIFont|11.0|0|COCOA|1|.AppleSystemUIFont"/>
-	</section>
->>>>>>> yerim5
->>>>>>> 55d3a28e1a75b07e1839171e24e6dce54775be52
-	<section name="ExternalProjectImportWizard">
-		<item key="WizardProjectsImportPage.STORE_NESTED_PROJECTS" value="false"/>
-		<item key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID" value="false"/>
-		<item key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED" value="false"/>
-		<item key="WizardProjectsImportPage.STORE_CLOSE_CREATED_PROJECTS_ID" value="false"/>
-		<item key="WizardProjectsImportPage.STORE_HIDE_CONFLICTING_PROJECTS_ID" value="false"/>
-		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
-<<<<<<< HEAD
-			<item value="/Users/gupro/Documents/DevData/SpringWebProject"/>
-=======
-<<<<<<< HEAD
-			<item value="C:\FrontEnd\teamproject\SpringBootProject_01"/>
-=======
-			<item value="/Users/yerim/DevData/SpringWebProject"/>
->>>>>>> yerim5
->>>>>>> 55d3a28e1a75b07e1839171e24e6dce54775be52
-		</list>
-		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
-			<item value=""/>
-		</list>
-		<section name="ExternalProjectImportWizard.dialogBounds">
-<<<<<<< HEAD
-			<item key="DIALOG_X_ORIGIN" value="667"/>
-			<item key="DIALOG_Y_ORIGIN" value="149"/>
-			<item key="DIALOG_WIDTH" value="586"/>
-			<item key="DIALOG_HEIGHT" value="703"/>
-			<item key="DIALOG_FONT_NAME" value="1|.AppleSystemUIFont|11.0|0|COCOA|1|.AppleSystemUIFont"/>
-=======
-<<<<<<< HEAD
-			<item key="DIALOG_X_ORIGIN" value="663"/>
-			<item key="DIALOG_Y_ORIGIN" value="147"/>
-			<item key="DIALOG_WIDTH" value="613"/>
-			<item key="DIALOG_HEIGHT" value="861"/>
-			<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
-		</section>
-	</section>
 	<section name="SmartImportWizard">
 		<item key="SmartImportRootWizardPage.STORE_HIDE_ALREADY_OPEN" value="false"/>
 		<item key="SmartImportRootWizardPage.STORE_CLOSE_IMPORTED" value="false"/>
@@ -160,35 +96,26 @@
 			<item key="DIALOG_WIDTH" value="938"/>
 			<item key="DIALOG_HEIGHT" value="726"/>
 			<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
->>>>>>> 55d3a28e1a75b07e1839171e24e6dce54775be52
 		</section>
 	</section>
-	<section name="CleanDialogSettings">
-		<item key="TOGGLE_SELECTED" value="false"/>
-<<<<<<< HEAD
-		<item key="DIALOG_WIDTH" value="540"/>
-		<item key="DIALOG_HEIGHT" value="367"/>
-		<item key="DIALOG_FONT_NAME" value="1|.AppleSystemUIFont|11.0|0|COCOA|1|.AppleSystemUIFont"/>
-=======
-		<item key="DIALOG_WIDTH" value="581"/>
-		<item key="DIALOG_HEIGHT" value="434"/>
-		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
-=======
-			<item key="DIALOG_X_ORIGIN" value="383"/>
-			<item key="DIALOG_Y_ORIGIN" value="134"/>
-			<item key="DIALOG_WIDTH" value="589"/>
-			<item key="DIALOG_HEIGHT" value="703"/>
-			<item key="DIALOG_FONT_NAME" value="1|.AppleSystemUIFont|11.0|0|COCOA|1|.AppleSystemUIFont"/>
-		</section>
-	</section>
-	<section name="ChooseWorkspaceDialogSettings">
-		<item key="DIALOG_X_ORIGIN" value="364"/>
-		<item key="DIALOG_Y_ORIGIN" value="286"/>
-	</section>
-	<section name="WORKBENCH_SETTINGS">
-		<list key="ENABLED_TRANSFERS">
+	<section name="ExternalProjectImportWizard">
+		<item key="WizardProjectsImportPage.STORE_NESTED_PROJECTS" value="false"/>
+		<item key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID" value="false"/>
+		<item key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED" value="false"/>
+		<item key="WizardProjectsImportPage.STORE_CLOSE_CREATED_PROJECTS_ID" value="false"/>
+		<item key="WizardProjectsImportPage.STORE_HIDE_CONFLICTING_PROJECTS_ID" value="false"/>
+		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="C:\FrontEnd\teamproject\SpringBootProject_01"/>
 		</list>
->>>>>>> yerim5
->>>>>>> 55d3a28e1a75b07e1839171e24e6dce54775be52
+		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
+			<item value=""/>
+		</list>
+		<section name="ExternalProjectImportWizard.dialogBounds">
+			<item key="DIALOG_X_ORIGIN" value="590"/>
+			<item key="DIALOG_Y_ORIGIN" value="147"/>
+			<item key="DIALOG_WIDTH" value="758"/>
+			<item key="DIALOG_HEIGHT" value="861"/>
+			<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
+		</section>
 	</section>
 </section>

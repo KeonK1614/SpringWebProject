@@ -86,7 +86,17 @@
 		  --bs-btn-active-bg: #5a23c8;
 		  --bs-btn-active-border-color: #5a23c8;
 		}	 
-		</style>	 
+		</style>	
+		
+		<style>
+	        .content-edit {
+	            display: none;
+	        }
+	        .btn-edit, .btn-save {
+	            margin-right: 5px;
+	        }
+	    </style>
+		 
 	  <link href="../carousel/carousel.css" rel="stylesheet">
 	</head>
 	
@@ -296,7 +306,6 @@
 		                        <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='noticeBoard';">리스트보기</button>
 		                        <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='../guest/noticeLike?idx=${dto.idx}';">추천</button>
 		                        <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='../admin/noticeEditorForm?idx=${dto.idx}';">수정하기</button>
-	                        	<%-- <button type="reset" class="btn btn-outline-primary mx-1" onclick="location.href='../admin/noticeDelete?idx=${dto.idx}';">글삭제</button> --%>
 	                        	<button type="button" class="btn btn-outline-primary mx-1" onclick="deletePost(${dto.idx});">글삭제</button>
 		                    </div>
 	                	</div>
@@ -318,7 +327,7 @@
                   <button type="submit" id="btn-reply-save" class="btn btn-primary" >등록</button>
               </div>
             </form>
-        </div>
+          </div>
                 
         <table class="table caption-top">
         <colgroup>
@@ -351,13 +360,17 @@
           			<c:forEach items="${list}" var="dto" varStatus="loop">
           				<tr>
           					<td align="center">${dto.id}</td>
-          					<td>${dto.content}</td>
+          					<td>
+          						${dto.content}
+          						<span class="content-text">${dto.content}</span>
+                            	<textarea class="content-edit" style="display: none;">${dto.content}</textarea>
+          					 </td>
           					<td align="center">${dto.postdate}</td>
           					<td>
           						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				              	<button type="button">답글달기</button>
 				              	&nbsp;
-				              	<button type="button" onclick="location.href='../member/noticeCommentEditor?coidx=${dto.coidx}';" aria-label="Edit">수정</button>
+				              	<button type="button" id="editButton" onclick="location.href='../member/noticeCommentEditor?coidx=${dto.coidx}';" aria-label="Edit">수정</button>
 				              	&nbsp;
 				              	<button type="button" onclick="location.href='../member/noticeCommentDelete?coidx=${dto.coidx}';">삭제</button>
 				            </td>
@@ -369,18 +382,18 @@
         </table>
         
         <script>
-		function deletePost(idx)
-		{
-		    var confirmed = confirm("정말로 삭제하겠습니까?"); 
-		    if (confirmed) 
-		    {
-		        var form = document.writeFrm;      
-		        form.method = "post";  
-		       /*  form.action = "../admin/noticeDelete?idx=${dto.idx}"; */
-		        form.action = "../admin/noticeDelete?idx="+idx; 
-		        form.submit();  
-		    }
-		}
+			function deletePost(idx)
+			{
+			    var confirmed = confirm("정말로 삭제하겠습니까?"); 
+			    if (confirmed) 
+			    {
+			        var form = document.writeFrm;      
+			        form.method = "post";  
+			       /*  form.action = "../admin/noticeDelete?idx=${dto.idx}"; */
+			        form.action = "../admin/noticeDelete?idx="+idx; 
+			        form.submit();  
+			    }
+			}
 		</script>
     </main>	 
 			 	
