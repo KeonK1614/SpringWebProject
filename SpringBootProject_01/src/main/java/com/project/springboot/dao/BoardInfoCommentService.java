@@ -11,7 +11,7 @@ public class BoardInfoCommentService {
 	@Autowired
 	private IBoardInfoCommentDao commentDao;
 	
-	public List<BoardInfoCommentDto> listCommnet(String refGrooup) {
+	public List<BoardInfoCommentDto> listCommnet(String refGroup) {
 		return commentDao.listComment(refGroup);
 	}
 	
@@ -19,11 +19,11 @@ public class BoardInfoCommentService {
 		return commentDao.writeComment(commentDto);
 	}
 	
-	public int editCommnet() {
-		
-	}
-	
-	public int deleteCommnet(String cIdx) {
-		
-	}
+//	public int editCommnet() {
+//
+//	}
+//
+//	public int deleteCommnet(String cIdx) {
+//
+//	}
 }

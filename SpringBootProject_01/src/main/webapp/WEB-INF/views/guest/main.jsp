@@ -176,7 +176,7 @@
                         </a>
                     </li>
                    <li class="nav-item">
-                        <a class="nav-link" href="../member/myPageEdit">
+                        <a class="nav-link" href="../member/myPageView">
                             <button type="button" class="btn btn-outline-light">
                                 <i class="bi bi-person-lines-fill"></i> 마이페이지
                             </button>

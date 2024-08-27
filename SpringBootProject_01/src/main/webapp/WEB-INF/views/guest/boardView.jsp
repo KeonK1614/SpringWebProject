@@ -257,18 +257,23 @@
                     </div>
                 </div>
             </form>
-            <div class="card">
-		    	<div class="card-body">
-		    		<textarea class="form-control" row="3"></textarea>
-		    	</div>
-		    	<div class="card-footer">
-					<button class="btn btn-outline-primary mx-1" onclick="location.href='/member/writeComment';">댓글쓰기</button>
+            <form id="commentForm" method="post" action="/member/writeComment">
+	            <div class="card">
+			    	<div class="card-body">
+			    		<input type="hidden" name="cIdx" value="cDto.cIdx">
+			    		<input type="hidden" name="commentGroup" value="cDto.commentGroup">
+			    		<textarea class="form-control" row="3" name="commentText"></textarea>
+			    	</div>
+			    	<div class="card-footer">
+						<button type="submit" class="btn btn-outline-primary mx-1">댓글쓰기</button>
+					</div>
 				</div>
-			</div>
+            </form>
+            
 	        <div id="commentList" class="card">
 	        	<div class="card-header">댓글리스트</div>
         		<ul id="reply-box" class="list-group">
-        			<c:forEach var="cDto" varStatus="loop" items="${comments}">
+        			<c:forEach var="cDto" varStatus="loop" items="${cDto}">
         				<c:choose>
         					<c:when test="${cDto.deleted eq '1' }">
         						<li>삭제된 댓글입니다.</li>
@@ -344,6 +349,7 @@
 			$.ajax({
 				url: '/member/deleteComment',
 				method: 'POST'
+				data: {cIdx:cIdx},
 				success: function(response) {
 					if (response === 'success') {
 						location.reload();

@@ -12,9 +12,6 @@ java {
 	}
 }
 
-eclipse.wtp.facet {
-	facet name:  'jst.web', version: '5.0'
-}
 
 repositories {
 	mavenCentral()
@@ -37,16 +34,22 @@ dependencies {
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 	testImplementation 'org.springframework.security:spring-security-test'
 	
-<<<<<<< HEAD
-=======
+
 	implementation 'org.springframework.boot:spring-boot-starter-mail'
->>>>>>> yerim5
+	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 	
 	implementation 'jakarta.servlet:jakarta.servlet-api'
     implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api'
     implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl'
     implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
     implementation 'org.springframework.security:spring-security-taglibs'
+    
+    // https://mvnrepository.com/artifact/com.google.firebase/firebase-admin
+	implementation group: 'com.google.firebase', name: 'firebase-admin', version: '9.3.0'
+	// https://mvnrepository.com/artifact/com.google.firebase/firebase-firestore
+	implementation group: 'com.google.firebase', name: 'firebase-firestore', version: '25.0.0'
+	// https://mvnrepository.com/artifact/org.json/json
+	implementation group: 'org.json', name: 'json', version: '20240303'
 }
 tasks.named('test') {
 	useJUnitPlatform()

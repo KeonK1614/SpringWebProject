@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.project.springboot.jdbc.AdminService;
-import com.project.springboot.jdbc.IDao;
-import com.project.springboot.jdbc.UserDTO;
+import com.project.springboot.dto.AdminService;
+import com.project.springboot.dto.IDao;
+import com.project.springboot.dto.UserDTO;
 
 @Service
 public class UserService {
