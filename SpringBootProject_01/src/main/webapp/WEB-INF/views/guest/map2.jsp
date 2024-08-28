@@ -331,58 +331,13 @@
 				
 				 var positions = [
 				    {
-				        content: '<div>우성스포츠센터</div>', 
-				        latlng: new kakao.maps.LatLng(37.56724821588269, 127.01210778871535)
-				    },
-				    {
-				        content: '<div>동양생명</div>', 
-				        latlng: new kakao.maps.LatLng(37.56520873883503, 126.98653135118927)
-				    },
-				    {
-				        content: '<div>가양지구대</div>', 
-				        latlng: new kakao.maps.LatLng(37.55926559152876, 126.85017839065803)
-				    },
-				    {
-				    	content: '<div>가리봉1동주민센터</div>',
-				        latlng: new kakao.maps.LatLng(37.4808535380092, 126.88991850196187)
-				    },
-				    {
-				    	content: '<div>구로1동주민센터</div>',
-				        latlng: new kakao.maps.LatLng(37.493080788250516, 126.87580291427216)
-				    },
-				    {
-				    	content: '<div>고척1동주민센터</div>',
-				        latlng: new kakao.maps.LatLng(37.50046324461865, 126.86276574971174)
-				    },
-				    {
-				    	content: '<div>강서경찰서</div>',
-				        latlng: new kakao.maps.LatLng(37.55144409810995, 126.84997257014214)
-				    },
-				    {
-				    	content: '<div>조원제1공영주차장</div>',
-				        latlng: new kakao.maps.LatLng(37.48308384734065, 126.90466097951594)
-				    },
-				    {
-				    	content: '<div>수궁동주민센터</div>',
-				        latlng: new kakao.maps.LatLng(37.493949993598235, 126.8314717379218)
-				    },
-				    {
-				    	content: '<div>구의3동사무소</div>',
-				        latlng: new kakao.maps.LatLng(37.539044611751656, 127.0976934608308)
-				    },
-				    {
-				    	content: '<div>동부지방법원</div>',
-				        latlng: new kakao.maps.LatLng(127.0976934608308, 127.08747012564345)
-				    },
-				    {
-				    	content: '<div>원신공영주차장</div>',
-				        latlng: new kakao.maps.LatLng(37.47016019714292, 126.92940671580033)
-				    },
-				    {
-				    	content: '<div>구로본동주민센터</div>',
-				        latlng: new kakao.maps.LatLng(37.49931680941938, 126.88290031024228)
+				    	<c:forEach var="item1" items="${restDataList}">
+				    		content: '<div>${item1.fname}</div>', 
+					        latlng: new kakao.maps.LatLng(${item1.y_wgs84}, ${item1.x_wgs84}) 
+						</c:forEach>
 				    }
-				]; 
+				   
+				];  
 				
 				/* for (var i = 0; i < positions.length; i ++) {
 					// 마커 생성
