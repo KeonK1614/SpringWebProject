@@ -40,9 +40,10 @@ public class FirebaseMapService implements IFirebaseMapService {
 													.whereLessThanOrEqualTo("y_wgs84", String.valueOf(upperY))
 													.limit(10)
 													.get();
-		
+//		System.out.println("query1: " + query);
 		//리스트에 10개 결과 정보를 집어넣고 앞에 만들었던 restroom 객체로 반환
 		List<QueryDocumentSnapshot> info = query.get().getDocuments();
+//		System.out.println("info1: " + info);
 		for (QueryDocumentSnapshot document : info) {
 			RestMap restroom = document.toObject(RestMap.class);
 			restrooms.add(restroom);
@@ -53,25 +54,27 @@ public class FirebaseMapService implements IFirebaseMapService {
 	}
 	
 	public List<EleMap> getNearbyElevators(double centerX, double centerY, double radius) throws InterruptedException, ExecutionException {
+		System.out.println("getElevator method called");
 		List<EleMap> elevators = new ArrayList<>();
+		
 		double lowerX = centerX-radius;
 		double lowerY = centerY-radius;
 		double upperX = centerX+radius;
 		double upperY = centerY+radius;
-		 
 		
-		
-		ApiFuture<QuerySnapshot> query = firestore.collection(COL_REST)
-																	.whereGreaterThanOrEqualTo("x_wgs84", String.valueOf(lowerX))
-																	.whereGreaterThanOrEqualTo("y_wgs84", String.valueOf(lowerY))
-																	.whereLessThanOrEqualTo("x_wgs84", String.valueOf(upperX))
-																	.whereLessThanOrEqualTo("y_wgs84", String.valueOf(upperY))
+		ApiFuture<QuerySnapshot> query2 = firestore.collection(COL_ELE)
+																	.whereGreaterThanOrEqualTo("x_wgs84", lowerX)
+																	.whereGreaterThanOrEqualTo("y_wgs84", lowerY)
+																	.whereLessThanOrEqualTo("x_wgs84", upperX)
+																	.whereLessThanOrEqualTo("y_wgs84", upperY)
 																	.limit(10)
 																	.get();
-		
-		List<QueryDocumentSnapshot> info = query.get().getDocuments();
-		for (QueryDocumentSnapshot document : info) {
-			EleMap elevator = document.toObject(EleMap.class);
+		System.out.println("query2: " + query2);
+		List<QueryDocumentSnapshot> info2 = query2.get().getDocuments();
+		System.out.println("info 2: " + info2);
+		for (QueryDocumentSnapshot document2 : info2) {
+			EleMap elevator = document2.toObject(EleMap.class);
+			System.out.println("elevators: " + elevator);
 			elevators.add(elevator);
 		}
 		
