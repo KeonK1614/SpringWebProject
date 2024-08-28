@@ -91,8 +91,9 @@
 		
 		body { margin-top: 60px; } /* nav의 높이만큼 padding-top 추가 */
         
-		</style>	 
-	  <link href="../carousel/carousel.css" rel="stylesheet">
+        </style>	 
+		
+		<link href="../carousel/carousel.css" rel="stylesheet">
 	</head>
 	
 	<body>	
