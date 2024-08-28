@@ -222,7 +222,6 @@
 		   	</div>
 		    
 			<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3f7f9ab0116bd62797e2fbd361dac3a9&libraries=services,clusterer,drawing"></script>
-			
 			<script>
 				var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 			    mapOption = { 
@@ -277,97 +276,26 @@
 				    }
 				}
 				
-				/* // HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
-				if (navigator.geolocation) {
-				    
-				    // GeoLocation을 이용해서 접속 위치를 얻어옵니다
-				    navigator.geolocation.getCurrentPosition(function(position) {
-			        
-			        var lat = position.coords.latitude, // 위도
-			            lon = position.coords.longitude; // 경도
-			        
-			        var locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
-			            message = '<div style="padding:5px;">현재위치</div>'; // 인포윈도우에 표시될 내용입니다
-			        
-			        // 마커와 인포윈도우를 표시합니다
-			        displayMarker(locPosition, message);
-			            
-			      	});
-				    
-				} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
-				    
-				    var locPosition = new kakao.maps.LatLng(33.450701, 126.570667),    
-				        message = 'geolocation을 사용할수 없어요..'
-				        
-				    displayMarker(locPosition, message);
-				} */
-
-				/* // 지도에 마커와 인포윈도우를 표시하는 함수입니다
-				function displayMarker(locPosition, message) {
-
-				    // 마커를 생성합니다
-				    var marker = new kakao.maps.Marker({  
-				        map: map, 
-				        position: locPosition
-				    }); 
-				    
-				    var iwContent = message, // 인포윈도우에 표시할 내용
-				        iwRemoveable = true;
-
-				    // 인포윈도우를 생성합니다
-				    var infowindow = new kakao.maps.InfoWindow({
-				        content : iwContent,
-				        removable : iwRemoveable
-				    });
-				    
-				    // 인포윈도우를 마커위에 표시합니다 
-				    infowindow.open(map, marker);
-				    
-				    // 지도 중심좌표를 접속위치로 변경합니다
-				    map.setCenter(locPosition);      
-				}   */
-				
-				
-				
-				 var positions = [
+				/*  var positions = [
 				    {
 				    	<c:forEach var="item1" items="${restDataList}">
-				    		content: '<div>${item1.fname}</div>', 
+				    		content: '${item1.fname}', 
 					        latlng: new kakao.maps.LatLng(${item1.y_wgs84}, ${item1.x_wgs84}) 
 						</c:forEach>
 				    }
 				   
-				];  
+				];   */
 				
-				/* for (var i = 0; i < positions.length; i ++) {
-					// 마커 생성
-				    var marker = new kakao.maps.Marker({  
-				        map: map, // 마커를 표시할 지도
-				        position: positions[i].latlng // 마커를 표시할 위치
-				    });
-				    
-					
-				 	// 마커에 표시할 인포윈도우를 생성합니다 
-				    var infowindow = new kakao.maps.InfoWindow({
-				        content: positions[i].content // 인포윈도우에 표시할 내용
-				    });
-				 	
-				 	//마커에 이벤트를 등록하는 함수 만들고 즉시 호출하여 클로저를 만듭니다.
-				 	//클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록
-				 	(function(marker, infowindow) {
-				 		//마커에 mouseover 이벤트를 등록하고 마우스 오버 시 인포윈도우 표시
-				 		kakao.maps.event.addListener(marker, 'click', function() {
-				 			infowindow.open(map, marker);
-				 		});
-				 		//마커에 mouseout 이벤트를 등록하고 마우스 아웃 시 인포윈도우 닫습니다.
-				 		kakao.maps.event.addListener(map, 'click', function() {
-				 			infowindow.close();
-				 		});
-				 	})(marker, infowindow);
-				}
-				 */
-				 
-				// 마커에 표시할 인포윈도우를 생성합니다 
+				var positions = [
+			        <c:forEach var="item1" items="${restDataList}">
+			            {
+			                content: '${item1.fname}', 
+			                latlng: new kakao.maps.LatLng(${item1.y_wgs84}, ${item1.x_wgs84})
+			            }<c:if test="${not empty restDataList}">,</c:if>
+			        </c:forEach>
+			    ]; 
+			    
+			    // 마커에 표시할 인포윈도우를 생성합니다 
 				 var infowindows = []; // 인포윈도우를 저장할 배열
 	            
 	            // 마커 클러스터러를 생성합니다

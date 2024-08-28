@@ -49,6 +49,8 @@ dependencies {
     implementation group: 'com.google.firebase', name: 'firebase-admin', version: '9.3.0'
     // https://mvnrepository.com/artifact/com.google.firebase/firebase-firestore
     implementation group: 'com.google.firebase', name: 'firebase-firestore', version: '25.0.0'
+    
+    implementation 'jakarta.platform:jakarta.jakartaee-api:9.0.0'
 }
 tasks.named('test') {
 	useJUnitPlatform()

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.springboot.dao.FirebaseMapService;
-/*import com.project.springboot.dto.EleMap;*/
+import com.project.springboot.dto.EleMap;
 import com.project.springboot.dto.RestMap;
 
 @Controller
@@ -17,7 +17,7 @@ public class FirebaseMapController {
 	@Autowired
 	private FirebaseMapService firebaseMapService;
 	
-	@RequestMapping("/guest/nearbyData")
+	@RequestMapping("/guest/map")
 	public String getNearbyRestData(@RequestParam(value="centerX", required=false) Double centerX,
 								@RequestParam(value="centerY", required=false) Double centerY,
 								@RequestParam(value="radius", defaultValue = ".01") double radius, Model model) {
@@ -28,12 +28,12 @@ public class FirebaseMapController {
 		try {
 			 List<RestMap> restDataList = firebaseMapService.getNearbyRestrooms(centerX, centerY, radius);
 			 System.out.println("dataList: " + restDataList);
-			 model.addAttribute("dataList", restDataList);
+			 model.addAttribute("restDataList", restDataList);
 		} catch (Exception e) {
 			e.printStackTrace();		
 		}
 		
-		return "guest/exampleView";
+		return "guest/map";
 	}
 	
 //	@RequestMapping("/guest/nearbyData2")
