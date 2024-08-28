@@ -1,4 +1,4 @@
-package com.project.springboot.dto;
+package com.project.springboot.jdbc;
 
 import java.util.Date;
 import java.util.List;

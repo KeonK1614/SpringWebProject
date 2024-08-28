@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="jakarta.tags.core" prefix="c" %>    
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!doctype html>
 	<html lang="en" data-bs-theme="auto">
 	  <head><script src="../assets/js/color-modes.js"></script>
@@ -86,10 +84,34 @@
 	        --bs-btn-active-bg: #5a23c8;
 	        --bs-btn-active-border-color: #5a23c8;
 	      }
+	      
+	      body{
+			padding: 0
+			margin: 0
+		} 
 		</style>
 		
 	    <!-- Custom styles for this template -->
 	    <link href="../carousel/carousel.css" rel="stylesheet">
+	    <script>
+		function validateForm(form) {
+			if (form.id.value == "") {
+				alert("id를 입력하세요.");
+				form.id.focus();
+				return false;
+			}
+			if (form.title.value == "") {
+				alert("제목을 입력하세요.");
+				form.title.focus();
+				return false;
+			}
+			if (form.content.value == "") {
+				alert("내용을 입력하세요.");
+				form.content.focus();
+				return false;
+			}
+		}
+		</script>
 	  </head>
 	  <body>
 	    
@@ -148,51 +170,29 @@
 			        </ul>
 			      </li>
 			   </ul>
-				  	<sec:authorize access="isAnonymous()">
-				             <ul class="navbar-nav">
-				                 <li class="nav-item">
-				                     <a class="nav-link" href="/security/loginform">
-				                         <button type="button" class="btn btn-outline-light">
-				                             <i class='bi bi-box-arrow-in-right'></i> 로그인
-				                         </button>
-				                     </a>
-				                 </li>
-				                 <li class="nav-item">
-				                     <a class="nav-link" href="/guest/joinform">
-				                         <button type="button" class="btn btn-outline-light">
-				                             <i class='bi bi-person-plus-fill'></i> 회원가입
-				                         </button></a>
-				                 </li>
-				             </ul>
-				</sec:authorize>
-				             <!-- 로그인된 상태 -->
-				<sec:authorize access="isAuthenticated()">    
-				    <ul class="navbar-nav">
-				        <li class="nav-item">
-				            <a class="nav-link" href="/logout">
-				                <button type="button" class="btn btn-outline-light">
-				                    <i class="bi bi-box-arrow-right"></i> 로그아웃
-				                </button>
-				            </a>
-				        </li>
-				       <li class="nav-item">
-				            <a class="nav-link" href="/member/myPage">
-				                <button type="button" class="btn btn-outline-light">
-				                    <i class="bi bi-person-lines-fill"></i> 마이페이지
-				                </button>
-				            </a>
-				        </li>
-				    </ul>
-           </sec:authorize>
+			  	<ul class="navbar-nav">
+			      	<li class="nav-item">
+			       	<a class="nav-link" href="login">
+			       	<button type="button" class="btn btn-outline-light">
+			       	<i class='bi bi-box-arrow-in-right'></i> 로그인</button></a>
+			     	</li>
+			      	<li class="nav-item">
+			       	<a class="nav-link" href="join">
+			       	<button type="button" class="btn btn-outline-light">
+			       	<i class='bi bi-person-plus-fill'></i> 회원가입</button></a>
+			     	</li>
+			     	</ul>
 			    </div>
 			  </div>
 			</nav>
-		</header>
+		</header>	
+
 		
-	<div class="row">			
-		<div class="col-10 pt-3 mt-3 mx-auto">
-            <h4>자유게시판- <small>게시판 보기 </small></h4>
-            <form enctype="multipart/form-data">
+		<div class="row">			
+			   <div class="col-10 pt-3 mt-3 mx-auto">
+           		 <h4>게시판 작성 - <small>자유게시판</small></h4>
+
+            <form enctype="multipart/form-data" action="write" method="post" onsubmit="return validateForm(this)">
                 <table class="table table-bordered">
                 <colgroup>
                     <col width="20%"/>
@@ -201,157 +201,62 @@
                 <tbody>
                     <tr>
                         <th class="text-center" 
-                            style="vertical-align:middle;">번호</th>
-                        <td>
-                            ${param.vNum}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th class="text-center" 
                             style="vertical-align:middle;">작성자</th>
                         <td>
-                            ${dto.id }
+                            <input type="text" name="id" class="form-control" 
+                                style="width:100px;" />
                         </td>
                     </tr>
                     <tr>
                         <th class="text-center" 
                             style="vertical-align:middle;">제목</th>
                         <td>
-                        	${dto.title }
+                            <input type="text" name="title" class="form-control" />
                         </td>
                     </tr>
                     <tr>
                         <th class="text-center" 
                             style="vertical-align:middle;">내용</th>
                         <td>
-                        	<c:if test="${ not empty dto.ofile and isImage eq true }">
-                        		<br><img src="/static/files/${dto.sfile }" style="max-width: 100%;" /><br/>
-                        	</c:if>
-                        	${dto.content }
+                            <textarea rows="9" name="content" class="form-control"></textarea>
                         </td>
                     </tr>
                     <tr>
                         <th class="text-center" 
                             style="vertical-align:middle;">첨부파일</th>
                         <td>
-							<c:if test="${ not empty dto.ofile }">
-		            		${ dto.ofile }
-		            		</c:if>                     
-            			</td>
+                            <input type="file" name="file" class="form-control" />
+                        </td>
                     </tr>
-                    
-                    
                 </tbody>
                 </table>
                 
-                 <div class="row">
+                <div class="row">
                     <div class="col text-right mb-4 d-flex justify-content-end">
-                        <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='boardInfo';">리스트보기</button>
-                        <c:if test="${not empty sessionScope.id}">
-                            <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='/member/like?idx=${dto.idx}';" >좋아요</button>  
-                        </c:if>
-                        <c:if test="${sessionScope.id eq dto.id }">
-                        	<button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='/member/boardEditor?idx=${dto.idx}';">수정하기</button>
-                        	<button type="button" class="btn btn-outline-danger mx-1" onclick="location.href='/member/delete?idx=${dto.idx}';">삭제하기</button>
-                        </c:if>
+                        <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='/guest/boardInfo';">리스트보기</button>
+                        <button type="submit" class="btn btn-outline-primary mx-1">작성하기</button>
+                        <button type="reset" class="btn btn-outline-primary mx-1">Reset</button>
                     </div>
                 </div>
             </form>
-            <div class="card">
-		    	<div class="card-body">
-		    		<textarea class="form-control" row="3"></textarea>
-		    	</div>
-		    	<div class="card-footer">
-					<button class="btn btn-outline-primary mx-1" onclick="location.href='/member/writeComment';">댓글쓰기</button>
+        </div>
+    </div>	 	
+		<div class="p-4 text-white text-center" style="background-color: #7FA1C3;">
+			<div class="row">
+				<div class="col-2 ps-4">
+				<h3><strong>더조은™</strong></h3>
+			</div>
+				<div class="col">
+					<p class="copy text-center">
+					    더조은아카데미일산 &nbsp;&nbsp;
+				        경기도 고양시 일산구 중앙로 1275번길 38-10 201호(장항동 우림로데오스위트) &nbsp;&nbsp;<br/>
+				        학생 : 김건, 김나현, 나예림, 장다빈 
+				        사업자등록번호 : 584-85-00825 &nbsp;&nbsp;  
+				        TEL : 031.902.1777 &nbsp;&nbsp; 
+						FAX : 031.906.8777 <br>
+					</p>  
 				</div>
 			</div>
-	        <div id="commentList" class="card">
-	        	<div class="card-header">댓글리스트</div>
-        		<ul id="reply-box" class="list-group">
-        			<c:forEach var="cDto" varStatus="loop" items="${comments}">
-        				<c:choose>
-        					<c:when test="${cDto.deleted eq '1' }">
-        						<li>삭제된 댓글입니다.</li>
-        					</c:when>
-        					<c:otherwise>
-        					 	<li id="reply" class="list-group-item">
-        							<div>${cDto.commentText}</div>
-        							<div><strong>${cDto.writer}</strong></div>
-        							<div>${cDto.regidate}</div>
-        						</li>
-        					</c:otherwise>
-        				</c:choose>
-        				<div class="d-flex">
-        					<c:if test="${sessionScope.id eq cDto.writer }">
-        						<button type="button" class="btn btn-outline-warning mx-1" onclick="location.href='/member/boardEditor?idx=${dto.idx}';">수정하기</button>
-                       			<button type="button" class="btn btn-outline-danger mx-1" onclick="location.href='/member/delete?idx=${dto.idx}';">삭제하기</button>
-        					</c:if>
-        				</div>
-	        			<%-- <c:if test="${cDto.cIdx eq cDto.commentGroup}">
-	        				<li id="reli${cDto.cIdx }">
-	        			</c:if>
-	        			<c:if test="${cDto.cIdx ne cDto.commentGroup}">
-	        				<li id="reli${cDto.cIdx }" style="padding-left:50px;">
-	        			</c:if>
-						<form id="reComment${cDto.cIdx}" action="writeComment" method="post">
-						<input type="hidden" name=commentGroup value="${cDto.commentGroup}">
-						<textarea name="commentText"></textarea>
-						<button type="submit">등록</button>
-						</form> --%>
-						</c:forEach>
-					</ul>	
-        		</div>
-    	</div>
-    </div>
-	<div class="p-4 text-white text-center" style="background-color: #7FA1C3;">
-		<div class="row">
-			<div class="col-2 ps-4">
-			<h3><strong>더조은™</strong></h3>
 		</div>
-			<div class="col">
-				<p class="copy text-center">
-				    더조은아카데미일산 &nbsp;&nbsp;
-			        경기도 고양시 일산구 중앙로 1275번길 38-10 201호(장항동 우림로데오스위트) &nbsp;&nbsp;<br/>
-			        학생 : 김건, 김나현, 나예림, 장다빈 
-			        사업자등록번호 : 584-85-00825 &nbsp;&nbsp;  
-			        TEL : 031.902.1777 &nbsp;&nbsp; 
-					FAX : 031.906.8777 <br>
-				</p>  
-			</div>
-		</div>
-	</div>
 	</body>
-	<!-- 댓글 수정 삭제 ajax 사용해 비동기식 설정 -->
-	<script>
-		$('#commentForm').submit(function(event) {
-			event.preventDefault();
-			$.ajax({
-				url: '/member/writeComment'
-				method: 'POST'
-				data: $(this).serialize(),
-				success: function(response) {
-					if(response === 'success') {
-						location.reload();
-					} else {
-						alert('댓글 등록 실패');
-					}
-				}
-			});
-		});
-		
-		//댓글 삭제
-		$('.deleteComment').click(function() {
-			$.ajax({
-				url: '/member/deleteComment',
-				method: 'POST'
-				success: function(response) {
-					if (response === 'success') {
-						location.reload();
-					} else {
-						alert('댓글 삭제 실패');
-					}
-				}
-			});
-		});
-	</script>
 </html>

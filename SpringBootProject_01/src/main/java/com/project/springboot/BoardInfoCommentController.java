@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -13,7 +12,7 @@ import com.project.springboot.dao.IBoardInfoDao;
 import com.project.springboot.dto.BoardInfoCommentDto;
 
 import jakarta.servlet.http.HttpServletRequest;
-@Controller
+
 public class BoardInfoCommentController {
 	
 	@Autowired
@@ -21,7 +20,7 @@ public class BoardInfoCommentController {
 	
 	@RequestMapping("member/boardView")//작성된 코멘트 불러와서 보기 - list/view역할
 	public String listComment(HttpServletRequest req, Model model, BoardInfoCommentDto cDto) {
-		List<BoardInfoCommentDto> lists = commentDao.listComment(String.valueOf(cDto));
+		List<BoardInfoCommentDto> lists = commentDao.listComment(cDto);
 		String refGroup = req.getParameter("idx");
 		model.addAttribute("cDto", lists);
 		
@@ -30,18 +29,14 @@ public class BoardInfoCommentController {
 	
 	@RequestMapping("member/writeComment") // 쓰기
 	public String addComment(HttpServletRequest req, Model model) {
-		System.out.println("writeComment called");
 		String writer = SecurityContextHolder.getContext().getAuthentication().getName();
-		String	commentText = req.getParameter("commentText");
+		String content = req.getParameter("cContent");
 		String refGroup = req.getParameter("idx");
 		String commentGroup = req.getParameter("commentGroup");
-		int comment = commentDao.writeComment(writer,
-				commentText,
-				refGroup,
-				commentGroup);
-		System.out.println("commentcalled: " + comment);
-		
-		model.addAttribute("cDto", comment);
+		model.addAttribute("cDto", commentDao.writeComment(writer,
+														content,
+														refGroup,
+														commentGroup));
 		
 		return "redirect:/member/boardView?idx=" + refGroup;
 	}

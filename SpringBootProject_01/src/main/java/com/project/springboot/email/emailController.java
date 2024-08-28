@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.project.springboot.dto.UserDTO;
+import com.project.springboot.jdbc.UserDTO;
 
 @Controller
 public class emailController {
