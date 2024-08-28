@@ -44,6 +44,11 @@ dependencies {
     implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl'
     implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
     implementation 'org.springframework.security:spring-security-taglibs'
+    
+    // https://mvnrepository.com/artifact/com.google.firebase/firebase-admin
+    implementation group: 'com.google.firebase', name: 'firebase-admin', version: '9.3.0'
+    // https://mvnrepository.com/artifact/com.google.firebase/firebase-firestore
+    implementation group: 'com.google.firebase', name: 'firebase-firestore', version: '25.0.0'
 }
 tasks.named('test') {
 	useJUnitPlatform()

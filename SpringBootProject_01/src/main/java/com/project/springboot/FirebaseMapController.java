@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.springboot.dao.FirebaseMapService;
-import com.project.springboot.dto.EleMap;
+/*import com.project.springboot.dto.EleMap;*/
 import com.project.springboot.dto.RestMap;
 
 @Controller

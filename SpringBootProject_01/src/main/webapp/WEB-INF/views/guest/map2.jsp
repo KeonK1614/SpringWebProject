@@ -329,7 +329,7 @@
 				
 				
 				
-				var positions = [
+				 var positions = [
 				    {
 				        content: '<div>우성스포츠센터</div>', 
 				        latlng: new kakao.maps.LatLng(37.56724821588269, 127.01210778871535)
@@ -382,7 +382,7 @@
 				    	content: '<div>구로본동주민센터</div>',
 				        latlng: new kakao.maps.LatLng(37.49931680941938, 126.88290031024228)
 				    }
-				];
+				]; 
 				
 				/* for (var i = 0; i < positions.length; i ++) {
 					// 마커 생성
