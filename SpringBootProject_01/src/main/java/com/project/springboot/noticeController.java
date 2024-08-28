@@ -277,8 +277,22 @@ public class noticeController
 		dao.likeCountDao(sIdx);
 		
 		/* return "redirect:../guest/noticeView?idx=" + sIdx; */
-		return "redirect:../guest/noticeBoard"; 
-		
+		return "redirect:../guest/noticeBoard"; 	
 	}
+	
+	@RequestMapping("/guest/map")
+	public String map()
+	{
+		
+		return "guest/map"; 	
+	}
+	@RequestMapping("/guest/map2")
+	public String map2()
+	{
+		
+		return "guest/map2"; 	
+	}
+	
+	
 	
 }

@@ -3,7 +3,7 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.springboot.email.emailMapper">
-	<select id="findMemberId" resultType="com.project.springboot.jdbc.UserDTO">
+	<select id="findMemberId" resultType="com.project.springboot.dto.UserDTO">
 		select id from member
 		where name=#{name} and email=#{email} and enabled=1
 	</select>
