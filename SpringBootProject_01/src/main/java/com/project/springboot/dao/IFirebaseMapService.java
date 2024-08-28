@@ -9,5 +9,4 @@ import com.project.springboot.dto.RestMap;
 public interface IFirebaseMapService {
 	public List<RestMap> getNearbyRestrooms(double centerX, double centerY, double radius) throws InterruptedException, ExecutionException;
 	public List<EleMap> getNearbyElevators(double centerX, double centerY, double radius) throws InterruptedException, ExecutionException;
-	public List<RestMap> getRestroomInfo() throws Exception;
 }

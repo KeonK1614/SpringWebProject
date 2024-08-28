@@ -223,7 +223,7 @@
 		    
 			<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3f7f9ab0116bd62797e2fbd361dac3a9&libraries=services,clusterer,drawing"></script>
 			
-			<script>
+			<script type="text/javascript">
 				var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 			    mapOption = { 
 			        center: new kakao.maps.LatLng(37.554674785645716, 126.9706120117342 ), // 지도의 중심좌표
@@ -330,13 +330,12 @@
 				
 				
 				 var positions = [
-				    {
-				    	<c:forEach var="item1" items="${restDataList}">
-				    		content: '<div>${item1.fname}</div>', 
+				    <c:forEach var="item1" items="${restDataList}">
+				    	{
+				    		content: '<div>"${item1.pName}"</div>', 
 					        latlng: new kakao.maps.LatLng(${item1.y_wgs84}, ${item1.x_wgs84}) 
-						</c:forEach>
-				    }
-				   
+				    	}<c:if test="${not empty restDataList}">,</c:if>
+					</c:forEach>	    
 				];  
 				
 				/* for (var i = 0; i < positions.length; i ++) {

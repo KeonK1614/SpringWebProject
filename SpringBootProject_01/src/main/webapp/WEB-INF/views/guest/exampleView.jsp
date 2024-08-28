@@ -11,7 +11,7 @@
   <h1>Firestore Data</h1>     
 
         <c:forEach var="item1" items="${restDataList}">
-    		<li>${item1.fname} - ${item1.x_wgs84}, ${item1.y_wgs84}</li>
+    		<li>${item1.pname} - ${item1.x_wgs84}, ${item1.y_wgs84}</li>
 		</c:forEach>
  		<c:forEach var="item2" items="${eleDataList }">
     		<li>${item2.sbwy_stn_nm} - ${item2.x_wgs84}, ${item2.y_wgs84}</li>

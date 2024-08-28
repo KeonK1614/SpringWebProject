@@ -80,40 +80,4 @@ public class FirebaseMapService implements IFirebaseMapService {
 		
 		return elevators;
 	}
-
-	
-	//화장실 정보 전체 알려줌 
-	@Override
-	public List<RestMap> getRestroomInfo() throws InterruptedException, ExecutionException {
-		
-        List<RestMap> dataList = new ArrayList<>();
-        CollectionReference collection = firestore.collection("restmap");
-        ApiFuture<QuerySnapshot> querySnapshot = collection.get();
-
-        for (QueryDocumentSnapshot document : querySnapshot.get().getDocuments()) {
-        	RestMap data = new RestMap();
-            data.setFname(document.getString("fname"));
-            data.setAname(document.getString("aname"));
-            data.setUpdatedate(document.getString("updatedate"));
-            data.setX_wgs84(document.getString("x_wgs84"));
-            data.setY_wgs84(document.getString("y_wgs84"));
-            dataList.add(data);
-        }
-        System.out.println("dataList : " + dataList);
-        return dataList;
-	}
-	
-	public void getRestroomCoordX(RestMap restMap) throws InterruptedException, ExecutionException {
-		CollectionReference users = firestore.collection(COL_REST);
-		ApiFuture<QuerySnapshot> query = users.get();
-		QuerySnapshot querySnapshot = query.get();
-		List<QueryDocumentSnapshot> documents = querySnapshot.getDocuments();
-		
-		for (QueryDocumentSnapshot document : documents) {
-			System.out.println("name : " + document.getId());
-			System.out.println("xCoord : " + document.getString("x_wgs84"));
-			System.out.println("yCoord : " + document.getString("y_wgs84"));
-		}
-		
-	}
 }
