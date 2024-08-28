@@ -29,12 +29,13 @@ public class FirebaseMapService implements IFirebaseMapService {
 	
 	public List<RestMap> getNearbyRestrooms(double centerX, double centerY, double radius) throws InterruptedException, ExecutionException {
 		List<RestMap> restrooms = new ArrayList<>();
-		
+		//사각형으로 범위를 만듬
 		double lowerX = centerX-radius;
 		double lowerY = centerY-radius;
 		double upperX = centerX+radius;
 		double upperY = centerY+radius;
-		 
+		
+		 //범위 안에 10개의 결과를 보여줌
 		ApiFuture<QuerySnapshot> query = firestore.collection(COL_REST)
 													.whereGreaterThanOrEqualTo("x_wgs84", String.valueOf(lowerX))
 													.whereGreaterThanOrEqualTo("y_wgs84", String.valueOf(lowerY))
@@ -42,6 +43,8 @@ public class FirebaseMapService implements IFirebaseMapService {
 													.whereLessThanOrEqualTo("y_wgs84", String.valueOf(upperY))
 													.limit(10)
 													.get();
+		
+		//리스트에 10개 결과 정보를 집어넣고 앞에 만들었던 restroom 객체로 반환
 		List<QueryDocumentSnapshot> info = query.get().getDocuments();
 		for (QueryDocumentSnapshot document : info) {
 			RestMap restroom = document.toObject(RestMap.class);
@@ -61,15 +64,19 @@ public class FirebaseMapService implements IFirebaseMapService {
 		 
 		
 		
-		ApiFuture<QuerySnapshot> query = firestore.collection(COL_ELE)
-													.limit(10)
-													.get();
+		ApiFuture<QuerySnapshot> query = firestore.collection(COL_REST)
+																	.whereGreaterThanOrEqualTo("x_wgs84", String.valueOf(lowerX))
+																	.whereGreaterThanOrEqualTo("y_wgs84", String.valueOf(lowerY))
+																	.whereLessThanOrEqualTo("x_wgs84", String.valueOf(upperX))
+																	.whereLessThanOrEqualTo("y_wgs84", String.valueOf(upperY))
+																	.limit(10)
+																	.get();
+		
 		List<QueryDocumentSnapshot> info = query.get().getDocuments();
 		for (QueryDocumentSnapshot document : info) {
 			EleMap elevator = document.toObject(EleMap.class);
 			elevators.add(elevator);
 		}
-		
 		
 		return elevators;
 	}
@@ -85,11 +92,11 @@ public class FirebaseMapService implements IFirebaseMapService {
 
         for (QueryDocumentSnapshot document : querySnapshot.get().getDocuments()) {
         	RestMap data = new RestMap();
-            data.setName(document.getString("fname"));
-            data.setType(document.getString("aname"));
+            data.setFname(document.getString("fname"));
+            data.setAname(document.getString("aname"));
             data.setUpdatedate(document.getString("updatedate"));
-            data.setXCoord(document.getString("x_wgs84"));
-            data.setYCoord(document.getString("y_wgs84"));
+            data.setX_wgs84(document.getString("x_wgs84"));
+            data.setY_wgs84(document.getString("y_wgs84"));
             dataList.add(data);
         }
         System.out.println("dataList : " + dataList);
@@ -97,8 +104,7 @@ public class FirebaseMapService implements IFirebaseMapService {
 	}
 	
 	public void getRestroomCoordX(RestMap restMap) throws InterruptedException, ExecutionException {
-		Firestore db = FirestoreOptions.getDefaultInstance().getService();
-		CollectionReference users = db.collection(COL_REST);
+		CollectionReference users = firestore.collection(COL_REST);
 		ApiFuture<QuerySnapshot> query = users.get();
 		QuerySnapshot querySnapshot = query.get();
 		List<QueryDocumentSnapshot> documents = querySnapshot.getDocuments();
@@ -110,19 +116,4 @@ public class FirebaseMapService implements IFirebaseMapService {
 		}
 		
 	}
-	
-
-	private double[] extractCoordinates(String pointString) {
-	    String regex = "-?\\d+(\\.\\d+)?";
-	    Pattern pattern = Pattern.compile(regex);
-	    Matcher matcher = pattern.matcher(pointString);
-	
-	    double[] coordinates = new double[2];
-	    int count = 0;
-	    while (matcher.find() && count < 2) {
-	        coordinates[count++] = Double.parseDouble(matcher.group());
-	    }
-	    return coordinates;
-	}
-
 }
