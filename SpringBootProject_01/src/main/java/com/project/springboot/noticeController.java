@@ -280,13 +280,19 @@ public class noticeController
 		return "redirect:../guest/noticeBoard"; 	
 	}
 	
-	@RequestMapping("/guest/map")
-	public String map()
-	{
-		
-		return "guest/map"; 	
-	}
-
+//	@RequestMapping("/guest/map")
+//	public String map()
+//	{
+//		
+//		return "guest/map"; 	
+//	}
+//	@RequestMapping("/guest/map2")
+//	public String map2()
+//	{
+//		
+//		return "guest/map2"; 	
+//	}
+	
 	
 	
 }

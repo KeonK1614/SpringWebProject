@@ -26,7 +26,9 @@
 			.category li{list-style:none;float:left;width:50px;height:45px;padding-top:5px;cursor:pointer;} 
 			.category .ico_comm {display:block;margin:0 auto 2px;width:22px;height:26px;background:url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/category.png') no-repeat;} 
 			.category .ico_coffee {background-position:-10px 0;}  
-			.category .ico_store {background-position:-10px -36px;}   
+			.category .ico_store {background-position:-10px -36px;}  
+			
+			body { margin-top: 60px; } /* nav의 높이만큼 padding-top 추가 */
 		</style>
 		
 		<style>
@@ -222,7 +224,8 @@
 	
 		<main>
 			<div id="mapwrap">
-				<div id="map" style="width:600px;height:600px;"></div>
+				<div id="map" style="width:600px;height:500px;"></div>
+				
 				<!-- 지도 위에 표시될 마커 카테고리 -->
 			    <div class="category">
 			        <ul>
@@ -238,67 +241,17 @@
 			    </div>
 		    </div>
 		    
-			<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3f7f9ab0116bd62797e2fbd361dac3a9"></script>
+			<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3f7f9ab0116bd62797e2fbd361dac3a9&libraries=services,clusterer,drawing"></script>
 			<script>
 				var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 			    mapOption = { 
-			        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+			        center: new kakao.maps.LatLng(37.554674785645716, 126.9706120117342), // 지도의 중심좌표
 			        level: 3 // 지도의 확대 레벨 
 			    }; 
 	
 				var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-		
-				// HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
-				if (navigator.geolocation) {
-				    
-				    // GeoLocation을 이용해서 접속 위치를 얻어옵니다
-				    navigator.geolocation.getCurrentPosition(function(position) {
-				        
-				        var lat = position.coords.latitude, // 위도
-				            lon = position.coords.longitude; // 경도
-				        
-				        var locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
-				            message = '<div style="padding:5px;">현재위치</div>'; // 인포윈도우에 표시될 내용입니다
-				        
-				        // 마커와 인포윈도우를 표시합니다
-				        displayMarker(locPosition, message);
-				            
-				      });
-				    
-				} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
-				    
-				    var locPosition = new kakao.maps.LatLng(33.450701, 126.570667),    
-				        message = 'geolocation을 사용할수 없어요..'
-				        
-				    displayMarker(locPosition, message);
-				}
-		
-				// 지도에 마커와 인포윈도우를 표시하는 함수입니다
-				function displayMarker(locPosition, message) {
-		
-				    // 마커를 생성합니다
-				    var marker = new kakao.maps.Marker({  
-				        map: map, 
-				        position: locPosition
-				    }); 
-				    
-				    var iwContent = message, // 인포윈도우에 표시할 내용
-				        iwRemoveable = true;
-		
-				    // 인포윈도우를 생성합니다
-				    var infowindow = new kakao.maps.InfoWindow({
-				        content : iwContent,
-				        removable : iwRemoveable
-				    });
-				    
-				    // 인포윈도우를 마커위에 표시합니다 
-				    infowindow.open(map, marker);
-				    
-				    // 지도 중심좌표를 접속위치로 변경합니다
-				    map.setCenter(locPosition);      
-				}
 				
-				// 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+<!-- 			// 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
 				var mapTypeControl = new kakao.maps.MapTypeControl();
 	
 				// 지도에 컨트롤을 추가해야 지도위에 표시됩니다
@@ -307,62 +260,105 @@
 	
 				// 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
 				var zoomControl = new kakao.maps.ZoomControl();
+				// 지도의 우측에 확대 축소 컨트롤을 추가한다
 				map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 			
-				/* var positions = [
-				    {
-				        title: '우성스포츠센터', 
-				        latlng: new kakao.maps.LatLng(37.56724821588269, 127.01210778871535)
-				    },
-				    {
-				        title: '동양생명', 
-				        latlng: new kakao.maps.LatLng(37.56520873883503, 126.98653135118927)
-				    },
-				    {
-				        title: '가양지구대', 
-				        latlng: new kakao.maps.LatLng(37.55926559152876, 126.85017839065803)
-				    },
-				    {
-				        title: '가리봉1동주민센터',
-				        latlng: new kakao.maps.LatLng(37.4808535380092, 126.88991850196187)
-				    },
-				    {
-				        title: '구로1동주민센터',
-				        latlng: new kakao.maps.LatLng(37.493080788250516, 126.87580291427216)
-				    },
-				    {
-				        title: '고척1동주민센터',
-				        latlng: new kakao.maps.LatLng(37.50046324461865, 126.86276574971174)
-				    },
-				    {
-				        title: '강서경찰서',
-				        latlng: new kakao.maps.LatLng(37.55144409810995, 126.84997257014214)
-				    },
-				    {
-				        title: '조원제1공영주차장',
-				        latlng: new kakao.maps.LatLng(37.48308384734065, 126.90466097951594)
-				    },
-				    {
-				        title: '수궁동주민센터',
-				        latlng: new kakao.maps.LatLng(37.493949993598235, 126.8314717379218)
-				    },
-				    {
-				        title: '구의3동사무소',
-				        latlng: new kakao.maps.LatLng(37.539044611751656, 127.0976934608308)
-				    },
-				    {
-				        title: '동부지방법원',
-				        latlng: new kakao.maps.LatLng(127.0976934608308, 127.08747012564345)
-				    },
-				    {
-				        title: '원신공영주차장',
-				        latlng: new kakao.maps.LatLng(37.47016019714292, 126.92940671580033)
-				    },
-				    {
-				        title: '구로본동주민센터',
-				        latlng: new kakao.maps.LatLng(37.49931680941938, 126.88290031024228)
-				    },
+				// 현재 위치로 이동하는 함수
+				function Mylocation() {
+				    if (navigator.geolocation) {
+				        navigator.geolocation.getCurrentPosition(function(position) {
+				            var lat = position.coords.latitude;
+				            var lon = position.coords.longitude;
+				            
+				            var locPosition = new kakao.maps.LatLng(lat, lon);
+				            
+				            // 지도의 중심좌표를 현재 위치로 변경합니다
+				            map.setCenter(locPosition);
+				            
+				            // 현재 위치에 마커를 추가합니다
+				            var marker = new kakao.maps.Marker({
+				                map: map,
+				                position: locPosition
+				            });
+				            
+				            var message = '<div style="padding:5px;">현재위치</div>';
+				            var infowindow = new kakao.maps.InfoWindow({
+				                content: message
+				            });
+				            infowindow.open(map, marker);
+				            
+				        }, function(error) {
+				            console.error('Geolocation error:', error);
+				        });
+				    } else {
+				        alert("Geolocation is not supported by this browser.");
+				    }
+				}
+				
+				var restroomPositions = [ 
+				    /* new kakao.maps.LatLng(37.49931680941938, 126.88290031024228),
+				    new kakao.maps.LatLng(37.47016019714292, 126.92940671580033),
+				    new kakao.maps.LatLng(37.55926559152876, 127.08747012564345),
+				    new kakao.maps.LatLng(37.539044611751656, 127.0976934608308) */
+				    
+					 <c:forEach var="item1" items="${restDataList}">
+			            {
+			            	new kakao.maps.LatLng(${item1.y_wgs84}, ${item1.x_wgs84})
+			            }
+			         <c:if test="${not empty restDataList}">,</c:if>
+			        </c:forEach> 
 				];
+				
+				var elevatorPositions = [
+				    new kakao.maps.LatLng(37.56724821588269, 127.01210778871535),
+				    new kakao.maps.LatLng(37.56520873883503, 126.98653135118927),
+				    new kakao.maps.LatLng(37.496201943633714, 126.85017839065803),
+				    new kakao.maps.LatLng(37.4808535380092, 126.88991850196187)
+				];
+				
+				// 마커에 표시할 인포윈도우를 생성합니다 
+				 var infowindows = []; // 인포윈도우를 저장할 배열
+	            
+	            // 마커 클러스터러를 생성합니다
+	            var clusterer = new kakao.maps.MarkerClusterer({
+	                map: map, // 마커 클러스터러가 포함될 지도 객체
+	                averageCenter: true, // 마커들의 평균 위치를 클러스터링 할 때 중심으로 설정
+	                minLevel: 10 // 클러스터 할 최소 지도 레벨
+	            });
+
+	            // 마커를 생성하고 클러스터러에 추가합니다
+	            var markers = positions.map(function (position) {
+	            	var marker = new kakao.maps.Marker({
+	                    position: position.latlng
+	                });
+	            	
+	                var infowindow = new kakao.maps.InfoWindow({
+	                    content: position.content
+	                });
+	                
+	                infowindows.push(infowindow);
+	                
+	                kakao.maps.event.addListener(marker, 'click', function() {
+	                    infowindows.forEach(function(iw) {
+	                        iw.close(); // 모든 인포윈도우 닫기
+	                    });
+	                    infowindow.open(map, marker);
+	                });
+	                
+	                return marker;
+	            });
+
+	            // 클러스터러에 마커를 추가합니다
+	            clusterer.addMarkers(markers);
+	            
+	            kakao.maps.event.addListener(clusterer, 'clusterclick', function(cluster) {
+
+	                // 현재 지도 레벨에서 1레벨 확대한 레벨
+	                var level = map.getLevel()-1;
+
+	                // 지도를 클릭된 클러스터의 마커의 위치를 기준으로 확대합니다
+	                map.setLevel(level, {anchor: cluster.getCenter()});
+	            });
 				
 				// 마커 이미지의 이미지 주소입니다
 				var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
@@ -382,28 +378,16 @@
 				        title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
 				        image : markerImage // 마커 이미지 
 				    });
-				} */
+				} 
 				
-				var restroomPositions = [ 
-				    new kakao.maps.LatLng(37.49931680941938, 126.88290031024228),
-				    new kakao.maps.LatLng(37.47016019714292, 126.92940671580033),
-				    new kakao.maps.LatLng(37.55926559152876, 127.08747012564345),
-				    new kakao.maps.LatLng(37.539044611751656, 127.0976934608308)
-				];
 				
-				var elevatorPositions = [
-				    new kakao.maps.LatLng(37.56724821588269, 127.01210778871535),
-				    new kakao.maps.LatLng(37.56520873883503, 126.98653135118927),
-				    new kakao.maps.LatLng(37.496201943633714, 126.85017839065803),
-				    new kakao.maps.LatLng(37.4808535380092, 126.88991850196187)
-				];
 				
 				var markerImageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/category.png';  // 마커이미지의 주소입니다. 스프라이트 이미지 입니다
 			    restroomMarkers = [], // 화장실 마커 객체를 가지고 있을 배열입니다
 			    elevatorMarkers = []; // 엘레베이터 마커 객체를 가지고 있을 배열입니다
 			    
-			    createRestroomMarkers(); // 화장실 마커를 생성하고 커피숍 마커 배열에 추가합니다
-			    createElevatorMarkers(); // 엘레베이터 마커를 생성하고 편의점 마커 배열에 추가합니다
+			    createRestroomMarkers(); // 화장실 마커를 생성하고 화장실 마커 배열에 추가합니다
+			    createElevatorMarkers(); // 엘레베이터 마커를 생성하고 엘레베이터 마커 배열에 추가합니다
 			    
 			    changeMarker('restroom'); // 지도에 화장실 마커가 보이도록 설정합니다
 			    
@@ -510,9 +494,11 @@
 			            
 			        }
 			 	}
+			 	
+			 
 
 			   
-			</script>
+			</script> 
 		</main>	
 		 	
 		<hr/> 	
