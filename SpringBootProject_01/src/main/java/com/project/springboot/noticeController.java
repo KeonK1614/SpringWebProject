@@ -286,6 +286,12 @@ public class noticeController
 		
 		return "guest/map"; 	
 	}
+	@RequestMapping("/guest/map2")
+	public String map2()
+	{
+		
+		return "guest/map2"; 	
+	}
 	
 	
 	

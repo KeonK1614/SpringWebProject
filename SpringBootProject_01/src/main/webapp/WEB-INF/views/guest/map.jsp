@@ -402,10 +402,10 @@
 			    restroomMarkers = [], // 화장실 마커 객체를 가지고 있을 배열입니다
 			    elevatorMarkers = []; // 엘레베이터 마커 객체를 가지고 있을 배열입니다
 			    
-			    createRestroomMarkers(); // 커피숍 마커를 생성하고 커피숍 마커 배열에 추가합니다
-			    createElevatorMarkers(); // 편의점 마커를 생성하고 편의점 마커 배열에 추가합니다
+			    createRestroomMarkers(); // 화장실 마커를 생성하고 커피숍 마커 배열에 추가합니다
+			    createElevatorMarkers(); // 엘레베이터 마커를 생성하고 편의점 마커 배열에 추가합니다
 			    
-			    changeMarker('restroom'); // 지도에 커피숍 마커가 보이도록 설정합니다
+			    changeMarker('restroom'); // 지도에 화장실 마커가 보이도록 설정합니다
 			    
 			    // 마커이미지의 주소와, 크기, 옵션으로 마커 이미지를 생성하여 리턴하는 함수입니다
 			    function createMarkerImage(src, size, options) {
@@ -423,7 +423,7 @@
 			        return marker;  
 			    } 
 			 	
-			 	// 화장실 마커를 생성하고 커피숍 마커 배열에 추가하는 함수입니다
+			 	// 화장실 마커를 생성하고 화장실 마커 배열에 추가하는 함수입니다
 			    function createRestroomMarkers() {
 			        
 			        for (var i = 0; i < restroomPositions.length; i++) {  
@@ -482,34 +482,36 @@
 			        var restroomMenu = document.getElementById('restroomMenu');
 			        var elevatorMenu = document.getElementById('elevatorMenu');
 								        
-			        // 커피숍 카테고리가 클릭됐을 때
+			        // 화장실 카테고리가 클릭됐을 때
 			        if (type === 'restroom') {
 			        
-			            // 커피숍 카테고리를 선택된 스타일로 변경하고
+			            // 화장실 카테고리를 선택된 스타일로 변경하고
 			            restroomMenu.className = 'menu_selected';
 			            
-			            // 편의점과 주차장 카테고리는 선택되지 않은 스타일로 바꿉니다
+			            // 편의점은 선택되지 않은 스타일로 바꿉니다
 			            elevatorMenu.className = '';
 			            
 			            
-			            // 커피숍 마커들만 지도에 표시하도록 설정합니다
+			            // 화장실 마커들만 지도에 표시하도록 설정합니다
 			            setRestroomMarkers(map);
 			            setElevatorMarkers(null);
 			            
 			            
-			        } else if (type === 'elevator') { // 편의점 카테고리가 클릭됐을 때
+			        } else if (type === 'elevator') { // 엘레베이터 카테고리가 클릭됐을 때
 			        
-			            // 편의점 카테고리를 선택된 스타일로 변경하고
+			            // 엘레베이터 카테고리를 선택된 스타일로 변경하고
 			            restroomMenu.className = '';
 			            elevatorMenu.className = 'menu_selected';
 			            			            
-			            // 편의점 마커들만 지도에 표시하도록 설정합니다
+			            // 엘레베이터 마커들만 지도에 표시하도록 설정합니다
 			            setRestroomMarkers(null);
 			            setElevatorMarkers(map);
 			            
 			            
 			        }
 			 	}
+
+			   
 			</script>
 		</main>	
 		 	
