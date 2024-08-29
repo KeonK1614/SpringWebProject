@@ -19,19 +19,6 @@
 		<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
 		
 		<style>
-			#mapwrap{position:relative;overflow:hidden;}
-			.category, .category *{margin:0;padding:0;color:#000;}   
-			.category {position:absolute;overflow:hidden;top:10px;left:10px;width:150px;height:50px;z-index:10;border:1px solid black;font-family:'Malgun Gothic','맑은 고딕',sans-serif;font-size:12px;text-align:center;background-color:#fff;}
-			.category .menu_selected {background:#FF5F4A;color:#fff;border-left:1px solid #915B2F;border-right:1px solid #915B2F;margin:0 -1px;} 
-			.category li{list-style:none;float:left;width:50px;height:45px;padding-top:5px;cursor:pointer;} 
-			.category .ico_comm {display:block;margin:0 auto 2px;width:22px;height:26px;background:url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/category.png') no-repeat;} 
-			.category .ico_coffee {background-position:-10px 0;}  
-			.category .ico_store {background-position:-10px -36px;}  
-			
-			body { margin-top: 60px; } /* nav의 높이만큼 padding-top 추가 */
-		</style>
-		
-		<style>
 		.bd-placeholder-img {
 		  font-size: 1.125rem;
 		  text-anchor: middle;
@@ -99,10 +86,15 @@
 		  --bs-btn-active-color: var(--bs-btn-hover-color);
 		  --bs-btn-active-bg: #5a23c8;
 		  --bs-btn-active-border-color: #5a23c8;
-		  
+		
 		}	 
-		</style>	 
-	  <link href="../carousel/carousel.css" rel="stylesheet">
+		
+		body { margin-top: 60px; } /* nav의 높이만큼 padding-top 추가 */
+        
+       
+        </style>	 
+		
+		<link href="../carousel/carousel.css" rel="stylesheet">
 	</head>
 	
 	<body>	
@@ -223,46 +215,67 @@
 		</header>
 	
 		<main>
-			<div id="mapwrap">
-				<div id="map" style="width:600px;height:500px;"></div>
-				
-				<!-- 지도 위에 표시될 마커 카테고리 -->
-			    <div class="category">
-			        <ul>
-			            <li id="restroomMenu" onclick="changeMarker('restroom')">
-			                <span class="ico_comm ico_coffee"></span>
-			                화장실
-			            </li>
-			            <li id="elevatorMenu" onclick="changeMarker('elevator')">
-			                <span class="ico_comm ico_store"></span>
-			                엘레베이터
-			            </li>
-			        </ul>
-			    </div>
-		    </div>
-		    
+			<div>
+				<button style="position: absolute; z-index: 9" class="btn btn-danger btn-sm" onclick="Mylocation()">
+					현재위치
+				</button>
+			</div>
+			<div id="map" style="width:600px;height:500px;"></div>
+				<c:forEach var="item1" items="${restDataList}">
+		    		<table border="1" style="width:600px;height:500px;">
+				        <tr>
+				        	<th>장소명</th>
+				        	<td>${item1.pname}</td>
+				        </tr>
+				        <tr>
+				        	<th>주소</th>
+				        	<td>${item1.addr1}${item1.addr2} </td>
+				        </tr>
+				        <tr>
+				        	<th>전화번호</th>
+				        	<td>${item1.phonenum}</td>
+				        </tr>
+				        <tr>
+				        	<th>장소유형</th>
+				        	<td>${item1.ptype}</td>
+				        </tr>
+				        <tr>
+				        	<th>운영시간</th>
+				        	<td>${item1.optime}</td>
+				        </tr>
+				        <tr>
+				        	<th>건물유형</th>
+				        	<td>${item1.btype}</td>
+				        </tr>
+				        <tr>
+				        	<th>상세정보</th>
+				        	<td>${item1.detail1}${item1.detail2}</td>
+				        </tr>
+			        </table>
+				</c:forEach>
+				        
+			
 			<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3f7f9ab0116bd62797e2fbd361dac3a9&libraries=services,clusterer,drawing"></script>
 			<script>
-				var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-			    mapOption = { 
-			        center: new kakao.maps.LatLng(37.554674785645716, 126.9706120117342), // 지도의 중심좌표
-			        level: 3 // 지도의 확대 레벨 
-			    }; 
-	
-				var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+				var container = document.getElementById('map');
+				var options = {
+					center: new kakao.maps.LatLng(37.569306, 126.992235),
+					level: 3
+				};
+		
+				var map = new kakao.maps.Map(container, options);
 				
-<!-- 			// 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+				// 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
 				var mapTypeControl = new kakao.maps.MapTypeControl();
-	
+
 				// 지도에 컨트롤을 추가해야 지도위에 표시됩니다
 				// kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
 				map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
-	
+
 				// 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
 				var zoomControl = new kakao.maps.ZoomControl();
-				// 지도의 우측에 확대 축소 컨트롤을 추가한다
 				map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
-			
+				
 				// 현재 위치로 이동하는 함수
 				function Mylocation() {
 				    if (navigator.geolocation) {
@@ -281,7 +294,8 @@
 				                position: locPosition
 				            });
 				            
-				            var message = '<div style="padding:5px;">현재위치</div>';
+				            /* var message = '<div style="padding:5px;">현재위치</div>'; */
+				            var message = '<div style="width:150px;text-align:center;padding:6px 0;">현재위치</div>';
 				            var infowindow = new kakao.maps.InfoWindow({
 				                content: message
 				            });
@@ -295,220 +309,55 @@
 				    }
 				}
 				
-				/* var restroomPositions = [  */
-				var restroomPositions = [ 
-				    /* new kakao.maps.LatLng(37.49931680941938, 126.88290031024228),
-				    new kakao.maps.LatLng(37.47016019714292, 126.92940671580033),
-				    new kakao.maps.LatLng(37.55926559152876, 127.08747012564345),
-				    new kakao.maps.LatLng(37.539044611751656, 127.0976934608308) */
-				    
-					 <c:forEach var="item1" items="${restDataList}">
+				// 마커를 표시할 위치와 내용을 가지고 있는 객체 배열입니다 
+				var positions = [
+					<c:forEach var="item1" items="${restDataList}">
 			            {
-			            	content: '${item1.pname}', 
+			                content: '${item1.pname}', 
 			                latlng: new kakao.maps.LatLng(${item1.y_wgs84}, ${item1.x_wgs84})
-			            }
-			         <c:if test="${not empty restDataList}">,</c:if>
-			        </c:forEach> 
+			            }<c:if test="${not empty restDataList}">,</c:if>
+			        </c:forEach>
 				];
 				
-				var elevatorPositions = [
-				   /*  new kakao.maps.LatLng(37.56724821588269, 127.01210778871535),
-				    new kakao.maps.LatLng(37.56520873883503, 126.98653135118927),
-				    new kakao.maps.LatLng(37.496201943633714, 126.85017839065803),
-				    new kakao.maps.LatLng(37.4808535380092, 126.88991850196187) */
-					<c:forEach var="item1" items="${dataList}">
-		            {
-		            	content: '${item1.sbwy_stn_nm}', 
-		                latlng: new kakao.maps.LatLng(${item1.y_wgs84}, ${item1.x_wgs84})
-		            }
-		         <c:if test="${not empty dataList}">,</c:if>
-		        </c:forEach> 
-				];
-				
-				console.log(restroomPositions);
-				console.log(elevatorPositions);
-				
-				/* // 마커에 표시할 인포윈도우를 생성합니다 
-				 var infowindows = []; // 인포윈도우를 저장할 배열
-	            
-	            // 마커 클러스터러를 생성합니다
-	            var clusterer = new kakao.maps.MarkerClusterer({
-	                map: map, // 마커 클러스터러가 포함될 지도 객체
-	                averageCenter: true, // 마커들의 평균 위치를 클러스터링 할 때 중심으로 설정
-	                minLevel: 10 // 클러스터 할 최소 지도 레벨
-	            });
-
-	            // 마커를 생성하고 클러스터러에 추가합니다
-	            var markers = positions.map(function (position) {
-	            	var marker = new kakao.maps.Marker({
-	                    position: position.latlng
-	                });
-	            	
-	                var infowindow = new kakao.maps.InfoWindow({
-	                    content: position.content
-	                });
-	                
-	                infowindows.push(infowindow);
-	                
-	                kakao.maps.event.addListener(marker, 'click', function() {
-	                    infowindows.forEach(function(iw) {
-	                        iw.close(); // 모든 인포윈도우 닫기
-	                    });
-	                    infowindow.open(map, marker);
-	                });
-	                
-	                return marker;
-	            });
-
-	            // 클러스터러에 마커를 추가합니다
-	            clusterer.addMarkers(markers);
-	            
-	            kakao.maps.event.addListener(clusterer, 'clusterclick', function(cluster) {
-
-	                // 현재 지도 레벨에서 1레벨 확대한 레벨
-	                var level = map.getLevel()-1;
-
-	                // 지도를 클릭된 클러스터의 마커의 위치를 기준으로 확대합니다
-	                map.setLevel(level, {anchor: cluster.getCenter()});
-	            }); */
-				
-				// 마커 이미지의 이미지 주소입니다
-/* 				var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
-				    
 				for (var i = 0; i < positions.length; i ++) {
-				    
-				    // 마커 이미지의 이미지 크기 입니다
-				    var imageSize = new kakao.maps.Size(24, 35); 
-				    
-				    // 마커 이미지를 생성합니다    
-				    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
-				    
 				    // 마커를 생성합니다
 				    var marker = new kakao.maps.Marker({
 				        map: map, // 마커를 표시할 지도
-				        position: positions[i].latlng, // 마커를 표시할 위치
-				        title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-				        image : markerImage // 마커 이미지 
+				        position: positions[i].latlng // 마커의 위치
 				    });
-				}  */
+
+				    // 마커에 표시할 인포윈도우를 생성합니다 
+				    var message = '<div style="width:150px;text-align:center;padding:6px 0;">' + positions[i].content + '</div>';
+				    var infowindow = new kakao.maps.InfoWindow({
+				        content: message // 인포윈도우에 표시할 내용
+				    });
+
+				    // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
+				    // 이벤트 리스너로는 클로저를 만들어 등록합니다 
+				    // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
+				    kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+				    kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+				}
+
+				// 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
+				function makeOverListener(map, marker, infowindow) {
+				    return function() {
+				        infowindow.open(map, marker);
+				    };
+				}
+
+				// 인포윈도우를 닫는 클로저를 만드는 함수입니다 
+				function makeOutListener(infowindow) {
+				    return function() {
+				        infowindow.close();
+				    };
+				}
+			   
+			</script>	       
+			
+			
+			
 				
-				
-				
-				var markerImageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/category.png';  // 마커이미지의 주소입니다. 스프라이트 이미지 입니다
-				   restroomMarkers = [], // 화장실 마커 객체를 가지고 있을 배열입니다
-				   elevatorMarkers = []; // 엘레베이터 마커 객체를 가지고 있을 배열입니다
-		    
-			    var restroomClusterer = new kakao.maps.MarkerClusterer({
-		            map: map,
-		            averageCenter: true,
-		            minLevel: 5
-		        });
-
-		        var elevatorClusterer = new kakao.maps.MarkerClusterer({
-		            map: map,
-		            averageCenter: true,
-		            minLevel: 5
-		        });    
-				    
-			    createRestroomMarkers(); // 화장실 마커를 생성하고 화장실 마커 배열에 추가합니다
-			    createElevatorMarkers(); // 엘레베이터 마커를 생성하고 엘레베이터 마커 배열에 추가합니다
-			    
-			    changeMarker('restroom'); // 지도에 화장실 마커가 보이도록 설정합니다
-			    
-			 	// 좌표와 마커이미지를 받아 마커를 생성하여 리턴하는 함수입니다
-			     function createMarker(position, image) {
-		            return new kakao.maps.Marker({
-		                position: position.latlng,
-		                image: image
-		            });
-		        }
-			 	
-			  // 마커이미지의 주소와, 크기, 옵션으로 마커 이미지를 생성하여 리턴하는 함수입니다
-			    function createMarkerImage(src, size, options) {
-			        var markerImage = new kakao.maps.MarkerImage(src, size, options);
-			        return markerImage;            
-			    }
-			    
-			 	// 화장실 마커를 생성하고 화장실 마커 배열에 추가하는 함수입니다
-			    function createRestroomMarkers() {
-		            var imageSize = new kakao.maps.Size(22, 26),
-		                imageOptions = {
-		                    spriteOrigin: new kakao.maps.Point(10, 0),
-		                    spriteSize: new kakao.maps.Size(36, 98)
-		                };
-		
-		            var markerImage = createMarkerImage(markerImageSrc, imageSize, imageOptions);
-		            restroomMarkers = restroomPositions.map(function (position) {
-		                return createMarker(position, markerImage);
-		            });
-		
-		            restroomClusterer.addMarkers(restroomMarkers);
-		        }
-
-			    // 화장실 마커들의 지도 표시 여부를 설정하는 함수입니다
-			     function setRestroomMarkers(map) {
-			    	 restroomClusterer.setMap(map);
-		        }
-
-			    // 편의점 마커를 생성하고 편의점 마커 배열에 추가하는 함수입니다
-			     function createElevatorMarkers() {
-		            var imageSize = new kakao.maps.Size(22, 26),
-		                imageOptions = {
-		                    spriteOrigin: new kakao.maps.Point(10, 36),
-		                    spriteSize: new kakao.maps.Size(36, 98)
-		                };
-		
-		            var markerImage = createMarkerImage(markerImageSrc, imageSize, imageOptions);
-		            elevatorMarkers = elevatorPositions.map(function (position) {
-		                return createMarker(position, markerImage);
-		            });
-		
-		            elevatorClusterer.addMarkers(elevatorMarkers);
-		        }
-
-			    // 편의점 마커들의 지도 표시 여부를 설정하는 함수입니다
-			     function setElevatorMarkers(map) {
-			    	 elevatorClusterer.setMap(map);
-        		}
-			    
-			 	// 카테고리를 클릭했을 때 type에 따라 카테고리의 스타일과 지도에 표시되는 마커를 변경합니다
-			    function changeMarker(type){
-			        
-			        var restroomMenu = document.getElementById('restroomMenu');
-			        var elevatorMenu = document.getElementById('elevatorMenu');
-								        
-			        // 화장실 카테고리가 클릭됐을 때
-			        if (type === 'restroom') {
-			        
-			            // 화장실 카테고리를 선택된 스타일로 변경하고
-			            restroomMenu.className = 'menu_selected';
-			            
-			            // 엘레베이터는 선택되지 않은 스타일로 바꿉니다
-			            elevatorMenu.className = '';
-			            
-			            
-			            // 화장실 마커들만 지도에 표시하도록 설정합니다
-			            setElevatorMarkers(null);
-			            elevatorClusterer.clear();
-			            elevatorClusterer.setMap(null);
-			            setRestroomMarkers(map);
-			            
-			            
-			        } else if (type === 'elevator') { // 엘레베이터 카테고리가 클릭됐을 때
-			        
-			            // 엘레베이터 카테고리를 선택된 스타일로 변경하고
-			            restroomMenu.className = '';
-			            elevatorMenu.className = 'menu_selected';
-			            			            
-			            // 엘레베이터 마커들만 지도에 표시하도록 설정합니다
-			            setRestroomMarkers(null);
-			            restroomClusterer.clear(); 
-			            restroomClusterer.setMap(null);
-			            setElevatorMarkers(map);
-			        }
-			 	} 
-			 
-			</script> 
 		</main>	
 		 	
 		<hr/> 	
