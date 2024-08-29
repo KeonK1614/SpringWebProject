@@ -16,24 +16,25 @@ import com.project.springboot.dto.RestMap;
 public class FirebaseMapController {
 	@Autowired
 	private FirebaseMapService firebaseMapService;
-	
-	@RequestMapping("/guest/exampleView")
-	public String getNearbyRestData(@RequestParam(value="centerX", required=false) Double centerX,
-								@RequestParam(value="centerY", required=false) Double centerY,
-								@RequestParam(value="radius", defaultValue = ".02") double radius, Model model) {
+		
+	@RequestMapping("/guest/nearbyData")
+	public String getNearbyRestData2(@RequestParam(value="centerX", required=false) Double centerX,
+			@RequestParam(value="centerY", required=false) Double centerY,
+			@RequestParam(value="radius", defaultValue = ".02") double radius, Model model) {
 		if (centerX == null||centerY==null) {
+
 			centerX = 127.0016;
 			centerY = 37.5642;
 		}
 		try {
-			 List<RestMap> restDataList = firebaseMapService.getNearbyRestrooms(centerX, centerY, radius);
-			 System.out.println("restDataList: " + restDataList);
-			 model.addAttribute("restDataList", restDataList);
+			List<RestMap> restDataList = firebaseMapService.getNearbyRestrooms(centerX, centerY, radius);
+			System.out.println("restDataList: " + restDataList);
+			model.addAttribute("restDataList", restDataList);
 		} catch (Exception e) {
 			e.printStackTrace();		
 		}
 		
-		return "guest/exampleView";
+		return "guest/map2";
 	}
 	
 	@RequestMapping("/guest/nearbyData2")
@@ -52,7 +53,7 @@ public class FirebaseMapController {
 			e.printStackTrace();		
 		}
 		
-		return "guest/exampleView";
+		return "guest/map2";
 	}
 	
 	

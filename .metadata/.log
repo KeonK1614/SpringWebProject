@@ -2209,3 +2209,648 @@ Caused by: java.lang.IllegalStateException: The Plug-in Development Environment 
 	at org.eclipse.pde.internal.build.BundleHelper.getPlatformAdmin(BundleHelper.java:84)
 	at org.eclipse.pde.internal.core.MinimalState.<clinit>(MinimalState.java:85)
 	... 25 more
+!SESSION 2024-08-28 17:45:44.805 -----------------------------------------------
+eclipse.buildId=4.24.0.202407191504
+java.version=21.0.3
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=macosx, ARCH=aarch64, WS=cocoa, NL=en_US
+Framework arguments:  -product org.springframework.boot.ide.branding.sts4 -keyring /Users/gupro/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch aarch64 -product org.springframework.boot.ide.branding.sts4 -keyring /Users/gupro/.eclipse_keyring
+
+!ENTRY ch.qos.logback.classic 1 0 2024-08-28 17:45:46.177
+!MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
+
+!ENTRY ch.qos.logback.classic 1 0 2024-08-28 17:46:19.962
+!MESSAGE Logback config file: /Users/gupro/Documents/DevData/SpringWebProject/.metadata/.plugins/org.eclipse.m2e.logback/logback.2.6.1.20240411-1122.xml
+
+!ENTRY org.eclipse.ui 2 0 2024-08-28 17:46:20.124
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2024-08-28 17:46:20.124
+!MESSAGE Commands should really have a category: plug-in='org.springframework.tooling.boot.ls', id='spring.initializr.addStarters', categoryId='org.eclipse.lsp4e.commandCategory'
+
+!ENTRY org.eclipse.ui 2 0 2024-08-28 17:46:20.295
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2024-08-28 17:46:20.295
+!MESSAGE Commands should really have a category: plug-in='org.springframework.tooling.boot.ls', id='spring.initializr.addStarters', categoryId='org.eclipse.lsp4e.commandCategory'
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2024-08-28 17:46:22.419
+!MESSAGE Command list starting LS: org.springframework.tooling.boot.ls
+START:
+/Applications/SpringToolSuite4.app/Contents/Eclipse/plugins/org.eclipse.justj.openjdk.hotspot.jre.full.macosx.aarch64_21.0.3.v20240426-1530/jre/bin/java
+-cp
+/Applications/SpringToolSuite4.app/Contents/Eclipse/plugins/org.springframework.tooling.boot.ls_1.56.0.202407191456/servers/spring-boot-language-server/BOOT-INF/classes:/Applications/SpringToolSuite4.app/Contents/Eclipse/plugins/org.springframework.tooling.boot.ls_1.56.0.202407191456/servers/spring-boot-language-server/BOOT-INF/lib/*
+-Dsts.lsp.client=eclipse
+-Xmx1024m
+-XX:TieredStopAtLevel=1
+-Xlog:jni+resolve=off
+-Dspring.config.location=file:/Applications/SpringToolSuite4.app/Contents/Eclipse/plugins/org.springframework.tooling.boot.ls_1.56.0.202407191456/servers/spring-boot-language-server/BOOT-INF/classes/application.properties
+-XX:ErrorFile=/Users/gupro/Documents/DevData/SpringWebProject/.metadata/.plugins/org.springframework.tooling.boot.ls/fatal-error-spring-boot_1724834782419
+org.springframework.ide.vscode.boot.app.BootLanguageServerBootApp
+--languageserver.hover-timeout=225
+END
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-08-28 17:46:22.420
+!MESSAGE DelegatingStreamConnectionProvider - Starting Boot LS
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2024-08-28 17:46:22.427
+!MESSAGE Started org.springframework.tooling.boot.ls LS process 9564
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-08-28 17:46:23.092
+!MESSAGE Boot project ADDED: SpringBootProject_01
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-08-28 17:46:23.092
+!MESSAGE Starting Boot LS...
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-08-28 17:46:23.092
+!MESSAGE Started Boot LS process
+
+!ENTRY org.eclipse.jface 2 0 2024-08-28 17:46:23.866
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2024-08-28 17:46:23.866
+!MESSAGE A conflict occurred for ALT+SHIFT+X R:
+Binding(ALT+SHIFT+X R,
+	ParameterizedCommand(Command(org.eclipse.wst.server.launchShortcut.run,Run on Server,
+		Run the current selection on a server,
+		Category(org.eclipse.debug.ui.category.run,Run/Debug,Run/Debug command category,true),
+		WorkbenchHandlerServiceHandler("org.eclipse.wst.server.launchShortcut.run"),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(ALT+SHIFT+X R,
+	ParameterizedCommand(Command(org.eclipse.rap.tools.launch.RAPLaunchShortcut.run,Run RAP Application,
+		Run RAP Application,
+		Category(org.eclipse.debug.ui.category.run,Run/Debug,Run/Debug command category,true),
+		WorkbenchHandlerServiceHandler("org.eclipse.rap.tools.launch.RAPLaunchShortcut.run"),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2024-08-28 17:46:23.866
+!MESSAGE A conflict occurred for ALT+SHIFT+D R:
+Binding(ALT+SHIFT+D R,
+	ParameterizedCommand(Command(org.eclipse.wst.server.launchShortcut.debug,Debug on Server,
+		Debug the current selection on a server,
+		Category(org.eclipse.debug.ui.category.run,Run/Debug,Run/Debug command category,true),
+		WorkbenchHandlerServiceHandler("org.eclipse.wst.server.launchShortcut.debug"),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(ALT+SHIFT+D R,
+	ParameterizedCommand(Command(org.eclipse.rap.tools.launch.RAPLaunchShortcut.debug,Debug RAP Application,
+		Debug RAP Application,
+		Category(org.eclipse.debug.ui.category.run,Run/Debug,Run/Debug command category,true),
+		WorkbenchHandlerServiceHandler("org.eclipse.rap.tools.launch.RAPLaunchShortcut.debug"),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+
+!ENTRY org.eclipse.pde.core 4 0 2024-08-28 17:47:25.126
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Exception in org.eclipse.pde.internal.core.PDECore.stop() of bundle org.eclipse.pde.core.
+	at org.eclipse.osgi.internal.framework.BundleContextImpl.stop(BundleContextImpl.java:923)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle.stopWorker0(EquinoxBundle.java:1071)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$EquinoxModule.stopWorker(EquinoxBundle.java:392)
+	at org.eclipse.osgi.container.Module.doStop(Module.java:695)
+	at org.eclipse.osgi.container.Module.stop(Module.java:554)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.decStartLevel(ModuleContainer.java:2116)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1986)
+	at org.eclipse.osgi.container.SystemModule.stopWorker(SystemModule.java:281)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$SystemBundle$EquinoxSystemModule.stopWorker(EquinoxBundle.java:222)
+	at org.eclipse.osgi.container.Module.doStop(Module.java:695)
+	at org.eclipse.osgi.container.Module.stop(Module.java:554)
+	at org.eclipse.osgi.container.SystemModule.stop(SystemModule.java:212)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$SystemBundle$EquinoxSystemModule$1.run(EquinoxBundle.java:240)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: java.lang.ExceptionInInitializerError
+	at org.eclipse.pde.internal.core.PluginModelManager.initializeTable(PluginModelManager.java:583)
+	at org.eclipse.pde.internal.core.PluginModelManager.getEntryTable(PluginModelManager.java:528)
+	at org.eclipse.pde.internal.core.PluginModelManager.findEntry(PluginModelManager.java:997)
+	at org.eclipse.pde.internal.core.PluginModelManager.findModel(PluginModelManager.java:1022)
+	at org.eclipse.pde.core.plugin.PluginRegistry.findModel(PluginRegistry.java:103)
+	at org.eclipse.pde.internal.core.JavaElementChangeListener.save(JavaElementChangeListener.java:148)
+	at org.eclipse.pde.internal.core.JavaElementChangeListener.shutdown(JavaElementChangeListener.java:58)
+	at org.eclipse.pde.internal.core.PDECore.stop(PDECore.java:386)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl$3.run(BundleContextImpl.java:903)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl$3.run(BundleContextImpl.java:1)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:571)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl.stop(BundleContextImpl.java:895)
+	... 13 more
+Caused by: java.lang.IllegalStateException: The Plug-in Development Environment requires the PlatformAdmin service to operate. Please install the compatibility fragment 'org.eclipse.osgi.compatibility.state'.
+	at org.eclipse.pde.internal.build.BundleHelper.getPlatformAdmin(BundleHelper.java:84)
+	at org.eclipse.pde.internal.core.MinimalState.<clinit>(MinimalState.java:85)
+	... 25 more
+Root exception:
+java.lang.ExceptionInInitializerError
+	at org.eclipse.pde.internal.core.PluginModelManager.initializeTable(PluginModelManager.java:583)
+	at org.eclipse.pde.internal.core.PluginModelManager.getEntryTable(PluginModelManager.java:528)
+	at org.eclipse.pde.internal.core.PluginModelManager.findEntry(PluginModelManager.java:997)
+	at org.eclipse.pde.internal.core.PluginModelManager.findModel(PluginModelManager.java:1022)
+	at org.eclipse.pde.core.plugin.PluginRegistry.findModel(PluginRegistry.java:103)
+	at org.eclipse.pde.internal.core.JavaElementChangeListener.save(JavaElementChangeListener.java:148)
+	at org.eclipse.pde.internal.core.JavaElementChangeListener.shutdown(JavaElementChangeListener.java:58)
+	at org.eclipse.pde.internal.core.PDECore.stop(PDECore.java:386)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl$3.run(BundleContextImpl.java:903)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl$3.run(BundleContextImpl.java:1)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:571)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl.stop(BundleContextImpl.java:895)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle.stopWorker0(EquinoxBundle.java:1071)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$EquinoxModule.stopWorker(EquinoxBundle.java:392)
+	at org.eclipse.osgi.container.Module.doStop(Module.java:695)
+	at org.eclipse.osgi.container.Module.stop(Module.java:554)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.decStartLevel(ModuleContainer.java:2116)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1986)
+	at org.eclipse.osgi.container.SystemModule.stopWorker(SystemModule.java:281)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$SystemBundle$EquinoxSystemModule.stopWorker(EquinoxBundle.java:222)
+	at org.eclipse.osgi.container.Module.doStop(Module.java:695)
+	at org.eclipse.osgi.container.Module.stop(Module.java:554)
+	at org.eclipse.osgi.container.SystemModule.stop(SystemModule.java:212)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$SystemBundle$EquinoxSystemModule$1.run(EquinoxBundle.java:240)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: java.lang.IllegalStateException: The Plug-in Development Environment requires the PlatformAdmin service to operate. Please install the compatibility fragment 'org.eclipse.osgi.compatibility.state'.
+	at org.eclipse.pde.internal.build.BundleHelper.getPlatformAdmin(BundleHelper.java:84)
+	at org.eclipse.pde.internal.core.MinimalState.<clinit>(MinimalState.java:85)
+	... 25 more
+!SESSION 2024-08-28 23:18:06.941 -----------------------------------------------
+eclipse.buildId=4.24.0.202407191504
+java.version=21.0.3
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=macosx, ARCH=aarch64, WS=cocoa, NL=en_US
+Framework arguments:  -product org.springframework.boot.ide.branding.sts4 -keyring /Users/gupro/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch aarch64 -product org.springframework.boot.ide.branding.sts4 -keyring /Users/gupro/.eclipse_keyring
+
+!ENTRY ch.qos.logback.classic 1 0 2024-08-28 23:18:08.116
+!MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
+
+!ENTRY ch.qos.logback.classic 1 0 2024-08-28 23:18:10.337
+!MESSAGE Logback config file: /Users/gupro/Documents/DevData/SpringWebProject/.metadata/.plugins/org.eclipse.m2e.logback/logback.2.6.1.20240411-1122.xml
+
+!ENTRY org.eclipse.ui 2 0 2024-08-28 23:18:10.489
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2024-08-28 23:18:10.489
+!MESSAGE Commands should really have a category: plug-in='org.springframework.tooling.boot.ls', id='spring.initializr.addStarters', categoryId='org.eclipse.lsp4e.commandCategory'
+
+!ENTRY org.eclipse.ui 2 0 2024-08-28 23:18:10.662
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2024-08-28 23:18:10.662
+!MESSAGE Commands should really have a category: plug-in='org.springframework.tooling.boot.ls', id='spring.initializr.addStarters', categoryId='org.eclipse.lsp4e.commandCategory'
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2024-08-28 23:18:12.713
+!MESSAGE Command list starting LS: org.springframework.tooling.boot.ls
+START:
+/Applications/SpringToolSuite4.app/Contents/Eclipse/plugins/org.eclipse.justj.openjdk.hotspot.jre.full.macosx.aarch64_21.0.3.v20240426-1530/jre/bin/java
+-cp
+/Applications/SpringToolSuite4.app/Contents/Eclipse/plugins/org.springframework.tooling.boot.ls_1.56.0.202407191456/servers/spring-boot-language-server/BOOT-INF/classes:/Applications/SpringToolSuite4.app/Contents/Eclipse/plugins/org.springframework.tooling.boot.ls_1.56.0.202407191456/servers/spring-boot-language-server/BOOT-INF/lib/*
+-Dsts.lsp.client=eclipse
+-Xmx1024m
+-XX:TieredStopAtLevel=1
+-Xlog:jni+resolve=off
+-Dspring.config.location=file:/Applications/SpringToolSuite4.app/Contents/Eclipse/plugins/org.springframework.tooling.boot.ls_1.56.0.202407191456/servers/spring-boot-language-server/BOOT-INF/classes/application.properties
+-XX:ErrorFile=/Users/gupro/Documents/DevData/SpringWebProject/.metadata/.plugins/org.springframework.tooling.boot.ls/fatal-error-spring-boot_1724854692713
+org.springframework.ide.vscode.boot.app.BootLanguageServerBootApp
+--languageserver.hover-timeout=225
+END
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-08-28 23:18:12.713
+!MESSAGE DelegatingStreamConnectionProvider - Starting Boot LS
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2024-08-28 23:18:12.715
+!MESSAGE Started org.springframework.tooling.boot.ls LS process 14115
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-08-28 23:18:13.359
+!MESSAGE Boot project ADDED: SpringBootProject_01
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-08-28 23:18:13.359
+!MESSAGE Starting Boot LS...
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-08-28 23:18:13.364
+!MESSAGE Started Boot LS process
+
+!ENTRY org.eclipse.jface 2 0 2024-08-28 23:18:14.066
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2024-08-28 23:18:14.066
+!MESSAGE A conflict occurred for ALT+SHIFT+X R:
+Binding(ALT+SHIFT+X R,
+	ParameterizedCommand(Command(org.eclipse.wst.server.launchShortcut.run,Run on Server,
+		Run the current selection on a server,
+		Category(org.eclipse.debug.ui.category.run,Run/Debug,Run/Debug command category,true),
+		WorkbenchHandlerServiceHandler("org.eclipse.wst.server.launchShortcut.run"),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(ALT+SHIFT+X R,
+	ParameterizedCommand(Command(org.eclipse.rap.tools.launch.RAPLaunchShortcut.run,Run RAP Application,
+		Run RAP Application,
+		Category(org.eclipse.debug.ui.category.run,Run/Debug,Run/Debug command category,true),
+		WorkbenchHandlerServiceHandler("org.eclipse.rap.tools.launch.RAPLaunchShortcut.run"),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2024-08-28 23:18:14.066
+!MESSAGE A conflict occurred for ALT+SHIFT+D R:
+Binding(ALT+SHIFT+D R,
+	ParameterizedCommand(Command(org.eclipse.wst.server.launchShortcut.debug,Debug on Server,
+		Debug the current selection on a server,
+		Category(org.eclipse.debug.ui.category.run,Run/Debug,Run/Debug command category,true),
+		WorkbenchHandlerServiceHandler("org.eclipse.wst.server.launchShortcut.debug"),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(ALT+SHIFT+D R,
+	ParameterizedCommand(Command(org.eclipse.rap.tools.launch.RAPLaunchShortcut.debug,Debug RAP Application,
+		Debug RAP Application,
+		Category(org.eclipse.debug.ui.category.run,Run/Debug,Run/Debug command category,true),
+		WorkbenchHandlerServiceHandler("org.eclipse.rap.tools.launch.RAPLaunchShortcut.debug"),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 09:50:37.544
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/application-client_9.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 09:50:37.545
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/jobXML_2_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 09:50:37.545
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/beans_3_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 09:50:37.545
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jaxb/bindingschema_3_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 09:50:37.547
+!MESSAGE The given URI https://jakarta.ee/xml/ns/validation/validation-configuration-3.0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 09:50:37.547
+!MESSAGE The given URI http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_1.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 10:06:48.769
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/application-client_9.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 10:06:48.769
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/jobXML_2_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 10:06:48.769
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/beans_3_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 10:06:48.770
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jaxb/bindingschema_3_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 10:06:48.771
+!MESSAGE The given URI https://jakarta.ee/xml/ns/validation/validation-configuration-3.0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 10:06:48.771
+!MESSAGE The given URI http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_1.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.lsp4e 4 0 2024-08-29 10:08:01.897
+!MESSAGE InterruptedException
+!STACK 0
+java.lang.InterruptedException
+	at java.base/java.util.concurrent.CompletableFuture.reportGet(CompletableFuture.java:386)
+	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2096)
+	at org.eclipse.lsp4e.operations.codeactions.LSPCodeActionMarkerResolution.checkMarkerResolution(LSPCodeActionMarkerResolution.java:155)
+	at org.eclipse.lsp4e.operations.codeactions.LSPCodeActionMarkerResolution.getResolutions(LSPCodeActionMarkerResolution.java:101)
+	at org.springframework.tooling.boot.ls.markers.LSPBootCodeActionMarkerResolution.getResolutions(LSPBootCodeActionMarkerResolution.java:25)
+	at org.eclipse.ui.internal.ide.registry.MarkerHelpRegistry.getResolutions(MarkerHelpRegistry.java:393)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor.collectMarkerProposals(JavaCorrectionProcessor.java:318)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor.collectProposals(JavaCorrectionProcessor.java:277)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.getMarkerAnnotationFixes(ProblemHover.java:154)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.computeCompletionProposals(ProblemHover.java:95)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.<init>(ProblemHover.java:74)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover.createAnnotationInfo(ProblemHover.java:178)
+	at org.eclipse.jdt.internal.ui.text.java.hover.AbstractAnnotationHover.getHoverInfo2(AbstractAnnotationHover.java:755)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:130)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:89)
+	at org.eclipse.jface.text.TextViewerHoverManager$1.run(TextViewerHoverManager.java:155)
+
+!ENTRY org.eclipse.lsp4e 2 0 2024-08-29 10:14:30.659
+!MESSAGE Javadoc unavailable. Failed to obtain it.
+!STACK 0
+java.lang.InterruptedException
+	at java.base/java.util.concurrent.CompletableFuture.reportGet(CompletableFuture.java:386)
+	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2096)
+	at org.eclipse.lsp4e.jdt.LSJavaHoverProvider.getHoverInfo2(LSJavaHoverProvider.java:65)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:130)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:89)
+	at org.eclipse.jface.text.TextViewerHoverManager$1.run(TextViewerHoverManager.java:155)
+
+!ENTRY org.eclipse.lsp4e 2 0 2024-08-29 10:19:10.856
+!MESSAGE Javadoc unavailable. Failed to obtain it.
+!STACK 0
+java.lang.InterruptedException
+	at java.base/java.util.concurrent.CompletableFuture.reportGet(CompletableFuture.java:386)
+	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2096)
+	at org.eclipse.lsp4e.jdt.LSJavaHoverProvider.getHoverInfo2(LSJavaHoverProvider.java:65)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:130)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:89)
+	at org.eclipse.jface.text.TextViewerHoverManager$1.run(TextViewerHoverManager.java:155)
+
+!ENTRY org.eclipse.lsp4e 2 0 2024-08-29 10:33:48.391
+!MESSAGE Javadoc unavailable. Failed to obtain it.
+!STACK 0
+java.lang.InterruptedException
+	at java.base/java.util.concurrent.CompletableFuture.reportGet(CompletableFuture.java:386)
+	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2096)
+	at org.eclipse.lsp4e.jdt.LSJavaHoverProvider.getHoverInfo2(LSJavaHoverProvider.java:65)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:130)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:89)
+	at org.eclipse.jface.text.TextViewerHoverManager$1.run(TextViewerHoverManager.java:155)
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 10:47:13.293
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/application-client_9.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 10:47:13.293
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/jobXML_2_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 10:47:13.294
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/beans_3_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 10:47:13.294
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jaxb/bindingschema_3_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 10:47:13.295
+!MESSAGE The given URI https://jakarta.ee/xml/ns/validation/validation-configuration-3.0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 10:47:13.296
+!MESSAGE The given URI http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_1.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-08-29 11:06:40.933
+!MESSAGE Classpath changed for project: SpringBootProject_01
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 11:06:40.939
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/application-client_9.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 11:06:40.939
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/jobXML_2_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 11:06:40.939
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/beans_3_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 11:06:40.940
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jaxb/bindingschema_3_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 11:06:40.940
+!MESSAGE The given URI https://jakarta.ee/xml/ns/validation/validation-configuration-3.0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 11:06:40.941
+!MESSAGE The given URI http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_1.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-08-29 11:06:50.394
+!MESSAGE Classpath changed for project: SpringBootProject_01
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 11:06:50.399
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/application-client_9.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 11:06:50.399
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/jobXML_2_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 11:06:50.399
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/beans_3_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 11:06:50.399
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jaxb/bindingschema_3_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 11:06:50.400
+!MESSAGE The given URI https://jakarta.ee/xml/ns/validation/validation-configuration-3.0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 11:06:50.401
+!MESSAGE The given URI http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_1.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 11:11:53.468
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/application-client_9.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 11:11:53.468
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/jobXML_2_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 11:11:53.468
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/beans_3_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 11:11:53.468
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jaxb/bindingschema_3_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 11:11:53.469
+!MESSAGE The given URI https://jakarta.ee/xml/ns/validation/validation-configuration-3.0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 11:11:53.469
+!MESSAGE The given URI http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_1.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.lsp4e 2 0 2024-08-29 11:29:31.866
+!MESSAGE Javadoc unavailable. Failed to obtain it.
+!STACK 0
+java.lang.InterruptedException
+	at java.base/java.util.concurrent.CompletableFuture.reportGet(CompletableFuture.java:386)
+	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2096)
+	at org.eclipse.lsp4e.jdt.LSJavaHoverProvider.getHoverInfo2(LSJavaHoverProvider.java:65)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:130)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:89)
+	at org.eclipse.jface.text.TextViewerHoverManager$1.run(TextViewerHoverManager.java:155)
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 11:38:13.544
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/application-client_9.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 11:38:13.545
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/jobXML_2_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 11:38:13.545
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/beans_3_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 11:38:13.546
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jaxb/bindingschema_3_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 11:38:13.549
+!MESSAGE The given URI https://jakarta.ee/xml/ns/validation/validation-configuration-3.0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 11:38:13.550
+!MESSAGE The given URI http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_1.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 11:43:15.224
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/application-client_9.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 11:43:15.225
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/jobXML_2_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 11:43:15.225
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/beans_3_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 11:43:15.225
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jaxb/bindingschema_3_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 11:43:15.226
+!MESSAGE The given URI https://jakarta.ee/xml/ns/validation/validation-configuration-3.0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 11:43:15.226
+!MESSAGE The given URI http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_1.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.lsp4e 2 0 2024-08-29 12:15:01.140
+!MESSAGE Javadoc unavailable. Failed to obtain it.
+!STACK 0
+java.lang.InterruptedException
+	at java.base/java.util.concurrent.CompletableFuture.reportGet(CompletableFuture.java:386)
+	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2096)
+	at org.eclipse.lsp4e.jdt.LSJavaHoverProvider.getHoverInfo2(LSJavaHoverProvider.java:65)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:130)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:89)
+	at org.eclipse.jface.text.TextViewerHoverManager$1.run(TextViewerHoverManager.java:155)
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 13:35:36.121
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/application-client_9.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 13:35:36.122
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/jobXML_2_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 13:35:36.122
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/beans_3_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 13:35:36.122
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jaxb/bindingschema_3_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 13:35:36.123
+!MESSAGE The given URI https://jakarta.ee/xml/ns/validation/validation-configuration-3.0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 13:35:36.124
+!MESSAGE The given URI http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_1.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.buildship.core 4 0 2024-08-29 13:46:25.332
+!MESSAGE Unresolved dependency: com.google.firebase:firebase-firestore:25.0.0
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-08-29 13:46:25.458
+!MESSAGE Classpath changed for project: SpringBootProject_01
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 13:46:25.462
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/application-client_9.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 13:46:25.462
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/jobXML_2_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 13:46:25.462
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/beans_3_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 13:46:25.462
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jaxb/bindingschema_3_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 13:46:25.463
+!MESSAGE The given URI https://jakarta.ee/xml/ns/validation/validation-configuration-3.0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 13:46:25.463
+!MESSAGE The given URI http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_1.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 13:59:31.306
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/application-client_9.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 13:59:31.307
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/jobXML_2_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 13:59:31.307
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/beans_3_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 13:59:31.307
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jaxb/bindingschema_3_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 13:59:31.309
+!MESSAGE The given URI https://jakarta.ee/xml/ns/validation/validation-configuration-3.0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 13:59:31.309
+!MESSAGE The given URI http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_1.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-08-29 14:05:57.067
+!MESSAGE Classpath changed for project: SpringBootProject_01
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-08-29 14:06:03.611
+!MESSAGE Classpath changed for project: SpringBootProject_01
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 14:06:03.615
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/application-client_9.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 14:06:03.615
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/jobXML_2_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 14:06:03.615
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/beans_3_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 14:06:03.615
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jaxb/bindingschema_3_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 14:06:03.616
+!MESSAGE The given URI https://jakarta.ee/xml/ns/validation/validation-configuration-3.0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 14:06:03.617
+!MESSAGE The given URI http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_1.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 14:06:09.476
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/application-client_9.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 14:06:09.478
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/jobXML_2_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 14:06:09.479
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/beans_3_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 14:06:09.480
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jaxb/bindingschema_3_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 14:06:09.483
+!MESSAGE The given URI https://jakarta.ee/xml/ns/validation/validation-configuration-3.0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 14:06:09.484
+!MESSAGE The given URI http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_1.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-08-29 14:09:12.786
+!MESSAGE Classpath changed for project: SpringBootProject_01
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 14:09:12.791
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/application-client_9.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 14:09:12.791
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/jobXML_2_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 14:09:12.791
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/beans_3_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 14:09:12.791
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jaxb/bindingschema_3_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 14:09:12.792
+!MESSAGE The given URI https://jakarta.ee/xml/ns/validation/validation-configuration-3.0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 14:09:12.793
+!MESSAGE The given URI http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_1.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 14:09:25.938
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/application-client_9.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 14:09:25.938
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/jobXML_2_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 14:09:25.938
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/beans_3_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 14:09:25.938
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jaxb/bindingschema_3_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 14:09:25.939
+!MESSAGE The given URI https://jakarta.ee/xml/ns/validation/validation-configuration-3.0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 14:09:25.939
+!MESSAGE The given URI http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_1.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 14:10:03.661
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/application-client_9.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 14:10:03.662
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/jobXML_2_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 14:10:03.662
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/beans_3_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 14:10:03.663
+!MESSAGE The given URI https://jakarta.ee/xml/ns/jaxb/bindingschema_3_0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 14:10:03.664
+!MESSAGE The given URI https://jakarta.ee/xml/ns/validation/validation-configuration-3.0.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
+
+!ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-08-29 14:10:03.665
+!MESSAGE The given URI http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_1.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access

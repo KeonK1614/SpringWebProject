@@ -329,14 +329,22 @@
 				
 				
 				
-				 var positions = [
+				  var positions = [
 				    <c:forEach var="item1" items="${restDataList}">
 				    	{
-				    		content: '<div>"${item1.pName}"</div>', 
+				    		content: '<div>"${item1.pname}"</div>', 
 					        latlng: new kakao.maps.LatLng(${item1.y_wgs84}, ${item1.x_wgs84}) 
 				    	}<c:if test="${not empty restDataList}">,</c:if>
 					</c:forEach>	    
-				];  
+				]; 
+/* 				 var positions = [
+				    <c:forEach var="item2" items="${eleDataList}">
+				    	{
+				    		content: '<div>"${item2.sbwy_stn_nm}"</div>', 
+					        latlng: new kakao.maps.LatLng(${item2.y_wgs84}, ${item2.x_wgs84}) 
+				    	}<c:if test="${not empty eleDataList}">,</c:if>
+					</c:forEach>	    
+				];  */ 
 				
 				/* for (var i = 0; i < positions.length; i ++) {
 					// 마커 생성
