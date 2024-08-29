@@ -8,6 +8,6 @@ public class BoardInfoCommentDto {
 	private String writer;
 	private String content;
 	private String targetId;
-	private int refGroup;
+	private String refGroup;
 	private java.sql.Date date;
 }

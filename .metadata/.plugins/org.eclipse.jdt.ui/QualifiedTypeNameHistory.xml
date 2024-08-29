@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
+<<<<<<< HEAD
     <fullyQualifiedTypeName name="org.springframework.jdbc.datasource.DriverManagerDataSource"/>
     <fullyQualifiedTypeName name="com.nimbusds.oauth2.sdk.Role"/>
     <fullyQualifiedTypeName name="org.springframework.security.oauth2.core.user.OAuth2User"/>
@@ -37,4 +38,9 @@
     <fullyQualifiedTypeName name="lombok.RequiredArgsConstructor"/>
     <fullyQualifiedTypeName name="org.springframework.messaging.simp.SimpMessagingTemplate"/>
     <fullyQualifiedTypeName name="org.springframework.messaging.handler.annotation.MessageMapping"/>
+=======
+    <fullyQualifiedTypeName name="com.project.springboot.dto.BoardInfoCommentDto"/>
+    <fullyQualifiedTypeName name="java.util.Comparator"/>
+    <fullyQualifiedTypeName name="lombok.Data"/>
+>>>>>>> 99f087d14f09be87381818b9e4a5898ec62a32d9
 </qualifiedTypeNameHistroy>

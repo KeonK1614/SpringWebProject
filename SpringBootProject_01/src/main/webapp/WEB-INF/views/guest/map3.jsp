@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+
 <!doctype html>
 	<html lang="en" data-bs-theme="auto">
 	<head>	 
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-		<meta charset="utf-8">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>	    <meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="">
 		<meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
@@ -16,7 +17,7 @@
 		<link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
 		<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
-	
+		
 		<style>
 		.bd-placeholder-img {
 		  font-size: 1.125rem;
@@ -85,19 +86,15 @@
 		  --bs-btn-active-color: var(--bs-btn-hover-color);
 		  --bs-btn-active-bg: #5a23c8;
 		  --bs-btn-active-border-color: #5a23c8;
-		}	 
-		</style>	
 		
-		<style>
-	        .content-edit {
-	            display: none;
-	        }
-	        .btn-edit, .btn-save {
-	            margin-right: 5px;
-	        }
-	    </style>
-		 
-	  <link href="../carousel/carousel.css" rel="stylesheet">
+		}	 
+		
+		body { margin-top: 60px; } /* nav의 높이만큼 padding-top 추가 */
+        
+       
+        </style>	 
+		
+		<link href="../carousel/carousel.css" rel="stylesheet">
 	</head>
 	
 	<body>	
@@ -150,7 +147,7 @@
 			         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">문의사항</a>
 			        <ul class="dropdown-menu">
 			          <li><a class="dropdown-item" href="#">자주 물어보는 질문</a></li>
-			          <li><a class="dropdown-item" href="../guest/inquiryBoard">문의게시판</a></li>
+			          <li><a class="dropdown-item" href="inquiryBoard">문의게시판</a></li>
 			        </ul>
 			      </li>
 			   </ul>
@@ -217,186 +214,153 @@
 			</nav>
 		</header>
 	
-	<main>
-	     <div class="col-10 pt-3 mt-3 mx-auto">
-		     <h4><strong>&nbsp;&nbsp;공지사항 게시판</strong> - <small>내용보기</small></h4>
-		         
-			  <div class="row mt-3 mx-1 mx-auto">
-		         <form enctype="multipart/form-data" action="write" method="post" name="writeFrm">
-	                <table class="table table-bordered">
-		                <colgroup>
-		                    <col width="20%"/>
-		                    <col width="30%"/>
-							<col width="20%"/>
-							<col width="*"/>
-		                </colgroup>
-		                <tbody>
-		                	<tr>
-		                        <th class="text-center" style="vertical-align:middle;">제목</th>
-		                        <td>${dto.title}</td>
-		                        <th class="text-center" style="vertical-align:middle;">글번호</th>
-		                        <td align="center">${dto.idx}</td>
-		                    </tr>
-		                	<tr>
-		                        <th class="text-center" style="vertical-align:middle;">작성자</th>
-		                        <td align="center">${dto.id}</td>
-		                        <th class="text-center" style="vertical-align:middle;">작성일</th>
-		                        <td align="center">${dto.postdate}</td>
-		                    </tr>
-		                    <tr>
-		                    	<th class="text-center" style="vertical-align:middle;">조회수</th>
-		                    	<td align="center">${dto.viewCount}</td>
-		                    	<th class="text-center" style="vertical-align:middle;">추천</th>
-		                    	<td align="center">${dto.likeCount}</td>
-		                    </tr>
-		                    <tr style="height: 300px">
-		                        <th class="text-center" style="vertical-align:middle;">내용</th>
-		                        <td colspan="3">
-		                        	<c:if test="${ not empty dto.ofile and isImage eq true }">
-		                        		<br/>
-		                        		<img src="/static/files/${dto.sfile}" style="max-width: 100%;" />
-		                        		<br/>
-		                        	</c:if>
-		                        	${dto.content}
-		                        </td>
-		                    </tr>
-		                    <tr>
-		                        <th class="text-center" style="vertical-align:middle;">첨부파일</th>
-		                        <td colspan="3">
-		                            <c:if test="${ not empty dto.ofile }">
-		                            	${dto.ofile}
-		                            </c:if>
-		                        </td>
-		                    </tr>
-		                </tbody>
-	                </table>
-	                
-	                <%-- <div class="row">
-	                    <div class="col text-right mb-4 d-flex justify-content-end">
-	                        <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='noticeBoard';">리스트보기</button>
-	                        <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='../member/noticeLike?idx=${dto.idx}';">추천</button>
-	                        <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='../admin/noticeEditorForm?idx=${dto.idx}';">수정하기</button>
-	                        <button type="reset" class="btn btn-outline-primary mx-1" onclick="location.href='../admin/noticeDelete?idx=${dto.idx}';">글삭제</button>
-	                        <button type="reset" class="btn btn-outline-primary mx-1" onclick="deletePost(${param.idx});">글삭제</button>
-	                    </div>
-	                </div> --%>
-	                
-	                <!-- 게스트 일 때 -->
-	                <sec:authorize access="isAnonymous()">
-	                	<div class="row">
-		                    <div class="col text-right mb-4 d-flex justify-content-end">
-		                        <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='noticeBoard';">리스트보기</button>
-		                        <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='../guest/noticeLike?idx=${dto.idx}';">추천</button>
-		                    </div>
-	                	</div>
-	                </sec:authorize>
-	                <!-- 로그인 멤버 -->
-                 	<sec:authorize access="hasRole('USER')">
-                 		<div class="row">
-		                    <div class="col text-right mb-4 d-flex justify-content-end">
-		                        <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='noticeBoard';">리스트보기</button>
-		                        <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='../guest/noticeLike?idx=${dto.idx}';">추천</button>
-		                    </div>
-	                	</div>
-                 	</sec:authorize>
-                 	<!-- 로그인 관리자 -->
-	             	<sec:authorize access="hasRole('ADMIN')">
-	             		<div class="row">
-		                    <div class="col text-right mb-4 d-flex justify-content-end">
-		                        <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='noticeBoard';">리스트보기</button>
-		                        <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='../guest/noticeLike?idx=${dto.idx}';">추천</button>
-		                        <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='../admin/noticeEditorForm?idx=${dto.idx}';">수정하기</button>
-	                        	<button type="button" class="btn btn-outline-primary mx-1" onclick="deletePost(${dto.idx});">글삭제</button>
-		                    </div>
-	                	</div>
-	             	</sec:authorize>
-	             </form>
-		   	  </div>      
-		  </div>
-		  
-		  <!-- 댓글 부분 -->
-		  <hr/>
-		  <h4>댓글</h4>
-		  <div class="card">
-            <form action="../member/noticeComment">
-            <input type="hidden" value="${dto.idx}"  name="idx">
-              <div class="card-body">
-                  <textarea id="reply-content" class="form-control" rows="1" name="content1"></textarea>
-              </div>
-              <div class="card-footer">
-                  <button type="submit" id="btn-reply-save" class="btn btn-primary" >등록</button>
-              </div>
-            </form>
-          </div>
-                
-        <table class="table caption-top">
-        <colgroup>
-            <col width="60px">
-            <col width="200px">
-            <col width="80px">
-            <col width="100px">
-        </colgroup>
-          <thead>
-            <tr>
-              <td colspan="4" align="center">댓글</td>
-            </tr>
-            <tr>
-              <td align="center">아이디</td>
-              <td align="center">내용</td>
-              <td align="center">작성일</td>
-              <td align="center">비고</td>
-            </tr>
-          </thead>
-          <tbody>
-          	<c:choose>
-          		<c:when test="${ empty list }">
-          			<tr>
-          				<td colspan="4" align="center">
-          					등록된 댓글이 없습니다.
-          				</td>
-          			</tr>
-          		</c:when>
-          		<c:otherwise>
-          			<c:forEach items="${list}" var="dto" varStatus="loop">
-          				<tr>
-          					<td align="center">${dto.id}</td>
-          					<td>
-          						${dto.content}
-          						<span class="content-text">${dto.content}</span>
-                            	<textarea class="content-edit" style="display: none;">${dto.content}</textarea>
-          					 </td>
-          					<td align="center">${dto.postdate}</td>
-          					<td>
-          						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				              	<button type="button">답글달기</button>
-				              	&nbsp;
-				              	<button type="button" id="editButton" onclick="location.href='../member/noticeCommentEditor?coidx=${dto.coidx}';" aria-label="Edit">수정</button>
-				              	&nbsp;
-				              	<button type="button" onclick="location.href='../member/noticeCommentDelete?coidx=${dto.coidx}';">삭제</button>
-				            </td>
-          				</tr>
-          			</c:forEach>
-          		</c:otherwise>
-          	</c:choose>
-          </tbody>
-        </table>
-        
-        <script>
-			function deletePost(idx)
-			{
-			    var confirmed = confirm("정말로 삭제하겠습니까?"); 
-			    if (confirmed) 
-			    {
-			        var form = document.writeFrm;      
-			        form.method = "post";  
-			       /*  form.action = "../admin/noticeDelete?idx=${dto.idx}"; */
-			        form.action = "../admin/noticeDelete?idx="+idx; 
-			        form.submit();  
-			    }
-			}
-		</script>
-    </main>	 
-			 	
+		<main>
+			<div>
+				<button style="position: absolute; z-index: 9" class="btn btn-danger btn-sm" onclick="Mylocation()">
+					현재위치
+				</button>
+			</div>
+			<div id="map" style="width:600px;height:500px;"></div>
+				<c:forEach var="item1" items="${restDataList}">
+		    		<table border="1" style="width:600px;height:500px;">
+				        <tr>
+				        	<th>장소명</th>
+				        	<td>${item1.pname}</td>
+				        </tr>
+				        <tr>
+				        	<th>주소</th>
+				        	<td>${item1.addr1}${item1.addr2} </td>
+				        </tr>
+				        <tr>
+				        	<th>전화번호</th>
+				        	<td>${item1.phonenum}</td>
+				        </tr>
+				        <tr>
+				        	<th>장소유형</th>
+				        	<td>${item1.ptype}</td>
+				        </tr>
+				        <tr>
+				        	<th>운영시간</th>
+				        	<td>${item1.optime}</td>
+				        </tr>
+				        <tr>
+				        	<th>건물유형</th>
+				        	<td>${item1.btype}</td>
+				        </tr>
+				        <tr>
+				        	<th>상세정보</th>
+				        	<td>${item1.detail1}${item1.detail2}</td>
+				        </tr>
+			        </table>
+				</c:forEach>
+				        
+			
+			<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3f7f9ab0116bd62797e2fbd361dac3a9&libraries=services,clusterer,drawing"></script>
+			<script>
+				var container = document.getElementById('map');
+				var options = {
+					center: new kakao.maps.LatLng(37.569306, 126.992235),
+					level: 3
+				};
+		
+				var map = new kakao.maps.Map(container, options);
+				
+				// 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+				var mapTypeControl = new kakao.maps.MapTypeControl();
+
+				// 지도에 컨트롤을 추가해야 지도위에 표시됩니다
+				// kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
+				map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+
+				// 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+				var zoomControl = new kakao.maps.ZoomControl();
+				map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+				
+				// 현재 위치로 이동하는 함수
+				function Mylocation() {
+				    if (navigator.geolocation) {
+				        navigator.geolocation.getCurrentPosition(function(position) {
+				            var lat = position.coords.latitude;
+				            var lon = position.coords.longitude;
+				            
+				            var locPosition = new kakao.maps.LatLng(lat, lon);
+				            
+				            // 지도의 중심좌표를 현재 위치로 변경합니다
+				            map.setCenter(locPosition);
+				            
+				            // 현재 위치에 마커를 추가합니다
+				            var marker = new kakao.maps.Marker({
+				                map: map,
+				                position: locPosition
+				            });
+				            
+				            /* var message = '<div style="padding:5px;">현재위치</div>'; */
+				            var message = '<div style="width:150px;text-align:center;padding:6px 0;">현재위치</div>';
+				            var infowindow = new kakao.maps.InfoWindow({
+				                content: message
+				            });
+				            infowindow.open(map, marker);
+				            
+				        }, function(error) {
+				            console.error('Geolocation error:', error);
+				        });
+				    } else {
+				        alert("Geolocation is not supported by this browser.");
+				    }
+				}
+				
+				// 마커를 표시할 위치와 내용을 가지고 있는 객체 배열입니다 
+				var positions = [
+					<c:forEach var="item1" items="${restDataList}">
+			            {
+			                content: '${item1.pname}', 
+			                latlng: new kakao.maps.LatLng(${item1.y_wgs84}, ${item1.x_wgs84})
+			            }<c:if test="${not empty restDataList}">,</c:if>
+			        </c:forEach>
+				];
+				
+				for (var i = 0; i < positions.length; i ++) {
+				    // 마커를 생성합니다
+				    var marker = new kakao.maps.Marker({
+				        map: map, // 마커를 표시할 지도
+				        position: positions[i].latlng // 마커의 위치
+				    });
+
+				    // 마커에 표시할 인포윈도우를 생성합니다 
+				    var message = '<div style="width:150px;text-align:center;padding:6px 0;">' + positions[i].content + '</div>';
+				    var infowindow = new kakao.maps.InfoWindow({
+				        content: message // 인포윈도우에 표시할 내용
+				    });
+
+				    // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
+				    // 이벤트 리스너로는 클로저를 만들어 등록합니다 
+				    // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
+				    kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+				    kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+				}
+
+				// 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
+				function makeOverListener(map, marker, infowindow) {
+				    return function() {
+				        infowindow.open(map, marker);
+				    };
+				}
+
+				// 인포윈도우를 닫는 클로저를 만드는 함수입니다 
+				function makeOutListener(infowindow) {
+				    return function() {
+				        infowindow.close();
+				    };
+				}
+			   
+			</script>	       
+			
+			
+			
+				
+		</main>	
+		 	
+		<hr/> 	
 		<!-- <footer class="container">
 		    <p class="float-end"><i class="bi bi-arrow-up-circle"></i><a href="#">Back to top</a></p>
 		    <h3><strong>더조은™</strong></h3>
@@ -430,7 +394,9 @@
 				 </div>
 			 </div>
 		 </div>	
-  </body>
+	</body>
 </html>
 
+
+	
 

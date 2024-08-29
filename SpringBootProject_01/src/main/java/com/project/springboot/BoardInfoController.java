@@ -29,12 +29,18 @@ public class BoardInfoController
 	ServletContext context;
 	@Autowired
 	IBoardInfoDao dao;
-
+	
 	@RequestMapping("/")
 	public String main(Model model)
 	{
 		return "guest/main";
 	}
+	
+//	@RequestMapping("/guest/main")
+//	public String main(Model model)
+//	{
+//		return "guest/main";
+//	}
 	
 	@RequestMapping("/guest/boardInfo")
 	public String userListPage(HttpServletRequest req, Model model, ParameterDTO pDto)
@@ -178,7 +184,7 @@ public class BoardInfoController
 		String sIdx = req.getParameter("idx");
 		
 		BoardInfoDto dto = dao.viewDao(sIdx);
-		String ofileName = dto.getOfile();//dto로  
+		String ofileName = dto.getOfile();
 		String sfileName = dto.getSfile();
 		
 		if (!file.isEmpty()) {

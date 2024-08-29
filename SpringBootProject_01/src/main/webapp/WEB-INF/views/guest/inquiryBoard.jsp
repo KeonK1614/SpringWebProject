@@ -356,7 +356,7 @@
 															<sec:authorize access="!isAnonymous() and  hasRole('ADMIN')"> <!-- 로그인 되어있을때 -->
 																<a href="../member/inquiryBoardview?idx=${dto.idx }">${dto.title}</a>
 															</sec:authorize>
-															<sec:authorize access="!isAnonymous() and  hasRole('USER')"> <!-- 로그인 되어있을때 -->
+															<sec:authorize access="!isAnonymous() and hasRole('USER')"> <!-- 로그인 되어있을때 -->
 																<c:if test="${ dto.id == Id }">
 																	<a href="../member/inquiryBoardPass?idx=${dto.idx }">${dto.title}</a>
 																</c:if>
