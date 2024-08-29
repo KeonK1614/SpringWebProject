@@ -17,7 +17,7 @@ public class FirebaseMapController {
 	@Autowired
 	private FirebaseMapService firebaseMapService;
 	
-	@RequestMapping("/guest/map")
+	@RequestMapping("/guest/exampleView")
 	public String getNearbyRestData(@RequestParam(value="centerX", required=false) Double centerX,
 								@RequestParam(value="centerY", required=false) Double centerY,
 								@RequestParam(value="radius", defaultValue = ".01") double radius, Model model) {
@@ -29,11 +29,38 @@ public class FirebaseMapController {
 			 List<RestMap> restDataList = firebaseMapService.getNearbyRestrooms(centerX, centerY, radius);
 			 System.out.println("dataList: " + restDataList);
 			 model.addAttribute("restDataList", restDataList);
+			 
+			 List<EleMap> eleDataList = firebaseMapService.getNearbyElevators(centerX, centerY, radius);
+			 System.out.println("dataList: " + eleDataList);
+			 model.addAttribute("dataList", eleDataList);
 		} catch (Exception e) {
 			e.printStackTrace();		
 		}
 		
-		return "guest/map";
+		return "guest/exampleView";
+	}
+	
+	@RequestMapping("/guest/map3")
+	public String getNearbyRestData1(@RequestParam(value="centerX", required=false) Double centerX,
+			@RequestParam(value="centerY", required=false) Double centerY,
+			@RequestParam(value="radius", defaultValue = ".01") double radius, Model model) {
+		if (centerX == null||centerY==null) {
+			centerX = 127.0016;
+			centerY = 37.5642;
+		}
+		try {
+			List<RestMap> restDataList = firebaseMapService.getNearbyRestrooms(centerX, centerY, radius);
+			System.out.println("dataList: " + restDataList);
+			model.addAttribute("restDataList", restDataList);
+			
+			List<EleMap> eleDataList = firebaseMapService.getNearbyElevators(centerX, centerY, radius);
+			System.out.println("dataList: " + eleDataList);
+			model.addAttribute("dataList", eleDataList);
+		} catch (Exception e) {
+			e.printStackTrace();		
+		}
+		
+		return "guest/map3";
 	}
 	
 //	@RequestMapping("/guest/nearbyData2")
