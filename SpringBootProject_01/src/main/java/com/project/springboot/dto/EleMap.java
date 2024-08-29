@@ -13,5 +13,6 @@ public class EleMap {
 	private String sgg_nm;//sgg_nm 시군구이름
 	private Double x_wgs84; //좌표
 	private Double y_wgs84; //좌표
+	private double distance;
 
 }
