@@ -21,8 +21,10 @@ public class WebSocketController {
 //	}
 	
 	@RequestMapping("guest/webscoketPopup")
-	public String webscoketPopup() {
+	public String webscoketPopup(Model model) {
+		String sId = SecurityContextHolder.getContext().getAuthentication().getName();
 		
+		model.addAttribute("Id", sId);
 		return "guest/webscoketPopup";
 	}
 	
@@ -32,10 +34,8 @@ public class WebSocketController {
 	}
 
 	@RequestMapping("member/chatWindow")
-	public String chatWindow(Model model) {
-		String sId = SecurityContextHolder.getContext().getAuthentication().getName();
+	public String chatWindow() {
 		
-		model.addAttribute("Id", sId);
 		return "member/chatWindow";
 	}
 	

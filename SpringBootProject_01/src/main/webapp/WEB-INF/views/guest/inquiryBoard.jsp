@@ -5,6 +5,7 @@
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <jsp:useBean id="now" class="java.util.Date" />
 <fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />
+<c:set var="hash" value="******" />
 
 <!doctype html>
 	<html lang="en" data-bs-theme="auto">
@@ -149,7 +150,7 @@
 		 /* link - 아직 클릭하지 않은 경우 */
 		 a:link { color: black; text-decoration: none;}	
 		 /* visited - 한번 클릭하거나 전에 클릭한적 있을 경우 */
-		 a:visited { color: bule; text-decoration: none;}	
+		 a:visited { color: black; text-decoration: none;}	
 		 /* hover - 마우스를 해당 링크에 위치했을 경우*/
 		 a:hover { color: black; text-decoration: underline;}
 		</style>
@@ -214,18 +215,42 @@
 			        </ul>
 			      </li>
 			   </ul>
-			  	<ul class="navbar-nav">
-			      	<li class="nav-item">
-			       	<a class="nav-link" href="login">
-			       	<button type="button" class="btn btn-outline-light">
-			       	<i class='bi bi-box-arrow-in-right'></i> 로그인</button></a>
-			     	</li>
-			      	<li class="nav-item">
-			       	<a class="nav-link" href="join">
-			       	<button type="button" class="btn btn-outline-light">
-			       	<i class='bi bi-person-plus-fill'></i> 회원가입</button></a>
-			     	</li>
-			     	</ul>
+				  	<sec:authorize access="isAnonymous()">
+				             <ul class="navbar-nav">
+				                 <li class="nav-item">
+				                     <a class="nav-link" href="/security/loginform">
+				                         <button type="button" class="btn btn-outline-light">
+				                             <i class='bi bi-box-arrow-in-right'></i> 로그인
+				                         </button>
+				                     </a>
+				                 </li>
+				                 <li class="nav-item">
+				                     <a class="nav-link" href="/guest/joinform">
+				                         <button type="button" class="btn btn-outline-light">
+				                             <i class='bi bi-person-plus-fill'></i> 회원가입
+				                         </button></a>
+				                 </li>
+				             </ul>
+				</sec:authorize>
+				             <!-- 로그인된 상태 -->
+				<sec:authorize access="isAuthenticated()">    
+				    <ul class="navbar-nav">
+				        <li class="nav-item">
+				            <a class="nav-link" href="/logout">
+				                <button type="button" class="btn btn-outline-light">
+				                    <i class="bi bi-box-arrow-right"></i> 로그아웃
+				                </button>
+				            </a>
+				        </li>
+				       <li class="nav-item">
+				            <a class="nav-link" href="/member/myPage">
+				                <button type="button" class="btn btn-outline-light">
+				                    <i class="bi bi-person-lines-fill"></i> 마이페이지
+				                </button>
+				            </a>
+				        </li>
+				    </ul>
+           </sec:authorize>
 			    </div>
 			  </div>
 			</nav>
@@ -365,7 +390,16 @@
 										    </c:choose>  
 										    
 										    
-											<td>${dto.id}</td>
+											<td>
+												<c:choose>
+							                 		<c:when test="${ dto.id == 'dk9ahs' }">  
+												        관리자
+												    </c:when>
+								                 	<c:otherwise> 
+														${dto.id.substring(0,3)}<c:out value="${hash}" />
+								                 	</c:otherwise>
+								                 </c:choose>
+											</td>
 											<td>${dto.postDate}</td>
 											<td>
 												<c:choose>

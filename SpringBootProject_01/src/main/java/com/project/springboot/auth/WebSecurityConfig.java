@@ -1,5 +1,6 @@
 package com.project.springboot.auth;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -9,9 +10,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
-import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 import org.springframework.security.web.firewall.DefaultHttpFirewall;
 import org.springframework.security.web.firewall.HttpFirewall;
+
+import com.project.springboot.oauth2.CustomOAuth2UserService;
 
 import jakarta.servlet.DispatcherType;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +23,7 @@ import lombok.RequiredArgsConstructor;
 public class WebSecurityConfig {
 	
 	private final AuthenticationFailureHandler myAuthFailureHandler;
-
+	
 	@Bean
 	public PasswordEncoder getPasswordEncoder() {
 		return new BCryptPasswordEncoder();
@@ -67,7 +69,6 @@ public class WebSecurityConfig {
 		
 		http.exceptionHandling((expHandling) -> expHandling
 				.accessDeniedPage("/denied"));
-  
     
     return http.build(); 
 		

@@ -13,7 +13,7 @@ import com.project.springboot.dto.UserDTO;
 import lombok.Data;
 
 @Data
-public class AccountDetails implements UserDetails {
+public class AccountDetails implements UserDetails{
 
 	private static final long serialVersionUID = 1L; 
 	private UserDTO user;
@@ -21,6 +21,7 @@ public class AccountDetails implements UserDetails {
 	public AccountDetails(UserDTO user) {
 		this.user=user;
 	}
+
 	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {

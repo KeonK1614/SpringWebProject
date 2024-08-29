@@ -227,7 +227,7 @@
 	    <button class="btn text-white w-100 my-2"style="background-color: #009E73;" id="submit" type="submit">로그인</button>
 	    <button class="btn btn-outline-danger w-100 my-1" type="submit">구글로그인</button>
 		<button class="btn btn-outline-success w-100 my-1" type="submit">네이버로그인</button>
-		<button class="btn btn-warning w-100 my-1" type="submit">카카오톡로그인</button>
+		<button class="btn btn-warning w-100 my-1" onclick="location.href='/oauth2/authorization/kakao';">카카오톡로그인</button>
 		<button class="btn btn-primary w-100 my-1" type="submit">페이스북로그인</button>
 	  </form>
 

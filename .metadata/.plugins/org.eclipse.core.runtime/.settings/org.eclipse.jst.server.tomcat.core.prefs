@@ -2,4 +2,8 @@
 <<<<<<<=HEAD
 >>>>>>>=DV4
 eclipse.preferences.version=1
+<<<<<<< HEAD
+locationorg.eclipse.jst.server.tomcat.runtime.101=C\:/FrontEnd/apache-tomcat-10.1.25-windows-x64/apache-tomcat-10.1.25
+=======
 locationorg.eclipse.jst.server.tomcat.runtime.101=/Users/gupro/Documents/apache-tomcat-10.1.25
+>>>>>>> 99f087d14f09be87381818b9e4a5898ec62a32d9
