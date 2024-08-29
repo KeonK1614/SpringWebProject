@@ -89,7 +89,6 @@
 		<item key="WizardProjectsImportPage.STORE_CLOSE_CREATED_PROJECTS_ID" value="false"/>
 		<item key="WizardProjectsImportPage.STORE_HIDE_CONFLICTING_PROJECTS_ID" value="false"/>
 		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
-			<item value="C:\FrontEnd\Springboot2\springboot02-master\Ex41_Firebase_Realtime"/>
 			<item value="C:\FrontEnd\Springboot2\SpringBootMH01\B14WebSocket"/>
 			<item value="C:\FrontEnd\new\SpringBootProject_01"/>
 			<item value="C:\FrontEnd\Springboot2\SpringBootMH01\B09cSecurityJDBC"/>
@@ -117,7 +116,6 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
-			<item value="C:\FrontEnd\Spring-WebSocket-WebRTC-Chatting-master-webrtc-catchmind"/>
 			<item value="C:\FrontEnd\Springboot2\SpringBootMH01\B14WebSocket"/>
 			<item value="C:\FrontEnd\SpringBootProject_02"/>
 			<item value="C:\FrontEnd\Springboot2\springboot02-master\Ex30_Security_Database"/>
@@ -125,9 +123,9 @@
 			<item value="C:\FrontEnd\new\SpringBootProject_01"/>
 		</list>
 		<section name="SmartImportWizard.dialogBounds">
-			<item key="DIALOG_X_ORIGIN" value="145"/>
+			<item key="DIALOG_X_ORIGIN" value="340"/>
 			<item key="DIALOG_Y_ORIGIN" value="142"/>
-			<item key="DIALOG_WIDTH" value="942"/>
+			<item key="DIALOG_WIDTH" value="938"/>
 			<item key="DIALOG_HEIGHT" value="726"/>
 			<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
 		</section>
