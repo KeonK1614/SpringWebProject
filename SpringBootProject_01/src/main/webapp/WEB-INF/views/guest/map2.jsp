@@ -289,7 +289,7 @@
 				var positions = [
 			        <c:forEach var="item1" items="${restDataList}">
 			            {
-			                content: '${item1.fname}', 
+			                content: '${item1.pname}', 
 			                latlng: new kakao.maps.LatLng(${item1.y_wgs84}, ${item1.x_wgs84})
 			            }<c:if test="${not empty restDataList}">,</c:if>
 			        </c:forEach>
