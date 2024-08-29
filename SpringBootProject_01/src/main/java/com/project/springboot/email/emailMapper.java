@@ -3,7 +3,7 @@ package com.project.springboot.email;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import com.project.springboot.jdbc.UserDTO;
+import com.project.springboot.dto.UserDTO;
 
 @Mapper
 public interface emailMapper {

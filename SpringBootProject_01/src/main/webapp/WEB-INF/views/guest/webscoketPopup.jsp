@@ -37,6 +37,8 @@
 	    }  */
 	    
 	    function chatWinOpen() {
+	    	var id = document.getElementById("chatId");
+	    	
 	        var s_width = window.screen.width;
 	        var s_height = window.screen.height;
 
@@ -47,7 +49,7 @@
 	        var topVar = s_height / 2 - newHeight / 2;
 
 	        // 새 창 열기
-	        var newWindow = window.open("../member/chatWindow", "newPopup", 
+	        var newWindow = window.open("../member/chatWindow?chatId=" + id.value, "newPopup", 
 	            "width=" + newWidth + ",height=" + newHeight + ",left=" + leftVar + ",top=" + topVar);
 
 	        // 부모 창 닫기
@@ -146,6 +148,7 @@
 		      <div class="modal-body p-4 text-center">
 		        <h5 class="mb-0">채팅 상담을 시작하시겠습니까?</h5>
 		        <p class="mb-0">채팅 상담시 상담사와 연결됩니다.</p>
+		      	대화명 : <input type="text" id="chatId" value="${Id }"/>
 		      </div>
 		      <div class="modal-footer flex-nowrap p-0">
 		        <button type="button" class="btn btn-lg btn-link fs-6 text-decoration-none col-6 py-3 m-0 rounded-0 border-end"

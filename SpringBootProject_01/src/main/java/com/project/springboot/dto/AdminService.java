@@ -1,4 +1,4 @@
-package com.project.springboot.jdbc;
+package com.project.springboot.dto;
 
 
 import java.util.List;
@@ -6,8 +6,6 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-
-import com.project.springboot.dto.ParameterDTO;
 
 @Mapper
 public interface AdminService {

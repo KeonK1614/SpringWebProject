@@ -45,9 +45,7 @@
 
 <body> 
 	 <!-- 파라미터로 전달된 대화명을 얻어와서 사용 -->
-    
-    <input type="hidden" id="chatId" value="${ Id}"  />
-<%--     <input type="hidden" id="chatId" value="${ Id}"  /> --%>
+    <input type="hidden" id="chatId" value="${param.chatId}"  />
 
     <!-- 채팅 내역이 출력되는 부분 -->
     <div id="chatWindow"  class="scroll bg-success p-2 text-dark bg-opacity-10"></div>
@@ -95,7 +93,12 @@ function sendMessage() {
 	    							"<span class='Msg'>" + chatMessage.value + "</span>" +							
 								"</div>"
 		//웹소켓 서버로 메세지를 전송한다. 전송형식은 '채팅아이디|메세지'     							
-	    webSocket.send(chatId + '|' + chatMessage.value);
+	    /* webSocket.send(chatId + '|' + chatMessage.value); */
+		if(chatId != 'admin'){
+	   		webSocket.send(chatId + '|' + '/admin' +chatMessage.value);
+		} else if(chatId == 'admin'){
+		    webSocket.send(chatId + '|' + chatMessage.value);
+		}
 	    //다음 메세지를 즉시 입력할 수 있도록 비워준다. 
 	    chatMessage.value = ""; 
 	    //대화창의 스크롤을 항상 제일 아래로 내려준다. 
@@ -153,8 +156,11 @@ webSocket.onmessage = function(event) {
             	모든 사용자에게 메세지를 Echo하지만 if문을 통해 한사람
             	에게만 디스플레이된다. 
           		*/
-                var temp = content.replace(("/" + chatId), 
-                		"[귓속말] : ");
+            	if (sender != 'admin'){
+               		var temp = content.replace(("/" + chatId), 	"[문의] : ");
+          		} else if (sender == 'admin'){
+                	var temp = content.replace(("/" + chatId), 	"[답변] : ");
+          		}
                 chatWindow.innerHTML += "<div class='yourId'> " + sender + "</div>";
                 chatWindow.innerHTML += "<div class='yourMsg'>" + 
 											"<span class='sendMsg'>"  + temp + "</span>" +
