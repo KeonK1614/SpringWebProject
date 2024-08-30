@@ -39,6 +39,16 @@ public class WebSocketController {
 		return "member/chatWindow";
 	}
 	
+	@RequestMapping("member/chatWindow2")
+	public String chatWindow2(Model model) {
+		String sId = SecurityContextHolder.getContext().getAuthentication().getName();
+		
+		model.addAttribute("Id", sId);
+		
+		
+		return "member/chatWindow2";
+	}
+	
 	@Bean
 	public ServerEndpointExporter serverEndpointExporter()
 	{
