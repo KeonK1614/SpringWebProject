@@ -5,17 +5,19 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import com.project.springboot.jdbc.AdminService;
-import com.project.springboot.jdbc.IDao;
-import com.project.springboot.jdbc.UserDTO;
+import com.project.springboot.dao.IMemberDao;
+import com.project.springboot.dto.AdminService;
+import com.project.springboot.dto.UserDTO;
 
 @Service
 public class UserService {
 
 	@Autowired
-	private IDao idao;
+	private IMemberDao idao;
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	@Autowired
@@ -36,6 +38,11 @@ public class UserService {
 	public UserDTO findByUsername(String id) {
 		
 		return idao.findByUsername(id);
+	};
+	
+	public UserDTO findByUsername(String id, String providerId) {
+		
+		return idao.findBySocailrname(id, providerId);
 	};
 	
 	public void updateUserAuth(String id, String authority) {
@@ -62,5 +69,37 @@ public class UserService {
 		}
 	}
 	
+	public int joinSocial(UserDTO user) {
+		return idao.joinSocial(user);
+	}
+	
+	
+	@Transactional
+    public UserDTO handleUser(String id, String email, String password, String name, OAuth2User oAuth2User) {
+        // 사용자 조회
+        UserDTO user = idao.findByUsername(id);
+
+        if (user == null) {
+            // 새로운 사용자 생성
+            String encodedPassword = passwordEncoder.encode(password); // 비밀번호 암호화
+            user = UserDTO.builder()
+                    .id(id)
+                    .pass(encodedPassword) // 암호화된 비밀번호 설정
+                    .name(name)
+                    .email(email)
+                    .authority("ROLE_GUEST") // 기본 권한
+                    .enabled(1) // 계정 활성화 상태
+                    .build();
+            idao.joinDao(user);
+        } else {
+            // 기존 사용자 로그
+        }
+
+        // OAuth2User의 속성에 따라 UserDTO를 업데이트할 수 있습니다
+        // 예를 들어, OAuth2User의 추가 정보를 활용할 수 있습니다
+        // userEntity = updateUserFromOAuth2User(userEntity, oAuth2User);
+
+        return user;
+    }
 	
 }

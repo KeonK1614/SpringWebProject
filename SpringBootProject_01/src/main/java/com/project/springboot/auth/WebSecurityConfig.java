@@ -1,17 +1,26 @@
 package com.project.springboot.auth;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.core.session.SessionRegistry;
+import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
-import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.firewall.DefaultHttpFirewall;
 import org.springframework.security.web.firewall.HttpFirewall;
+import org.springframework.security.web.session.HttpSessionEventPublisher;
+
+import com.project.springboot.oauth2.CustomOAuth2UserService;
 
 import jakarta.servlet.DispatcherType;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +30,16 @@ import lombok.RequiredArgsConstructor;
 public class WebSecurityConfig {
 	
 	private final AuthenticationFailureHandler myAuthFailureHandler;
+	private final AuthenticationSuccessHandler myAuthSucceessHandler;
+	
+	@Autowired
+	private CustomSessionExpiredStrategy customSessionExpiredStrategy;
+	@Autowired
+	private CustomOAuth2UserService customOAuth2UserService;
 
+	@Value("${spring.security.debug:false}")
+	boolean securityDebug;
+	
 	@Bean
 	public PasswordEncoder getPasswordEncoder() {
 		return new BCryptPasswordEncoder();
@@ -51,7 +69,7 @@ public class WebSecurityConfig {
 				.loginPage("/security/loginform")
 				.permitAll()
 				.loginProcessingUrl("/security/loginform")
-		        .defaultSuccessUrl("/")
+				.successHandler(myAuthSucceessHandler)
 		        .failureHandler(myAuthFailureHandler)
 		        .usernameParameter("id")
 		        .passwordParameter("pass")
@@ -67,8 +85,28 @@ public class WebSecurityConfig {
 		
 		http.exceptionHandling((expHandling) -> expHandling
 				.accessDeniedPage("/denied"));
+		
+		http.headers((headers) -> headers
+	    		.frameOptions(frameOptions -> frameOptions.disable())
+	    		);
+		
+		//소셜로그인
+	    http.oauth2Login((oauth) -> oauth
+	    		.userInfoEndpoint(endPoint -> endPoint
+	    			.userService(customOAuth2UserService)
+	    			)
+	    		);
   
-    
+	    //중복로그인 방지
+	    http.sessionManagement((sessionManagement)-> sessionManagement
+	    		.sessionFixation().changeSessionId() //세션고정 방식 
+	    		.maximumSessions(1) //세션 허용수 
+	    		.expiredSessionStrategy(customSessionExpiredStrategy)
+	    		.maxSessionsPreventsLogin(false) //허용수를 넘길시 기존로그인 사용자 로그아웃 (true 는 현재 요청을 처리)
+	    		.expiredUrl("/security/loginform")//세션 만료시 넘어갈 홈페이지
+	    		.sessionRegistry(sessionRegistry()) //로그인 한 사용자 기억
+	    		);
+	    
     return http.build(); 
 		
 	}
@@ -84,4 +122,22 @@ public class WebSecurityConfig {
 	public HttpFirewall defaultHttpFirewall() {
 	    return new DefaultHttpFirewall();
 	}
+	
+	
+	@Bean
+	public SessionRegistry sessionRegistry() {
+	    return new SessionRegistryImpl();
+	}
+	
+	// HttpSession 이벤트를 Spring 이벤트로 변환
+	@Bean
+	public static ServletListenerRegistrationBean<HttpSessionEventPublisher> httpSessionEventPublisher() {
+	    return new ServletListenerRegistrationBean<>(new HttpSessionEventPublisher());
+	}
+	
+    @Bean
+    public WebSecurityCustomizer webSecurityCustomizer() {
+        return (web) -> web.debug(securityDebug);
+    }
+    
 }

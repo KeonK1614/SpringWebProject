@@ -15,12 +15,9 @@
 	    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/">
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
 	    
-
 	    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
-
-	<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+		<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
 	    <style>
 	      .bd-placeholder-img {
@@ -185,6 +182,7 @@
 	<script type="text/javascript">
 	 $(document).ready(function(){
 			$("#submit").on("click", function(){
+				
 				if($("#username").val()==""){
 					$('#id-feedback').text('아이디를 입력해주세요.').css('color', 'red');
 					$("#id").focus();
@@ -195,6 +193,7 @@
 					$("#pass").focus();
 					return false;
 				}
+				
 			});
 		})	
 	</script>
@@ -203,7 +202,7 @@
 	    <img class="mx-auto d-block mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
 	    <h1 class="h3 mb-3 fw-normal text-center">로그인</h1>
 	    <div class="form-floating">
-	      <input type="text" name="id"class="form-control" id="username" placeholder="id를 입력하세요" required >
+	      <input type="text" name="id" class="form-control" id="username" placeholder="id를 입력하세요" required    >
 	      <label for="floatingInput">Id</label>
 	      <span id="id-feedback"></span>
 	    </div>
@@ -212,24 +211,32 @@
 	      <label for="floatingPassword">Password</label>
 	      <span id="pass-feedback"></span>
 	    </div>
-	<span>
-	    <c:if test="${error}">
-	        <p id="valid" class="alert alert-danger">${exception}</p>
-	    </c:if>
-	</span>
-
+		<span>
+		    <c:if test="${error}">
+		        <p id="valid" class="alert alert-danger">${exception}</p>
+		    </c:if>
+		</span>
 		<div>
 		<a style="text-decoration: none; color: black;" href="/security/findId">아이디찾기</a>&nbsp;&nbsp;&nbsp;&nbsp;
-		<a style="text-decoration: none; color: black;" href="#">비밀번호찾기</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a style="text-decoration: none; color: black;" href="/security/findPwd">비밀번호찾기</a>&nbsp;&nbsp;&nbsp;&nbsp;
 		<a style="text-decoration: none; color: black;" href="/guest/joinform">회원가입</a>
 		</div>	
 
 	    <button class="btn text-white w-100 my-2"style="background-color: #009E73;" id="submit" type="submit">로그인</button>
-	    <button class="btn btn-outline-danger w-100 my-1" type="submit">구글로그인</button>
-		<button class="btn btn-outline-success w-100 my-1" type="submit">네이버로그인</button>
-		<button class="btn btn-warning w-100 my-1" type="submit">카카오톡로그인</button>
-		<button class="btn btn-primary w-100 my-1" type="submit">페이스북로그인</button>
+	    <button class="btn btn-outline-danger w-100 my-1" type="submit" onclick="location.href='/oauth2/authorization/google'">구글로그인</button>
+		<button class="btn btn-outline-success w-100 my-1" type="submit" onclick="location.href='/oauth2/authorization/naver'">네이버로그인</button>
+		<button class="btn btn-warning w-100 my-1" type="submit" onclick="location.href='/oauth2/authorization/kakao'">카카오톡로그인</button>
+		<button class="btn btn-primary w-100 my-1" type="submit" onclick="location.href='/oauth2/authorization/facebook'">페이스북로그인</button>
 	  </form>
+	  
+	  <div class="duplicate-login-alert">
+		  <c:if test="${sessionScope.DUPLICATE_LOGIN eq 'true'}">
+		        <script> 
+		            alert("다른 기기에서 로그인되어 현재 로그인이 종료되었습니다."); 
+		        </script>
+		        <c:remove var="DUPLICATE_LOGIN"/>
+		    </c:if>
+		</div>
 
 	    <!-- START THE FEATURETTES -->
 
@@ -261,6 +268,18 @@
 	</main>
 	
 	<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+	<script>
+		// '#_=_'은  보안 세션 악용을 보호하기 위해 Facebook(META)에 의해 추가되었다.
+		// Facebook에 따르면 이를 처리하는 것은 개발자의 책임이다.
+		console.log("aaa" + window.location.hash);
+		if (window.location.hash == '#_=_'){
+			console.log("bbb");
+			
+			history.replaceState
+				? history.replaceState(null, null, window.location.href.split('#')[0])
+				: window.location.hash = '';
+		}
+	</script>
 
 	    </body>
 	</html>
