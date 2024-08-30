@@ -1,17 +1,10 @@
 package com.project.springboot.dto;
 
-import java.sql.Timestamp;
 import java.util.Date;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
 public class UserDTO {
 	
 
@@ -26,11 +19,6 @@ public class UserDTO {
 	private Date regidate;
 	private String authority;
 	private int enabled;
-	private String provider;
-	private String providerId;
-	private int IsLock;
-	private int failCount;
-	private Timestamp LockTime;
 
 
 }

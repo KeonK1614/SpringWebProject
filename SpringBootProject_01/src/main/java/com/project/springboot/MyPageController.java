@@ -9,10 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.project.springboot.dao.IMemberDao;
 import com.project.springboot.dto.UserDTO;
-import com.project.springboot.oauth2.SessionUser;
 
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class MyPageController {
@@ -20,42 +18,16 @@ public class MyPageController {
 	@Autowired
 	IMemberDao member;
 	
-//	@RequestMapping("/member/myPageView")
-//	public String myPageView(Principal principal, Model model)
-//	{
-//		String loginId = principal.getName();
-//		UserDTO dto = member.findByUsername(loginId);
-//
-//		model.addAttribute("dto", dto);
-//
-//		return "member/myPageView";
-//	} 	String providerId = principal.getName();
-	
 	@RequestMapping("/member/myPageView")
-	public String myPageView(
-			Principal principal, Model model, HttpSession session)
+	public String myPageView(Principal principal, Model model)
 	{
-		
-		   String loginId = principal.getName();
-		   SessionUser user = (SessionUser) session.getAttribute("user");
-		    
-		    UserDTO dto = null;
+		String loginId = principal.getName();
+		UserDTO dto = member.findByUsername(loginId);
 
-		    if(user !=null && user.getProviderId() != null) {
-		        // 소셜 로그인 처리
-		        dto = member.findBySocailrname(null, user.getProviderId());
-		    } 
-		    else {
-		        // 일반 로그인 처리
-		        dto = member.findBySocailrname(loginId, null);
-		    }
-		   
-		    
-		    model.addAttribute("dto", dto);
-		    
+		model.addAttribute("dto", dto);
+
 		return "member/myPageView";
 	}
-	
 	
 	@RequestMapping("/member/myPageEdit")
 	public String myPageEdit(Principal principal, Model model)

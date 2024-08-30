@@ -30,16 +30,19 @@ public class BoardInfoController
 	@Autowired
 	IBoardInfoDao dao;
 	
+<<<<<<< HEAD
 //	@RequestMapping("/") 
 //	public @ResponseBody String root() throws Exception 
 //	{
 //	  return "project"; 
 //	}
 	 
-
+	@RequestMapping("/")
+	public String root() throws Exception
+=======
 	@RequestMapping("/")
 	public String main(Model model)
-
+>>>>>>> DV5
 	{
 		return "guest/main";
 	}

@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="jakarta.tags.core" prefix="c" %>    
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 	<!doctype html>
 	<html lang="en" data-bs-theme="auto">
@@ -103,8 +102,8 @@
 	    
 	    <script type="text/javascript">
 		    var fnAlert = function() {
-		    	alert('회원 정보를 수정했습니다.');
-		   
+		        location.href="page";
+		        alert('수정이 완료 되었습니다.');
 		    }
 	    </script>
 	    
@@ -115,17 +114,17 @@
 		<header>
 			<nav class="navbar navbar-expand-md fixed-top" style="background-color: #7FA1C3;">
 			  <div class="container-fluid">
-			    <a class="navbar-brand" href="main">Carousel</a>
+			    <a class="navbar-brand" href="/">로고</a>
 			    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
 			      <span class="navbar-toggler-icon"></span>
 			    </button>
 			   <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
 			      <ul class="navbar-nav me-auto mb-2 mb-md-0">
 			      <li class="nav-item">
-			        <a class="nav-link" aria-current="page" href="#">home</a>
+			        <a class="nav-link" aria-current="page" href="#">홈페이지소개</a>
 			      </li>
 			      <li class="nav-item">
-			        <a class="nav-link" href="#">공지사항</a>
+			        <a class="nav-link" href="/guest/noticeBoard">공지사항</a>
 			      </li>
 			      <li class="nav-item">
 			        <a class="nav-link" href="#">지도</a>
@@ -133,7 +132,7 @@
 			      <li class="nav-item dropdown">
 			         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">커뮤니티</a>
 			          <ul class="dropdown-menu">
-			            <li><a class="dropdown-item" href="#">정보 게시판</a></li>
+			            <li><a class="dropdown-item" href="/guest/boardInfo">정보 게시판</a></li>
 			            <li><a class="dropdown-item" href="#">인기 게시판</a></li>
 			         	</ul>
 			         </li>
@@ -141,46 +140,68 @@
 			         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">문의사항</a>
 			        <ul class="dropdown-menu">
 			          <li><a class="dropdown-item" href="#">자주 물어보는 질문</a></li>
-			          <li><a class="dropdown-item" href="#">1대1문의</a></li>
+			          <li><a class="dropdown-item" href="guest/inquiryBoard">문의게시판</a></li>
 			        </ul>
 			      </li>
 			   </ul>
-				  	<sec:authorize access="isAnonymous()">
-				             <ul class="navbar-nav">
-				                 <li class="nav-item">
-				                     <a class="nav-link" href="/security/loginform">
-				                         <button type="button" class="btn btn-outline-light">
-				                             <i class='bi bi-box-arrow-in-right'></i> 로그인
-				                         </button>
-				                     </a>
-				                 </li>
-				                 <li class="nav-item">
-				                     <a class="nav-link" href="/guest/joinform">
-				                         <button type="button" class="btn btn-outline-light">
-				                             <i class='bi bi-person-plus-fill'></i> 회원가입
-				                         </button></a>
-				                 </li>
-				             </ul>
-				</sec:authorize>
-				             <!-- 로그인된 상태 -->
-				<sec:authorize access="isAuthenticated()">    
-				    <ul class="navbar-nav">
-				        <li class="nav-item">
-				            <a class="nav-link" href="/logout">
-				                <button type="button" class="btn btn-outline-light">
-				                    <i class="bi bi-box-arrow-right"></i> 로그아웃
-				                </button>
-				            </a>
-				        </li>
-				       <li class="nav-item">
-				            <a class="nav-link" href="/member/myPageView">
-				                <button type="button" class="btn btn-outline-light">
-				                    <i class="bi bi-person-lines-fill"></i> 마이페이지
-				                </button>
-				            </a>
-				        </li>
-				    </ul>
+
+			<sec:authorize access="isAnonymous()">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/security/loginform">
+                            <button type="button" class="btn btn-outline-light">
+                                <i class='bi bi-box-arrow-in-right'></i> 로그인
+                            </button>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/guest/joinform">
+                            <button type="button" class="btn btn-outline-light">
+                                <i class='bi bi-person-plus-fill'></i> 회원가입
+                            </button>
+                        </a>
+                    </li>
+                </ul>
+			</sec:authorize>
+                <!-- 로그인된 상태 -->
+            <sec:authorize access="hasRole('USER')">    
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">
+                            <button type="button" class="btn btn-outline-light">
+                                <i class="bi bi-box-arrow-right"></i> 로그아웃
+                            </button>
+                        </a>
+                    </li>
+                   <li class="nav-item">
+                        <a class="nav-link" href="/member/mypage">
+                            <button type="button" class="btn btn-outline-light">
+                                <i class="bi bi-person-lines-fill"></i> 마이페이지
+                            </button>
+                        </a>
+                    </li>
+                </ul>
            </sec:authorize>
+           
+           <sec:authorize access="hasRole('ADMIN')">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">
+                            <button type="button" class="btn btn-outline-light">
+                                <i class="bi bi-box-arrow-right"></i> 로그아웃
+                            </button>
+                        </a>
+                    </li>
+                   <li class="nav-item">
+                        <a class="nav-link" href="/member/mypage">
+                            <button type="button" class="btn btn-outline-light">
+                                <i class="bi bi-person-lines-fill"></i> 회원관리페이지
+                            </button>
+                        </a>
+                    </li>
+                </ul>
+           </sec:authorize>
+
 			    </div>
 			  </div>
 			</nav>
@@ -190,46 +211,80 @@
 			<div class="input-form-backgroud row">
 			      <div class="input-form col-md-12 mx-auto">
 			        <h4 class="mb-3">수정 페이지</h4>
-			        <form class="validation-form" action="/member/myPageUpdate" method="post" novalidate>
+			        <form class="validation-form" novalidate>
 			        					
 						<div class="mb-3">
 						  <label for="id">성명</label>
-						  <input type="text" class="form-control border" name="name" value="${dto.name}" style="box-shadow: none;"> 
+						  <input type="text" class="form-control border" id="id" value="장다빈" style="box-shadow: none;" readonly> 
 						</div>	
+					
+						<div class="mb-3">
+						  <label for="id">아이디</label>
+						  <input type="text" class="form-control border" id="id" value="dk9ahs" style="box-shadow: none;" readonly> 
+						</div>
+						
 						<div class="mb-3">
 						  <label for="id">휴대전화</label>
-						  <input type="text" class="form-control border" name="phoneNum" value="${dto.phoneNum}" style="box-shadow: none;" > 
+						  <input type="text" class="form-control border" id="id" value="010-1234-5678" style="box-shadow: none;" readonly> 
 						</div>	
+											
+						<div class="row">
+				            <div class="col-md-6 mb-3">
+				              <label for="pwd">비밀번호</label>
+				              <input type="password" class="form-control" id="pwd" placeholder="영문, 숫자, 특수기호를 모두사용해주세요" value="" required>
+				              <div class="invalid-feedback">
+				                비밀번호를 입력해주세요
+				              </div>
+				            </div>
+				            <div class="col-md-6 mb-3">
+				              <label for="pwdcheck">비밀번호확인</label>
+				              <input type="password" class="form-control" id="pwdcheck" placeholder="비밀번호를 한번 더 입력해주세요" value="" required>
+				              <div class="invalid-feedback">
+				                비밀번호 확인을 입력해주세요.
+				              </div>
+				            </div>
+			          	</div>
 			          	
 			          	<div class="mb-3">
 						  <label for="eamil">이메일</label>
-						  <input type="text" class="form-control" name="email" placeholder="영문과 숫자로 작성해주세요" value="${dto.email}">
+						  <input type="text" class="form-control" id="eamil" placeholder="영문과 숫자로 작성해주세요" required>
 						  <div class="invalid-feedback">
 						    이메일을 입력해주세요.
 						  </div>
 						</div>
-
+			          	
+			            <div class="mb-3">
+				            <label for="day">생년월일</label>
+				            <input type="text" class="form-control" id="day" placeholder="000000" required>
+				            <div class="invalid-feedback">
+				              생년월일을 입력해주세요.
+				            </div>
+			         	</div>	
+						
 			            <div class="mb-3">
 				            <label for="address">주소</label>
 				            <button type="button" class="btn btn-primary btn-sm my-1" style="float:right" onclick="sample6_execDaumPostcode()" value="주소 찾기">
 				            	주소 찾기</button>
-				            <input type="text" class="form-control" id="postcode" name="postcode" value="${dto.postcode }" placeholder="우편번호" required>
-				            <span id="postcode-feedback"></span>
-				            <div class="invalid-feedback">
-				              우편번호를 입력해주세요.
-				            </div>
-				            <br/>
-				            <input type="text" class="form-control" id="address" name="address" value="${dto.address}" placeholder="우편번호" required>
+				            <input type="text" class="form-control" id="sample6_postcode" placeholder="우편번호" required>
 				            <div class="invalid-feedback">
 				              주소를 입력해주세요.
 				            </div>
 				            <br/>
+				            <input type="text" class="form-control" id="sample6_address" placeholder="서울특별시 강남구" required>
+				            <div class="invalid-feedback">
+				              주소를 입력해주세요.
+				            </div>
 			          	</div>
+	
 			          	<div class="mb-3">
 				            <label for="address2">상세주소<span class="text-muted">&nbsp;(필수 아님)</span></label>
-				            <input type="text" class="form-control" id="detailaddress" name="detailaddress" value="${dto.detailaddress}" placeholder="상세주소를 입력해주세요.">
+				            <input type="text" class="form-control" id="sample6_extraAddress" placeholder="상세주소를 입력해주세요.">
 				            <br/>
-				        </div>
+				            <input type="text" class="form-control" id="sample6_detailAddress" placeholder="상세주소를 입력해주세요.">
+			          	</div>	 
+	
+			          <hr class="mb-4">		          
+			          <div class="mb-4"></div>
 			          <button class="btn btn-outline-primary" onclick="javascript:fnAlert()" type="submit">변경</button>
 			        </form>
 			      </div>
@@ -245,9 +300,8 @@
 		</main>
 	
 		<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
-		<!-- 카카오 주소 api -->
-	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>	
-	<script>
+		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+        <script>
             function sample6_execDaumPostcode() {
                 new daum.Postcode({
                     oncomplete: function(data) {
@@ -288,14 +342,14 @@
                         }
         
                         // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                        document.getElementById('postcode').value = data.zonecode;
-                        document.getElementById("address").value = addr;
+                        document.getElementById('sample6_postcode').value = data.zonecode;
+                        document.getElementById("sample6_address").value = addr;
                         // 커서를 상세주소 필드로 이동한다.
-                        document.getElementById("detailaddress").focus();
+                        document.getElementById("sample6_detailAddress").focus();
                     }
                 }).open();
             }
         </script>
-        <!-- 카카오 주소 api 끝 -->
+
 	 </body>
 	</html>

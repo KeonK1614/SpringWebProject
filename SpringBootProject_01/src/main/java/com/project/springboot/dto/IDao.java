@@ -1,4 +1,4 @@
-package com.project.springboot.dto;
+package com.project.springboot.jdbc;
 
 import org.apache.ibatis.annotations.Mapper;
 

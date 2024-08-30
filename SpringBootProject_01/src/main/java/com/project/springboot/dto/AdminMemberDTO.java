@@ -1,6 +1,5 @@
-package com.project.springboot.dto;
+package com.project.springboot.jdbc;
 
-import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -20,11 +19,6 @@ public class AdminMemberDTO {
 	private Date regidate;
 	private String authority;
 	private int enabled;
-	private String provider;
-	private String providerId;
-	private int IsLock;
-	private int failCount;
-	private Timestamp LockTime;
 	
 	private List<String> searchField;
 	private String searchKeyword;

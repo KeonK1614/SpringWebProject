@@ -32,7 +32,13 @@ public class inquiryBoardController
 	inquiryBoardSevice bbs;
 	@Autowired
 	ServletContext context;
+<<<<<<< HEAD
+	
 
+	// 문의 게시판 목록
+=======
+
+>>>>>>> yerim5
 	@RequestMapping("guest/inquiryBoard") 
 	public String inquiryBoard(HttpServletRequest request, Model model)
 	{

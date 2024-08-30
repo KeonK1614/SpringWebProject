@@ -127,22 +127,18 @@
 			        </ul>
 			      </li>
 			   </ul>
-			  	  <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/logout">
-                            <button type="button" class="btn btn-outline-light">
-                                <i class="bi bi-box-arrow-right"></i> 로그아웃
-                            </button>
-                        </a>
-                    </li>
-                   <li class="nav-item">
-                        <a class="nav-link" href="/admin/list">
-                            <button type="button" class="btn btn-outline-light">
-                                <i class="bi bi-person-lines-fill"></i> 회원관리페이지
-                            </button>
-                        </a>
-                    </li>
-                </ul>
+			  	<ul class="navbar-nav">
+			      	<li class="nav-item">
+			       	<a class="nav-link" href="login">
+			       	<button type="button" class="btn btn-outline-light">
+			       	<i class='bi bi-box-arrow-in-right'></i> 로그인</button></a>
+			     	</li>
+			      	<li class="nav-item">
+			       	<a class="nav-link" href="join">
+			       	<button type="button" class="btn btn-outline-light">
+			       	<i class='bi bi-person-plus-fill'></i> 회원가입</button></a>
+			     	</li>
+			     	</ul>
 			    </div>
 			  </div>
 			</nav>
@@ -167,14 +163,6 @@
 		         		}
 		         	}			         
 		         </script>
-		         <div class="list-group list-group-horizontal list-group-flush">
-					  <a href="/admin/list" class="list-group-item list-group-item-action">전체회원목록 보기</a>
-					  <a href="/admin/localList" class="list-group-item list-group-item-action">일반회원목록 보기</a>
-					  <a href="#" class="list-group-item list-group-item-action">소셜회원목록 보기</a>
-					  <a href="#" class="list-group-item list-group-item-action">계정잠금 회원</a>
-					  <a href="#" class="list-group-item list-group-item-action">비활성화 회원</a>
-					  
-					</div>
 		         <div class="row" >
 		              <!-- 검색부분 -->
 		             <form method="get" onsubmit="return validateForm(this);">
@@ -211,11 +199,6 @@
 		                         <th>가입일</th>
 		                         <th>권한</th>
 		                         <th>휴면계정</th>
-<!-- 		                         <th style="display:none;">소셜타입</th> -->
-<!-- 		                         <th style="display:none;">소셜아이디</th> -->
-<!-- 		                         <th>잠금계정</th> -->
-<!-- 		                         <th style="display:none;">로그인실패횟수</th> -->
-<!-- 		                         <th style="display:none;">계정 잠긴 시간</th> -->
 		                     </tr>
 		                 </thead>
 		                 <tbody>
@@ -246,11 +229,6 @@
 				                         	<td class="text-center"><fmt:formatDate value="${dto.regidate}" pattern="yyyy-MM-dd"/></td>
 				                         	<td class="text-center">${dto.authority }</td>
 				                         	<td class="text-center">${dto.enabled }</td>
-<%-- 				                         	<td class="text-center" style="display:none;">${dto.provider }</td> --%>
-<%-- 				                         	<td class="text-center" style="display:none;">${dto.providerId }</td> --%>
-<%-- 				                         	<td class="text-center">${dto.IsLock }</td> --%>
-<%-- 				                         	<td class="text-center" style="display:none;">${dto.failCount }</td> --%>
-<%-- 				                         	<td class="text-center" style="display:none;">${dto.LockTime }</td> --%>
 				                         	<td class="text-center">
 				                         		<a href="../admin/userEdit?id=${dto.id }">회원정보보기</a>
 				                         	</td>

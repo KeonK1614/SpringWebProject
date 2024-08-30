@@ -3,14 +3,14 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
-<mapper namespace="com.project.springboot.dto.AdminService">
+<mapper namespace="com.project.springboot.jdbc.AdminService">
 	<!-- 전체멤버목록 조회-->
 	<select id="select" 
 		parameterType="com.project.springboot.dto.ParameterDTO"
-		resultType="com.project.springboot.dto.AdminMemberDTO">
-	 SELECT * FROM member
+		resultType="com.project.springboot.jdbc.AdminMemberDTO">
+	 select * from member
 	 <if test="searchWord!=null and !searchWord.equals('')">
-	 	WHERE
+	 	where
 	 	<foreach collection="searchField" item="sfield" open="("
 	 		close=")" separator="or">
 	 		${sfield} like '%'||#{searchWord}||'%'
@@ -19,54 +19,8 @@
 	 order by regidate desc
 	</select>
 	
-
-	
-	<!-- 소셜 회원만 -->
-	<select id="findBySocialMem" parameterType="com.project.springboot.dto.ParameterDTO"
-								resultType="com.project.springboot.dto.AdminMemberDTO">
-		SELECT * FROM member WHERE provider != 'LOCAL'
-		<if test="searchWord!=null and !searchWord.equals('')">
-			AND
-		 	<foreach collection="searchField" item="sfield" open="("
-		 		close=")" separator="or">
-		 		${sfield} like '%'||#{searchWord}||'%'
-		 	</foreach>
-		</if>
-		order by regidate desc
-	</select>
-	
-	<!-- 잠금 회원만 -->
-	<select id="findByLockMem" parameterType="com.project.springboot.dto.ParameterDTO"
-								resultType="com.project.springboot.dto.AdminMemberDTO">
-		SELECT * FROM member WHERE IsLock = 0
-		<if test="searchWord!=null and !searchWord.equals('')">
-			AND
-		 	<foreach collection="searchField" item="sfield" open="("
-		 		close=")" separator="or">
-		 		${sfield} like '%'||#{searchWord}||'%'
-		 	</foreach>
-		</if>
-		order by regidate desc
-	</select>
-	
-		<!--비활성화 회원만 -->
-	<select id="findByEndMem" parameterType="com.project.springboot.dto.ParameterDTO"
-								resultType="com.project.springboot.dto.AdminMemberDTO">
-		SELECT * FROM member WHERE enabled = 0
-		<if test="searchWord!=null and !searchWord.equals('')">
-			AND
-		 	<foreach collection="searchField" item="sfield" open="("
-		 		close=")" separator="or">
-		 		${sfield} like '%'||#{searchWord}||'%'
-		 	</foreach>
-		</if>
-		order by regidate desc
-	</select>
-	
-	
-	
 	<!--  회원 상세 정보 조회 -->
-	<select id="selectOne" resultType="com.project.springboot.dto.AdminMemberDTO" >
+	<select id="selectOne" resultType="com.project.springboot.jdbc.AdminMemberDTO" >
 		SELECT * FROM member WHERE id=#{id}
 	</select>
 	
@@ -84,7 +38,15 @@
         WHERE id = #{id}
     </update>
     
-    <select id="userListPage" resultType="com.project.springboot.dto.AdminMemberDTO"
+    <select id="getTotalCount" resultType="int"
+    	parameterType="com.project.springboot.dto.ParameterDTO">
+    	SELECT COUNT(*) from member
+    	<if test="searchWord!=null and !searchWord.equals('')">
+    	WHERE ${searchField} LIKE '%'||#{searchWord}||'%'
+    	</if>
+    </select>
+    
+    <select id="userListPage" resultType="com.project.springboot.jdbc.AdminMemberDTO"
     	parameterType="com.project.springboot.dto.ParameterDTO">
     	SELECT * FROM (
     		SELECT Tb.*, rownum rNum FROM (
@@ -97,22 +59,4 @@
     	)
     	WHERE rNum<![CDATA[>=]]>#{start} AND rNum<![CDATA[<=]]>#{end}
     </select>
-    
-    <!-- 조건 별 멤버 조회 -->
-	<!-- 일반회원만 -->
-     <select id="localMemList" resultType="com.project.springboot.dto.AdminMemberDTO"
-    	parameterType="com.project.springboot.dto.ParameterDTO">
-    	SELECT * FROM (
-    		SELECT Tb.*, rownum rNum FROM (
-    			SELECT * FROM member WHERE provider = 'LOCAL'
-    			<if test="searchWord!=null and !searchWord.equals('')">
-    				AND ${searchField} LIKE '%'||#{searchWord}||'%'
-    			</if>
-    			ORDER  BY regidate DESC
-    		) Tb
-    	)
-    	WHERE rNum<![CDATA[>=]]>#{start} AND rNum<![CDATA[<=]]>#{end}
-    </select>
-    
-    
 </mapper>
