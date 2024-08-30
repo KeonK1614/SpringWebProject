@@ -51,6 +51,7 @@ dependencies {
     implementation group: 'com.google.firebase', name: 'firebase-firestore', version: '25.0.0'
     
     implementation 'jakarta.platform:jakarta.jakartaee-api:9.0.0'
+    implementation 'com.sun.activation:jakarta.activation:1.2.2'
 }
 tasks.named('test') {
 	useJUnitPlatform()
