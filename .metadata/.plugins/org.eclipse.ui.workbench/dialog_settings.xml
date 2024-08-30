@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> yerim6
 	<section name="ImportExportAction">
 		<item key="ImportExportPage.STORE_SELECTED_IMPORT_WIZARD_ID" value="org.eclipse.ui.wizards.import.ExternalProject"/>
 		<list key="ImportExportPage.STORE_EXPANDED_IMPORT_CATEGORIES">
@@ -9,6 +12,7 @@
 		<section name="ImportExportWizard.dialogBounds">
 		</section>
 	</section>
+<<<<<<< HEAD
 	<section name="PropertyDialog.dialogBounds">
 		<item key="DIALOG_X_ORIGIN" value="439"/>
 		<item key="DIALOG_Y_ORIGIN" value="104"/>
@@ -19,6 +23,11 @@
 	<section name="PropertyDialog.dialogBounds">
 		<item key="DIALOG_X_ORIGIN" value="-29"/>
 		<item key="DIALOG_Y_ORIGIN" value="141"/>
+=======
+	<section name="PropertyDialog.dialogBounds">
+		<item key="DIALOG_X_ORIGIN" value="18"/>
+		<item key="DIALOG_Y_ORIGIN" value="24"/>
+>>>>>>> yerim6
 		<item key="DIALOG_WIDTH" value="989"/>
 		<item key="DIALOG_HEIGHT" value="667"/>
 		<item key="DIALOG_FONT_NAME" value="1|.AppleSystemUIFont|11.0|0|COCOA|1|.AppleSystemUIFont"/>

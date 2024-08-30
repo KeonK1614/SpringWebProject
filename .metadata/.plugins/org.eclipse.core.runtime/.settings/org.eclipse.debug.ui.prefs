@@ -1,5 +1,6 @@
 =\=\=\=\=\=\=
 <<<<<<<=HEAD
+<<<<<<< HEAD
 >>>>>>>=abe427f96f26d7e86af563b449ac7d3fe22895da
 eclipse.preferences.version=1
 org.eclipse.debug.ui.BreakpointView+org.eclipse.debug.ui.actions.SkipAllBreakpoints=true
@@ -8,6 +9,12 @@ org.eclipse.debug.ui.PREF_LAUNCH_PERSPECTIVES=<?xml version\="1.0" encoding\="UT
 =======
 org.eclipse.debug.ui.PREF_LAUNCH_PERSPECTIVES=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\n<launchPerspectives/>\n
 >>>>>>> chong6
+=======
+>>>>>>>=55d3a28e1a75b07e1839171e24e6dce54775be52
+eclipse.preferences.version=1
+org.eclipse.debug.ui.BreakpointView+org.eclipse.debug.ui.actions.SkipAllBreakpoints=true
+org.eclipse.debug.ui.PREF_LAUNCH_PERSPECTIVES=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\n<launchPerspectives/>\n
+>>>>>>> yerim6
 org.eclipse.debug.ui.changedDebugElement=255,128,128
 org.eclipse.debug.ui.consoleBackground=53,53,53
 org.eclipse.debug.ui.errorColor=225,30,70

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
+<<<<<<< HEAD
 	<list key="installedFeatures">
 		<item value="org.eclipse.buildship:3.1.9.v20240115-1636"/>
 		<item value="org.eclipse.datatools.connectivity.feature:1.16.0.202311071345"/>
@@ -83,6 +84,8 @@
 		<item value="org.sonatype.m2e.egit.feature:0.17.0.202209271423"/>
 	</list>
 <<<<<<< HEAD
+=======
+>>>>>>> yerim6
 	<section name="ExternalProjectImportWizard">
 		<item key="WizardProjectsImportPage.STORE_NESTED_PROJECTS" value="false"/>
 		<item key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID" value="false"/>
@@ -90,6 +93,7 @@
 		<item key="WizardProjectsImportPage.STORE_CLOSE_CREATED_PROJECTS_ID" value="false"/>
 		<item key="WizardProjectsImportPage.STORE_HIDE_CONFLICTING_PROJECTS_ID" value="false"/>
 		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+<<<<<<< HEAD
 <<<<<<< HEAD
 			<item value="C:\FrontEnd\Springboot2\springboot02-master\Ex41_Firebase_Realtime"/>
 			<item value="C:\FrontEnd\new\Servers"/>
@@ -99,11 +103,15 @@
 			<item value="C:\FrontEnd\teamproject\Servers"/>
 			<item value="/Users/gupro/Documents/DevData/SpringWebProject"/>
 >>>>>>> NH11
+=======
+			<item value="/Users/yerim/DevData/SpringWebProject"/>
+>>>>>>> yerim6
 		</list>
 		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
 			<item value=""/>
 		</list>
 		<section name="ExternalProjectImportWizard.dialogBounds">
+<<<<<<< HEAD
 			<item key="DIALOG_X_ORIGIN" value="663"/>
 			<item key="DIALOG_Y_ORIGIN" value="142"/>
 			<item key="DIALOG_WIDTH" value="613"/>
@@ -122,4 +130,13 @@
 >>>>>>> NH11
 =======
 >>>>>>> chong6
+=======
+			<item key="DIALOG_X_ORIGIN" value="219"/>
+			<item key="DIALOG_Y_ORIGIN" value="61"/>
+			<item key="DIALOG_WIDTH" value="586"/>
+			<item key="DIALOG_HEIGHT" value="703"/>
+			<item key="DIALOG_FONT_NAME" value="1|.AppleSystemUIFont|11.0|0|COCOA|1|.AppleSystemUIFont"/>
+		</section>
+	</section>
+>>>>>>> yerim6
 </section>

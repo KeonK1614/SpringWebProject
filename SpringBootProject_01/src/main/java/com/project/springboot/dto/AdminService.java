@@ -17,8 +17,9 @@ public interface AdminService {
 	public int updateUserAuth(Map<String, Object> params);
 	
 	public int updateEnabled(Map<String, Object> params);
-	
-	public int getTotalCount(ParameterDTO parameterDTO);
+
 	
 	public List<AdminMemberDTO> userListPage(ParameterDTO parameterDTO);
+	
+	public List<AdminMemberDTO> localMemList(ParameterDTO parameterDTO);
 }

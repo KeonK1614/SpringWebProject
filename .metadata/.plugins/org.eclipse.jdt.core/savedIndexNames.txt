@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 INDEX VERSION 1.134+C:\FrontEnd\new\.metadata\.plugins\org.eclipse.jdt.core
 3835425699.index
 1490288174.index
@@ -655,3 +656,7 @@ INDEX VERSION 1.134+/Users/gupro/Documents/DevData/SpringWebProject/.metadata/.p
 4083027386.index
 748619520.index
 >>>>>>> chong6
+=======
+INDEX VERSION 1.134+/Users/yerim/DevData/SpringWebProject/.metadata/.plugins/org.eclipse.jdt.core
+3510127644.index
+>>>>>>> yerim6

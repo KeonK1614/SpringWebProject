@@ -3,7 +3,6 @@ package com.project.springboot;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.project.springboot.dto.UserDTO;
 
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
 
 
 
@@ -23,8 +21,6 @@ public class UserController {
 	
 	@Autowired
 	private UserService userService;
-	@Autowired
-	private PasswordEncoder passwordEncoder;
 	
 	@RequestMapping("/guest/joinform")
 	public String joinform(Model model) {
@@ -57,9 +53,13 @@ public class UserController {
 		int nResult = userService.joinDao(user);
 		
 		if (nResult > 0) {
-            return "/"; // 성공 시
+			request.setAttribute("msg", "회원가입에 성공하셨습니다!");
+			request.setAttribute("url", "/");
+			return "guest/alert";// 성공 시
         } else {
-            return "guest/joinform"; // 실패 시 다시 폼 페이지로 이동
+        	request.setAttribute("msg", "회원가입에 실패하셨습니다.");
+			request.setAttribute("url", "/guest/joinform");
+            return "guest/alert"; // 실패 시 다시 폼 페이지로 이동
         }
 	}
 	
@@ -73,37 +73,26 @@ public class UserController {
 	
     @RequestMapping("/security/loginform")
     public String loginform(Model model,  @RequestParam(value="error", required = false) String error,
-            @RequestParam(value = "exception", required = false) String exception){
+            @RequestParam(value = "exception", required = false) String exception, HttpServletRequest request){
+    	
+        String uri = request.getHeader("Referer");
+        if (uri != null && !uri.contains("/security/loginform")) {
+            request.getSession().setAttribute("prevPage", uri);
+        }
+    	
     	model.addAttribute("userDTO", new UserDTO());
     	model.addAttribute("error", error);
         model.addAttribute("exception", exception);
         return "security/loginform";
-    }
-	
-    @PostMapping("/login")
-    public String login(@RequestParam(value ="id") String id, @RequestParam(value ="pass")String pass,
-    		HttpSession session, HttpServletRequest request) {
-    	UserDTO user = userService.findByUsername(id);
-             
-        if (user != null && passwordEncoder.matches(pass, user.getPass())){
-            session.setAttribute("id", user.getId());
-            session.setAttribute("name", user.getName());
-            session.setAttribute("ROLE_", user.getAuthority());
-        	return "guest/main"; // 로그인 성공 시 리디렉션
-        } else {
-            return "security/loginform"; 
-        }
-        
-    }
-    
+    }  
 
     
- // 로그아웃
-    @PostMapping("/logout")
-    public String logout(HttpSession session) {
-        session.invalidate();
-        return "redirect:/login";
-    }
+// // 로그아웃
+//    @RequestMapping("/logout")
+//    public String logout(HttpSession session) {
+//        session.invalidate();
+//        return "redirect:/login";
+//    }
     
     //권한요청 실패시 뜨는 화
     @RequestMapping("/denied")

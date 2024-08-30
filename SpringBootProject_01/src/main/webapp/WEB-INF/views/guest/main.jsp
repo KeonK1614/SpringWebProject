@@ -187,7 +187,7 @@
                 </ul>
            </sec:authorize>
            
-           <sec:authorize access="hasRole('ADMIN')">
+		<sec:authorize access="hasRole('ADMIN')">
                 <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link" href="/logout">
@@ -197,7 +197,7 @@
                         </a>
                     </li>
                    <li class="nav-item">
-                        <a class="nav-link" href="/member/mypage">
+                        <a class="nav-link" href="/admin/list">
                             <button type="button" class="btn btn-outline-light">
                                 <i class="bi bi-person-lines-fill"></i> 회원관리페이지
                             </button>

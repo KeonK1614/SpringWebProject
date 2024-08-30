@@ -93,103 +93,143 @@
 	      }
 
 	    </style>
-		<script type="text/javascript">
-			$(document).ready(function() {
-	            $('#email').on('input', function() {
-	                var email = $(this).val();
-	                var emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$/;
-	                if (emailRegex.test(email)) {
-	                    $('#email-feedback').text('사용가능한 이메일입니다.').css('color', 'green');
-	                } else {
-	                    $('#email-feedback').text('이메일 형식이 맞는지 확인해주세요').css('color', 'red');
-	                }
-	            });
-	        });
-			
-			function sendNumber(){
-		        $("#mail_number").css("display","block");
-		        $.ajax({
-		            url:"/security/sendVerificationCode",
-		            type:"post",
-		            dataType:"json",
-		            data:{"email" : $("#email").val()},
-		            success: function(data){
-		                alert("인증번호 발송");
-		                $("#Confirm").val(data);
-		            }, error: function(xhr, status, error) {
-	                    alert("메일 발송에 실패했습니다. 다시 시도해주세요.");
-	                }
-		        });
-		    }
-			 
-			function confirmNumber(){
-			    var number1 = $("#number").val();
-			    var number2 = $("#Confirm").val();
-
-			    if(number1 == number2){
-	                var name = $("#name").val();
-	                var email = $("#email").val();
-
-	                $.ajax({
-	                    url: '/security/findId',
-	                    method: 'POST',
-	                    data: { name: name, email: email },
-	                    success: function(data) {
-	                        if (data.id) {
-	                            $("#user-id-value").text(data.id);
-	                            $("#user-id").slideDown();
-	                        } else {
-	                            alert("해당 정보로 찾을 수 없습니다.");
-	                            $("#user-id").slideUp();
-	                        }
-	                    },
-	                    error: function() {
-	                        alert("서버와의 통신에 문제가 발생했습니다.");
-	                    }
-	                });
-	            } else {
-	                alert("인증번호가 다릅니다.");
-	            }
-			}
-		</script>
-	    
+			    
 	    <!-- Custom styles for this template -->
 	    <link href="../carousel/carousel.css" rel="stylesheet">
 	    <link href="../carousel/sign-in.css" rel="stylesheet">
 	  </head>
 	<body>
 		<main class="form-signin w-100 m-auto">
-		<form action="/security/findIdMail" method="post" name="finidform" id="find-id-form">
+		<form method="post" name="find-id-form" id="find-id-form">
 	    <img class="mx-auto d-block mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
 	    <h1 class="h3 mb-3 fw-normal text-center">아이디찾기</h1>
-	    <div class="form-floating">
-		    <input type="text" name="name"class="form-control" id="name" placeholder="email을 입력하세요" required >
+	    <div class="form-floating mb-2">
+		    <input type="text" name="name"class="form-control" id="name" placeholder="이름을 입력하세요" required >
 		    <label for="floatingInput">이름</label>
-		    <span id="email-feedback"></span>
 			<div class="invalid-feedback">
 				이름을 입력해주세요.
 			</div>      
 	    </div>
-	    <div class="form-floating">
+	    <div class="form-floating mb-2">
 		    <input type="email" name="eamil"class="form-control" id="email" placeholder="email을 입력하세요" required >
 		    <label for="floatingInput">이메일</label>
 		    <span id="email-feedback"></span>
 			<div class="invalid-feedback">
 				이메일을 입력해주세요.
 			</div>
-			<button type="button" onclick="sendNumber()">인증번호 발송</button>     
 	    </div>
-	    <div id="mail_number" name="mail_number" style="display: none">
-            <input type="text" name="number" id="number" style="width:250px; margin-top: -10px" placeholder="인증번호 입력">
-            <input type="hidden" name="Confirm" id="Confirm" style="width:250px; margin-top: -10px" placeholder="인증번호 입력">
-            <button type="button" name="confirmBtn" id="confirmBtn" onclick="confirmNumber()">이메일 인증</button>
+	    
+	    <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-3">
+	    	<button type="button" id="sendCode" class="btn btn-primary btn-sm">인증번호 발송</button> 
+	    </div>
+	    
+	    <div id="mail_number" style="display:none;" >
+            <input type="text" name="code" id="code" style="width:250px; margin-top: -10px" placeholder="인증번호 입력">
+            <button type="button" name="confirmBtn" id="confirmBtn" class="btn btn-primary btn-sm">이메일 인증</button>
 	    </div>
 
-		<div id="user-id">
+		<div id="user-id" style="display:none;" >
        		 아이디: <span id="user-id-value"></span>
 		</div>
-	    <button class="btn text-white w-100 my-2"style="background-color: #009E73;" id="submit" type="submit">아이디 찾기</button>
+		
+		<div class="row">
+            <div class="col-6 mb-2">
+                <button class="btn text-white w-100" style="background-color: #009E73;" id="findPw" type="button" 
+                        onclick="location.href='/security/findPwd'">비밀번호 찾기</button>
+            </div>
+            <div class="col-6 mb-2">
+                <button class="btn text-white w-100" style="background-color: #009E73;" id="login" 
+                        onclick="location.href='/security/loginform'" type="button">로그인</button>
+            </div>
+        </div>
 	  </form>
+	  
+	  <script type="text/javascript">
+	  $(document).ready(function() {
+	        // 이메일 입력 검증
+	        $('#email').on('input', function() {
+	            var email = $(this).val(); // $(email) -> $(this)
+	            var emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$/;
+	            if (emailRegex.test(email)) {
+	                $('#email-feedback').text('').css('color', 'green');
+	            } else {
+	                $('#email-feedback').text('이메일 형식이 맞는지 확인해주세요').css('color', 'red');
+	                return false;
+	            }
+	        });
+
+	        // 이름 입력 검증
+	        $('#name').on('input', function() {
+	            var name = $(this).val(); // $(name) -> $(this)
+	            if (name.length > 0) {
+	                $('#name-feedback').text('').css('color', 'green');
+	            } else {
+	                $('#name-feedback').text('이름을 입력해주세요').css('color', 'red');
+	               return false;
+	            }
+	        });
+	        
+	        // 인증번호 발송
+	        $('#sendCode').on('click', function() {
+	        	if($("#name").val()==""){
+	        		alert('이름을 입력해주세요.');
+					$("#name").focus();
+					return false;
+				}
+				if($("#email").val()==""){
+					alert('이메일을 입력해주세요.');
+					$("#email").focus();
+					return false;
+				}
+				
+	            $("#mail_number").css("display", "block");
+	            $.ajax({
+	                url: "/security/sendCode",
+	                type: "post",
+	                dataType: "json",
+	                data: {
+	                    "name": $("#name").val(),
+	                    "email": $("#email").val()
+	                },
+	                success: function(res) {
+	                    if (res.success) {
+	                        alert("인증번호가 발송되었습니다.");
+	                    } else {
+	                        alert("인증번호 발송에 실패했습니다.");
+	                    }
+	                },
+	                error: function(xhr, status, error) {
+	                    alert("메일 발송에 실패했습니다. 다시 시도해주세요.");
+	                }
+	            });
+	        });
+
+	        // 인증번호 확인
+	        $('#confirmBtn').on('click', function() {
+	            $.ajax({
+	                url: '/security/verifycode',
+	                method: 'POST',
+	                data: {
+	                    name: $("#name").val(),
+	                    email: $("#email").val(),
+	                    code: $("#code").val()
+	                },
+	                success: function(data) {
+	                    if (data.id) {
+	                        $("#user-id-value").text(data.id);
+	                        $("#user-id").slideDown();
+	                    } else {
+	                        alert("인증번호가 유효하지 않습니다.");
+	                        $("#user-id").slideUp();
+	                    }
+	                },
+	                error: function() {
+	                    alert("서버와의 통신에 문제가 발생했습니다.");
+	                }
+	            });
+	        });
+	    });
+      </script>
 	  
 	  <hr class="featurette-divider">
 	  
