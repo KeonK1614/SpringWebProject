@@ -9,13 +9,17 @@ import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.project.springboot.dao.BoardInfoCommentService;
 import com.project.springboot.dao.IBoardInfoDao;
+import com.project.springboot.dto.BoardInfoCommentDto;
 import com.project.springboot.dto.BoardInfoDto;
 import com.project.springboot.dto.ParameterDTO;
 
@@ -29,18 +33,14 @@ public class BoardInfoController
 	ServletContext context;
 	@Autowired
 	IBoardInfoDao dao;
+	@Autowired
+	BoardInfoCommentService commentService;
 	
 	@RequestMapping("/")
 	public String main(Model model)
 	{
 		return "guest/main";
 	}
-	
-//	@RequestMapping("/guest/main")
-//	public String main(Model model)
-//	{
-//		return "guest/main";
-//	}
 	
 	@RequestMapping("/guest/boardInfo")
 	public String userListPage(HttpServletRequest req, Model model, ParameterDTO pDto)
@@ -69,23 +69,11 @@ public class BoardInfoController
 		return "guest/boardInfo";
 	}
 	
-//	@RequestMapping("/guest/search")
-//	public String search(@RequestParam String searchField, @RequestParam String searchWord, Model model)
-//	{
-//		BoardSearch criteria = new BoardSearch();
-//		criteria.setKeyWord(search);
-//		List<BoardInfoDto> list = boardInfoService.searchBoardInfo(criteria)
-//		model.addAttribute("list", list);
-//	
-//		return "guest/boardInfo";
-//	}
-	
 	@RequestMapping("/member/write")
 	public String write(HttpServletRequest req, @RequestParam("file") MultipartFile file) throws Exception
 	{	
 		String ofileName = file.getOriginalFilename();
 		String uploadDir = context.getRealPath("/static/files");
-//		System.out.println("upload path" + uploadDir);
 		File dir = new File(uploadDir);
 		if (!dir.exists()) {
 	        dir.mkdirs();
@@ -100,33 +88,15 @@ public class BoardInfoController
 			e.printStackTrace();
 			return "redirect:/member/boardWrite?status=fail";
 		}
-//		String id = req.getParameter("id");
-//		String title = req.getParameter("title");
-//		String content = req.getParameter("content");
-//		String ofile = req.getParameter("ofile");
-//		String sfile = req.getParameter("sfile");
-//		
-//		System.out.println("id: " + id);
-//        System.out.println("title: " + title);
-//        System.out.println("content: " + content);
-//        System.out.println("ofile: " + ofile);
-//        
-//		int inserted = dao.writeDao(req.getParameter("id"),
-//					req.getParameter("title"),
-//					req.getParameter("content"),
-//					req.getParameter("ofile"));
 		
-		dao.writeDao(req.getParameter("id"),
+		String sId = SecurityContextHolder.getContext().getAuthentication().getName();
+
+		dao.writeDao(sId,
 					req.getParameter("title"),
 					req.getParameter("content"),
 					ofileName,
 					sfileName);
 		
-//		if(inserted > 0) {
-//			System.out.println("데이터 삽입 성공");
-//		} else {
-//			System.out.println("실패");
-//		}
 		return "redirect:/guest/boardInfo";
 	}
 	
@@ -144,13 +114,18 @@ public class BoardInfoController
 		
 	}
 	
-	@RequestMapping("/guest/boardView")
-	public String boardView(HttpServletRequest req, Model model)
+	@RequestMapping("/guest/boardInfoView")
+	public String boardInfoView(HttpServletRequest req, Model model)
 	{
 		String sIdx = req.getParameter("idx");
 		BoardInfoDto dto = dao.viewDao(sIdx);
 		model.addAttribute("dto", dto);
 		dao.updateViewCount(sIdx);
+		
+	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String loggedInUserId = auth != null ? auth.getName() : null;
+	    model.addAttribute("loggedInUserId", loggedInUserId);
+
 		
 		String ext = null, fileName = dto.getSfile();
 		if (fileName != null) {
@@ -164,7 +139,11 @@ public class BoardInfoController
 		}
 		model.addAttribute("isImage", isImage);
 		
-		return "guest/boardView";
+		String refGroup = sIdx;
+		List<BoardInfoCommentDto> comments = commentService.listComment(refGroup);
+		model.addAttribute("comments", comments);
+		
+		return "guest/boardInfoView";
 	}
 	
 	@RequestMapping("/member/boardEditor")
@@ -213,13 +192,13 @@ public class BoardInfoController
 											ofileName,
 											sfileName));
 	
-		return "redirect:/guest/boardView?idx=" + sIdx;
+		return "redirect:/guest/boardInfoView?idx=" + sIdx;
 	}
 	
 	@RequestMapping("/member/like")
 	public String addLike(HttpServletRequest req, Model model) {
 		String sIdx = req.getParameter("idx");
 		dao.addLike(sIdx);
-		return "guest/boardView?idx=" + sIdx;
+		return "guest/boardInfo";
 	}	
 }

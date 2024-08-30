@@ -1,13 +1,9 @@
 =\=\=\=\=\=\=
 <<<<<<<=HEAD
->>>>>>>=70e44ae7ca6111e9e06cef172e4a1afb270bf380
+>>>>>>>=99f087d14f09be87381818b9e4a5898ec62a32d9
 content_assist_completion_replacement_background=200,200,0
 content_assist_completion_replacement_foreground=200,0,0
-<<<<<<< HEAD
-content_assist_lru_history=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><history maxLHS\="100" maxRHS\="10"><lhs name\="java.util.Date"><rhs name\="java.sql.Date"/></lhs><lhs name\="java.lang.Cloneable"><rhs name\="java.sql.Date"/></lhs><lhs name\="java.sql.Date"><rhs name\="java.sql.Date"/></lhs><lhs name\="java.util.Map"><rhs name\="java.util.HashMap"/></lhs><lhs name\="org.springframework.security.oauth2.client.userinfo.OAuth2UserService"><rhs name\="com.project.springboot.oauth2.CustomOAuth2UserService"/></lhs><lhs name\="com.project.springboot.oauth2.CustomOAuth2UserService"><rhs name\="com.project.springboot.oauth2.CustomOAuth2UserService"/></lhs><lhs name\="java.lang.CharSequence"><rhs name\="java.lang.String"/></lhs><lhs name\="java.lang.constant.Constable"><rhs name\="java.lang.String"/></lhs><lhs name\="java.lang.constant.ConstantDesc"><rhs name\="java.lang.String"/></lhs></history>
-=======
 content_assist_lru_history=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><history maxLHS\="100" maxRHS\="10"><lhs name\="java.util.Date"><rhs name\="java.sql.Date"/></lhs><lhs name\="java.lang.Cloneable"><rhs name\="java.sql.Date"/></lhs><lhs name\="java.sql.Date"><rhs name\="java.sql.Date"/></lhs><lhs name\="java.util.Map"><rhs name\="java.util.HashMap"/></lhs><lhs name\="java.io.InputStream"><rhs name\="java.io.FileInputStream"/></lhs><lhs name\="java.io.Closeable"><rhs name\="java.io.FileInputStream"/></lhs><lhs name\="java.lang.AutoCloseable"><rhs name\="java.io.FileInputStream"/></lhs><lhs name\="java.io.FileInputStream"><rhs name\="java.io.FileInputStream"/></lhs><lhs name\="com.google.auth.oauth2.OAuth2Credentials"><rhs name\="com.google.auth.oauth2.GoogleCredentials"/></lhs><lhs name\="com.google.auth.Credentials"><rhs name\="com.google.auth.oauth2.GoogleCredentials"/></lhs><lhs name\="com.google.auth.oauth2.GoogleCredentials"><rhs name\="com.google.auth.oauth2.GoogleCredentials"/></lhs><lhs name\="com.project.springboot.dto.BoardInfoCommentDto"><rhs name\="com.project.springboot.dto.BoardInfoCommentDto"/></lhs></history>
->>>>>>> 99f087d14f09be87381818b9e4a5898ec62a32d9
 content_assist_number_of_computers=18
 content_assist_proposals_background=255,255,255
 content_assist_proposals_foreground=0,0,0

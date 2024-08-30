@@ -262,7 +262,7 @@
 								                (((maps.pageNum-1) * maps.pageSize)	+ loop.index)}" />
 								            	${vNum}
 								            </td>
-				                         	<td class="text-left"><a href="boardView?idx=${dto.idx}&vNum=${vNum}">${dto.title }</a></td>
+				                         	<td class="text-left"><a href="boardInfoView?idx=${dto.idx}&vNum=${vNum}">${dto.title }</a></td>
 				                         	<td class="text-center">${dto.id }</td>
 				                         	<td class="text-center">${dto.postdate }</td>
 				                         	<td class="text-center">${dto.viewCount }</td>
@@ -289,19 +289,7 @@
 		             <div class="col">
 		                 <!-- 페이지번호 부분 -->
 		                  <ul class="pagination justify-content-center">
-		                      <li class="page-item">
-		                          <a href="#" class="page-link"><i class='bi bi-skip-backward-fill'></i></a>
-		                      </li>
-		                      <li class="page-item">
-		                          <a href="#" class="page-link"><i class='bi bi-skip-start-fill'></i></a>
-		                      </li>
-		                      <li class="page-item"><a href="#" class="page-link">${ pagingImg }</a></li>
-		                      <li class="page-item">
-		                          <a href="#" class="page-link"><i class='bi bi-skip-end-fill'></i></a>
-		                      </li>
-		                      <li class="page-item">
-		                          <a href="#" class="page-link"><i class='bi bi-skip-forward-fill'></i></a>
-		                      </li>
+		                      { pagingImg }
 		                  </ul>
 				   	</div>
 		          </div>

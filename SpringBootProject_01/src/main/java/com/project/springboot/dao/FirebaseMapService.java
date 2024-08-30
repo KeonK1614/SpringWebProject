@@ -12,6 +12,8 @@ import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.Firestore;
 import com.google.cloud.firestore.QueryDocumentSnapshot;
 import com.google.cloud.firestore.QuerySnapshot;
+import com.google.firebase.cloud.FirestoreClient;
+import com.google.firestore.v1.WriteResult;
 import com.project.springboot.dto.EleMap;
 import com.project.springboot.dto.RestMap;
 
@@ -19,6 +21,7 @@ import com.project.springboot.dto.RestMap;
 public class FirebaseMapService implements IFirebaseMapService {
 	@Autowired
 	private Firestore firestore;
+	private final Firestore db = FirestoreClient.getFirestore();
 	
 	public static final String COL_REST = "restmap";
 	public static final String COL_ELE = "elemap";
@@ -102,4 +105,47 @@ public class FirebaseMapService implements IFirebaseMapService {
 	    double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 	    return R * c;
 	}
+
+	@Override
+	public String insertRestMap(RestMap restMap) throws InterruptedException, ExecutionException {
+	
+		ApiFuture<com.google.cloud.firestore.WriteResult> apiFuture = db.collection(COL_REST).document(restMap.getPname()).set(restMap);
+		
+		return apiFuture.get().getUpdateTime().toString();
+	}
+
+	@Override
+	public String updateRestMap(RestMap restMap) throws InterruptedException, ExecutionException {
+		ApiFuture<com.google.cloud.firestore.WriteResult> apiFuture = db.collection(COL_REST).document(restMap.getPname()).set(restMap);
+		
+		return apiFuture.get().getUpdateTime().toString();
+	}
+
+	@Override
+	public String deleteRestMap(String pname) {
+		ApiFuture<com.google.cloud.firestore.WriteResult> apiFuture = db.collection(COL_REST).document(pname).delete();
+		return "Document id: " + pname + " deleted.";
+	}
+
+	@Override
+	public String insertEleMap(EleMap eleMap) throws InterruptedException, ExecutionException {
+		ApiFuture<com.google.cloud.firestore.WriteResult> apiFuture = db.collection(COL_ELE).document(eleMap.getSbwy_stn_nm()).set(eleMap);
+		
+		return apiFuture.get().getUpdateTime().toString();
+	}
+
+	@Override
+	public String updateEleMap(EleMap eleMap) throws InterruptedException, ExecutionException {
+		ApiFuture<com.google.cloud.firestore.WriteResult> apiFuture = db.collection(COL_ELE).document(eleMap.getSbwy_stn_nm()).set(eleMap);
+		
+		return apiFuture.get().getUpdateTime().toString();
+	}
+
+	@Override
+	public String deleteEleMap(String sbwy_stn_nm) {
+		ApiFuture<com.google.cloud.firestore.WriteResult> apiFuture = db.collection(COL_ELE).document(sbwy_stn_nm).delete();
+		return "Document id: " + sbwy_stn_nm + " deleted.";
+	}
+
+
 }

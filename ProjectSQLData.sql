@@ -45,7 +45,7 @@ commit;
 -------------------------------------------------------------정보게시판
 
 --정보게시판 테이블
-create table boardInfo (
+create table board (
     idx number(6) not null,
     id varchar2(50) not null,
     title varchar2(50) not null,
@@ -59,15 +59,15 @@ create table boardInfo (
     primary key(idx)
 );
 
-desc boardInfo;
+desc board;
 
 --정보게시판 외래키 설정
-alter table boardInfo
+alter table board
     add constraint board_mem_fk foreign key (id)
     references member(id);
 select * from board;
 --정보게시판 시퀀스
-create sequence boardInfo_seq
+create sequence board_seq
     increment by 1  -- 1식 증가
     start with 1    -- 시작값 1
     minvalue 1      -- 최소값 1
@@ -77,10 +77,9 @@ create sequence boardInfo_seq
     
 --정보게시판 테이블 삭제
 drop table board;
-drop table boardInfo;
 drop table boardInfoComment;
 --정보게시판 시퀀스 삭제
-DROP SEQUENCE boardInfo_seq;
+DROP SEQUENCE board_seq;
 DROP SEQUENCE boardInfoComment_seq;
 
 --정보게시판 댓글 테이블
@@ -97,7 +96,11 @@ create table boardInfoComment (
 --정보게시판 외래키 설정
 alter table boardInfoComment
     add constraint boardInfoComm_ref_fk foreign key (refGroup)
-    references board(idx);
+    references board(idx)
+    ON DELETE CASCADE;
+ALTER TABLE boardInfoComment
+DROP CONSTRAINT boardInfoComm_ref_fk;
+
 
 create sequence boardInfoComment_seq
     increment by 1  -- 1식 증가
