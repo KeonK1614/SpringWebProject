@@ -1,9 +1,5 @@
 =\=\=\=\=\=\=
 <<<<<<<=HEAD
->>>>>>>=abe427f96f26d7e86af563b449ac7d3fe22895da
+>>>>>>>=chong6
 eclipse.preferences.version=1
-<<<<<<< HEAD
-org.eclipse.jdt.launching.PREF_VM_XML=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<vmSettings defaultVM\="57,org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType13,1724913101435" defaultVMConnector\="">\r\n    <vmType id\="org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType">\r\n        <vm id\="1724913101435" name\="jre" path\="C\:\\FrontEnd\\dev\\sts-4.24.0.RELEASE\\plugins\\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_21.0.3.v20240426-1530\\jre"/>\r\n    </vmType>\r\n</vmSettings>\r\n
-=======
-org.eclipse.jdt.launching.PREF_VM_XML=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\n<vmSettings defaultVM\="52,org.eclipse.jdt.internal.launching.macosx.MacOSXType13,1724914212780" defaultVMConnector\="">\n    <vmType id\="org.eclipse.jdt.internal.launching.macosx.MacOSXType">\n        <vm id\="net.java.openjdk.jdk" name\="OpenJDK 22.0.1 [22.0.1]" path\="/Users/gupro/Library/Java/JavaVirtualMachines/openjdk-22.0.1/Contents/Home"/>\n        <vm id\="com.oracle.java.jdk" name\="Java SE 17.0.11 [17.0.11]" path\="/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home"/>\n        <vm id\="1724914212780" name\="JRE [21.0.3]" path\="/Applications/SpringToolSuite4.app/Contents/Eclipse/plugins/org.eclipse.justj.openjdk.hotspot.jre.full.macosx.aarch64_21.0.3.v20240426-1530/jre"/>\n    </vmType>\n</vmSettings>\n
->>>>>>> chong6
+org.eclipse.jdt.launching.PREF_VM_XML=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<vmSettings defaultVM\="57,org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType13,1725003383219" defaultVMConnector\="">\r\n    <vmType id\="org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType">\r\n        <vm id\="1725003383219" name\="jre" path\="C\:\\FrontEnd\\dev\\sts-4.24.0.RELEASE\\plugins\\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_21.0.3.v20240426-1530\\jre"/>\r\n    </vmType>\r\n</vmSettings>\r\n

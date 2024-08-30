@@ -1,19 +1,2 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<<<<<<< HEAD
-<qualifiedTypeNameHistroy>
-<<<<<<< HEAD
-    <fullyQualifiedTypeName name="java.io.Serializable"/>
-    <fullyQualifiedTypeName name="java.lang.String"/>
-=======
-    <fullyQualifiedTypeName name="com.project.springboot.dao.BoardInfoCommentService"/>
-    <fullyQualifiedTypeName name="com.google.firebase.cloud.FirestoreClient"/>
-    <fullyQualifiedTypeName name="java.util.concurrent.ExecutionException"/>
-    <fullyQualifiedTypeName name="java.lang.InterruptedException"/>
-    <fullyQualifiedTypeName name="com.google.firestore.v1.WriteResult"/>
-    <fullyQualifiedTypeName name="com.google.api.core.ApiFuture"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
->>>>>>> chong6
-</qualifiedTypeNameHistroy>
-=======
 <qualifiedTypeNameHistroy/>
->>>>>>> yerim6
