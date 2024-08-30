@@ -8,7 +8,6 @@
 	<!doctype html>
 	<html lang="en" data-bs-theme="auto">
 	  <head>
-	 	<script src="../assets/js/color-modes.js"></script>
 	    <meta charset="utf-8">
 	    <meta name="viewport" content="width=device-width, initial-scale=1">
 	    <meta name="description" content="">
@@ -179,7 +178,7 @@
                         </a>
                     </li>
                    <li class="nav-item">
-                        <a class="nav-link" href="../member/myPageEdit">
+                        <a class="nav-link" href="../member/myPageView">
                             <button type="button" class="btn btn-outline-light">
                                 <i class="bi bi-person-lines-fill"></i> 마이페이지
                             </button>

@@ -4,10 +4,10 @@ import lombok.Data;
 
 @Data
 public class BoardInfoCommentDto {
-	private int idx;
+	private int cIdx;
 	private String writer;
-	private String content;
-	private String targetId;
+	private String commentText;
 	private String refGroup;
-	private java.sql.Date date;
+	private java.sql.Date regidate;
+	private String deleted;
 }

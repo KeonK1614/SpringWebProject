@@ -1,6 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>
+    
 <!DOCTYPE html>
-<html>
-	<html lang="en" data-bs-theme="auto">
+<html lang="en" data-bs-theme="auto">
 	  <head><script src="../assets/js/color-modes.js"></script>
 
 	    <meta charset="utf-8">

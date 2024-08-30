@@ -249,14 +249,6 @@
                 <tbody>
                     <tr>
                         <th class="text-center" 
-                            style="vertical-align:middle;">작성자</th>
-                        <td>
-                            <input type="text" name="id" class="form-control" 
-                                style="width:100px;" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <th class="text-center" 
                             style="vertical-align:middle;">제목</th>
                         <td>
                             <input type="text" name="title" class="form-control" />

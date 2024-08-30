@@ -205,110 +205,160 @@
 			  </div>
 			</nav>
 		</header>
-		
-		     <div class="col-10 pt-3 mt-3 mx-auto">
-		         <h4>게시판 목록 - <small>자유게시판</small></h4>
-		
-		         <div class="row">
-		             <!-- 검색부분 -->
-		             <form method="get">
-		                 <div class="input-group ms-auto"style="width: 300px;">
-		                     <select name="searchField" class="form-control">
-		                         <option value="">제목</option>
-		                         <option value="">작성자</option>
-		                         <option value="">내용</option>
-		                     </select>
-					   <input class="form-control" type="searchWord" placeholder="Search" aria-label="Search">
-			           <button class="btn btn-outline-primary" type="submit"><i class="bi bi-search" style='font-size:20px'></i></button>
-				   </div>
-		             </form>  
-		         </div>
-		         <div class="row mt-3 mx-1 mx-auto">
-		             <!-- 게시판리스트부분 -->
-		             <table class="table table-bordered table-hover table-striped">
-		                 <colgroup>
-		                     <col width="60px" />
-		                     <col width="*" />
-		                     <col width="120px" />
-		                     <col width="120px" />
-		                     <col width="80px" />
-		                     <col width="60px" />
-		                 </colgroup>
-		                 <thead>
-		                     <tr style="background-color: rgb(133, 133, 133); " class="text-center text-white">
-		                         <th>번호</th>
-		                         <th>제목</th>
-		                         <th>작성자</th>
-		                         <th>작성일</th>
-		                         <th>조회수</th>
-		                         <th>좋아요 수</th>
-		                         <th>첨부파일</th>
-		                     </tr>
-		                 </thead>
-		                 <tbody>
-		                 	<c:choose>
-				                 <c:when test="${ empty list }">
-				                 <tr>
-				                 	<td colspan="7" align="center">
-				                 		등록된 게시물이 없습니다.
-				                 	</td>
-				                 </tr>
-				                 </c:when>
-				                 <c:otherwise>
-				                 	<c:forEach items="${list }" var="dto" varStatus="loop">
-				                    	<tr align="center">
-				                    		<td>
-								            <c:set var="vNum" value="${ maps.totalCount - 
-								                (((maps.pageNum-1) * maps.pageSize)	+ loop.index)}" />
-								            	${vNum}
-								            </td>
-				                         	<td class="text-left"><a href="boardInfoView?idx=${dto.idx}&vNum=${vNum}">${dto.title }</a></td>
-				                         	<td class="text-center">${dto.id }</td>
-				                         	<td class="text-center">${dto.postdate }</td>
-				                         	<td class="text-center">${dto.viewCount }</td>
-				                         	<td class="text-center">${dto.likeCount }</td>
-				                         	<td class="text-center">
-				                         		<c:if test="${ not empty dto.ofile }">
-				                         			<i class="bi bi-pin-angle-fill" style="font-size:20px"></i>
-				                         		</c:if>
-				                         	</td>
-				                     	</tr>
-				                 	</c:forEach>  
-				                 </c:otherwise>
-				             </c:choose>
-		                 </tbody>
-		             </table>
-		         </div>
-		   <div>
-			               <div class="col d-flex justify-content-end">
-			                   <button type="button" class="btn btn-primary" onclick="location.href='/member/boardWrite';">글쓰기</button>
-			               </div>
-			           </div>
-		   
-		         <div class="row mt-3">
-		             <div class="col">
-		                 <!-- 페이지번호 부분 -->
-		                  <ul class="pagination justify-content-center">
-		                      { pagingImg }
-		                  </ul>
-				   	</div>
-		          </div>
-		      </div>
+	<div class="row">			
+		<div class="col-10 pt-3 mt-3 mx-auto">
+            <h4>자유게시판- <small>게시판 보기 </small></h4>
+            <form enctype="multipart/form-data">
+                <table class="table table-bordered">
+                <colgroup>
+                    <col width="20%"/>
+                    <col width="*"/>
+                </colgroup>
+                <tbody>
+                    <tr>
+                        <th class="text-center" 
+                            style="vertical-align:middle;">번호</th>
+                        <td>
+							${param.vNum}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-center" 
+                            style="vertical-align:middle;">작성자</th>
+                        <td>
+                            ${dto.id }
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-center" 
+                            style="vertical-align:middle;">제목</th>
+                        <td>
+                        	${dto.title }
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-center" 
+                            style="vertical-align:middle;">내용</th>
+                        <td>
+                        	<c:if test="${ not empty dto.ofile and isImage eq true }">
+                        		<br><img src="/static/files/${dto.sfile }" style="max-width: 100%;" /><br/>
+                        	</c:if>
+                        	${dto.content }
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-center" 
+                            style="vertical-align:middle;">첨부파일</th>
+                        <td>
+							<c:if test="${ not empty dto.ofile }">
+		            		${ dto.ofile }
+		            		</c:if>                     
+            			</td>
+                    </tr>
+                    
+                    
+                </tbody>
+                </table>
+                
+                 <div class="row">
+                    <div class="col text-right mb-4 d-flex justify-content-end">
+                        <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='boardInfo';">리스트보기</button>
+                        <sec:authorize access="isAuthenticated()">
+						    <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='/member/like?idx=${dto.idx}';">좋아요</button>
+						</sec:authorize>
+                        <c:if test="${loggedInUserId eq dto.id}">
+						    <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='/member/boardEditor?idx=${dto.idx}';">수정하기</button>
+						    <button type="button" class="btn btn-outline-danger mx-1" onclick="location.href='/member/delete?idx=${dto.idx}';">삭제하기</button>
+						</c:if>
+                    </div>
+                </div>
+            </form>
+            <form action="/member/writeComment?idx=${dto.idx}" method="post">
+            	<textarea name="commentText" cols="30" rows="3"></textarea>
+            	<button class="btn btn-outline-primary mx-1" type="submit">댓글쓰기</button>
+            </form>
+	        <div id="commentList" class="card">
+			    <div class="card-header">댓글리스트</div>
+			    <c:if test="${not empty comments}">
+			        <p>댓글 갯수:  ${comments.size()} 개</p>
+			        <ul id="reply-box" class="list-group">
+			            <c:forEach var="cDto" items="${comments}">
+			                <c:choose>
+			                    <c:when test="${cDto.deleted eq '1' }">
+			                        <li>삭제된 댓글입니다.</li>
+			                    </c:when>
+			                    <c:otherwise>
+			                        <li id="reply" class="list-group-item">
+			                            <div>${cDto.commentText}</div>
+			                            <div><strong>${cDto.writer}</strong></div>
+			                            <div>${cDto.regidate}</div>
+			                        </li>
+			                    </c:otherwise>
+			                </c:choose>
+			                <div class="d-flex">
+			                    <c:if test="${loggedInUserId eq cDto.writer}">
+			                        <button type="button" class="btn btn-outline-warning mx-1" onclick="location.href='/member/boardEditor?idx=${cDto.cIdx}';">수정하기</button>
+			                        <button type="button" class="btn btn-outline-danger mx-1" onclick="location.href='/member/deleteComment?=${cDto.cIdx}';">삭제하기</button>
+			                    </c:if>
+			                </div>
+			            </c:forEach>
+			        </ul>
+			    </c:if>
+			    <c:if test="${empty comments}">
+			        <p>댓글이 없습니다.</p>
+			    </c:if>
 			</div>
-		</main>	 	 	
-		<footer class="container">
-		    <p class="float-end"><i class="bi bi-arrow-up-circle"></i><a href="#">Back to top</a></p>
-		    <h3><strong>더조은™</strong></h3>
-		    <p class="copy text-center">
-			    더조은아카데미일산 &nbsp;&nbsp;
-		        경기도 고양시 일산구 중앙로 1275번길 38-10 201호(장항동 우림로데오스위트) <br/>
-		        학생 : 김건, 김나현, 나예림, 장다빈 &nbsp;&nbsp;  
-		        사업자등록번호 : 584-85-00825 &nbsp;&nbsp;  
-		        TEL : 031.902.1777 &nbsp;&nbsp; 
-				FAX : 031.906.8777 <br>
-			</p>  
-		    <p>&copy; 2017–2024 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-	  	</footer>		
-			
-		</body>
-	</html>
+    	</div>
+    </div>
+	<div class="p-4 text-white text-center" style="background-color: #7FA1C3;">
+		<div class="row">
+			<div class="col-2 ps-4">
+			<h3><strong>더조은™</strong></h3>
+		</div>
+			<div class="col">
+				<p class="copy text-center">
+				    더조은아카데미일산 &nbsp;&nbsp;
+			        경기도 고양시 일산구 중앙로 1275번길 38-10 201호(장항동 우림로데오스위트) &nbsp;&nbsp;<br/>
+			        학생 : 김건, 김나현, 나예림, 장다빈 
+			        사업자등록번호 : 584-85-00825 &nbsp;&nbsp;  
+			        TEL : 031.902.1777 &nbsp;&nbsp; 
+					FAX : 031.906.8777 <br>
+				</p>  
+			</div>
+		</div>
+	</div>
+	</body>
+	<!-- 댓글 수정 삭제 ajax 사용해 비동기식 설정 -->
+	<script>
+		$('#commentForm').submit(function(event) {
+			event.preventDefault();
+			$.ajax({
+				url: '/member/writeComment'
+				method: 'POST'
+				data: $(this).serialize(),
+				success: function(response) {
+					if(response === 'success') {
+						location.reload();
+					} else {
+						alert('댓글 등록 실패');
+					}
+				}
+			});
+		});
+		
+		//댓글 삭제
+		$('.deleteComment').click(function() {
+			$.ajax({
+				url: '/member/deleteComment',
+				method: 'POST'
+				success: function(response) {
+					if (response === 'success') {
+						location.reload();
+					} else {
+						alert('댓글 삭제 실패');
+					}
+				}
+			});
+		});
+	</script>
+</html>

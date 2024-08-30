@@ -7,11 +7,11 @@
 	<select id="listComment" parameterType="com.project.springboot.dto.BoardInfoCommentDto" resultType="com.project.springboot.dto.BoardInfoCommentDto">
 		SELECT * FROM boardInfoComment
         WHERE refGroup = #{refGroup} AND deleted = 0
-        ORDER BY regidate ASC	
+        ORDER BY regidate DESC	
 	</select>
 	<insert id="writeComment">
-		INSERT INTO boardInfoComment (cIdx, writer, commentText, refGroup, commentGroup)
-			VALUES (boardInfoComment_seq.nextval, #{writer}, #{commentText}, #{refGroup}, #{commentGroup})
+		INSERT INTO boardInfoComment (cIdx, writer, commentText, refGroup)
+			VALUES (boardInfoComment_seq.nextval, #{writer}, #{commentText}, #{refGroup})
 	</insert>
 	<update id="deleteComment">
 	<!-- 결과 값이 없으므로 resultType 생략  -->
