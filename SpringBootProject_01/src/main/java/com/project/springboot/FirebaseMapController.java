@@ -17,7 +17,7 @@ public class FirebaseMapController {
 	@Autowired
 	private FirebaseMapService firebaseMapService;
 		
-	@RequestMapping("/guest/nearbyData")
+	@RequestMapping("/guest/map5")
 	public String getNearbyRestData2(@RequestParam(value="centerX", required=false) Double centerX,
 			@RequestParam(value="centerY", required=false) Double centerY,
 			@RequestParam(value="radius", defaultValue = ".02") double radius, Model model) {
@@ -34,7 +34,7 @@ public class FirebaseMapController {
 			e.printStackTrace();		
 		}
 		
-		return "guest/map2";
+		return "guest/map5";
 	}
 	
 	@RequestMapping("/guest/nearbyData2")
