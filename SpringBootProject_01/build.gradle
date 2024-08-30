@@ -36,11 +36,11 @@ dependencies {
 	testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.3'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 	testImplementation 'org.springframework.security:spring-security-test'
-	
-<<<<<<< HEAD
-=======
+
 	implementation 'org.springframework.boot:spring-boot-starter-mail'
->>>>>>> yerim5
+	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+	
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
 	
 	implementation 'jakarta.servlet:jakarta.servlet-api'
     implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api'

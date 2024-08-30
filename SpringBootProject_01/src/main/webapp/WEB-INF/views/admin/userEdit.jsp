@@ -145,18 +145,22 @@
 			        </ul>
 			      </li>
 			   </ul>
-			  	<ul class="navbar-nav">
-			      	<li class="nav-item">
-			       	<a class="nav-link" href="login">
-			       	<button type="button" class="btn btn-outline-light">
-			       	<i class='bi bi-box-arrow-in-right'></i> 로그인</button></a>
-			     	</li>
-			      	<li class="nav-item">
-			       	<a class="nav-link" href="join">
-			       	<button type="button" class="btn btn-outline-light">
-			       	<i class='bi bi-person-plus-fill'></i> 회원가입</button></a>
-			     	</li>
-			     	</ul>
+			    <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">
+                            <button type="button" class="btn btn-outline-light">
+                                <i class="bi bi-box-arrow-right"></i> 로그아웃
+                            </button>
+                        </a>
+                    </li>
+                   <li class="nav-item">
+                        <a class="nav-link" href="/admin/list">
+                            <button type="button" class="btn btn-outline-light">
+                                <i class="bi bi-person-lines-fill"></i> 회원관리페이지
+                            </button>
+                        </a>
+                    </li>
+                </ul>
 			    </div>
 			  </div>
 			</nav>

@@ -19,6 +19,10 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	    <script>
+	   		function validateInput(input) {
+	    	  input.value = input.value.replace(/\s/g, ''); // 공백 제거
+	    	}
+	    
 		    $(document).ready(function(){
 				// 취소
 // 				$(".cencle").on("click", function(){
@@ -410,7 +414,8 @@
 						<label for="id">아이디</label>
 						<button type="button" class="btn btn-primary btn-sm my-1" style="float:right" id="duplidcheck" value="중복확인">
 				            	아이디확인</button>
-						<input type="text" class="form-control" id="id" name="id" placeholder="영문과 숫자로 작성해주세요" required>
+						<input type="text" class="form-control" id="id" name="id" oninput="validateInput(this)"
+						placeholder="영문과 숫자로 작성해주세요" required>
 						<span id="id-feedback"></span>
 						<div class="invalid-feedback">
 						  아이디을 입력해주세요.
@@ -420,7 +425,8 @@
 					<div class="row">
 						 <div class="col-md-6 mb-3">
 						    <label for="pwd">비밀번호</label>
-						    <input type="password" class="form-control" id="pass" name="pass" placeholder="영문, 숫자, 특수기호를 모두사용해주세요" value="" required>
+						    <input type="password" class="form-control" id="pass" name="pass" oninput="validateInput(this)"
+						    placeholder="영문, 숫자, 특수기호를 모두사용해주세요" value="" required>
 						    <span id="pass-feedback"></span>
 						    <div class="invalid-feedback">
 						      비밀번호를 입력해주세요
@@ -428,7 +434,8 @@
 						 </div>
 						 <div class="col-md-6 mb-3">
 						    <label for="pwdcheck">비밀번호확인</label>
-						    <input type="password" class="form-control" id="passcheck" name="passcheck" placeholder="비밀번호를 한번 더 입력해주세요" value="" required>
+						    <input type="password" class="form-control" id="passcheck" name="passcheck" oninput="validateInput(this)"
+						    placeholder="비밀번호를 한번 더 입력해주세요" value="" required>
 							<span id="passcheck-feedback"></span>
 							<div class="invalid-feedback">
 						      비밀번호 확인을 해주세요.
@@ -438,7 +445,8 @@
 					
 					<div class="mb-3">
 						<label for="name">이름</label>
-						<input type="text" class="form-control" id="name" name="name" placeholder="이름을 작성해주세요" required>
+						<input type="text" class="form-control" id="name" name="name" oninput="validateInput(this)"
+						placeholder="이름을 작성해주세요" required>
 						<span id="name-feedback"></span>
 						<div class="invalid-feedback">
 						  이름을 입력해주세요.
@@ -447,7 +455,8 @@
 					
 					<div class="mb-3">
 					  <label for="phoneNumber">휴대전화</label>
-					  <input type="text" class="form-control" id="phoneNum" name="phoneNum" maxlength='13' placeholder="010-0000-0000" required>
+					  <input type="text" class="form-control" id="phoneNum" name="phoneNum" maxlength='13' oninput="validateInput(this)"
+					  placeholder="010-0000-0000" required>
 					  <span id="phoneNum-feedback"></span>
 					  <div class="invalid-feedback">
 					   휴대전화번호를 입력해주세요
@@ -457,7 +466,8 @@
 					 <div class="row">
 					 	<div class="mb-3">
 					 		<label for="email">이메일</label>
-					 		<input type="email" class="form-control" id="email" name="email" placeholder="you@example.com" value="" required>
+					 		<input type="email" class="form-control" id="email" name="email" oninput="validateInput(this)"
+					 		placeholder="you@example.com" value="" required>
 					 		<span id="email-feedback"></span>
 					 		<div class="invalid-feedback">
 					 		 이메일을 입력해주세요.
@@ -507,7 +517,7 @@
 					        <label class="custom-control-label" for="aggrement">개인정보 수집 및 이용에 동의합니다.</label>
 					      </div>
 					      <div class="mb-4">
-					      <button id="submit"class="btn btn-outline-primary" type="submit" value="가입하기" onclick="location.href='/';">가입 완료</button>
+					      <button id="submit"class="btn btn-outline-primary" type="submit" value="가입하기" >가입 완료</button>
 					      </div>
 				 </form>
 			 </div>
