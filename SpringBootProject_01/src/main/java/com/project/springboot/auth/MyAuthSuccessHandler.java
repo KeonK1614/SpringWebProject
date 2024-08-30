@@ -36,24 +36,42 @@ public class MyAuthSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
          * 기존 Session의 prevPage attribute 제거
          */
         String prevPage = (String) request.getSession().getAttribute("prevPage");
-        if (prevPage != null) {
-            request.getSession().removeAttribute("prevPage");
-        }
-
-        // 기본 URI
-        String uri = "/";
+//        System.out.println("Previous Page: " + prevPage);
 
         /**
          * savedRequest 존재하는 경우 = 인증 권한이 없는 페이지 접근
          * Security Filter가 인터셉트하여 savedRequest에 세션 저장
          */
+        String uri;
+
+        // SavedRequest가 있을 경우, savedRequest의 URL로 리다이렉트
         if (savedRequest != null) {
             uri = savedRequest.getRedirectUrl();
-        } else if (prevPage != null && !prevPage.equals("")){
-            uri = prevPage;
+        } 
+        // prevPage가 null이 아니고 비어있지 않을 경우
+        else if (prevPage != null && !prevPage.isEmpty()) {
+            // prevPage가 특정 페이지를 포함하는지 확인
+            if (prevPage.contains("/security/findId") || prevPage.contains("/security/findPwd")) {
+                uri = "/";
+            } else {
+                uri = prevPage; // prevPage가 지정된 경우, 해당 페이지로 리다이렉트
+            }
+        } 
+        // prevPage가 null이거나 비어있을 경우 기본 페이지로 리다이렉트
+        else {
+            uri = "/";
+        }
+        
+//        System.out.println("Redirecting to: " + uri);
+        
+        if (prevPage != null) {
+            request.getSession().removeAttribute("prevPage");
         }
 
         redirectStrategy.sendRedirect(request, response, uri);
+        
+//        System.out.println("Redirecting to: " + uri);
+        
     }
     
     // 로그인 실패한 후 성공 했을 시 남아있는 에러 세션을 제거함.

@@ -6,7 +6,7 @@
 	<!-- 아이디 찾기 -->
 	<select id="findMemberId" resultType="com.project.springboot.dto.UserDTO">
 		select id from member
-		where name=#{name} and email=#{email} and enabled=1
+		where name=#{name} and email=#{email} and provider= 'LOCAL'
 	</select>
 	
 	<!-- 아이디와 이메일로 유저 있는지 없는지 찾기 -->
