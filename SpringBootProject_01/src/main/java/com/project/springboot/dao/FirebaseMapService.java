@@ -19,13 +19,17 @@ import com.project.springboot.dto.RestMap;
 
 @Service
 public class FirebaseMapService implements IFirebaseMapService {
-	@Autowired
+
 	private Firestore firestore;
-	private final Firestore db = FirestoreClient.getFirestore();
 	
 	public static final String COL_REST = "restmap";
 	public static final String COL_ELE = "elemap";
 	
+	@Autowired
+    public FirebaseMapService(Firestore firestore) {
+        this.firestore = firestore;
+    }
+
 	
 	public List<RestMap> getNearbyRestrooms(double centerX, double centerY, double radius) throws InterruptedException, ExecutionException {
 		List<RestMap> restrooms = new ArrayList<>();
@@ -106,46 +110,46 @@ public class FirebaseMapService implements IFirebaseMapService {
 	    return R * c;
 	}
 
-	@Override
-	public String insertRestMap(RestMap restMap) throws InterruptedException, ExecutionException {
-	
-		ApiFuture<com.google.cloud.firestore.WriteResult> apiFuture = db.collection(COL_REST).document(restMap.getPname()).set(restMap);
-		
-		return apiFuture.get().getUpdateTime().toString();
-	}
-
-	@Override
-	public String updateRestMap(RestMap restMap) throws InterruptedException, ExecutionException {
-		ApiFuture<com.google.cloud.firestore.WriteResult> apiFuture = db.collection(COL_REST).document(restMap.getPname()).set(restMap);
-		
-		return apiFuture.get().getUpdateTime().toString();
-	}
-
-	@Override
-	public String deleteRestMap(String pname) {
-		ApiFuture<com.google.cloud.firestore.WriteResult> apiFuture = db.collection(COL_REST).document(pname).delete();
-		return "Document id: " + pname + " deleted.";
-	}
-
-	@Override
-	public String insertEleMap(EleMap eleMap) throws InterruptedException, ExecutionException {
-		ApiFuture<com.google.cloud.firestore.WriteResult> apiFuture = db.collection(COL_ELE).document(eleMap.getSbwy_stn_nm()).set(eleMap);
-		
-		return apiFuture.get().getUpdateTime().toString();
-	}
-
-	@Override
-	public String updateEleMap(EleMap eleMap) throws InterruptedException, ExecutionException {
-		ApiFuture<com.google.cloud.firestore.WriteResult> apiFuture = db.collection(COL_ELE).document(eleMap.getSbwy_stn_nm()).set(eleMap);
-		
-		return apiFuture.get().getUpdateTime().toString();
-	}
-
-	@Override
-	public String deleteEleMap(String sbwy_stn_nm) {
-		ApiFuture<com.google.cloud.firestore.WriteResult> apiFuture = db.collection(COL_ELE).document(sbwy_stn_nm).delete();
-		return "Document id: " + sbwy_stn_nm + " deleted.";
-	}
+//	@Override
+//	public String insertRestMap(RestMap restMap) throws InterruptedException, ExecutionException {
+//	
+//		ApiFuture<com.google.cloud.firestore.WriteResult> apiFuture = db.collection(COL_REST).document(restMap.getPname()).set(restMap);
+//		
+//		return apiFuture.get().getUpdateTime().toString();
+//	}
+//
+//	@Override
+//	public String updateRestMap(RestMap restMap) throws InterruptedException, ExecutionException {
+//		ApiFuture<com.google.cloud.firestore.WriteResult> apiFuture = db.collection(COL_REST).document(restMap.getPname()).set(restMap);
+//		
+//		return apiFuture.get().getUpdateTime().toString();
+//	}
+//
+//	@Override
+//	public String deleteRestMap(String pname) {
+//		ApiFuture<com.google.cloud.firestore.WriteResult> apiFuture = db.collection(COL_REST).document(pname).delete();
+//		return "Document id: " + pname + " deleted.";
+//	}
+//
+//	@Override
+//	public String insertEleMap(EleMap eleMap) throws InterruptedException, ExecutionException {
+//		ApiFuture<com.google.cloud.firestore.WriteResult> apiFuture = db.collection(COL_ELE).document(eleMap.getSbwy_stn_nm()).set(eleMap);
+//		
+//		return apiFuture.get().getUpdateTime().toString();
+//	}
+//
+//	@Override
+//	public String updateEleMap(EleMap eleMap) throws InterruptedException, ExecutionException {
+//		ApiFuture<com.google.cloud.firestore.WriteResult> apiFuture = db.collection(COL_ELE).document(eleMap.getSbwy_stn_nm()).set(eleMap);
+//		
+//		return apiFuture.get().getUpdateTime().toString();
+//	}
+//
+//	@Override
+//	public String deleteEleMap(String sbwy_stn_nm) {
+//		ApiFuture<com.google.cloud.firestore.WriteResult> apiFuture = db.collection(COL_ELE).document(sbwy_stn_nm).delete();
+//		return "Document id: " + sbwy_stn_nm + " deleted.";
+//	}
 
 
 }

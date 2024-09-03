@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.project.springboot.dao.BoardInfoCommentService;
+import com.project.springboot.dao.BoardPage;
 import com.project.springboot.dao.IBoardInfoDao;
 import com.project.springboot.dto.BoardInfoCommentDto;
 import com.project.springboot.dto.BoardInfoDto;
@@ -32,7 +33,7 @@ public class BoardInfoController
 	@Autowired
 	ServletContext context;
 	@Autowired
-	IBoardInfoDao dao;
+	IBoardInfoDao board;
 	@Autowired
 	BoardInfoCommentService commentService;
 	
@@ -45,26 +46,55 @@ public class BoardInfoController
 	@RequestMapping("/guest/boardInfo")
 	public String userListPage(HttpServletRequest req, Model model, ParameterDTO pDto)
 	{
-		int totalCount = dao.getTotalCount(pDto);
 		int pageSize = 10;
 		int blockPage = 5;
+		
+		String searchField = req.getParameter("searchField");
+		String searchWord = req.getParameter("searchWord");
+        System.out.println("searchField after getParam : " + searchField);
+		System.out.println("searchWord after getParam : " + searchWord);
 		
 		int pageNum = (req.getParameter("pageNum")) == null || req.getParameter("pageNum").equals("")
 				? 1 : Integer.parseInt(req.getParameter("pageNum"));
 		int start = (pageNum - 1) * pageSize + 1;
 		int end = pageNum * pageSize;
 		
-		pDto.setStart(start);
-		pDto.setEnd(end);
+		
 		
 		Map<String, Object> maps = new HashMap<>();
+        System.out.println("searchField before adding to map : " + searchField);
+		System.out.println("searchWord before adding to map : " + searchWord);
+		if (searchWord != null) {
+            maps.put("searchField", searchField);
+            maps.put("searchWord", searchWord);
+            System.out.println("searchField in maps : " + maps.get("searchField"));
+    		System.out.println("searchWord in maps : " + maps.get("searchWord"));
+        }
+		
+		int totalCount = board.getTotalCount(maps);
+
 		maps.put("totalCount", totalCount);
 		maps.put("pageSize", pageSize);
 		maps.put("pageNum", pageNum);
-		model.addAttribute("maps" , maps);
+		maps.put("start", start);
+		maps.put("end", end);
 		
-		List<BoardInfoDto> lists = dao.listDao(pDto);
-		model.addAttribute("list", lists);
+		String pagingImg = BoardPage.pagingStr(totalCount, pageSize, blockPage,
+				pageNum, "../guest/boardInfo", searchField, searchWord);
+		
+		model.addAttribute("pagingImg", pagingImg); // 목록 하단에 출력할 페이지 번호
+		System.out.println("pagingImg: " + pagingImg);
+		model.addAttribute("maps" , maps);
+		model.addAttribute("searchField", searchField); // 받아온 검색위치
+		model.addAttribute("searchWord", searchWord); // 받아온 검색어
+		model.addAttribute("pagingImg", pagingImg); // 목록 하단에 출력할 페이지 번호
+		model.addAttribute("totalCount", totalCount); // 전체 게시물 갯수
+		model.addAttribute("pageSize", pageSize); // 한 페이지당 출력할 게시물 갯수(설정값)
+		model.addAttribute("pageNum", pageNum); // 현재 페이지 번호 
+		System.out.println("Total Count: " + totalCount);
+		System.out.println("PageSize : " + pageSize);
+		
+		model.addAttribute("list", board.listDao(maps));
 	
 		return "guest/boardInfo";
 	}
@@ -91,7 +121,7 @@ public class BoardInfoController
 		
 		String sId = SecurityContextHolder.getContext().getAuthentication().getName();
 
-		dao.writeDao(sId,
+		board.writeDao(sId,
 					req.getParameter("title"),
 					req.getParameter("content"),
 					ofileName,
@@ -109,7 +139,7 @@ public class BoardInfoController
 	@RequestMapping("/member/delete")
 	public String delete(HttpServletRequest req, Model model)
 	{
-		dao.deleteDao(req.getParameter("idx"));
+		board.deleteDao(req.getParameter("idx"));
 		return "redirect:/guest/boardInfo";
 		
 	}
@@ -118,9 +148,9 @@ public class BoardInfoController
 	public String boardInfoView(HttpServletRequest req, Model model)
 	{
 		String sIdx = req.getParameter("idx");
-		BoardInfoDto dto = dao.viewDao(sIdx);
+		BoardInfoDto dto = board.viewDao(sIdx);
 		model.addAttribute("dto", dto);
-		dao.updateViewCount(sIdx);
+		board.updateViewCount(sIdx);
 		
 	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    String loggedInUserId = auth != null ? auth.getName() : null;
@@ -150,7 +180,7 @@ public class BoardInfoController
 	public String boardEditor(HttpServletRequest req, Model model)
 	{
 		String sIdx = req.getParameter("idx");
-		BoardInfoDto dto = dao.viewDao(sIdx);
+		BoardInfoDto dto = board.viewDao(sIdx);
 
 		model.addAttribute("dto", dto);
 		model.addAttribute("existingOfile", dto.getOfile());
@@ -162,7 +192,7 @@ public class BoardInfoController
 	public String edit(HttpServletRequest req, @RequestParam("file") MultipartFile file, Model model) {
 		String sIdx = req.getParameter("idx");
 		
-		BoardInfoDto dto = dao.viewDao(sIdx);
+		BoardInfoDto dto = board.viewDao(sIdx);
 		String ofileName = dto.getOfile();
 		String sfileName = dto.getSfile();
 		
@@ -185,7 +215,7 @@ public class BoardInfoController
 				e.printStackTrace();
 			}
 		}
-		model.addAttribute("dto", dao.editDao(req.getParameter("idx"),
+		model.addAttribute("dto", board.editDao(req.getParameter("idx"),
 											req.getParameter("id"),
 											req.getParameter("title"),
 											req.getParameter("content"),
@@ -198,7 +228,8 @@ public class BoardInfoController
 	@RequestMapping("/member/like")
 	public String addLike(HttpServletRequest req, Model model) {
 		String sIdx = req.getParameter("idx");
-		dao.addLike(sIdx);
+		board.addLike(sIdx);
 		return "guest/boardInfo";
 	}	
+	
 }

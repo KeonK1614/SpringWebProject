@@ -58,35 +58,35 @@ public class FirebaseMapController {
 		return "guest/map2";
 	}
 	
-	@GetMapping("/admin/insertRestInfo")
-	public String insertRestInfo(@RequestParam RestMap restMap) throws InterruptedException, ExecutionException {
-		return firebaseMapService.insertRestMap(restMap);
-	}
-	
-	@GetMapping("/admin/updateRestInfo")
-	public String updateRestInfo(@RequestParam RestMap restMap) throws InterruptedException, ExecutionException {
-		return firebaseMapService.updateRestMap(restMap);
-	}
-	
-	@GetMapping("/admin/deleteRestInfo")
-	public String deleteRestInfo(@RequestParam String pname) throws InterruptedException, ExecutionException {
-		return firebaseMapService.deleteRestMap(pname);
-	}
-
-	@GetMapping("/admin/insertRestInfo")
-	public String insertEleInfo(@RequestParam EleMap eleMap) throws InterruptedException, ExecutionException {
-		return firebaseMapService.insertEleMap(eleMap);
-	}
-	
-	@GetMapping("/admin/updateRestInfo")
-	public String updateEleInfo(@RequestParam EleMap eleMap) throws InterruptedException, ExecutionException {
-		return firebaseMapService.updateEleMap(eleMap);
-	}
-	
-	@GetMapping("/admin/deleteRestInfo")
-	public String deleteEleInfo(@RequestParam String sbwy_stn_nm) throws InterruptedException, ExecutionException {
-		return firebaseMapService.deleteEleMap(sbwy_stn_nm);
-	}
-	
+//	@GetMapping("/admin/insertRestInfo")
+//	public String insertRestInfo(@RequestParam RestMap restMap) throws InterruptedException, ExecutionException {
+//		return firebaseMapService.insertRestMap(restMap);
+//	}
+//	
+//	@GetMapping("/admin/updateRestInfo")
+//	public String updateRestInfo(@RequestParam RestMap restMap) throws InterruptedException, ExecutionException {
+//		return firebaseMapService.updateRestMap(restMap);
+//	}
+//	
+//	@GetMapping("/admin/deleteRestInfo")
+//	public String deleteRestInfo(@RequestParam String pname) throws InterruptedException, ExecutionException {
+//		return firebaseMapService.deleteRestMap(pname);
+//	}
+//
+//	@GetMapping("/admin/insertRestInfo")
+//	public String insertEleInfo(@RequestParam EleMap eleMap) throws InterruptedException, ExecutionException {
+//		return firebaseMapService.insertEleMap(eleMap);
+//	}
+//	
+//	@GetMapping("/admin/updateRestInfo")
+//	public String updateEleInfo(@RequestParam EleMap eleMap) throws InterruptedException, ExecutionException {
+//		return firebaseMapService.updateEleMap(eleMap);
+//	}
+//	
+//	@GetMapping("/admin/deleteRestInfo")
+//	public String deleteEleInfo(@RequestParam String sbwy_stn_nm) throws InterruptedException, ExecutionException {
+//		return firebaseMapService.deleteEleMap(sbwy_stn_nm);
+//	}
+//	
 
 }
