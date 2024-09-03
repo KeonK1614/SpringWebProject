@@ -18,15 +18,43 @@
 	    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/">
 	    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
 		<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
-
+		<style>@import url('https://fonts.googleapis.com/css2?family=SUSE:wght@100..800&display=swap');</style>
+		<style>@import url('https://fonts.googleapis.com/css2?family=New+Amsterdam&family=SUSE:wght@100..800&display=swap');</style>
+		<style>@import url('https://fonts.googleapis.com/css2?family=New+Amsterdam&family=Noto+Sans+KR:wght@100..900&family=SUSE:wght@100..800&display=swap');</style>
+		
 	    <style>
-	      .bd-placeholder-img {
+	     .suse {
+		  font-family: "SUSE", sans-serif;
+		  font-optical-sizing: auto;
+		  font-weight: <weight>;
+		  font-style: normal;
+		}
+		.new-amsterdam-regular {
+		  font-family: "New Amsterdam", sans-serif;
+		  font-weight: 400;
+		  font-style: normal;
+		}
+		.noto-sans-kr {
+		  font-family: "Noto Sans KR", sans-serif;
+		  font-optical-sizing: auto;
+		  font-weight: 900;
+		  font-style: normal;
+		}
+      	.bd-placeholder-img {
 	        font-size: 1.125rem;
 	        text-anchor: middle;
 	        -webkit-user-select: none;
 	        -moz-user-select: none;
 	        user-select: none;
 	      }
+	      
+	      h1 {
+	      color: black;
+		  font-size: 100px;
+			}
+		  p{
+	      color: black;
+		  }
 
 	      @media (min-width: 768px) {
 	        .bd-placeholder-img-lg {
@@ -221,11 +249,11 @@
 	    
 	    <div class="carousel-inner">
 	      <div class="carousel-item active">
-	        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-light-border-subtle)"/></svg>
+     		<svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-light-border-subtle)"/></svg>
 	        <div class="container">
 	          <div class="carousel-caption text-start">
-	            <h1>Example headline.</h1>
-	            <p class="opacity-75">Some representative placeholder content for the first slide of the carousel.</p>
+	            <h1 class="new-amsterdam-regular">Smile Road</h1>
+	            <p>더 나은 길을 만들어가는 여정에 여러분의 참여를 환영합니다. 우리의 목표는 단순한 이동의 편리함을 넘어,<br/> 모두가 존중받고 배려받는 사회를 이루는 것입니다.</p>
 	          </div>
 	        </div>
 	      </div>
@@ -234,8 +262,8 @@
 	        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-warning-border-subtle)"/></svg>
 	        <div class="container">
 	          <div class="carousel-caption">
-	            <h1>Another example headline.</h1>
-	            <p>Some representative placeholder content for the second slide of the carousel.</p>
+	            <h1 class="noto-sans-kr">Smile Road</h1>
+	            <p>교통 약자들이 겪는 문제들을 개선하고, 모두가 행복한 미소를 지을 수 있는 세상을 위해 <br/><strong> 스마일 로드</strong>는 항상 앞장서겠습니다.</p>
 	          </div>
 	        </div>
 	      </div>
@@ -243,8 +271,8 @@
 	        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-success-border-subtle)"/></svg>
 	        <div class="container">
 	          <div class="carousel-caption text-end">
-	            <h1>One more for good measure.</h1>
-	            <p>Some representative placeholder content for the third slide of this carousel.</p>
+	            <h1 class="suse">Smile Road</h1>
+	            <p>스마일 로드는 장애인, 고령자, 임산부, 영유아를 동반한 사람, 어린이 등 <strong>교통약자</strong>의 <br/>이동권이 보장되는 사회를 만들기 위해 노력합니다.</p>
 	          </div>
 	        </div>
 	      </div>
@@ -262,21 +290,22 @@
 	  <div class="container marketing">
 		<div class="row">
 	      <div class="col-lg-4">
-	        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
+	      	<img src="../static/restlogo.jpg" alt="화장실찾기 이미지" class="bd-placeholder-img rounded-circle" width="180" height="180">
+	        <!-- <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg> -->
 	        <h2 class="fw-normal">화장실찾기</h2>
-	        <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
+	        <p>현재 위치를 기반으로 주변에 교통약자들이 이용할 수 있는 화장실을 위치를 찾아드립니다.</p>
 	        <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
 	      </div><!-- /.col-lg-4 -->
 	      <div class="col-lg-4">
-	        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
-	        <h2 class="fw-normal">승강기찾기</h2>
-	        <p>Another exciting bit of representative placeholder content. This time, we've moved on to the second column.</p>
+			<img src="../static/elvlogo.jpg" alt="엘레베이터찾기 이미지" class="bd-placeholder-img rounded-circle" width="180" height="180">	        
+			<h2 class="fw-normal">승강기찾기</h2>
+	        <p>현재 위치를 기반으로 주변 지하철역의 엘리베이터 위치를 찾아드립니다.</p>
 	        <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
 	      </div><!-- /.col-lg-4 -->
 	      <div class="col-lg-4">
-	        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
-	        <h2 class="fw-normal">커뮤니티</h2>
-	        <p>And lastly this, the third column of representative placeholder content.</p>
+			<img src="../static/inforlogo.jpg" alt="엘레베이터찾기 이미지" class="bd-placeholder-img rounded-circle" width="180" height="180">
+	        <h2 class="fw-normal">정보 게시판</h2>
+	        <p>교통 약자들이 일상 생활에서 필요한 교통 정보와 편의시설에 대한 정보를 공유하고, 서로 도움을 주고받기 위한 게시판으로 이동합니다.</p>
 	        <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
 	      </div><!-- /.col-lg-4 -->
 	    </div><!-- /.row -->

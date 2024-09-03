@@ -138,7 +138,7 @@
 		</div>
 
 		<header>
-<nav class="navbar navbar-expand-md fixed-top" style="background-color: #7FA1C3;">
+			<nav class="navbar navbar-expand-md fixed-top" style="background-color: #7FA1C3;">
 			  <div class="container-fluid">
 			    <a class="navbar-brand" href="/">로고</a>
 			    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
