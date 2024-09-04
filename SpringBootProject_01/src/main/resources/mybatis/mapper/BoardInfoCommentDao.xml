@@ -15,18 +15,18 @@
 	</insert>
 	<update id="deleteComment">
 	<!-- 결과 값이 없으므로 resultType 생략  -->
-		UPDATE FROM boardInfoCommnet
-		SET isDeleted = '1'
-		WHERE cIdx = #{cIdx}
+		UPDATE boardInfoComment
+		SET deleted = '1'
+		WHERE cidx = #{cidx}
 	</update>
 	<update id="editComment">
 		UPDATE boardInfoComment 
-		SET content = #{content}
-		WHERE cIdx = #{cIdx}
+		SET commentText = #{commentText}
+		WHERE cidx = #{cidx}
 	</update>
-	<select id="getCommentData" >
-		SELECT *
+	<select id="getCommentData" parameterType="String" resultType="com.project.springboot.dto.BoardInfoCommentDto">
+		SELECT cIdx, refGroup, commentText, writer, regidate
 		FROM boardInfoComment
-		WHERE cIdx = #{cIdx}
+		WHERE cidx = #{cidx}
 	</select>
 </mapper>

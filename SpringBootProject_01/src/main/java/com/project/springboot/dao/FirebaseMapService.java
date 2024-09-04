@@ -2,6 +2,7 @@ package com.project.springboot.dao;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -12,19 +13,23 @@ import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.Firestore;
 import com.google.cloud.firestore.QueryDocumentSnapshot;
 import com.google.cloud.firestore.QuerySnapshot;
-import com.google.firebase.cloud.FirestoreClient;
+import com.google.cloud.firestore.SetOptions;
 import com.project.springboot.dto.EleMap;
 import com.project.springboot.dto.RestMap;
 
 @Service
 public class FirebaseMapService implements IFirebaseMapService {
-	@Autowired
+
 	private Firestore firestore;
-	//private final Firestore db = FirestoreClient.getFirestore();
 	
 	public static final String COL_REST = "restmap";
 	public static final String COL_ELE = "elemap";
 	
+	@Autowired
+    public FirebaseMapService(Firestore firestore) {
+        this.firestore = firestore;
+    }
+
 	
 	public List<RestMap> getNearbyRestrooms(double centerX, double centerY, double radius) throws InterruptedException, ExecutionException {
 		List<RestMap> restrooms = new ArrayList<>();
@@ -56,7 +61,7 @@ public class FirebaseMapService implements IFirebaseMapService {
 		
 	    restrooms.sort(Comparator.comparingDouble(RestMap::getDistance));
 		
-		return restrooms.subList(0, Math.min(10, restrooms.size()));
+		return restrooms.subList(0, Math.min(30, restrooms.size()));
 		
 	}
 	
@@ -90,7 +95,7 @@ public class FirebaseMapService implements IFirebaseMapService {
 		
 		elevators.sort(Comparator.comparingDouble(EleMap::getDistance));
 		
-		return elevators.subList(0, Math.min(10, elevators.size()));
+		return elevators.subList(0, Math.min(30, elevators.size()));
 		
 	}
 	
@@ -104,47 +109,44 @@ public class FirebaseMapService implements IFirebaseMapService {
 	    double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 	    return R * c;
 	}
-
-//	@Override
-//	public String insertRestMap(RestMap restMap) throws InterruptedException, ExecutionException {
 //	
-//		ApiFuture<com.google.cloud.firestore.WriteResult> apiFuture = db.collection(COL_REST).document(restMap.getPname()).set(restMap);
+//	public void addRestrooms(RestMap restmap) throws InterruptedException, ExecutionException {
+//		ApiFuture<com.google.cloud.firestore.WriteResult> future = firestore.collection(COL_REST)
+//																			.document()
+//																			.set(restmap);
+//		System.out.println("addMethod called");
+//		future.get();
+//	}
+//	
+//	public void updateRestrooms(String docuId, RestMap updateRestMap) throws InterruptedException, ExecutionException {
+//		ApiFuture<com.google.cloud.firestore.WriteResult> future = firestore.collection(COL_REST)
+//																			.document(docuId)
+//																			.set(updateRestMap, SetOptions.merge());
+//		future.get();
+//	}
+//	public void deleteRestrooms(String docuId) throws InterruptedException, ExecutionException {
+//		ApiFuture<com.google.cloud.firestore.WriteResult> future = firestore.collection(COL_REST)
+//																			.document("docuId")
+//																			.delete();
+//		future.get();
+//	}
+//	
+//	public RestMap getRestroomById(String id) throws InterruptedException, ExecutionException {
+//		return firestore.collection(COL_REST).document(id).get().get().toObject(RestMap.class);
+//	}
+//
+//	public List<RestMap> getAllRestrooms() throws InterruptedException, ExecutionException {
+//		List<RestMap> restrooms = new ArrayList<>();
+//		ApiFuture<QuerySnapshot> query = firestore.collection(COL_REST).limit(5).get();
+//		List<QueryDocumentSnapshot> documents = query.get().getDocuments();
 //		
-//		return apiFuture.get().getUpdateTime().toString();
-//	}
-//
-//	@Override
-//	public String updateRestMap(RestMap restMap) throws InterruptedException, ExecutionException {
-//		ApiFuture<com.google.cloud.firestore.WriteResult> apiFuture = db.collection(COL_REST).document(restMap.getPname()).set(restMap);
+//		for (QueryDocumentSnapshot document : documents) {
+//			RestMap restroom = document.toObject(RestMap.class);
+//			restrooms.add(restroom);
+//		}
 //		
-//		return apiFuture.get().getUpdateTime().toString();
-//	}
-//
-//	@Override
-//	public String deleteRestMap(String pname) {
-//		ApiFuture<com.google.cloud.firestore.WriteResult> apiFuture = db.collection(COL_REST).document(pname).delete();
-//		return "Document id: " + pname + " deleted.";
-//	}
-//
-//	@Override
-//	public String insertEleMap(EleMap eleMap) throws InterruptedException, ExecutionException {
-//		ApiFuture<com.google.cloud.firestore.WriteResult> apiFuture = db.collection(COL_ELE).document(eleMap.getSbwy_stn_nm()).set(eleMap);
+//		return restrooms;
 //		
-//		return apiFuture.get().getUpdateTime().toString();
 //	}
-//
-//	@Override
-//	public String updateEleMap(EleMap eleMap) throws InterruptedException, ExecutionException {
-//		ApiFuture<com.google.cloud.firestore.WriteResult> apiFuture = db.collection(COL_ELE).document(eleMap.getSbwy_stn_nm()).set(eleMap);
-//		
-//		return apiFuture.get().getUpdateTime().toString();
-//	}
-//
-//	@Override
-//	public String deleteEleMap(String sbwy_stn_nm) {
-//		ApiFuture<com.google.cloud.firestore.WriteResult> apiFuture = db.collection(COL_ELE).document(sbwy_stn_nm).delete();
-//		return "Document id: " + sbwy_stn_nm + " deleted.";
-//	}
-
 
 }

@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class BoardInfoCommentDto {
-	private int cIdx;
+	private int cidx;
 	private String writer;
 	private String commentText;
 	private String refGroup;
