@@ -17,12 +17,7 @@
 		delete from noticeComment where coidx = #{param1}
 	</delete>
 	
-	<select id="getCommentDao" parameterType="com.project.springboot.dto.noticeCommentDto">
-		select * from noticeComment where coidx = #{param1}
-	</select>
-	
-	<update id="editorDao" parameterType="com.project.springboot.dto.noticeCommentDto">
-		update noticeComment set content = #{conent} where coidx={coidx}
+	<update id="editorDao">
+		update noticeComment set content = #{content} where coidx = #{coidx}
 	</update>
-	
 </mapper>

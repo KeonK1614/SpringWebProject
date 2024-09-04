@@ -91,7 +91,57 @@
 		
 		body { margin-top: 60px; } /* nav의 높이만큼 padding-top 추가 */
         
+        /* 모달창 스타일 */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 50%;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
         
+        /* 지도와 현재 위치 버튼을 포함한 컨테이너 스타일 */
+		.map-container {
+		    position: relative; /* 자식 요소를 절대 위치로 배치하기 위해 */
+		    display: flex;
+		    justify-content: center;
+		    align-items: center;
+		    height: 400px; /* 필요에 따라 높이 조절 */
+		}
+		
+		/* 현재 위치 버튼 스타일 */
+		#currentLocationBtn {
+		    position: absolute; /* 부모 요소의 상대적 위치를 기준으로 위치 지정 */
+		    top: 10px; /* 상단에서 10px 떨어진 위치 */
+		    left: 10px; /* 왼쪽에서 10px 떨어진 위치 */
+		    z-index: 10; /* 다른 요소 위에 버튼이 오도록 z-index 설정 */
+		}
         
         </style>	 
 		
@@ -216,70 +266,97 @@
 		</header>
 	
 		<main>
-			<div>
-				<button style="position: absolute; z-index: 9" class="btn btn-danger btn-sm" onclick="Mylocation()">
-					현재위치
-				</button>
+			<div class="map-container">	
+				<button id="currentLocationBtn" class="btn btn-danger btn-sm" onclick="Mylocation()">
+		            현재위치
+		        </button>		
+				<div id="map" style="width:900px;height:400px;"></div>
 			</div>
-			
-			<div id="map" style="width:600px;height:500px;"></div>
-				<c:forEach var="item1" items="${restDataList}">
-		    		<table border="1" style="width:600px;height:500px;">
-				        <tr>
-				        	<th>장소명</th>
-				        	<td>${item1.pname}</td>
-				        </tr>
-				        <tr>
-				        	<th>주소</th>
-				        	<td>${item1.addr1}${item1.addr2} </td>
-				        </tr>
-				        <tr>
-				        	<th>전화번호</th>
-				        	<td>${item1.phonenum}</td>
-				        </tr>
-				        <tr>
-				        	<th>장소유형</th>
-				        	<td>${item1.ptype}</td>
-				        </tr>
-				        <tr>
-				        	<th>운영시간</th>
-				        	<td>${item1.optime}</td>
-				        </tr>
-				        <tr>
-				        	<th>건물유형</th>
-				        	<td>${item1.btype}</td>
-				        </tr>
-				        <tr>
-				        	<th>상세정보</th>
-				        	<td>${item1.detail1}${item1.detail2}</td>
-				        </tr>
-			        </table>
-				</c:forEach>
-				        
-			
-			
-			<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3f7f9ab0116bd62797e2fbd361dac3a9&libraries=services,clusterer,drawing"></script>
-			<script>
-				var container = document.getElementById('map');
-				var options = {
-					center: new kakao.maps.LatLng(37.569306, 126.992235),
-					level: 3
-				};
+			<!-- 모달창 -->
+		    <div id="myModal" class="modal">
+		        <div class="modal-content">
+		            <span class="close">&times;</span>
+		            <p id="modalContent">모달 내용</p>
+		        </div>
+		    </div>
+		    
+		   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3f7f9ab0116bd62797e2fbd361dac3a9&libraries=services,clusterer,drawing"></script>
+		   <script>
+				var map;
+				
+				// 지도와 마커 초기화
+		        function initMap() {
+		        	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+		        	 	mapOption = { 
+				        /* center: new kakao.maps.LatLng(37.554674785645716, 126.9706120117342), */// 지도의 중심좌표
+				        center: new kakao.maps.LatLng(37.554674785645716, 126.9706120117342), // 지도의 중심좌표
+				        level: 3 // 지도의 확대 레벨 
+				    }; 
+	
+		            map = new kakao.maps.Map(mapContainer, mapOption);
+		            
+		         	// 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+					var mapTypeControl = new kakao.maps.MapTypeControl();
 		
-				var map = new kakao.maps.Map(container, options);
+					// 지도에 컨트롤을 추가해야 지도위에 표시됩니다
+					// kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
+					map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+		
+					// 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+					var zoomControl = new kakao.maps.ZoomControl();
+					// 지도의 우측에 확대 축소 컨트롤을 추가한다
+					map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+		            
+		            // 마커 데이터 배열
+		            var positions = [
+		                 /* <c:forEach var="item1" items="${restDataList}">
+				            {
+				            	content: decodeURIComponent("${item1.optime}") + "<br/> 장소명   : ${item1.pname} <br/>주소 : ${item1.addr1} ${item1.addr2}<br/>전화번호 : ${item1.phonenum}<br/>장소유형 : ${item1.ptype}<br/> 건물유형 :  ${item1.btype} <br/> 상세정보 : ${item1.detail1} ${item1.detail2} <br/> 현재위치와의 거리 : ${item1.distance}km"
+				            	,
+				            	position: new kakao.maps.LatLng(${item1.y_wgs84}, ${item1.x_wgs84})
+				            }<c:if test="${not empty restDataList}">,</c:if>
+			            </c:forEach>  */ 
+		            	<c:forEach var="item2" items="${eleDataList }">
+		            	{
+			            	content: "지하철명 : ${item2.sbwy_stn_nm} <br/>" +
+			            			 "주소 : ${item2.sgg_nm}${item2.emd_nm} <br/>" +
+			            			 "구분 : ${item2.node_type_cd} (0 : 일반, 1 : 지하철 출입구, 2 : 버스정류장, 3 : 지하보도 출입구)"
+			            	,
+			            	position: new kakao.maps.LatLng(${item2.y_wgs84}, ${item2.x_wgs84})
+		            	}<c:if test="${not empty eleDataList}">,</c:if>
+			    		</c:forEach>
+		            ];
+		            
+		            // 마커와 클릭 이벤트 설정
+		            positions.forEach(data => {
+		                const marker = new kakao.maps.Marker({
+		                    position: data.position
+		                });
+	
+		                marker.setMap(map);
+	
+		                kakao.maps.event.addListener(marker, 'click', function() {
+		                    document.getElementById('myModal').style.display = 'block';
+		                    document.getElementById('modalContent').innerHTML = data.content;
+		                });
+		            });
+	
+		            // 모달창 닫기 기능
+		            const modal = document.getElementById('myModal');
+		            const closeBtn = document.getElementsByClassName('close')[0];
+		            
+		           closeBtn.onclick = function() {
+		                modal.style.display = 'none';
+		            };
+		            
+		            window.onclick = function(event) {
+		                if (event.target === modal) {
+		                    modal.style.display = 'none';
+		                }
+		            };
+		        }
 				
-				// 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
-				var mapTypeControl = new kakao.maps.MapTypeControl();
-
-				// 지도에 컨트롤을 추가해야 지도위에 표시됩니다
-				// kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
-				map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
-
-				// 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
-				var zoomControl = new kakao.maps.ZoomControl();
-				map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
-				
-				// 현재 위치로 이동하는 함수
+		     // 현재 위치로 이동하는 함수
 				function Mylocation() {
 				    if (navigator.geolocation) {
 				        navigator.geolocation.getCurrentPosition(function(position) {
@@ -297,7 +374,6 @@
 				                position: locPosition
 				            });
 				            
-				            /* var message = '<div style="padding:5px;">현재위치</div>'; */
 				            var message = '<div style="width:150px;text-align:center;padding:6px 0;">현재위치</div>';
 				            var infowindow = new kakao.maps.InfoWindow({
 				                content: message
@@ -312,73 +388,7 @@
 				    }
 				}
 				
-				// 마커를 표시할 위치와 내용을 가지고 있는 객체 배열입니다 
-				var positions = [
-					/* <c:forEach var="item1" items="${restDataList}">
-			            {
-			                content: '${item1.pname}', 
-			                latlng: new kakao.maps.LatLng(${item1.y_wgs84}, ${item1.x_wgs84})
-			            }<c:if test="${not empty restDataList}">,</c:if>
-			        </c:forEach> */
-			        
-			        {
-			        	content : '김나현 화장실',
-			        	latlng: new kakao.maps.LatLng(37.49931680941938, 126.88290031024228)
-			        },
-			        {
-			        	content : '장다빈 화장실',
-			        	latlng: new kakao.maps.LatLng(37.47016019714292, 126.92940671580033)
-			        },
-			        {
-			        	content : '장다빈 화장실',
-				        latlng: new kakao.maps.LatLng(37.55926559152876, 127.08747012564345),
-			        },
-			        {
-			        	content : '장다빈 화장실',
-				        latlng: new kakao.maps.LatLng(37.539044611751656, 127.0976934608308) 
-			        }
-				];
-				
-				for (var i = 0; i < positions.length; i ++) {
-				    // 마커를 생성합니다
-				    var marker = new kakao.maps.Marker({
-				        map: map, // 마커를 표시할 지도
-				        position: positions[i].latlng // 마커의 위치
-				    });
-
-				    // 마커에 표시할 인포윈도우를 생성합니다 
-				    var message = '<div style="width:150px;text-align:center;padding:6px 0;">' + positions[i].content + '</div>';
-				    var infowindow = new kakao.maps.InfoWindow({
-				        content: message // 인포윈도우에 표시할 내용
-				    });
-
-				    // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
-				    // 이벤트 리스너로는 클로저를 만들어 등록합니다 
-				    // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
-				    kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
-				    kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
-				    
-				}
-				
-				
-
-				// 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
-				function makeOverListener(map, marker, infowindow) {
-				    return function() {
-				        infowindow.open(map, marker);
-				    };
-				}
-
-				// 인포윈도우를 닫는 클로저를 만드는 함수입니다 
-				function makeOutListener(infowindow) {
-				    return function() {
-				        infowindow.close();
-				    };
-				}
-				
-			
-				
-				
+				window.onload = initMap;
 				
 			</script>	       
 			

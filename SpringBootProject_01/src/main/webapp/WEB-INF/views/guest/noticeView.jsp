@@ -12,6 +12,7 @@
 		<meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
 		<meta name="generator" content="Hugo 0.122.0">
 		<title>Carousel Template · Bootstrap v5.3</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
 		<link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
@@ -91,10 +92,17 @@
 		<style>
 	        .content-edit {
 	            display: none;
+	            width: 100%; /* 너비를 조절합니다. 필요에 따라 조정하세요. */
+			    height: 50px; /* 높이를 조절합니다. 필요에 따라 조정하세요. */
+			    resize: vertical; /* 사용자가 세로 방향으로 크기를 조절할 수 있도록 합니다. */
 	        }
 	        .btn-edit, .btn-save {
 	            margin-right: 5px;
 	        }
+	        .table-header {
+            text-align: center;
+            font-weight: bold;
+        	}
 	    </style>
 		 
 	  <link href="../carousel/carousel.css" rel="stylesheet">
@@ -271,16 +279,6 @@
 		                </tbody>
 	                </table>
 	                
-	                <%-- <div class="row">
-	                    <div class="col text-right mb-4 d-flex justify-content-end">
-	                        <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='noticeBoard';">리스트보기</button>
-	                        <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='../member/noticeLike?idx=${dto.idx}';">추천</button>
-	                        <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='../admin/noticeEditorForm?idx=${dto.idx}';">수정하기</button>
-	                        <button type="reset" class="btn btn-outline-primary mx-1" onclick="location.href='../admin/noticeDelete?idx=${dto.idx}';">글삭제</button>
-	                        <button type="reset" class="btn btn-outline-primary mx-1" onclick="deletePost(${param.idx});">글삭제</button>
-	                    </div>
-	                </div> --%>
-	                
 	                <!-- 게스트 일 때 -->
 	                <sec:authorize access="isAnonymous()">
 	                	<div class="row">
@@ -315,15 +313,12 @@
 		  </div>
 		  
 		  <!-- 댓글 부분 -->
-		  <hr/>
-		  <h4>댓글</h4>
+		  <div><h4><strong>&nbsp;댓글달기</strong></h4></div>
 		  <div class="card">
-            <form action="../member/noticeComment">
+            <form action="../member/noticeComment" name="commentFrm">
             <input type="hidden" value="${dto.idx}"  name="idx">
-              <div class="card-body">
-                  <textarea id="reply-content" class="form-control" rows="1" name="content1"></textarea>
-              </div>
-              <div class="card-footer">
+              <div class="card-body d-flex">
+                  <textarea id="reply-content" class="form-control me-2" rows="1" name="content1"></textarea>
                   <button type="submit" id="btn-reply-save" class="btn btn-primary" >등록</button>
               </div>
             </form>
@@ -338,13 +333,13 @@
         </colgroup>
           <thead>
             <tr>
-              <td colspan="4" align="center">댓글</td>
+              <td colspan="4" class="table-header">댓글</td>
             </tr>
             <tr>
-              <td align="center">아이디</td>
-              <td align="center">내용</td>
-              <td align="center">작성일</td>
-              <td align="center">비고</td>
+              <td align="center" class="table-header">아이디</td>
+              <td align="center" class="table-header">내용</td>
+              <td align="center" class="table-header">작성일</td>
+              <td align="center" class="table-header">비고</td>
             </tr>
           </thead>
           <tbody>
@@ -360,21 +355,16 @@
           			<c:forEach items="${list}" var="dto" varStatus="loop">
           				<tr>
           					<td align="center">${dto.id}</td>
-          					<td>
-          						${dto.content}
+          					<td align="center">
           						<span class="content-text">${dto.content}</span>
-                            	<textarea class="content-edit" style="display: none;">${dto.content}</textarea>
-          					 </td>
+                            	<textarea class="content-edit">${dto.content}</textarea>
+          					</td>
           					<td align="center">${dto.postdate}</td>
-          					<td>
-          						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				              	<button type="button">답글달기</button>
-				              	&nbsp;
-				              	<button type="button" id="editButton" onclick="location.href='../member/noticeCommentEditor?coidx=${dto.coidx}';" aria-label="Edit">수정</button>
-				              	&nbsp;
-				              	<button type="button" onclick="location.href='../member/noticeCommentDelete?coidx=${dto.coidx}';">삭제</button>
-				            </td>
-          				</tr>
+          					<td align="center">
+          						<button type="button" id="editButton" onclick="comentEdit(this, '${dto.coidx}', '${dto.id}');" aria-label="Edit" class="btn btn-primary">수정</button>
+				              	<button type="button" onclick="deleteCommentPost(${dto.coidx}, '${dto.id}');"  class="btn btn-primary">삭제</button>
+							</td>
+				        </tr>
           			</c:forEach>
           		</c:otherwise>
           	</c:choose>
@@ -382,20 +372,91 @@
         </table>
         
         <script>
+        	//로그인 되어 있는 아이디 들고 옴 
+		    var currentUserId = '${loginId}';
+		    
+		    //게시글 삭제
 			function deletePost(idx)
 			{
-			    var confirmed = confirm("정말로 삭제하겠습니까?"); 
+			    var confirmed = confirm("게시글을 삭제하겠습니까?"); 
 			    if (confirmed) 
 			    {
 			        var form = document.writeFrm;      
 			        form.method = "post";  
-			       /*  form.action = "../admin/noticeDelete?idx=${dto.idx}"; */
-			        form.action = "../admin/noticeDelete?idx="+idx; 
+					form.action = "../admin/noticeDelete?idx="+idx; 
 			        form.submit();  
 			    }
+			}	
+	    	
+			//댓글삭제
+			function deleteCommentPost(coidx, id)
+			{
+				if(currentUserId === id)
+				{
+					var del = confirm("댓글을 삭제하겠습니까?");
+					if(del)
+			    	window.location.href = "../member/noticeCommentDelete?coidx=" + coidx; 
+		    	}
+		    	else
+		    	{
+		    		alert("작성자만 삭제 가능합니다.");
+		    	}
 			}
+			
+			//댓글수정
+			function comentEdit(button, coidx, id) 
+			{
+		        const row = button.closest('tr');
+		        const contentText = row.querySelector('.content-text');
+		        const contentEdit = row.querySelector('.content-edit');
+
+		        if(currentUserId === id)
+				{
+					var del = confirm("수정하시겠습니까?");
+					if(del){
+						if (button.textContent === '수정') {
+				            contentText.style.display = 'none';
+				            contentEdit.style.display = 'block';
+				            button.textContent = '수정 완료';
+				            button.onclick = () => editorComplete(button, coidx, contentEdit.value);
+				        } else {
+				            contentText.style.display = 'block';
+				            contentEdit.style.display = 'none';
+				            button.textContent = '수정';
+				            button.onclick = () => comentEdit(button, coidx);
+
+				            const updatedContent = contentEdit.value;
+				            editorComplete(button, coidx, updatedContent);
+				        }
+					}
+		    	}
+		    	else
+		    	{
+		    		alert("작성자만 수정 가능합니다.");
+		    	}
+		         
+		    }
+			
+			//댓글수정완료서버보내기
+		    function editorComplete(button, coidx, updatedContent) {
+		        $.ajax({
+		            type: "POST",
+		            url: "/guest/noticeCommentEditor",
+		            data:{
+		            	coidx : coidx,
+		                content : updatedContent
+		            },
+		            success: function(response) {
+		                alert("댓글 수정이 완료되었습니다.");
+		                window.location.reload();
+		            },
+		            error: function(error) {
+		                alert("다시 시도하세요.");
+		            }
+		        });
+		    }
 		</script>
-    </main>	 
+	</main>	 
 			 	
 		<!-- <footer class="container">
 		    <p class="float-end"><i class="bi bi-arrow-up-circle"></i><a href="#">Back to top</a></p>

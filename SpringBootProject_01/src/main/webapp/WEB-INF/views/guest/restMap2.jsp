@@ -126,6 +126,22 @@
             cursor: pointer;
         }
         
+        /* 지도와 현재 위치 버튼을 포함한 컨테이너 스타일 */
+		.map-container {
+		    position: relative; /* 자식 요소를 절대 위치로 배치하기 위해 */
+		    display: flex;
+		    justify-content: center;
+		    align-items: center;
+		    height: 400px; /* 필요에 따라 높이 조절 */
+		}
+		
+		/* 현재 위치 버튼 스타일 */
+		#currentLocationBtn {
+		    position: absolute; /* 부모 요소의 상대적 위치를 기준으로 위치 지정 */
+		    top: 10px; /* 상단에서 10px 떨어진 위치 */
+		    left: 10px; /* 왼쪽에서 10px 떨어진 위치 */
+		    z-index: 10; /* 다른 요소 위에 버튼이 오도록 z-index 설정 */
+		}
         
         </style>	 
 		
@@ -250,13 +266,12 @@
 		</header>
 	
 		<main>
-			<div>
-				<button style="position: absolute; z-index: 9" class="btn btn-danger btn-sm" onclick="Mylocation()">
-					현재위치
-				</button>
+			<div class="map-container">	
+				<button id="currentLocationBtn" class="btn btn-danger btn-sm" onclick="Mylocation()">
+		            현재위치
+		        </button>		
+		        <div id="map" style="width:900px;height:400px;"></div>
 			</div>
-			
-			<div id="map" style="width:900px;height:400px;"></div>
 			<!-- 모달창 -->
 		    <div id="myModal" class="modal">
 		        <div class="modal-content">
@@ -268,12 +283,14 @@
 		   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3f7f9ab0116bd62797e2fbd361dac3a9&libraries=services,clusterer,drawing"></script>
 		   <script>
 				var map;
+				var markers = []; // 현재 지도에 표시된 마커들을 저장할 배열
 				
 				// 지도와 마커 초기화
 		        function initMap() {
 		        	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		        	 	mapOption = { 
-				        center: new kakao.maps.LatLng(37.554674785645716, 126.9706120117342), // 지도의 중심좌표
+				       center: new kakao.maps.LatLng(37.554674785645716, 126.9706120117342),// 지도의 중심좌표 
+				       /*  center: new kakao.maps.LatLng(37.533535, 126.895354),// 지도의 중심좌표 */
 				        level: 3 // 지도의 확대 레벨 
 				    }; 
 	
@@ -292,68 +309,32 @@
 					map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 		            
 		            // 마커 데이터 배열
-		            var positions = [
-		                <c:forEach var="item1" items="${restDataList}">
+		            /* var positions = [
+		                 <c:forEach var="item1" items="${restDataList}">
 				            {
-				                content:'장소명   : ${item1.pname} <br/>' +
-					                    '주소     : ${item1.addr1}${item1.addr2} <br/>' +
-					                    '전화번호 : ${item1.phonenum} <br/>'  
-					                    /* '장소유형 : ${item1.ptype} &nbsp;' 
-					                    '운영시간 : ${item1.optime} &nbsp;' +
-					                    '건물유형 : ${item1.btype} <br/>' +
-					                    '상세정보 : ${item1.detail1}${item1.detail2}' */ , 
-					                    
-				            	/* content:'장소명   : ${item1.pname} <br/>' +
-					                    '주소     : ${item1.addr1}${item1.addr2} <br/>' +
-					                    '전화번호 : ${item1.phonenum} <br/>' 
-					                    '장소유형 : ${item1.ptype || '정보 없음'} <br/>' +
-					                    '운영시간 : ${item1.optime} <br/>' +
-					                    '건물유형 : ${item1.btype || '정보 없음'}' , */
+				            	content : "<ul>" +
+				            			  "<li>장소명   : ${item1.pname}</li>" +
+				            			  "<li>주소     : ${item1.addr1} ${item1.addr2}</li>" +
+				            			  "<li>운영시간 : " + decodeURIComponent("${item1.optime}") + "</li>" +
+				            			  "<li>전화번호 : ${item1.phonenum}</li>" +
+				            			  "<li>장소유형 : ${item1.ptype}</li>" +
+				            			  "<li>건물유형 : ${item1.btype}</li>" +
+				            			  "<li>상세정보 : ${item1.detail1} ${item1.detail2}</li>" +
+				            			  "</ul>"
+				            	,
 				            	position: new kakao.maps.LatLng(${item1.y_wgs84}, ${item1.x_wgs84})
-				            		
 				            }<c:if test="${not empty restDataList}">,</c:if>
 			            </c:forEach>  
-			            
-			            
-		            	/* <c:forEach var="item1" items="${restDataList}">
-				            {
-				            	content: '
-					            	<table border="1" style="width:600px;height:500px;">
-								        <tr>
-								        	<th>장소명</th>
-								        	<td>${item1.pname}</td>
-								        </tr>
-								        <tr>
-								        	<th>주소</th>
-								        	<td>${item1.addr1}${item1.addr2} </td>
-								        </tr>
-								        <tr>
-								        	<th>전화번호</th>
-								        	<td>${item1.phonenum}</td>
-								        </tr>
-								        <tr>
-								        	<th>장소유형</th>
-								        	<td>${item1.ptype}</td>
-								        </tr>
-								        <tr>
-								        	<th>운영시간</th>
-								        	<td>${item1.optime}</td>
-								        </tr>
-								        <tr>
-								        	<th>건물유형</th>
-								        	<td>${item1.btype}</td>
-								        </tr>
-								        <tr>
-								        	<th>상세정보</th>
-								        	<td>${item1.detail1}${item1.detail2}</td>
-								        </tr>
-							        </table>
-						        ',
-				            	position: new kakao.maps.LatLng(${item1.y_wgs84}, ${item1.x_wgs84})
-				            }<c:if test="${not empty restDataList}">,</c:if>
-			            </c:forEach>  */
+		            ]; */
+		            var positions = [
+		            	{content : '서울역', position: new kakao.maps.LatLng(37.556586, 126.983199)},
+		            	{content : '경복궁', position: new kakao.maps.LatLng(37.575866, 126.979433)},
+		            	{content : '동대문', position: new kakao.maps.LatLng(37.566985, 127.008279)}
 		            ];
 		            
+		         	// 지도를 재설정할 범위정보를 가지고 있을 LatLngBounds 객체를 생성합니다
+		            var bounds = new kakao.maps.LatLngBounds();  
+		         
 		            // 마커와 클릭 이벤트 설정
 		            positions.forEach(data => {
 		                const marker = new kakao.maps.Marker({
@@ -361,14 +342,18 @@
 		                });
 	
 		                marker.setMap(map);
+		                bounds.extend(data.position);
 	
 		                kakao.maps.event.addListener(marker, 'click', function() {
 		                    document.getElementById('myModal').style.display = 'block';
 		                    document.getElementById('modalContent').innerHTML = data.content;
 		                });
 		            });
-	
-		            // 모달창 닫기 기능
+		            
+		            // 지도의 범위를 설정합니다
+		            map.setBounds(bounds);
+		            
+		         	// 모달창 닫기 기능
 		            const modal = document.getElementById('myModal');
 		            const closeBtn = document.getElementsByClassName('close')[0];
 		            
@@ -381,9 +366,21 @@
 		                    modal.style.display = 'none';
 		                }
 		            };
-		        }
-				
-		     // 현재 위치로 이동하는 함수
+		        
+				 // 지도 클릭 이벤트 리스너 추가
+			        kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
+			            var latlng = mouseEvent.latLng;
+			            map.setCenter(latlng); // 클릭한 위치를 지도의 중심으로 설정합니다
+			        });
+			     
+			     // 지도 이동 시 중심 좌표 서버로 전송
+			        kakao.maps.event.addListener(map, 'center_changed', function() {
+			            var center = map.getCenter();
+			            sendCenterCoordinatesToServer(center.getLat(), center.getLng());
+			        });
+			    }
+		    
+				// 현재 위치로 이동하는 함수
 				function Mylocation() {
 				    if (navigator.geolocation) {
 				        navigator.geolocation.getCurrentPosition(function(position) {
@@ -414,9 +411,30 @@
 				        alert("Geolocation is not supported by this browser.");
 				    }
 				}
-				
+		        
+				function sendCenterCoordinatesToServer(lat, lng) {
+			        // 서버에 중심 좌표를 GET 요청으로 전송
+			        fetch('/guest/restMap2?centerY=' + lat + '&centerX=' + lng)
+			            .then(response => {
+			                // 서버 응답이 JSON인지 확인
+			                if (!response.ok) {
+			                    throw new Error('Network response was not ok');
+			                }
+			                return response.json();
+			            })
+			            .then(data => {
+			                // 서버에서 받은 데이터로 마커 업데이트
+			                if (data && data.restDataList) {
+			                    updateMarkers(data.restDataList);
+			                } else {
+			                    console.error('Invalid data format:', data);
+			                }
+			            })
+			            .catch(error => {
+			                console.error('Error sending coordinates to server:', error);
+			            });
+			    }
 				window.onload = initMap;
-				
 			</script>	       
 			
 			
