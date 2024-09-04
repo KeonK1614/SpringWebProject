@@ -5,6 +5,7 @@ import lombok.Data;
 @Data
 public class RestMap {
 	
+	private String id;//문서 id
 	private String pname;// 장소이름
 	private String addr1;//주소1 - 구 
 	private String addr2; //주소2 - 도로명주소

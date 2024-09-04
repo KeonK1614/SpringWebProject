@@ -16,7 +16,7 @@
 <meta name="author"
 	content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
 <meta name="generator" content="Hugo 0.122.0">
-<title></title>
+<title>Smile Road - 모두가 웃을 수 있는 길잡이</title>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
 <link rel="canonical"
@@ -26,63 +26,8 @@
 <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="../files/style.css" rel="stylesheet">
 <link href="../carousel/carousel.css" rel="stylesheet">
-<script>
-		function validateForm(form) {
-			if (form.commentText.value == "") {
-				alert("댓글 내용을 입력하세요.");
-				form.commentText.focus();
-				return false;
-			}
-		}
-		
-		function deletePost(idx)
-		{
-		    var confirmed = confirm("정말로 게시글을 삭제하겠습니까?"); 
-		    if (confirmed) 
-		    {
-		        var form = document.writeFrm;      
-		        form.method = "post";  
-		        form.action = '../member/delete?idx='${dto.idx}; 
-		        form.submit();  
-		    }
-		}
-		
-	    function showEditForm(cIdx) {
-	        document.getElementById('commentText-' + cIdx).style.display = 'none';
-	        document.getElementById('editForm-' + cIdx).style.display = 'block';
-	    }
-	
-	    function cancelEdit(cIdx) {
-	        document.getElementById('editForm-' + cIdx).style.display = 'none';
-	        document.getElementById('commentText-' + cIdx).style.display = 'block';
-	    }
-	
-	    function submitEdit(cIdx, refGroup) {
-	        var commentText = document.getElementById('editCommentText-' + cIdx).value;
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
-	        // AJAX 요청으로 서버에 데이터 전송
-	        fetch('/member/editComment', {
-	            method: 'POST',
-	            headers: {
-	                'Content-Type': 'application/x-www-form-urlencoded'
-	            },
-	            body: new URLSearchParams({
-	                'cidx': cIdx,
-	                'refGroup': refGroup,
-	                'commentText': commentText
-	            })
-	        })
-	        .then(response => response.text())
-	        .then(data => {
-	            console.log('Success:', data);
-	            location.reload(); // 수정 후 페이지 새로고침
-	        })
-	        .catch((error) => {
-	            console.error('Error:', error);
-	        });
-	    }
-	    
-	</script>
 </head>
 
 <body>
@@ -125,8 +70,8 @@
 						<tr>
 							<th class="text-center" style="vertical-align: middle;">첨부파일</th>
 							<td><c:if test="${ not empty dto.ofile }">
-		            		${ dto.ofile }
-		            		</c:if></td>
+		            				${ dto.ofile }
+		            			</c:if></td>
 						</tr>
 
 
@@ -139,7 +84,7 @@
 							onclick="location.href='boardInfo';">리스트보기</button>
 						<sec:authorize access="isAuthenticated()">
 							<button type="button" class="btn btn-outline-primary mx-1"
-								onclick="location.href='/member/like';">좋아요</button>
+								onclick="location.href='/member/like?idx=${dto.idx}';">좋아요</button>
 						</sec:authorize>
 						<c:if test="${loggedInUserId eq dto.id}">
 							<button type="button" class="btn btn-outline-primary mx-1"
@@ -150,13 +95,15 @@
 					</div>
 				</div>
 			</form>
-			<form action="/member/writeComment?idx=${dto.idx}" method="post"
-				onsubmit="return validateForm(this)">
-				<textarea name="commentText" cols="30" rows="3"></textarea>
-				<button class="btn btn-outline-primary mx-1" type="submit">댓글쓰기</button>
-			</form>
+			
 			<div id="commentList" class="card">
 				<div class="card-header">댓글리스트</div>
+					<div class="textarea-container">
+						<form action="/member/writeComment?idx=${dto.idx}" method="post" onsubmit="return validateForm(this)">
+							<textarea class="form-control mt-3" id="commentText" name="commentText" rows="3" placeholder="댓글을 입력하세요"></textarea>
+							<button class="btn btn-outline-primary mx-1" type="submit">댓글쓰기</button>
+						</form>
+					</div>
 				<c:if test="${not empty comments}">
 					<p>&nbsp;&nbsp; 댓글 갯수: ${comments.size()} 개</p>
 					<ul id="reply-box" class="list-group">
@@ -169,9 +116,9 @@
 									<li id="reply-${cDto.cidx}" class="list-group-item">
 										<div id="commentText-${cDto.cidx}" name="commentText">${cDto.commentText}</div>
 										<div>
-											<strong>${cDto.writer}</strong>
+											작성자: <strong>${cDto.writer}</strong>
 										</div>
-										<div>${cDto.regidate}</div>
+										<div>작성일: ${cDto.regidate}</div>
 										<div id="editForm-${cDto.cidx}" style="display: none;">
 											<textarea id="editCommentText-${cDto.cidx}"
 												name="commentText" class="form-control">${cDto.commentText}</textarea>
@@ -199,7 +146,67 @@
 				</c:if>
 			</div>
 		</div>
+	</div>
+	<%@ include file="../layout/footer.jsp"%>
+	
+	<script>
+		function validateForm(form) {
+			var comment = document.getElementById("commentText").value.trim();
+			if (comment == "") {
+				alert("댓글 내용을 입력하세요.");
+				document.getElementById("commentText").focus();
+				return false;
+			} else {
+				return true;
+			}
+		}
+		
+		function deletePost(idx) {
+		    var confirmed = confirm("정말로 게시글을 삭제하겠습니까?"); 
+		    if (confirmed) 
+		    {
+		        var form = document.writeFrm;      
+		        form.method = "post";  
+		        form.action = '../member/delete?idx=' + idx; 
+		        form.submit();  
+		    }
+		}
+		
+	    function showEditForm(cIdx) {
+	        document.getElementById('commentText-' + cIdx).style.display = 'none';
+	        document.getElementById('editForm-' + cIdx).style.display = 'block';
+	    }
+	
+	    function cancelEdit(cIdx) {
+	        document.getElementById('editForm-' + cIdx).style.display = 'none';
+	        document.getElementById('commentText-' + cIdx).style.display = 'block';
+	    }
+	
+	    function submitEdit(cIdx, refGroup) {
+	        var commentText = document.getElementById('editCommentText-' + cIdx).value;
 
-		<%@ include file="../layout/footer.jsp"%>
+	        // AJAX 요청으로 서버에 데이터 전송
+	        fetch('/member/editComment', {
+	            method: 'POST',
+	            headers: {
+	                'Content-Type': 'application/x-www-form-urlencoded'
+	            },
+	            body: new URLSearchParams({
+	                'cidx': cIdx,
+	                'refGroup': refGroup,
+	                'commentText': commentText
+	            })
+	        })
+	        .then(response => response.text())
+	        .then(data => {
+	            console.log('Success:', data);
+	            location.reload(); // 수정 후 페이지 새로고침
+	        })
+	        .catch((error) => {
+	            console.error('Error:', error);
+	        });
+	    }
+	    
+	</script>
 </body>
 </html>

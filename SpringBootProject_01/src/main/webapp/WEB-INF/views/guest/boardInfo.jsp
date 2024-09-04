@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="jakarta.tags.core" prefix="c"%>
-<%@ taglib prefix="sec"
-	uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="sec"	uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
+
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
 <head>
@@ -30,7 +31,7 @@
 
 <body>
 	<%@ include file="../layout/header.jsp"%>
-
+	<main>
 	<div class="col-10 pt-3 mt-3 mx-auto">
 		<h4>
 			게시판 목록 - <small>정보게시판</small>
@@ -90,14 +91,16 @@
 							<c:forEach items="${list }" var="dto" varStatus="loop">
 								<tr align="center">
 									<td class="text-center">${dto.idx}</td>
-									<td class="text-left"><a
-										href="boardInfoView?idx=${dto.idx}"> ${dto.title }&nbsp; <jsp:useBean
-												id="now" class="java.util.Date" /> <fmt:formatDate
-												value="${now}" pattern="yyyy-MM-dd" var="today" /> <c:if
+									<td class="text-left">
+									<a href="boardInfoView?idx=${dto.idx}"> ${dto.title }&nbsp; 
+										<jsp:useBean id="now" class="java.util.Date" />
+												<fmt:formatDate	value="${now}" pattern="yyyy-MM-dd" var="today" />
+												<c:if
 												test="${dto.postdate == today}">
 												<span class="badge rounded-pill bg-danger">new</span>
 											</c:if>
-									</a></td>
+									</a>
+									</td>
 									<td class="text-center">${dto.id }</td>
 									<td class="text-center">${dto.postdate }</td>
 									<td class="text-center">${dto.viewCount }</td>
@@ -116,7 +119,7 @@
 		<div>
 			<div class="col d-flex justify-content-end">
 				<button type="button" class="btn btn-primary"
-					onclick="location.href='/member/boardWrite';">글쓰기</button>
+					onclick="location.href='/guest/boardInfo';">글 목록</button>&nbsp;&nbsp;
 
 				<button type="button" class="btn btn-primary"
 					onclick="location.href='/member/boardWrite';">글쓰기</button>
@@ -130,7 +133,6 @@
 				</ul>
 			</div>
 		</div>
-	</div>
 	</div>
 	</main>
 	<%@ include file="../layout/footer.jsp"%>

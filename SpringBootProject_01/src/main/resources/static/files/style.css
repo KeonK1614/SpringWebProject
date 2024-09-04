@@ -66,3 +66,7 @@
   --bs-btn-active-bg: #5a23c8;
   --bs-btn-active-border-color: #5a23c8;
 }
+
+.textarea-container {
+	margin: 0 20px;
+}

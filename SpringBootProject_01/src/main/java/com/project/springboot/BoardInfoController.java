@@ -91,8 +91,8 @@ public class BoardInfoController
 		model.addAttribute("totalCount", totalCount); // 전체 게시물 갯수
 		model.addAttribute("pageSize", pageSize); // 한 페이지당 출력할 게시물 갯수(설정값)
 		model.addAttribute("pageNum", pageNum); // 현재 페이지 번호 
-		System.out.println("Total Count: " + totalCount);
-		System.out.println("PageSize : " + pageSize);
+		System.out.println("Total Count: " + totalCount); //전체 게시물 수
+		System.out.println("PageSize : " + pageSize); //게시판 페이지 크기
 		
 		model.addAttribute("list", board.listDao(maps));
 	
@@ -139,7 +139,8 @@ public class BoardInfoController
 	@RequestMapping("/member/delete")
 	public String delete(HttpServletRequest req, Model model)
 	{
-		board.deleteDao(req.getParameter("idx"));
+		String idx = req.getParameter("idx");
+		board.deleteDao(idx);
 		return "redirect:/guest/boardInfo";
 		
 	}
@@ -229,7 +230,7 @@ public class BoardInfoController
 	public String addLike(HttpServletRequest req, Model model) {
 		String sIdx = req.getParameter("idx");
 		board.addLike(sIdx);
-		return "guest/boardInfo";
+		return "redirect:/guest/boardInfo";
 	}	
 	
 }

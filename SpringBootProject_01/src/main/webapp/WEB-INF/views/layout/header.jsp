@@ -22,6 +22,30 @@
 	href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
 <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="../carousel/carousel.css" rel="stylesheet">
+<script>
+	function chatPop(){
+		var s_width = window.screen.width;
+		var s_height = window.screen.height;            
+		
+		var leftVar = s_width/2 - 500/2;
+		var topVar = s_height/2 - 500/2;
+		
+		window.open("../member/webscoketPopup", "popup", 
+			"width=600,height=250,left="+leftVar+",top="+topVar);
+	}
+	
+	function chatPoplist(){
+		var s_width = window.screen.width;
+		var s_height = window.screen.height;            
+		
+		var leftVar = s_width/2 - 500/2;
+		var topVar = s_height/2 - 500/2;
+		
+		window.open("../admin/chatRoomList", "popup", 
+			"width=600,height=250,left="+leftVar+",top="+topVar);
+	}
+</script>
+</head>
 <body>
 	<header>
 		<svg xmlns="http://www.w3.org/2000/svg" class="d-none">
@@ -33,13 +57,24 @@
 		  </symbol>
 		</svg>
 
-		<div class="position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggl">
+		<div class="position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
+			<sec:authorize access="!isAnonymous() and  hasRole('ADMIN')">
+				<button	class="btn btn-bd-primary py-2 d-flex align-items-center mb-2"
+					id="bd-theme" type="button" aria-expanded="false"
+					data-bs-toggle="button" aria-label="채팅리스트" onclick="chatPoplist();">
+					채팅리스트
+					<svg class="bi my-1  theme-icon-active" width="1em" height="1em">
+						<use href="#chat"></use></svg>
+					<span class="visually-hidden" id="bd-theme-text">Toggle
+						theme</span>
+				</button>
+			</sec:authorize>
 			<button class="btn btn-bd-primary py-2 d-flex align-items-center"
 				id="bd-theme" type="button" aria-expanded="false"
-				data-bs-toggle="button" aria-label="채팅상담">
+				data-bs-toggle="button" aria-label="채팅상담" onclick="chatPop();">
+				채팅상담
 				<svg class="bi my-1 theme-icon-active" width="1em" height="1em">
 					<use href="#chat"></use></svg>
-				<a href="#" style="color: aliceblue; text-decoration: none;">채팅상담</a>
 				<span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
 			</button>
 		</div>
@@ -104,7 +139,7 @@
 									</button>
 							</a></li>
 							<li class="nav-item"><a class="nav-link"
-								href="/member/mypage">
+								href="/member/myPageView">
 									<button type="button" class="btn btn-outline-light">
 										<i class="bi bi-person-lines-fill"></i> 마이페이지
 									</button>

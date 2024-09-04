@@ -276,21 +276,11 @@
 				    }
 				}
 				
-				/*  var positions = [
-				    {
-				    	<c:forEach var="item1" items="${restDataList}">
-				    		content: '${item1.fname}', 
-					        latlng: new kakao.maps.LatLng(${item1.y_wgs84}, ${item1.x_wgs84}) 
-						</c:forEach>
-				    }
-				   
-				];   */
-				
 				var positions = [
-			        <c:forEach var="item1" items="${restDataList}">
+			        <c:forEach var="item4" items="${restDataList}">
 			            {
-			                content: '${item1.pname}', 
-			                latlng: new kakao.maps.LatLng(${item1.y_wgs84}, ${item1.x_wgs84})
+			                content: '${item4.pname}', 
+			                latlng: new kakao.maps.LatLng(${item4.y_wgs84}, ${item4.x_wgs84})
 			            }<c:if test="${not empty restDataList}">,</c:if>
 			        </c:forEach>
 			    ]; 
