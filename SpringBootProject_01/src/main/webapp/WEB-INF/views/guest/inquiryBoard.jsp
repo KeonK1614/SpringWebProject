@@ -66,7 +66,7 @@
 				var leftVar = s_width/2 - 500/2;
 				var topVar = s_height/2 - 500/2;
 				
-				window.open("../member/webscoketPopup", "popup", 
+				window.open("../member/chatPopup", "popup", 
 				    "width=600,height=250,left="+leftVar+",top="+topVar);
 			}
 			
@@ -310,6 +310,7 @@
 								<c:when test="${searchField == 'content'}">
 									<select name="searchField" class="form-control">
 									    <option value="title">제목</option>
+   									    <option value="id" >작성자</option>
 									    <option value="content" selected="selected">내용</option>
 									</select>
 								</c:when>
@@ -323,6 +324,7 @@
 								<c:otherwise>
 									<select name="searchField" class="form-control">
 									    <option value="title" selected="selected">제목</option>
+									    <option value="id" >작성자</option>
 									    <option value="content" >내용</option>
 									</select>
 								</c:otherwise>

@@ -6,7 +6,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Insert title here</title>
+		<title>문의 게시판</title>
 	</head>
 	<script type="text/javascript">
 	function showPasswordPrompt(callback) {

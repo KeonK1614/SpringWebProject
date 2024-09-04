@@ -11,7 +11,7 @@
 		<meta name="description" content="">
 		<meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
 		<meta name="generator" content="Hugo 0.122.0">
-		<title>Carousel Template · Bootstrap v5.3</title>
+		<title>문의 게시판</title>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
 		<link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
@@ -85,7 +85,15 @@
 		  --bs-btn-active-color: var(--bs-btn-hover-color);
 		  --bs-btn-active-bg: #5a23c8;
 		  --bs-btn-active-border-color: #5a23c8;
-		}	 
+		  
+		    #boardPass {
+		        border: 3px solid #ccc; /* 기본 테두리 색상 */
+		    }
+		
+		    /* 유효하지 않은 입력에 대한 스타일 */
+		    #boardPass.invalid {
+		        border: 3px solid red; /* 잘못된 입력 시 테두리 색상 */
+		    } 
 		</style>	
 		
 		<script type="text/javascript">
@@ -258,8 +266,8 @@
 	                            style="vertical-align:middle;">패스워드</th>
 	                        <td>
 	                        	<div style="display: flex; align-items: center;">
-	                            <input type="password" class="form-control" 
-	                                style="width:200px;" name="boardPass" />&nbsp;&nbsp; <small>※패스워드는 게시물 열람시 필요합니다.</small>
+	                            <input type="password" class="form-control" id="boardPass"
+	                                style="width:200px;" name="boardPass" maxlength='5' oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>&nbsp;&nbsp; <small>※패스워드는 숫자, 5자 이하로 설정해 주세요.</small>
 	                        	</div>
 	                        </td>
 	                    </tr>
@@ -311,6 +319,5 @@
 			</p>  
 		    <p>&copy; 2017–2024 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
 	  	</footer>		
-			
 		</body>
 	</html>

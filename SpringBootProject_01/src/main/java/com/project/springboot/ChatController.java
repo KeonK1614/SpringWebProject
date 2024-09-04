@@ -27,12 +27,12 @@ public class ChatController {
     private ChatService chatService;
 	
 	// 채팅방 전 확인 팝업
-	@RequestMapping("member/webscoketPopup")
-	public String webscoketPopup(Model model) {
+	@RequestMapping("member/chatPopup")
+	public String chatPopup(Model model) {
 		String sId = SecurityContextHolder.getContext().getAuthentication().getName();
 		
 		model.addAttribute("Id", sId);
-		return "member/webscoketPopup";
+		return "member/chatPopup";
 	}
 	
 	// 채팅방
@@ -66,16 +66,6 @@ public class ChatController {
 	            model.addAttribute("chatRooms", chatRooms);
 	            return "admin/chatRoomList"; // chatRoomList.jsp 페이지로 이동
 	        });
-	}
-	
-	// 관리자 전용 채팅방리스트
-	@GetMapping("admin/chatRoomList2")
-	public CompletableFuture<String> chatRoomList2(Model model) {
-		return chatService.getChatRoomList()
-				.thenApply(chatRooms -> {
-					model.addAttribute("chatRooms", chatRooms);
-					return "admin/chatRoomList2"; // chatRoomList.jsp 페이지로 이동
-				});
 	}
 	
 	 @PostMapping("admin/markMessagesAsRead")

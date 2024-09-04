@@ -11,7 +11,7 @@
 		<meta name="description" content="">
 		<meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
 		<meta name="generator" content="Hugo 0.122.0">
-		<title>Carousel Template · Bootstrap v5.3</title>
+		<title>문의 게시판</title>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
 		<link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
@@ -86,6 +86,12 @@
 		  --bs-btn-active-bg: #5a23c8;
 		  --bs-btn-active-border-color: #5a23c8;
 		}	 
+		.inquiryDetails{
+			border: none;
+			outline: none;
+			resize: none;
+			width: 100%;
+		}
 		</style>
 		
 		<script type="text/javascript">
@@ -273,7 +279,8 @@
 	                        <th class="text-center" 
 	                            style="vertical-align:middle;">내용</th>
 	                        <td>
-	                            <input type="text" class="form-control" value="[문의내용]${dto.content }" readonly/> 
+<%-- 	                            <input type="text" class="form-control" value="[문의내용]${dto.content }" readonly/> --%>
+                            	<textarea class="inquiryDetails"  readonly> [문의내용] ${dto.content } </textarea>
 	                            <textarea rows="9" class="form-control" name="content">[답변]</textarea>
 	                        </td>
 	                    </tr>

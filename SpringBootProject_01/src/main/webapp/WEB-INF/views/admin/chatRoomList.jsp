@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>   
 <html>
 	<head>
-	<title>채팅 상담</title>
+	<title>채팅 상담 리스트</title>
 	
 		<link href="/docs/5.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 	    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -11,7 +11,7 @@
 	    
 	    <script type="text/javascript">
 		    function openChatRoom(url) {
-	            window.open(url, 'chatWindow', 'width=500,height=500,scrollbars=yes,resizable=yes');
+	            window.open(url, 'chatWindow', 'width=500,height=520,scrollbars=yes,resizable=yes');
 	            return false; 
 	        }
 	    </script>
@@ -29,19 +29,19 @@
 
 	<body> 
 	    <div class="container">
-	        <h2>채팅 상담 리스트</h2>
-		        <ul class="list-group">
+	        <h2>Chat Room List</h2>
+		        <ol class="list-group list-group-numbered">
 		            <c:if test="${not empty chatRooms}">
 		                <c:forEach var="chatRoomId" items="${chatRooms}">
 		                    <li class="list-group-item">
-		                        <a href="/member/chatRoom?chatRoomId=${chatRoomId}" onclick="return openChatRoom(this.href);">Chat Room: ${chatRoomId}</a>
+		                        <a href="/member/chatRoom?chatRoomId=${chatRoomId}" onclick="return openChatRoom(this.href);">${chatRoomId}</a>
 		                    </li>
 		                </c:forEach>
 		            </c:if>
 		            <c:if test="${empty chatRooms}">
 		                <li class="list-group-item">채팅방 리스트가 존재하지 않습니다.</li>
 		            </c:if>
-		        </ul>
+		        </ol>
 	    </div>
 	</body>	
 

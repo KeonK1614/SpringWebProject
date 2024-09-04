@@ -233,7 +233,7 @@ public class inquiryBoardController
 		map.put("item8", sIdx);
 		
 		int nResult = bbs.replyWriteDao(map);
-		System.out.println("Write : " + nResult);
+		//System.out.println("Write : " + nResult);
 		bbs.responsesCountDao(sIdx);
 		
 		return "redirect:../guest/inquiryBoard";
@@ -296,11 +296,6 @@ public class inquiryBoardController
 		String Title = request.getParameter("title");
 		String Content = request.getParameter("content");
 		
-		System.out.println(idx);
-		System.out.println(Id);
-		System.out.println(Title);
-		System.out.println(Content);
-		
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("mId", Id);
 		map.put("mTitle", Title);
@@ -316,8 +311,6 @@ public class inquiryBoardController
 	@RequestMapping("member/changeBoardPass")
 	public @ResponseBody String changeBoardPass(HttpServletRequest request, @RequestParam("idx") String idx, @RequestParam("boardPass") String boardPass)
 	{
-		System.out.println("Received boardPass: " + boardPass);
-		System.out.println("idx: " + idx);
 		bbs.changeBoardPass(idx, boardPass);
 
 		return "비밀번호가 성공적으로 변경되었습니다.";
