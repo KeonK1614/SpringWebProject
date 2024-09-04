@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+
 <!doctype html>
 	<html lang="en" data-bs-theme="auto">
 	<head>	 
@@ -9,7 +11,7 @@
 		<meta name="description" content="">
 		<meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
 		<meta name="generator" content="Hugo 0.122.0">
-		<title>Carousel Template · Bootstrap v5.3</title>
+		<title>문의 게시판</title>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
 		<link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/">
@@ -112,41 +114,6 @@
 	    }
 	    
 	    
-/* 	    function passChangebtn() {
-	        let isPassChange = confirm("비밀번호를 변경하시겠습니까?");
-	        if (isPassChange) {
-	        	let btn = document.getElementById('passbtn'); // 버튼 요소를 가져옵니다.
-	        	let boardPassbox = document.getElementById('boardPassbox'); // 비밀번호 입력 박스 요소를 가져옵니다.
-	             
-	            // 비밀번호 입력 박스를 활성화합니다.
-	            boardPassbox.disabled = false;
-	            
-	            // 버튼의 값을 '변경 완료'로 설정합니다.
-	            btn.value = '변경 완료';
-
-	            // 버튼을 클릭했을 때 passChange 함수를 호출하도록 설정합니다.
-	            btn.onclick = passChange;
-	        }
-	    }
-	    
-	    function passChange(){
-	    	let btn = document.getElementById('passbtn');
-	    	let boardPassbox = document.getElementById('boardPassbox');
-	    	
-	    	btn.disabled = true;
-	    	boardPassbox.disabled = true;
-	    	alert("변경이 완료되었습니다.");
-	    	
-	    	$.ajax({
-	    		type : "POST",
-	    		url : "changeBoardPass",
-	    		data : {
-	    			
-	    		}
-	    	});
-	    	
-	    } */
-	    
 	    function passChangebtn() {
 	        let isPassChange = confirm("비밀번호를 변경하시겠습니까?");
 	        
@@ -193,16 +160,13 @@
 	            },
 	            success: function(response) {
 	                alert("변경이 완료되었습니다.");
-	    	        // 비밀번호 입력 박스와 버튼을 비활성화합니다.
+	    	        // 비밀번호 입력 박스와 버튼을 비활성화
 	    	        btn.disabled = true;
 	    	        btn.value = "변경";
 	    	        boardPassbox.disabled = true;
-	                
-	                // 필요한 경우, 추가 동작을 여기에 작성합니다.
 	            },
 	            error: function(error) {
 	                alert("비밀번호 변경에 실패했습니다. 다시 시도하세요.");
-	                // 에러 발생 시 추가 동작을 여기에 작성합니다.
 	            }
 	        });
 	    }

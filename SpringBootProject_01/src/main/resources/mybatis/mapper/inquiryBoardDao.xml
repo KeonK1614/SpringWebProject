@@ -8,10 +8,10 @@
 			SELECT * FROM (
             SELECT Tb.*, ROWNUM rNum FROM (
             SELECT * FROM inquiryBoard
-     		<if test="searchWord != null and searchWord != ''">
-						where ${searchField} 
-						Like '%${searchWord}%'
-			</if>            
+	     		<if test="searchWord != null and searchWord != ''">
+							WHERE ${searchField} Like '%${searchWord}%'
+							OR parentId Like '%${searchWord}%'
+				</if>            
             START WITH parentIdx=0
             CONNECT BY PRIOR idx = parentIdx
             ORDER SIBLINGS BY idx DESC
@@ -22,10 +22,10 @@
 		
 		<select id="listCountDao" resultType="int">
 			select count(*) from inquiryBoard 
-					<if test="searchWord != null and searchWord != ''">
-						where ${searchField} 
-						Like '%${searchWord}%'
-					</if>
+				<if test="searchWord != null and searchWord != ''">
+					where ${searchField} 
+					Like '%${searchWord}%'
+				</if>
 		</select>
 		
 		<select id="viewDao" resultType="com.project.springboot.dto.inquiryBoardDto">

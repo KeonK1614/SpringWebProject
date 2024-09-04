@@ -19,28 +19,8 @@
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     
 	<script>
-		 /* function chatWinOpen() {
-	       /*  var id = document.getElementById("chatId");
-	        //대화명이 입력되었는지 확인한다. 
-	        if (id.value == "") {
-	            alert("대화명을 입력 후 채팅창을 열어주세요.");
-	            id.focus();
-	            return;
-	        } */
-	    /*    var s_width = window.screen.width;
-            var s_height = window.screen.height;            
-            
-            var leftVar = s_width/2 - 500/2;
-            var topVar = s_height/2 - 500/2;
-            
-	       window.open("member/chatWindow, "popup1",
-	        		"width=600,height=600"); 
-	       window.close();
-	    }  */
-	    
 	    function chatWinOpen() {
-	    	var id = document.getElementById("chatId");
-	    	
+	    	var chatRoomId = "${Id}chatRoom";
 	        var s_width = window.screen.width;
 	        var s_height = window.screen.height;
 
@@ -51,51 +31,16 @@
 	        var topVar = s_height / 2 - newHeight / 2;
 
 	        // 새 창 열기
-	        var newWindow = window.open("../member/chatWindow?chatId=" + id.value, "newPopup", 
+	        var newWindow = window.open("../member/chatRoom?chatRoomId="+ chatRoomId, "newPopup", 
 	            "width=" + newWidth + ",height=" + newHeight + ",left=" + leftVar + ",top=" + topVar);
 
-	        // 부모 창 닫기
-	        window.opener = null;  // 새 창의 부모 창 참조를 없앰 (브라우저 호환성 문제 방지)
-	        window.close();
+	        if (newWindow) {
+	            window.opener = null;
+	            window.close();
+	        } else {
+	            alert("팝업이 차단되었습니다. 팝업 차단 설정을 해제하세요.");
+	        }
 	    }
-	</script>
-	
-	<script type="module">
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js'
-import { getDatabase, ref, get, onValue, set, child, push, onChildAdded, query, limitToLast } 
-	from 'https://www.gstatic.com/firebasejs/10.12.4/firebase-database.js'
-
-const firebaseConfig = {
-  apiKey: "AIzaSyCFicUJR5ltjGYdnbIxJJyrDg_SpXbf9GM",
-  authDomain: "springbootstudy-ea537.firebaseapp.com",
-  databaseURL: "https://springbootstudy-ea537-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "springbootstudy-ea537",
-  storageBucket: "springbootstudy-ea537.appspot.com",
-  messagingSenderId: "519354041411",
-  appId: "1:519354041411:web:3e46f2f4fd871be6e6c0f6"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
-
-let chatId = document.getElementById('chatId'); // 사용자 id 
-
-var newPostKey = push(child(ref(db), 'User/')).key;
-var newRef = ref(db, 'User/' + newPostKey);
-
-function AddDate() {
-    set(newRef, {  // 올바른 참조 객체 사용
-        userId: chatId.value  // 사용자 ID 값 설정
-    })
-    .then(() => { 
-        alert("Data added successfully");
-    })
-    .catch((error) => {
-        alert("Unsuccessful: " + error.message); // 오류 메시지 표시
-    });
-}
-enterBtn.addEventListener('click', AddDate);
-
 	</script>
 
 
@@ -188,12 +133,11 @@ enterBtn.addEventListener('click', AddDate);
 		      <div class="modal-body p-4 text-center">
 		        <h5 class="mb-0">채팅 상담을 시작하시겠습니까?</h5>
 		        <p class="mb-0">채팅 상담시 상담사와 연결됩니다.</p>
-		      	대화명 : <input type="text" id="chatId" value="${Id }"/>
 		      </div>
 		      <div class="modal-footer flex-nowrap p-0">
 		        <!-- <button type="button" class="btn btn-lg btn-link fs-6 text-decoration-none col-6 py-3 m-0 rounded-0 border-end"
 		        	onclick="chatWinOpen();" id="enterBtn"> -->
-		        <button type="button" class="btn btn-lg btn-link fs-6 text-decoration-none col-6 py-3 m-0 rounded-0 border-end"
+		        <button type="button" onclick="chatWinOpen()" class="btn btn-lg btn-link fs-6 text-decoration-none col-6 py-3 m-0 rounded-0 border-end"
 		        	 id="enterBtn">
 		        	<strong>네, 채팅 상담을 시작합니다.</strong>
 		        </button>

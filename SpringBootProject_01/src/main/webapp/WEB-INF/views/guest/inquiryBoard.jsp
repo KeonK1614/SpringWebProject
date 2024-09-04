@@ -15,14 +15,15 @@
 		<meta name="description" content="">
 		<meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
 		<meta name="generator" content="Hugo 0.122.0">
-		<title>Carousel Template · Bootstrap v5.3</title>
+		<title>문의 게시판</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
 		<link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
 		<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
 		
 		<script type="text/javascript">
-		   function movePage(page) {
+		   function movePage(page) { // 검색 데이터 보내기
 
 		        const form = document.getElementById('searchForm');
 
@@ -33,18 +34,15 @@
 		        location.href = location.pathname + '?' + new URLSearchParams(queryParams).toString();
 		    }
 		    
-		   function boardPassPop(){ //로그인 안되어 있을때
-				  var answer = window.confirm("비회원은 열람이 불가능합니다. 로그인 하시겠습니까?");
-				    	   		if(answer==true){
-				    	   			window.open("../security/loginform");
-				    	   		return window.histroy.back();
-				    	   		}
-				/* <sec:authorize access="!isAnonymous()"> // 로그인이 되어있을때
-					alert("작성자 본인만 열람이 가능합니다.");
-				</sec:authorize> */
+		   function boardPassPop(){  //로그인 안되어 있을때
+			  var answer = window.confirm("비회원은 열람이 불가능합니다. 로그인 하시겠습니까?");
+    	   		if(answer==true){
+    	   			window.open("../security/loginform");
+    	   		return window.histroy.back();
+    	   		}
 		   } 
 		   
-		   function memberBoardPassPop(idx){ // 작성자와 아이디가 같다면 비밀번호 검색창으로 
+		   function memberBoardPassPop(idx){  // 작성자와 아이디가 같다면 비밀번호 검색창으로 이동
 			   var s_width = window.screen.width;
                var s_height = window.screen.height;            
                
@@ -55,7 +53,7 @@
                    "width=600,height=380,left="+leftVar+",top="+topVar);
 		   } 
 		   
-		   function boardPassPop2(){
+		   function boardPassPop2(){ // 작성자가 아닌 다른 이용자가 글을 눌렀을때
 			   alert("작성자 본인만 열람이 가능합니다.");
 		   } 
 		   
@@ -68,9 +66,38 @@
 				var leftVar = s_width/2 - 500/2;
 				var topVar = s_height/2 - 500/2;
 				
-				window.open("webscoketPopup", "popup", 
+				window.open("../member/chatPopup", "popup", 
 				    "width=600,height=250,left="+leftVar+",top="+topVar);
 			}
+			
+			function chatPoplist(){
+				var s_width = window.screen.width;
+				var s_height = window.screen.height;            
+				
+				var leftVar = s_width/2 - 500/2;
+				var topVar = s_height/2 - 500/2;
+				
+				window.open("../admin/chatRoomList", "popup", 
+				    "width=600,height=250,left="+leftVar+",top="+topVar);
+			}
+			
+			function myBoardList() {
+			    var isChecked = document.getElementById('myboardList').checked;
+			    var loginID = '${Id}';  
+
+			    localStorage.setItem('myBoardListChecked', isChecked);
+
+			    if (isChecked) {
+			        window.location.href = `/guest/inquiryBoard?searchField=id&searchWord=` + loginID;
+			    } else {
+			        window.location.href = '/guest/inquiryBoard';
+			    }
+			}
+
+			document.addEventListener('DOMContentLoaded', (event) => {
+			    var isChecked = localStorage.getItem('myBoardListChecked') === 'true';
+			    document.getElementById('myboardList').checked = isChecked;
+			});
 		
 		</script>
 		
@@ -164,9 +191,20 @@
 		    <path d="M0 6.826c0 1.455.781 2.765 2.001 3.656a.385.385 0 0 1 .143.439l-.161.6-.1.373a.5.5 0 0 0-.032.14.19.19 0 0 0 .193.193q.06 0 .111-.029l1.268-.733a.6.6 0 0 1 .308-.088q.088 0 .171.025a6.8 6.8 0 0 0 1.625.26 4.5 4.5 0 0 1-.177-1.251c0-2.936 2.785-5.02 5.824-5.02l.15.002C10.587 3.429 8.392 2 5.796 2 2.596 2 0 4.16 0 6.826m4.632-1.555a.77.77 0 1 1-1.54 0 .77.77 0 0 1 1.54 0m3.875 0a.77.77 0 1 1-1.54 0 .77.77 0 0 1 1.54 0"/>
 		  </symbol>
 		</svg>
-		
-		<%-- <c:if test="${not empty pageContext.request.userPrincipal }"> --%>
-			<div class="position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggl">
+			<div class="position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
+				<sec:authorize access="!isAnonymous() and  hasRole('ADMIN')">
+					<button class="btn btn-bd-primary py-2 d-flex align-items-center mb-2"
+					        id="bd-theme"
+					        type="button"
+					        aria-expanded="false"
+					        data-bs-toggle="button"
+					        aria-label="채팅리스트"
+					        onclick="chatPoplist();">
+					        채팅리스트
+					  <svg class="bi my-1  theme-icon-active" width="1em" height="1em"><use href="#chat"></use></svg>
+					  <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
+					</button>
+				</sec:authorize>
 				<button class="btn btn-bd-primary py-2 d-flex align-items-center"
 				        id="bd-theme"
 				        type="button"
@@ -175,44 +213,34 @@
 				        aria-label="채팅상담"
 				        onclick="chatPop();">
 				        채팅상담
-				        <!-- onclick="location.href='../member/client';"> -->
 				  <svg class="bi my-1 theme-icon-active" width="1em" height="1em"><use href="#chat"></use></svg>
 				  <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
 				</button>
 			</div>
-		<%-- </c:if> --%>
 
 		<header>
 			<nav class="navbar navbar-expand-md fixed-top" style="background-color: #7FA1C3;">
 			  <div class="container-fluid">
-			    <a class="navbar-brand" href="main">Carousel</a>
+			    <a class="navbar-brand" href="/">로고</a>
 			    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
 			      <span class="navbar-toggler-icon"></span>
 			    </button>
 			   <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
 			      <ul class="navbar-nav me-auto mb-2 mb-md-0">
 			      <li class="nav-item">
-			        <a class="nav-link" aria-current="page" href="#">home</a>
+			        <a class="nav-link" aria-current="page" href="#">홈페이지소개</a>
 			      </li>
 			      <li class="nav-item">
-			        <a class="nav-link" href="#">공지사항</a>
+			        <a class="nav-link" href="/guest/noticeBoard">공지사항</a>
 			      </li>
 			      <li class="nav-item">
 			        <a class="nav-link" href="#">지도</a>
 			      </li>
-			      <li class="nav-item dropdown">
-			         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">커뮤니티</a>
-			          <ul class="dropdown-menu">
-			            <li><a class="dropdown-item" href="#">정보 게시판</a></li>
-			            <li><a class="dropdown-item" href="#">인기 게시판</a></li>
-			         	</ul>
-			         </li>
-			      <li class="nav-item dropdown">
-			         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">문의사항</a>
-			        <ul class="dropdown-menu">
-			          <li><a class="dropdown-item" href="#">자주 물어보는 질문</a></li>
-			          <li><a class="dropdown-item" href="#">1대1문의</a></li>
-			        </ul>
+			      <li class="nav-item">
+			           <a class="nav-link" href="/guest/boardInfo">정보 게시판</a>
+			      </li>
+			      <li class="nav-item">
+			           <a class="nav-link" href="inquiryBoard">문의 게시판</a>
 			      </li>
 			   </ul>
 				  	<sec:authorize access="isAnonymous()">
@@ -267,14 +295,23 @@
 		     <hr>
 				<div class="row">
 		             <!-- 검색부분 -->
+					<sec:authorize access="!isAnonymous()">
+						<div class="d-flex justify-content-end">
+						    <div class="form-check form-switch">
+						        <input class="form-check-input" type="checkbox" id="myboardList" onchange="myBoardList()">
+						        <label class="form-check-label" for="flexSwitchCheckDefault" >내글만 보기</label>
+						    </div>
+						</div>
+					</sec:authorize>
+					
 					<form method="get" id="searchForm"> 
 						<div class="input-group ms-auto" style="width: 300px; ">
 							<c:choose>
-								<c:when test="${searchField == 'title'}">
+								<c:when test="${searchField == 'content'}">
 									<select name="searchField" class="form-control">
-									    <option value="title" selected="selected">제목</option>
-									    <option value="id">작성자</option>
-									    <option value="content" >내용</option>
+									    <option value="title">제목</option>
+   									    <option value="id" >작성자</option>
+									    <option value="content" selected="selected">내용</option>
 									</select>
 								</c:when>
 								<c:when test="${searchField == 'id'}">
@@ -284,30 +321,20 @@
 									    <option value="content" >내용</option>
 									</select>
 								</c:when>
-								<c:when test="${searchField == 'content'}">
-									<select name="searchField" class="form-control">
-									    <option value="title">제목</option>
-									    <option value="id" >작성자</option>
-									    <option value="content" selected="selected">내용</option>
-									</select>
-								</c:when>
 								<c:otherwise>
 									<select name="searchField" class="form-control">
-									    <option value="title">제목</option>
-									    <option value="id">작성자</option>
-									    <option value="content">내용</option>
+									    <option value="title" selected="selected">제목</option>
+									    <option value="id" >작성자</option>
+									    <option value="content" >내용</option>
 									</select>
 								</c:otherwise>
 							</c:choose>
-							<!-- <select name="searchField" class="form-control">
-							    <option value="title">제목</option>
-							    <option value="id">작성자</option>
-							    <option value="content" >내용</option>
-							</select> -->
 							<input class="form-control" type="search" placeholder="Search" aria-label="Search" name="searchWord" value="${searchWord }">
 							<button class="btn btn-outline-primary" type="button" onclick="movePage(1);"><i class="bi bi-search" style='font-size:20px'></i></button>
 						</div>
 					</form>  
+					
+					
 		         </div>
 		         
 		         <div class="row mt-3 mx-1 mx-auto">
@@ -337,7 +364,7 @@
 		                 	<c:choose>
 		                 		<c:when test="${ empty list }">  
 							        <tr>
-							            <td colspan="6" align="center">
+							            <td colspan="7" align="center">
 							                등록된 게시물이 없습니다^^*
 							            </td>
 							        </tr>
@@ -370,29 +397,26 @@
 										        </c:when>
 										        <c:otherwise>
 										        	<td align="left" style="color:red; font-weight:bold;">&nbsp; &nbsp; &nbsp; &nbsp; <i class="bi bi-arrow-return-right"></i>
-										        	<sec:authorize access="isAnonymous()"><!--  로그인 안했을때 -->
-       													<a href="javascript:boardPassPop();"> ${dto.title}</a>
-       												</sec:authorize>
-       												<sec:authorize access="!isAnonymous() and  hasRole('ADMIN')">
-       													<a href="../member/inquiryBoardview?idx=${dto.idx}"> ${dto.title}</a>
-       												</sec:authorize>
-       												<sec:authorize access="!isAnonymous() and  hasRole('USER')">
-       													<c:if test="${ dto.parentId == Id }">
-       														<%-- <a href="../member/inquiryBoardview?idx=${dto.idx}"> ${dto.title}</a> --%>
-       														<a href="../member/inquiryBoardPass?idx=${dto.idx }">${dto.title}</a>
-       													</c:if>
-       													<c:if test="${ dto.parentId != Id }">
-       														<a href="javascript:boardPassPop2();">${dto.title}</a>
-       													</c:if>
-       												</sec:authorize>
+											        	<sec:authorize access="isAnonymous()"><!--  로그인 안했을때 -->
+	       													<a href="javascript:boardPassPop();"> ${dto.title}</a>
+	       												</sec:authorize>
+	       												<sec:authorize access="!isAnonymous() and  hasRole('ADMIN')"> <!-- 로그인하고 admin일때 -->
+	       													<a href="../member/inquiryBoardview?idx=${dto.idx}"> ${dto.title}</a>
+	       												</sec:authorize>
+	       												<sec:authorize access="!isAnonymous() and  hasRole('USER')"> <!-- 로그인하고 이용자일때 -->
+	       													<c:if test="${ dto.parentId == Id }">
+	       														<a href="../member/inquiryBoardPass?idx=${dto.idx }">${dto.title}</a> <!-- 글작성자일때 -->
+	       													</c:if>
+	       													<c:if test="${ dto.parentId != Id }">
+	       														<a href="javascript:boardPassPop2();">${dto.title}</a> <!-- 글작성자가 아닐때 -->
+	       													</c:if>
+	       												</sec:authorize>
        												</td>
 										        </c:otherwise>
 										    </c:choose>  
-										    
-										    
 											<td>
 												<c:choose>
-							                 		<c:when test="${ dto.id == 'dk9ahs' }">  
+							                 		<c:when test="${ dto.id == 'admin' }">  
 												        관리자
 												    </c:when>
 								                 	<c:otherwise> 
@@ -432,9 +456,6 @@
 		                 </tbody>
 		             </table>
 		         </div>
-		         
-		         
-		         
 		   		<div>
 	               <div class="col d-flex justify-content-end">
 	               	   <button type="button" class="btn btn-outline-primary mx-1" onclick="location.href='../guest/inquiryBoard';">리스트보기</button>
@@ -445,32 +466,11 @@
 				<!-- 페이징 부분 -->
 		         <div class="row mt-3">
 		             <div class="col">
-		                  <ul class="pagination justify-content-center">
-		                      <!-- <li class="page-item disabled">
-		                          <a href="#" class="page-link">&laquo;</a>
-		                      </li>
-		                      <li class="page-item">
-		                          <a href="#" class="page-link">&lt;</a>
-		                      </li>	 -->
+		                  <div class="pagination justify-content-center">
 		                       ${ pagingImg }
-		                      <!-- <li class="page-item"><a href="#" class="page-link">1</a></li>
-		                      <li class="page-item"><a href="#" class="page-link">2</a></li>
-		                      <li class="page-item"><a href="#" class="page-link">3</a></li>
-		                      <li class="page-item"><a href="#" class="page-link">4</a></li>
-		                      <li class="page-item"><a href="#" class="page-link">5</a></li> -->
-		                      
-		                      <!-- <li class="page-item">
-		                          <a href="#" class="page-link">&gt;</a>
-		                      </li>
-		                      <li class="page-item">
-		                          <a href="#" class="page-link">&raquo;</a>
-		                      </li> -->
-		                  </ul>
+		                  </div>
 				   	</div>
 		          </div> <!-- 페이징 끝  -->
-		          
-		          
-		          
 		      </div>
 		</main>	 
 			 	

@@ -49,15 +49,11 @@ public class inquiryBoardController
             map.put("searchWord", searchWord);
         }
         
-        System.out.println(map.get("searchField"));
-        System.out.println(map.get("searchWord"));
-        
       // 페이징
       int totalCount = bbs.listCountDao(map); // 게시글 총 갯수
       int pageSize = 10; // 한 페이지 불러올 페이지
       int blockPage = 5; // 블럭 갯수 
       int pageNum = 1; // 목록 첫 진입시 무조건 1 페이지 
-      //int totalPage = (int)Math.ceil((double)totalCount / pageSize);
       
       String pageTemp = request.getParameter("pageNum"); 
       if (pageTemp != null && !pageTemp.equals(""))
@@ -76,7 +72,7 @@ public class inquiryBoardController
       
       
       model.addAttribute("Id", sId); // 로그인된 아이디
-	  model.addAttribute("searchField", searchField); // 받아온 검색위치
+	  model.addAttribute("searchField", searchField); // 받아온 검색필드
 	  model.addAttribute("searchWord", searchWord); // 받아온 검색어
       model.addAttribute("pagingImg", pagingImg); // 목록 하단에 출력할 페이지 번호
       model.addAttribute("totalCount", totalCount); // 전체 게시물 갯수
@@ -87,6 +83,7 @@ public class inquiryBoardController
       return "guest/inquiryBoard";
 	}
 	
+	// 게시글 비밀번호 창 
 	@RequestMapping("member/inquiryBoardPass")
 	public String inquiryBoardPasss(HttpServletRequest request, Model model)
 	{
@@ -105,7 +102,6 @@ public class inquiryBoardController
 	@RequestMapping("member/inquiryBoardview")
 	public String inquiryBoardview(HttpServletRequest request,Model model)
 	{
-		
 		String sId = SecurityContextHolder.getContext().getAuthentication().getName();
 		String password = request.getParameter("memberBoardPassword");
 		
@@ -113,9 +109,11 @@ public class inquiryBoardController
 		String idx = request.getParameter("idx");
 		inquiryBoardDto dto  =  bbs.viewDao(idx);
 		model.addAttribute("dto", dto);
+		
 		// 조회수
 		bbs.viewCountDao(idx);  
 		
+		// 파일 불러오기
 		String ext = null, fileName = dto.getSfile();
 		if (fileName != null) {
 			ext = fileName.substring(fileName.lastIndexOf(".")+1);
@@ -126,12 +124,10 @@ public class inquiryBoardController
 		if(mimeList.contains(ext)) {
 			isImage=true;
 		}
+		
 		model.addAttribute("isImage", isImage);
 		model.addAttribute("Id", sId);
 		model.addAttribute("memberPassword", password);
-		
-		System.out.println(password);
-		System.out.println(dto.getBoardPass());
 		
 		return "member/inquiryBoardview";
 	}
@@ -140,7 +136,6 @@ public class inquiryBoardController
 	@RequestMapping("member/inquiryBoardWriteForm")
 	public String inquiryBoardWriteForm(Model model)
 	{
-		
 		String userId =SecurityContextHolder.getContext().getAuthentication().getName();		
 		model.addAttribute("userId", userId);
 		
@@ -151,12 +146,11 @@ public class inquiryBoardController
 	@RequestMapping("member/inquiryBoardWrite")
 	public String inquiryBoardWrite(HttpServletRequest request, @RequestParam("ofile") MultipartFile file) throws FileNotFoundException
 	{	
-		
 		// 파일 업로드
 		String ofileName = file.getOriginalFilename();
 		String uploadDir = context.getRealPath("/static/files");
 		String sfileName = "";
-//		System.out.println("upload path" + uploadDir);
+		
 		File dir = new File(uploadDir);
 		if (!dir.exists()) {
 	        dir.mkdirs();
@@ -174,35 +168,29 @@ public class inquiryBoardController
 		}
 		
 		String sId = SecurityContextHolder.getContext().getAuthentication().getName();
-		String sTitle = request.getParameter("title");
-		String sContent = request.getParameter("content");
-		String sBoardPass = request.getParameter("boardPass");	
-		System.out.println(sId);
-		System.out.println(sTitle);
-		System.out.println(sContent);
-		System.out.println(sBoardPass);
-
+		request.getParameter("title");
+		request.getParameter("content");
+		request.getParameter("boardPass");	
 		
-		int nResult = bbs.writeDao(sId,
-								   request.getParameter("title"),
-								   request.getParameter("content"),
-								   ofileName,
-								   sfileName,
-								   request.getParameter("boardPass"));
-		System.out.println("Write : " + nResult);
+		 bbs.writeDao(sId,
+					   request.getParameter("title"),
+					   request.getParameter("content"),
+					   ofileName,
+					   sfileName,
+					   request.getParameter("boardPass"));
 		
 		return "redirect:../guest/inquiryBoard";
 	}	
 	
 	//문의 게시판 답글 글쓰기 폼
-		@RequestMapping("admin/inquiryBoardReplyWriteForm")
-		public String inquiryBoardReplyWriteForm(HttpServletRequest request,Model model)
-		{
-			String xIdx = request.getParameter("idx");
-			
-			model.addAttribute("dto", bbs.viewDao(xIdx));
-			return "admin/inquiryBoardReplyWriteForm";
-		}
+	@RequestMapping("admin/inquiryBoardReplyWriteForm")
+	public String inquiryBoardReplyWriteForm(HttpServletRequest request,Model model)
+	{
+		String xIdx = request.getParameter("idx");
+		
+		model.addAttribute("dto", bbs.viewDao(xIdx));
+		return "admin/inquiryBoardReplyWriteForm";
+	}
 	
 	//문의 게시판 답변 글쓰기
 	@RequestMapping("admin/inquiryBoardReplyWrite")
@@ -213,7 +201,7 @@ public class inquiryBoardController
 		// 파일 업로드
 		String ofileName = file.getOriginalFilename();
 		String uploadDir = context.getRealPath("/static/files");
-//		System.out.println("upload path" + uploadDir);
+		
 		File dir = new File(uploadDir);
 		if (!dir.exists()) {
 	        dir.mkdirs();
@@ -245,21 +233,11 @@ public class inquiryBoardController
 		map.put("item8", sIdx);
 		
 		int nResult = bbs.replyWriteDao(map);
-		System.out.println("Write : " + nResult);
+		//System.out.println("Write : " + nResult);
 		bbs.responsesCountDao(sIdx);
 		
 		return "redirect:../guest/inquiryBoard";
 	}
-	
-	//문의 게시글 삭제
-		@RequestMapping("member/inquiryBoardDownload")
-		public String inquiryBoardDownload(HttpServletRequest request, Model model)
-		{
-			String idx = request.getParameter("idx");
-
-			model.addAttribute("dto", bbs.deleteDao(idx));
-			return "redirect:../member/inquiryBoardview";
-		}
 	
 	//문의 게시글 삭제
 	@RequestMapping("member/inquiryBoardDelete")
@@ -318,11 +296,6 @@ public class inquiryBoardController
 		String Title = request.getParameter("title");
 		String Content = request.getParameter("content");
 		
-		System.out.println(idx);
-		System.out.println(Id);
-		System.out.println(Title);
-		System.out.println(Content);
-		
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("mId", Id);
 		map.put("mTitle", Title);
@@ -332,33 +305,14 @@ public class inquiryBoardController
 		map.put("mIdx", idx);
 		
 		bbs.editorDao(map);
-//		/*
-//		 * // String referer = request.getHeader("Referer"); // 헤더에서 이전 페이지를 읽는다. //
-//		 * return "redirect:"+ referer; // 이전 페이지로 리다이렉트
-//		 */	
 		return "redirect:../guest/inquiryBoard";
 	}
 	
-//	@RequestMapping("member/inquiryBoardlikeCount")
-//	public String inquiryBoardlikeCount(HttpServletRequest request, Model model)
-//	{
-//		String idx = request.getParameter("idx");
-//		model.addAttribute("dto", bbs.likeCountDao(idx));
-//		String referer = request.getHeader("Referer");
-//		
-//		return "redirect:"+ referer;
-//	}
-	
-
 	@RequestMapping("member/changeBoardPass")
 	public @ResponseBody String changeBoardPass(HttpServletRequest request, @RequestParam("idx") String idx, @RequestParam("boardPass") String boardPass)
 	{
-		System.out.println("Received boardPass: " + boardPass);
-		System.out.println("idx: " + idx);
 		bbs.changeBoardPass(idx, boardPass);
 
-//		String referer = request.getHeader("Referer"); // 헤더에서 이전 페이지를 읽는다.
-//		return "redirect:"+ referer; // 이전 페이지로 리다이렉트
 		return "비밀번호가 성공적으로 변경되었습니다.";
 	}
 	

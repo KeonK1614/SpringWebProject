@@ -14,19 +14,6 @@ public class BoardPage
         
     	// 전체 페이지 수를 계산한다.
         int totalPages = (int) (Math.ceil(((double) totalCount / pageSize)));
-
-        /*
-	       	현재 페이지 블럭에서 사용할 첫번째 페이지번호를 계산한다.
-	       		현재 1페이지라 가정하면
-	       			(((1-1) / 5) * 5) + 1 = 1
-	       		현재 5페이지라 가정하면
-	       			(((5-1) / 5) * 5) + 1 = 1
-	       			==> 즉 1~5페이지인 경우 해당 블럭의 첫번째 페이지는 1이다.
-	       		현재 6페이지라 가정하면
-	       			(((6-1) / 5) * 5) + 1 = 6
-	       		현재 11페이지라 가정하면
-	       			(((11-1) / 5) * 5) + 1 = 11
-	     */
         int pageTemp = (((pageNum - 1) / blockPage) * blockPage) + 1; 
         
         /*
@@ -34,7 +21,6 @@ public class BoardPage
 	     	바로가기 링크를 화면에 출력한다.
 	     */
         if (pageTemp != 1) {
-//            pagingStr += "<a href='" + reqUrl + "?pageNum=1'>[첫 페이지]</a>";            
             pagingStr += "<li class=\" "+ pageitem +" \"><a href=\""+ reqUrl  + "?pageNum=" + 1;
             
             if(searchWord != null) {
@@ -49,9 +35,6 @@ public class BoardPage
             }		
             
             pagingStr += "\" class=\""+ pageling +"\">&lt;</a></li>";
-            // pageNum은 만약 현재 6페이지라면 5가 됩니다.
-//            pagingStr += "<a href='" + reqUrl + "?pageNum=" + (pageTemp - 1)
-//                         + "'>[이전 블록]</a>";
         }
 
         /*
@@ -64,8 +47,7 @@ public class BoardPage
         while (blockCount <= blockPage && pageTemp <= totalPages) {
         	// 만약 현재페이지라면 링크를 걸지 않는다.
             if (pageTemp == pageNum) {
-            	pagingStr += "<li class=\" "  + pageitem  +" \"><a href=\" "+ hash +" \" class= \" " + pageling + " \">"+ pageTemp +"</a></li>";
-                //pagingStr += "<li class=\" "  + pageitem  +" \"><a class= \" " + pageling + " \">"+ pageTemp +"</a></li>";
+            	pagingStr += "<li class=\" "  + pageitem + " active" +" \"><a href=\" "+ hash +" \" class= \" " + pageling + " \">"+ pageTemp +"</a></li>";
             } else {
             	// 현재페이지가 아닌 경우에만 링크를 추가한다.
                 pagingStr += "<li class=\" "  + pageitem  +" \"><a href=\" "+ reqUrl + "?pageNum=" + pageTemp ;
@@ -84,8 +66,6 @@ public class BoardPage
         // 다음페이지 블럭 바로가기 링크 추가
         // 마지막 페이지가 아닌 경우에만 다음 블럭을 출력한다.
         if (pageTemp <= totalPages) {
-//            pagingStr += "<a href='" + reqUrl + "?pageNum=" + pageTemp
-//                         + "'>[다음 블록]</a>";
             
             pagingStr += "<li class=\" "+ pageitem +" \"><a href=\""+ reqUrl  + "?pageNum=" + pageTemp ;
             
@@ -102,10 +82,6 @@ public class BoardPage
 	         }		
             		
 			 pagingStr +="\" class=\""+ pageling +"\">&raquo;</a></li>";
-
-
-//            pagingStr += "<a href='" + reqUrl + "?pageNum=" + totalPages
-//                         + "'>[마지막 페이지]</a>";
         }
         
         return pagingStr;
