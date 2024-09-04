@@ -2,6 +2,8 @@ package com.project.springboot.auth;
 
 import java.io.IOException;
 
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.security.web.RedirectStrategy;
@@ -12,6 +14,9 @@ import org.springframework.security.web.savedrequest.RequestCache;
 import org.springframework.security.web.savedrequest.SavedRequest;
 import org.springframework.stereotype.Component;
 
+import com.project.springboot.dao.IMemberDao;
+import com.project.springboot.dto.UserDTO;
+
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
@@ -19,13 +24,35 @@ import jakarta.servlet.http.HttpSession;
 @Component
 public class MyAuthSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 	
+	
     private final RequestCache requestCache = new HttpSessionRequestCache();
     private final RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
+    @Autowired
+    private IMemberDao idao;
     
     
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
                                         Authentication authentication) throws IOException {
+    	
+        if (authentication == null) {
+            throw new IllegalStateException("Authentication object is null.");
+        }
+        
+    	String id = authentication.getName();
+    	UserDTO user = idao.findByUsername(id);
+    	long currentTime = System.currentTimeMillis();
+        long lockTimeMillis = user.getLockTime() != null ? user.getLockTime().getTime() : 0;
+        long LOCK_TIME_DURATION = 15 * 60 * 1000;
+    	
+        if (user.getIsLock() == 0 && (currentTime - lockTimeMillis) > LOCK_TIME_DURATION) {
+            // 잠금 해제
+            idao.updateUnLock(1, 0, id); // 잠금 해제 및 실패 횟수 리셋
+            
+        } else if(user.getIsLock() == 1 && user.getFailCount() < 5 && user.getFailCount() >= 1) {
+          
+            idao.updateFailCount(0, id);
+        }
     	 
         clearSession(request);
 
@@ -36,24 +63,43 @@ public class MyAuthSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
          * 기존 Session의 prevPage attribute 제거
          */
         String prevPage = (String) request.getSession().getAttribute("prevPage");
-        if (prevPage != null) {
-            request.getSession().removeAttribute("prevPage");
-        }
-
-        // 기본 URI
-        String uri = "/";
+//        System.out.println("Previous Page: " + prevPage);
 
         /**
          * savedRequest 존재하는 경우 = 인증 권한이 없는 페이지 접근
          * Security Filter가 인터셉트하여 savedRequest에 세션 저장
          */
+        String uri;
+
+        // SavedRequest가 있을 경우, savedRequest의 URL로 리다이렉트
         if (savedRequest != null) {
             uri = savedRequest.getRedirectUrl();
-        } else if (prevPage != null && !prevPage.equals("")){
-            uri = prevPage;
+        } 
+        // prevPage가 null이 아니고 비어있지 않을 경우
+        else if (prevPage != null && !prevPage.isEmpty()) {
+            // prevPage가 특정 페이지를 포함하는지 확인
+            if (prevPage.contains("/security/findId") || prevPage.contains("/security/findPwd")
+            		|| prevPage.contains("/guest/joinform")) {
+                uri = "/";
+            } else {
+                uri = prevPage; // prevPage가 지정된 경우, 해당 페이지로 리다이렉트
+            }
+        } 
+        // prevPage가 null이거나 비어있을 경우 기본 페이지로 리다이렉트
+        else {
+            uri = "/";
+        }
+        
+//        System.out.println("Redirecting to: " + uri);
+        
+        if (prevPage != null) {
+            request.getSession().removeAttribute("prevPage");
         }
 
         redirectStrategy.sendRedirect(request, response, uri);
+        
+//        System.out.println("Redirecting to: " + uri);
+        
     }
     
     // 로그인 실패한 후 성공 했을 시 남아있는 에러 세션을 제거함.

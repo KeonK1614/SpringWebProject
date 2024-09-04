@@ -28,9 +28,9 @@ public class UserDTO {
 	private int enabled;
 	private String provider;
 	private String providerId;
-	private int IsLock;
+	private int isLock;
 	private int failCount;
-	private Timestamp LockTime;
+	private Timestamp lockTime;
 
 
 }

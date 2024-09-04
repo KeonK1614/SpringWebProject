@@ -5,7 +5,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>	    <meta charset="utf-8">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="">
 		<meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
@@ -170,9 +171,9 @@
 		         <div class="list-group list-group-horizontal list-group-flush">
 					  <a href="/admin/list" class="list-group-item list-group-item-action">전체회원목록 보기</a>
 					  <a href="/admin/localList" class="list-group-item list-group-item-action">일반회원목록 보기</a>
-					  <a href="#" class="list-group-item list-group-item-action">소셜회원목록 보기</a>
-					  <a href="#" class="list-group-item list-group-item-action">계정잠금 회원</a>
-					  <a href="#" class="list-group-item list-group-item-action">비활성화 회원</a>
+					  <a href="/admin/socialList" class="list-group-item list-group-item-action">소셜회원목록 보기</a>
+					  <a href="/admin/LockList" class="list-group-item list-group-item-action">계정잠금 회원</a>
+					  <a href="/admin/enabledList" class="list-group-item list-group-item-action">비활성화 회원</a>
 					  
 					</div>
 		         <div class="row" >
@@ -201,7 +202,6 @@
 		                     <tr style="background-color: rgb(133, 133, 133); " class="text-center text-white">
 		                     	<th>번호</th>
 		                         <th>아이디</th>
-		                         <th style="display:none;">패스워드</th>
 		                         <th>이름</th>
 		                         <th>핸드폰번호</th>
 		                         <th>이메일</th>
@@ -211,18 +211,14 @@
 		                         <th>가입일</th>
 		                         <th>권한</th>
 		                         <th>휴면계정</th>
-<!-- 		                         <th style="display:none;">소셜타입</th> -->
-<!-- 		                         <th style="display:none;">소셜아이디</th> -->
-<!-- 		                         <th>잠금계정</th> -->
-<!-- 		                         <th style="display:none;">로그인실패횟수</th> -->
-<!-- 		                         <th style="display:none;">계정 잠긴 시간</th> -->
+		                         <th>잠금계정</th>
 		                     </tr>
 		                 </thead>
 		                 <tbody>
 		                 	<c:choose>
 				                 <c:when test="${ empty lists }">
 				                 <tr>
-				                 	<td colspan="7" align="center">
+				                 	<td colspan="12" align="center">
 				                 		등록된 회원이 없습니다.
 				                 	</td>
 				                 </tr>
@@ -236,7 +232,6 @@
 								            	${vNum}
 								            </td>                
 				                         	<td class="text-center">${dto.id }</td>
-				                         	<td class="text-center" style="display:none;">${dto.pass }</td>
 				                         	<td class="text-center">${dto.name }</td>
 				                         	<td class="text-center">${dto.phoneNum }</td>
 				                         	<td class="text-center">${dto.email }</td>
@@ -246,11 +241,7 @@
 				                         	<td class="text-center"><fmt:formatDate value="${dto.regidate}" pattern="yyyy-MM-dd"/></td>
 				                         	<td class="text-center">${dto.authority }</td>
 				                         	<td class="text-center">${dto.enabled }</td>
-<%-- 				                         	<td class="text-center" style="display:none;">${dto.provider }</td> --%>
-<%-- 				                         	<td class="text-center" style="display:none;">${dto.providerId }</td> --%>
-<%-- 				                         	<td class="text-center">${dto.IsLock }</td> --%>
-<%-- 				                         	<td class="text-center" style="display:none;">${dto.failCount }</td> --%>
-<%-- 				                         	<td class="text-center" style="display:none;">${dto.LockTime }</td> --%>
+				                         	<td class="text-center">${dto.isLock }</td>
 				                         	<td class="text-center">
 				                         		<a href="../admin/userEdit?id=${dto.id }">회원정보보기</a>
 				                         	</td>
@@ -260,6 +251,7 @@
 				             </c:choose>
 		                 </tbody>
 		             </table>
+		         </div>
 		          	<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 						 <a class="nav-link" href="/admin/list">
 						  <button class="btn btn-primary me-md-2" type="button">목록보기</button>
@@ -269,20 +261,8 @@
 		             <div class="col">
 		                 <!-- 페이지번호 부분 -->
 		                  <ul class="pagination justify-content-center">
-		                      <li class="page-item">
-		                          <a href="#" class="page-link"><i class='bi bi-skip-backward-fill'></i></a>
-		                      </li>
-		                      <li class="page-item">
-		                          <a href="#" class="page-link"><i class='bi bi-skip-start-fill'></i></a>
-		                      </li>
-		                      <li class="page-item"><a href="#" class="page-link">${ pagingImg }</a></li>
-		                      <li class="page-item">
-		                          <a href="#" class="page-link"><i class='bi bi-skip-end-fill'></i></a>
-		                      </li>
-		                      <li class="page-item">
-		                          <a href="#" class="page-link"><i class='bi bi-skip-forward-fill'></i></a>
-		                      </li>
-		                  </ul>
+					            ${pagingImgs}
+					      </ul>
 				   	</div>
 		          </div>
 		         </div>

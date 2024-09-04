@@ -125,15 +125,15 @@
 			        <a class="nav-link" aria-current="page" href="#">home</a>
 			      </li>
 			      <li class="nav-item">
-			        <a class="nav-link" href="/guest/noticeBoard">공지사항</a>
+			        <a class="nav-link" href="#">공지사항</a>
 			      </li>
 			      <li class="nav-item">
 			        <a class="nav-link" href="#">지도</a>
 			      </li>
 			      <li class="nav-item dropdown">
-			         <a class="nav-link dropdown-toggle" href="guest/boardInfo" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">커뮤니티</a>
+			         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">커뮤니티</a>
 			          <ul class="dropdown-menu">
-			            <li><a class="dropdown-item" href="/guest/boardInfo">정보 게시판</a></li>
+			            <li><a class="dropdown-item" href="#">정보 게시판</a></li>
 			            <li><a class="dropdown-item" href="#">인기 게시판</a></li>
 			         	</ul>
 			         </li>
@@ -141,7 +141,7 @@
 			         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">문의사항</a>
 			        <ul class="dropdown-menu">
 			          <li><a class="dropdown-item" href="#">자주 물어보는 질문</a></li>
-			          <li><a class="dropdown-item" href="guest/inquiryBoard">1대1문의</a></li>
+			          <li><a class="dropdown-item" href="#">1대1문의</a></li>
 			        </ul>
 			      </li>
 			   </ul>
@@ -171,54 +171,162 @@
 			      <div class="input-form col-md-12 mx-auto">
 			        <h4 class="mb-3">회원정보 수정 페이지</h4>
 			       <table class="table">
-			       		<tr>
-			       			<th>아이디</th>
-			       			<td>${dto.id}</td>
-			       		</tr>
-			       		<tr style="display:none;">
-			       			<th style="display:none;">비밀번호</th>
-			       			<td style="display:none;">${dto.pass}</td>
-			       		</tr>
-			       		<tr>
-			       			<th>이름</th>
-			       			<td>${dto.name}</td>
-			       		</tr>
-			       		<tr>
-			       			<th>핸드폰번호</th>
-			       			<td>${dto.phoneNum}</td>
-			       		</tr>
-			       		<tr>
-			       			<th>이메일</th>
-			       			<td>${dto.email}</td>
-			       		</tr>
-			       		<tr>
-			       			<th>우편번호</th>
-			       			<td>${dto.postcode}</td>
-			       		</tr>
-			       		<tr>
-			       			<th>주소</th>
-			       			<td>${dto.address}</td>
-			       		</tr>
-			       		<tr>
-			       			<th>상세주소</th>
-			       			<td>${dto.detailaddress}</td>
-			       		</tr>
-			       		<tr>
-			       			<th>가입일</th>
-			       			<td><fmt:formatDate value="${dto.regidate}" pattern="yyyy-MM-dd"/></td>
-			       		</tr>
-			       		<tr>
-			       			<th>권한</th>
-			       			<td>${dto.authority}</td>
-			       		</tr>
-			       		<tr>
-			       			<th>잠금계정</th>
-			       			<td>${dto.isLock}</td>
-			       		</tr>
-			       		<tr>
-			       			<th>휴면계정</th>
-			       			<td>${dto.enabled}</td>
-			       		</tr>
+					    <tr>
+					        <th>소셜유형</th>
+					        <td>
+					            <c:choose>
+					                <c:when test="${dto.provider != null}">
+					                    ${dto.provider}
+					                </c:when>
+					                <c:otherwise>
+					                    정보 없음
+					                </c:otherwise>
+					            </c:choose>
+					        </td>
+					    </tr>
+					    <tr>
+					        <th>아이디</th>
+					        <td>
+					            <c:choose>
+					                <c:when test="${dto.providerId != null}">
+					                    ${dto.providerId}
+					                </c:when>
+					                <c:otherwise>
+					                    정보 없음
+					                </c:otherwise>
+					            </c:choose>
+					        </td>
+					    </tr>
+					    <tr>
+					        <th>이름</th>
+					        <td>
+					            <c:choose>
+					                <c:when test="${dto.name != null}">
+					                    ${dto.name}
+					                </c:when>
+					                <c:otherwise>
+					                    정보 없음
+					                </c:otherwise>
+					            </c:choose>
+					        </td>
+					    </tr>
+					    <tr>
+					        <th>핸드폰번호</th>
+					        <td>
+					            <c:choose>
+					                <c:when test="${dto.phoneNum != null}">
+					                    ${dto.phoneNum}
+					                </c:when>
+					                <c:otherwise>
+					                    정보 없음
+					                </c:otherwise>
+					            </c:choose>
+					        </td>
+					    </tr>
+					    <tr>
+					        <th>이메일</th>
+					        <td>
+					            <c:choose>
+					                <c:when test="${dto.email != null}">
+					                    ${dto.email}
+					                </c:when>
+					                <c:otherwise>
+					                    정보 없음
+					                </c:otherwise>
+					            </c:choose>
+					        </td>
+					    </tr>
+					    <tr>
+					        <th>우편번호</th>
+					        <td>
+					            <c:choose>
+					                <c:when test="${dto.postcode != null}">
+					                    ${dto.postcode}
+					                </c:when>
+					                <c:otherwise>
+					                    정보 없음
+					                </c:otherwise>
+					            </c:choose>
+					        </td>
+					    </tr>
+					    <tr>
+					        <th>주소</th>
+					        <td>
+					            <c:choose>
+					                <c:when test="${dto.address != null}">
+					                    ${dto.address}
+					                </c:when>
+					                <c:otherwise>
+					                    정보 없음
+					                </c:otherwise>
+					            </c:choose>
+					        </td>
+					    </tr>
+					    <tr>
+					        <th>상세주소</th>
+					        <td>
+					            <c:choose>
+					                <c:when test="${dto.detailaddress != null}">
+					                    ${dto.detailaddress}
+					                </c:when>
+					                <c:otherwise>
+					                    정보 없음
+					                </c:otherwise>
+					            </c:choose>
+					        </td>
+					    </tr>
+					    <tr>
+					        <th>가입일</th>
+					        <td>
+					            <c:choose>
+					                <c:when test="${dto.regidate != null}">
+					                    <fmt:formatDate value="${dto.regidate}" pattern="yyyy-MM-dd"/>
+					                </c:when>
+					                <c:otherwise>
+					                    정보 없음
+					                </c:otherwise>
+					            </c:choose>
+					        </td>
+					    </tr>
+					    <tr>
+					        <th>권한</th>
+					        <td>
+					            <c:choose>
+					                <c:when test="${dto.authority != null}">
+					                    ${dto.authority}
+					                </c:when>
+					                <c:otherwise>
+					                    정보 없음
+					                </c:otherwise>
+					            </c:choose>
+					        </td>
+					    </tr>
+					    <tr>
+					        <th>잠금계정</th>
+					        <td>
+					            <c:choose>
+					                <c:when test="${dto.isLock != null}">
+					                    ${dto.isLock}
+					                </c:when>
+					                <c:otherwise>
+					                    정보 없음
+					                </c:otherwise>
+					            </c:choose>
+					        </td>
+					    </tr>
+					    <tr>
+					        <th>휴면계정</th>
+					        <td>
+					        	 <c:choose>
+					                <c:when test="${dto.enabled != null}">
+					                    ${dto.enabled}
+					                </c:when>
+					                <c:otherwise>
+					                    정보 없음
+					                </c:otherwise>
+					            </c:choose>
+					        </td>
+					    </tr>
 			       </table>
 			       <script type="text/javascript">
 			       function confirmChanges(form, type) {
@@ -250,7 +358,7 @@
 					<div class="d-inline-flex">
 						<div class="justify-content-center">
 						<form action="/admin/updateAuth" method="POST" onsubmit="handleSubmit(event, 'authority');" class="form-control" style="border: none; box-shadow: none;">
-						    <input type="hidden" name="id" value="${dto.id}" />
+						    <input type="hidden" name="id" value="${dto.providerId}" />
 						    <select name="authority"  data-previous-value="${dto.authority}">
 						        <option value="ROLE_USER" ${dto.authority == 'ROLE_USER' ? 'selected' : ''}>회원</option>
 						        <option value="ROLE_ADMIN" ${dto.authority == 'ROLE_ADMIN' ? 'selected' : ''}>관리자</option>
@@ -260,7 +368,7 @@
 						</div>
 						<div class="justify-content-center">
 						<form action="/admin/updateEnabled" method="POST" onsubmit="handleSubmit(event, 'enabled');" class="form-control" style="border: none; box-shadow: none;">
-						    <input type="hidden" name="id" value="${dto.id}" />
+						    <input type="hidden" name="id" value="${dto.providerId}" />
 						    <select name="enabled"  data-previous-value="${dto.enabled}">
 						        <option value="1" ${dto.enabled == '1' ? 'selected' : ''}>활성화</option>
 						        <option value="0" ${dto.enabled == '0' ? 'selected' : ''}>비활성화</option>
@@ -280,7 +388,7 @@
 						</div>
 					</div>
 					<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-						 <a class="nav-link" href="/admin/list">
+						 <a class="nav-link" href="/admin/socialList">
 						  <button class="btn btn-primary me-md-2" type="button">목록보기</button>
                         </a>
 					</div>

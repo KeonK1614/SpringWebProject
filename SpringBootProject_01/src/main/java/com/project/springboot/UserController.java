@@ -75,9 +75,9 @@ public class UserController {
     public String loginform(Model model,  @RequestParam(value="error", required = false) String error,
             @RequestParam(value = "exception", required = false) String exception, HttpServletRequest request){
     	
-        String uri = request.getHeader("Referer");
-        if (uri != null && !uri.contains("/security/loginform")) {
-            request.getSession().setAttribute("prevPage", uri);
+        String referer = request.getHeader("Referer");
+        if (referer != null && !referer.contains("/security/loginform")) {
+            request.getSession().setAttribute("prevPage", referer);
         }
     	
     	model.addAttribute("userDTO", new UserDTO());
@@ -100,10 +100,5 @@ public class UserController {
     	return "security/denied";
     }
     
-
-//	@RequestMapping("/member/myPageEdit")
-//	public String myPageEdit()	{
-//		
-//	}
 
 }

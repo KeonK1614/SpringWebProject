@@ -11,7 +11,7 @@
 	    <meta name="description" content="">
 	    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
 	    <meta name="generator" content="Hugo 0.122.0">
-	    <title>Carousel Template · Bootstrap v5.3</title>
+	    <title>스마일로드</title>
 	    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
 	    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/">
 	    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
@@ -100,12 +100,100 @@
 		        box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
 		      }
 	    </style>	   
-	    
+	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	    <script type="text/javascript">
-		    var fnAlert = function() {
-		    	alert('회원 정보를 수정했습니다.');
-		   
-		    }
+	    $(document).ready(function() {
+            $('#mypageBtn').on('click', function (event) {
+                var name = $("#name").val();
+                var phoneNum = $("#phoneNum").val();
+                var email = $("#email").val();
+                var postcode = $("#postcode").val();
+                var address = $("#address").val();
+                var address = $("#detailaddress").val();
+                
+
+                // 기본 HTML5 유효성 검사
+                if (!name) {
+                    alert("성명을 입력해주세요.");
+                    event.preventDefault(); // 폼 제출 방지
+                    return false;
+                }
+
+                if (!phoneNum) {
+                    alert("휴대전화 번호를 입력해주세요.");
+                    event.preventDefault(); // 폼 제출 방지
+                    return false;
+                }
+
+                if (!email) {
+                    alert("이메일을 입력해주세요.");
+                    event.preventDefault(); // 폼 제출 방지
+                    return false;
+                }
+
+                // 이메일 유효성 검사 (정규식 예시)
+                var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    alert("유효한 이메일 주소를 입력해주세요.");
+                    event.preventDefault(); // 폼 제출 방지
+                    return false;
+                }
+
+                if (!postcode) {
+                    alert("우편번호를 입력해주세요.");
+                    event.preventDefault(); // 폼 제출 방지
+                    return false;
+                }
+
+                if (!address) {
+                    alert("주소를 입력해주세요.");
+                    event.preventDefault(); // 폼 제출 방지
+                    return false;
+                }
+
+                // 수정 전 확인 대화 상자
+                var isConfirmed = confirm("정말로 정보를 수정하시겠습니까?");
+                if (!isConfirmed) {
+                    event.preventDefault(); // 확인하지 않으면 폼 제출 방지
+                    return false;
+                }
+            });
+            
+            $('#phoneNum').on('input', function() {
+                var input = $(this).val().replace(/[^0-9]/g, ''); // 숫자만 추출
+                var formatted = '';
+
+                if (input.length > 7) {
+                    formatted = input.replace(/^(\d{3})(\d{4})(\d{4})$/, '$1-$2-$3');
+                } else if (input.length > 3) {
+                    formatted = input.replace(/^(\d{3})(\d{0,4})$/, '$1-$2');
+                } else {
+                    formatted = input;
+                }
+
+                $(this).val(formatted);
+
+                // 유효성 검사
+                var reg_mobile = /^01[0-9]{1}-[0-9]{4}-[0-9]{4}$/;
+                if (!reg_mobile.test(formatted)) {
+                    $('#phoneNum-feedback').text('휴대폰번호가 잘못된 형식입니다.').css('color', 'red');
+                } else {
+                    $('#phoneNum-feedback').text('');
+                }
+            });
+            
+            $('#email').on('input', function() {
+                var email = $(this).val();
+                var emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$/;
+                if (emailRegex.test(email)) {
+                    $('#email-feedback').text('사용가능한 이메일입니다.').css('color', 'green');
+                } else {
+                    $('#email-feedback').text('이메일 형식이 맞는지 확인해주세요').css('color', 'red');
+                }
+            });
+        });
+	    
 	    </script>
 	    
 	    <!-- Custom styles for this template -->
@@ -122,7 +210,7 @@
 			   <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
 			      <ul class="navbar-nav me-auto mb-2 mb-md-0">
 			      <li class="nav-item">
-			        <a class="nav-link" aria-current="page" href="#">home</a>
+			        <a class="nav-link" aria-current="page" href="/">home</a>
 			      </li>
 			      <li class="nav-item">
 			        <a class="nav-link" href="#">공지사항</a>
@@ -194,16 +282,18 @@
 			        					
 						<div class="mb-3">
 						  <label for="id">성명</label>
-						  <input type="text" class="form-control border" name="name" value="${dto.name}" style="box-shadow: none;"> 
+						  <input type="text" class="form-control border" id="name" name="name" value="${dto.name}" style="box-shadow: none;"> 
 						</div>	
 						<div class="mb-3">
 						  <label for="id">휴대전화</label>
-						  <input type="text" class="form-control border" name="phoneNum" value="${dto.phoneNum}" style="box-shadow: none;" > 
+						  <input type="text" class="form-control border" id="phoneNum" name="phoneNum" value="${dto.phoneNum}" style="box-shadow: none;" > 
+						 <span id="phoneNum-feedback"></span>
 						</div>	
 			          	
 			          	<div class="mb-3">
 						  <label for="eamil">이메일</label>
-						  <input type="text" class="form-control" name="email" placeholder="영문과 숫자로 작성해주세요" value="${dto.email}">
+						  <input type="text" class="form-control" id="email" name="email" placeholder="영문과 숫자로 작성해주세요" value="${dto.email}">
+						  <span id="email-feedback"></span>
 						  <div class="invalid-feedback">
 						    이메일을 입력해주세요.
 						  </div>
@@ -219,18 +309,22 @@
 				              우편번호를 입력해주세요.
 				            </div>
 				            <br/>
-				            <input type="text" class="form-control" id="address" name="address" value="${dto.address}" placeholder="우편번호" required>
+				            <input type="text" class="form-control" id="address" name="address" value="${dto.address}" placeholder="주소" required>
 				            <div class="invalid-feedback">
 				              주소를 입력해주세요.
 				            </div>
 				            <br/>
 			          	</div>
 			          	<div class="mb-3">
-				            <label for="address2">상세주소<span class="text-muted">&nbsp;(필수 아님)</span></label>
+			          		<input type="hidden" class="form-control" id="sample6_extraAddress" placeholder="상세주소를 입력해주세요.">
+				            <label for="address2">상세주소</label>
 				            <input type="text" class="form-control" id="detailaddress" name="detailaddress" value="${dto.detailaddress}" placeholder="상세주소를 입력해주세요.">
 				            <br/>
 				        </div>
-			          <button class="btn btn-outline-primary" onclick="javascript:fnAlert()" type="submit">변경</button>
+			          <button class="btn btn-outline-primary" id="mypageBtn" name="mypageBtn" type="submit">변경</button>
+			          <div class="text-end">
+			          <button class="btn btn-outline-warning" onclick="location.href='/member/myPageView'" type="button">돌아가기</button>
+			          </div>
 			        </form>
 			      </div>
 			    </div>

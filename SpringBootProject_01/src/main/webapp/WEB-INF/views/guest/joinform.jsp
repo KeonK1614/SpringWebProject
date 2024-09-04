@@ -11,7 +11,7 @@
 	    <meta name="description" content="">
 	    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
 	    <meta name="generator" content="Hugo 0.122.0">
-	    <title>Carousel Template · Bootstrap v5.3</title>
+	    <title>스마일로드 : 회원가입</title>
 	    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
 	    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/">
 	    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
@@ -83,9 +83,13 @@
 						$("#detailaddress").focus();
 						return false;
 					}
-					if(form.$("#duplidcheck").val()==""){
+					if($("#duplidcheck").val()==""){
 						$('#id-feedback').text('아이디 중복검사를 해주세요').css('color', 'red');
 						$("#id").focus();
+						return false;
+					}
+					if(!$('input:checkbox[id="agree"]').is(":checked")){
+						$('#agree-feedback').text('개인정보수집 동의에 체크 해주세요').css('color', 'red');
 						return false;
 					}
 				});
@@ -302,6 +306,41 @@
 		        -moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
 		        box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
 		      }
+		  
+		  .modal {
+			    display: none;
+			    position: fixed;
+			    z-index: 1;
+			    left: 0;
+			    top: 0;
+			    width: 100%;
+			    height: 100%;
+			    overflow: auto;
+			    background-color: rgb(0,0,0);
+			    background-color: rgba(0,0,0,0.4);
+			}
+			
+			.modal-content {
+			    background-color: #fefefe;
+			    margin: 15% auto;
+			    padding: 20px;
+			    border: 1px solid #888;
+			    width: 80%;
+			}
+			
+			.close {
+			    color: #aaa;
+			    float: right;
+			    font-size: 28px;
+			    font-weight: bold;
+			}
+			
+			.close:hover,
+			.close:focus {
+			    color: black;
+			    text-decoration: none;
+			    cursor: pointer;
+			}
 	    </style>
 
 	    
@@ -474,14 +513,6 @@
 					 		</div>
 					 	</div>
 					</div>	  
-		
-<!-- 						<div class="mb-3"> -->
-<!-- 						  <label for="day">생년월일</label> -->
-<!-- 						  <input type="text" class="form-control" id="day" placeholder="000000" required> -->
-<!-- 						  <div class="invalid-feedback"> -->
-<!-- 						    생년월일을 입력해주세요. -->
-<!-- 						  </div> -->
-<!-- 						</div> -->
 						
 						<div class="mb-3">
 				            <label for="address">주소</label>
@@ -501,7 +532,7 @@
 			          	</div>
 	
 			          	<div class="mb-3">
-				            <label for="address2">상세주소<span class="text-muted">&nbsp;(필수 아님)</span></label>
+				            <label for="address2">상세주소<span class="text-muted"></span></label>
 				            <input type="hidden" class="form-control" id="sample6_extraAddress" placeholder="상세주소를 입력해주세요.">
 				            <br/>
 				            <input type="text" class="form-control" id="detailaddress" name="detailaddress" placeholder="상세주소를 입력해주세요.">
@@ -513,9 +544,50 @@
 		
 					      <hr class="mb-4">
 					      <div class="custom-control custom-checkbox">
-					        <input type="checkbox" class="custom-control-input" id="aggrement" required>
-					        <label class="custom-control-label" for="aggrement">개인정보 수집 및 이용에 동의합니다.</label>
+					        <input type="checkbox" class="custom-control-input" id="agree" name="agree"required>
+					        <label class="custom-control-label" for="agree">개인정보 수집 및 이용에 동의합니다.</label>
+					        <button  class="btn btn-primary" type="button" id="privacy-detail-btn">자세히</button><br>
+					        <span id="agree-feedback"></span>
 					      </div>
+					      <!-- 개인정보 동의 내용 모달 -->
+						    <div id="privacy-modal" class="modal">
+						        <div class="modal-content">
+						            <span class="close">&times;</span>
+						            <h2>개인정보 수집 및 이용 동의</h2>
+						            <p>
+						                홈페이지 회원제 운영을 위하여 아래와 같이개인정보를 수집, 이용 및 제공하고자 합니다.<br/>
+						                내용을 자세히 읽으신 후 동의 여부를 결정하여 주십시오.<br/><br/>
+						                
+						                1. 개인 정보의 수집항목 및 수집방법<br/>
+						                수집하는 개인정보의 항목<br/>
+						                항목 : 이름, 집주소, e-mail, 핸드폰번호<br/>
+						                수집목적: 홈페이지 서비스이용 및 회원 관리 <br/>
+						                보유기관: 회원탈퇴시 까지(2년 주기 재동의 진행)<br/><br/>
+						                
+						                컴퓨터에 의해 자동으로 수집되는 정보<br/>
+						                홈페이지를 이용할 경우 다음의 정보는 로그인 기록을 통하여 자동적으로 수집, 저장됩니다.<br/>
+						                접속 로그, 쿠키, 접속 IP 정보, 가입 경로<br/><br/>
+						                
+						                2. 개인정보 제3자 제공내역 <br/>
+						                개인정보를 제3자에게 제공하지 않습니다. 단, 다음에 해당하는 경우에는 예외로 제공할 수 있습니다.<br/>
+						                [관련근거: 개인정보보호법 제18조 제2항]<br/>
+						                1) 정보주체로부터 별도의 동의를 받은 경우<br/>
+						                2) 다른 법률에 특별환 규정이 있는 경우<br/>
+						                3) 정보주체 또는 그 법정대리인이 의사표시를 할 수 없는 상태에 있거나 주소불명 등으로 사전 동의를 받을 수 없는 경우 <br/>
+						                명백히 정보주체 또는 제3자의 급박한 생명, 신체, 재산의 이익을 위하여 필요하다고 인정되는 경우<br/>
+						                4) 통계작성 및 학술연구 등의 목적을 위하여 필요한 경우로서 특정 개인을 알아볼 수 없는 형태로 개인정보를 제공하는 경우<br/>
+						                5) 개인정보를 목적 외의 용도로 이용하거나 이를 제3자에게 제공하지 아니하면 법률에서 정하는 소관없무를 수행할 수 없는 경우<br/>
+						                보호위원회의 심의, 의결을 거친 경우 <br/>
+						                6) 조약, 그밖의 국제협정의 이행을 위하여 외국정부 또는 국제기구에 제공하기 위하여 필요한 경우 <br/>
+						                7) 범죄의 수사와 공소의 제기 및 유지를 위하여 필요한 경우<br/>
+						                8) 법원의 재판업무 수행을 위하여 필요한 경우 <br/>
+						                9) 형 및 감호, 보호처분의 집행을 위하여 필요한 경우<br/>
+						                <br/>
+						                정보주체는 개인 정보 수집 이용 동의를 거부할 수 있습니다.<br/><br/>
+						                그러나 동의 거부시 홈페이지에 가입이 되지 않으며, 홈페이지에서 회원에게 제공하는 서비스를 이용할 수 없습니다.<br/>
+						            </p>
+						        </div>
+						    </div>
 					      <div class="mb-4">
 					      <button id="submit"class="btn btn-outline-primary" type="submit" value="가입하기" >가입 완료</button>
 					      </div>
@@ -523,6 +595,28 @@
 			 </div>
 			</div>		 
 		   <hr class="featurette-divider">  
+		   <script>
+		   document.addEventListener('DOMContentLoaded', (event) => {
+			    var modal = document.getElementById("privacy-modal");
+			    var btn = document.getElementById("privacy-detail-btn");
+			    var span = document.getElementsByClassName("close")[0];
+
+			    btn.onclick = function() {
+			        modal.style.display = "block";
+			    }
+
+			    span.onclick = function() {
+			        modal.style.display = "none";
+			    }
+
+			    window.onclick = function(event) {
+			        if (event.target == modal) {
+			            modal.style.display = "none";
+			        }
+			    }
+			});
+		  
+		   </script>
 		   	
 		  <!-- FOOTER -->
 		  <footer class="container">

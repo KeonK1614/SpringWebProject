@@ -199,6 +199,7 @@
 		                 <thead>
 		                     <tr style="background-color: rgb(133, 133, 133); " class="text-center text-white">
 		                     	<th>번호</th>
+		                     	<th>소셜유형</th>
 		                         <th>아이디</th>
 		                         <th>이름</th>
 		                         <th>핸드폰번호</th>
@@ -214,7 +215,7 @@
 		                 </thead>
 		                 <tbody>
 		                 	<c:choose>
-				                <c:when test="${ empty list1 }">
+				                <c:when test="${ empty list2 }">
 					                 <tr>
 					                 	<td colspan="12" align="center">
 					                 		등록된 회원이 없습니다.
@@ -222,26 +223,27 @@
 					                 </tr>
 				                 </c:when>
 				                 <c:otherwise>
-				                 	<c:forEach items="${list1 }" var="local" varStatus="loop">
+				                 	<c:forEach items="${list2 }" var="dto" varStatus="loop">
 				                    	<tr align="center">
 				                    		<td>
-								            <c:set var="vNum1" value="${ maps.totalCount - 
+								            <c:set var="vNum2" value="${ maps.totalCount - 
 								                (((maps.pageNum-1) * maps.pageSize)	+ loop.index)}" />
-								            	${vNum1}
-								            </td>                
-				                         	<td class="text-center">${local.id }</td>
-				                         	<td class="text-center">${local.name }</td>
-				                         	<td class="text-center">${local.phoneNum }</td>
-				                         	<td class="text-center">${local.email }</td>
-				                         	<td class="text-center">${local.postcode }</td>
-				                         	<td class="text-center">${local.address }</td>
-				                         	<td class="text-center">${local.detailaddress }</td>
-				                         	<td class="text-center"><fmt:formatDate value="${local.regidate}" pattern="yyyy-MM-dd"/></td>
-				                         	<td class="text-center">${local.authority }</td>
-				                         	<td class="text-center">${local.isLock }</td>
-				                         	<td class="text-center">${local.enabled }</td>
+								            	${vNum2}
+								            </td>
+								            <td class="text-center">${dto.provider }</td>            
+				                         	<td class="text-center">${dto.providerId }</td>
+				                         	<td class="text-center">${dto.name }</td>
+				                         	<td class="text-center">${dto.phoneNum }</td>
+				                         	<td class="text-center">${dto.email }</td>
+				                         	<td class="text-center">${dto.postcode }</td>
+				                         	<td class="text-center">${dto.address }</td>
+				                         	<td class="text-center">${dto.detailaddress }</td>
+				                         	<td class="text-center"><fmt:formatDate value="${dto.regidate}" pattern="yyyy-MM-dd"/></td>
+				                         	<td class="text-center">${dto.authority }</td>
+				                         	<td class="text-center">${dto.isLock }</td>
+				                         	<td class="text-center">${dto.enabled }</td>
 				                         	<td class="text-center">
-				                         		<a href="../admin/userEdit?id=${local.id }">회원정보보기</a>
+				                         		<a href="../admin/socialUserEdit?providerId=${dto.providerId }">회원정보보기</a>
 				                         	</td>
 				                     	</tr>
 				                 	</c:forEach>  
@@ -251,7 +253,7 @@
 		             </table>
 		          </div>
 		          	<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-						 <a class="nav-link" href="/admin/localList">
+						 <a class="nav-link" href="/admin/socialList">
 						  <button class="btn btn-primary me-md-2" type="button">목록보기</button>
                         </a>
 					</div>

@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<<<<<<< HEAD
 <qualifiedTypeNameHistroy>
 <<<<<<< HEAD
     <fullyQualifiedTypeName name="org.springframework.http.HttpStatus"/>
@@ -38,3 +39,6 @@
     <fullyQualifiedTypeName name="java.util.Set"/>
 >>>>>>> NH13
 </qualifiedTypeNameHistroy>
+=======
+<qualifiedTypeNameHistroy/>
+>>>>>>> yerim7

@@ -201,20 +201,15 @@
 		                     	<th>번호</th>
 		                         <th>아이디</th>
 		                         <th>이름</th>
-		                         <th>핸드폰번호</th>
-		                         <th>이메일</th>
-		                         <th>우편번호</th>
-		                         <th>주소</th>
-		                         <th>상세주소</th>
+		                         <th>잠금</th>
+		                         <th>로그인실패횟수</th>
+		                         <th>잠금시간</th>
 		                         <th>가입일</th>
-		                         <th>권한</th>
-		                         <th>잠금계정</th>
-		                         <th>휴면계정</th>
 		                     </tr>
 		                 </thead>
 		                 <tbody>
 		                 	<c:choose>
-				                <c:when test="${ empty list1 }">
+				                <c:when test="${ empty list3 }">
 					                 <tr>
 					                 	<td colspan="12" align="center">
 					                 		등록된 회원이 없습니다.
@@ -222,27 +217,19 @@
 					                 </tr>
 				                 </c:when>
 				                 <c:otherwise>
-				                 	<c:forEach items="${list1 }" var="local" varStatus="loop">
+				                 	<c:forEach items="${list3 }" var="lock" varStatus="loop">
 				                    	<tr align="center">
 				                    		<td>
-								            <c:set var="vNum1" value="${ maps.totalCount - 
+								            <c:set var="vNum3" value="${ maps.totalCount - 
 								                (((maps.pageNum-1) * maps.pageSize)	+ loop.index)}" />
-								            	${vNum1}
+								            	${vNum3}
 								            </td>                
-				                         	<td class="text-center">${local.id }</td>
-				                         	<td class="text-center">${local.name }</td>
-				                         	<td class="text-center">${local.phoneNum }</td>
-				                         	<td class="text-center">${local.email }</td>
-				                         	<td class="text-center">${local.postcode }</td>
-				                         	<td class="text-center">${local.address }</td>
-				                         	<td class="text-center">${local.detailaddress }</td>
-				                         	<td class="text-center"><fmt:formatDate value="${local.regidate}" pattern="yyyy-MM-dd"/></td>
-				                         	<td class="text-center">${local.authority }</td>
-				                         	<td class="text-center">${local.isLock }</td>
-				                         	<td class="text-center">${local.enabled }</td>
-				                         	<td class="text-center">
-				                         		<a href="../admin/userEdit?id=${local.id }">회원정보보기</a>
-				                         	</td>
+				                         	<td class="text-center">${lock.id }</td>
+				                         	<td class="text-center">${lock.name }</td>
+				                         	<td class="text-center">${lock.isLock }</td>
+				                         	<td class="text-center">${lock.failCount }</td>
+				                         	<td class="text-center">${lock.lockTime }</td>
+				                         	<td class="text-center"><fmt:formatDate value="${lock.regidate}" pattern="yyyy-MM-dd"/></td>
 				                     	</tr>
 				                 	</c:forEach>  
 				                 </c:otherwise>
@@ -259,8 +246,20 @@
 		             <div class="col">
 		                 <!-- 페이지번호 부분 -->
 		                  <ul class="pagination justify-content-center">
-					            ${pagingImgs}
-					      </ul>
+		                      <li class="page-item">
+		                          <a href="#" class="page-link"><i class='bi bi-skip-backward-fill'></i></a>
+		                      </li>
+		                      <li class="page-item">
+		                          <a href="#" class="page-link"><i class='bi bi-skip-start-fill'></i></a>
+		                      </li>
+		                      <li class="page-item"><a href="#" class="page-link">${ pagingImg2 }</a></li>
+		                      <li class="page-item">
+		                          <a href="#" class="page-link"><i class='bi bi-skip-end-fill'></i></a>
+		                      </li>
+		                      <li class="page-item">
+		                          <a href="#" class="page-link"><i class='bi bi-skip-forward-fill'></i></a>
+		                      </li>
+		                  </ul>
 				   	</div>
 		         </div>
 		      </div>
