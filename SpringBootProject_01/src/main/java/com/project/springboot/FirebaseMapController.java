@@ -14,88 +14,67 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.springboot.dao.FirebaseMapService;
 import com.project.springboot.dto.EleMap;
+import com.project.springboot.dto.EleMap2;
 import com.project.springboot.dto.RestMap;
+import com.project.springboot.dto.RestMap2;
 
 @Controller
 public class FirebaseMapController {
-	@Autowired
-	private FirebaseMapService firebaseMapService;
-		
-	@RequestMapping("/guest/restMap3")
+	
+	 @Autowired private FirebaseMapService firebaseMapService;
+	 
+
+	/*@RequestMapping("/guest/restMap")
 	public String getNearbyRestData(@RequestParam(value="centerX", required=false) Double centerX,
-									@RequestParam(value="centerY", required=false) Double centerY,
-									@RequestParam(value="radius", defaultValue = ".02") double radius,
-									Model model) {
+			@RequestParam(value="centerY", required=false) Double centerY,
+			@RequestParam(value="radius", defaultValue = ".03") double radius, Model model) {
 		if (centerX == null||centerY==null) {
 
-//			centerX = 127.0016;
-//			centerY = 37.5642;
-			centerX = 127.063744;
-			centerY = 37.495945;
+			centerX = 127.0016;
+			centerY = 37.5642;
 		}
 		try {
-			/*
-			 * List<RestMap> restDataList = firebaseMapService.getNearbyRestrooms(centerX,
-			 * centerY, radius); System.out.println("restDataList: " + restDataList);
-			 * model.addAttribute("restDataList", restDataList);
-			 */
-			/*
-			 * List<RestMap> restDataList = firebaseMapService.getNearbyRestrooms(centerX,
-			 * centerY, radius);
-			 * 
-			 * // optime 필드만 URL 인코딩 처리 for (RestMap item : restDataList) {
-			 * item.setOptime(encodeString(item.getOptime())); }
-			 * 
-			 * Map<String, Object> response = new HashMap<>(); response.put("restDataList",
-			 * restDataList);
-			 * 
-			 * model.addAttribute("restDataList", restDataList);
-			 */
+			List<RestMap> restDataList = firebaseMapService.getNearbyRestrooms(centerX, centerY, radius);
+			// optime 필드만 URL 인코딩 처리
+			for (RestMap item : restDataList) {
+				item.setOptime(encodeString(item.getOptime())); 
+			}
+			model.addAttribute("restDataList", restDataList);
 		} catch (Exception e) {
 			e.printStackTrace();		
 		}
 		
-		return "guest/restMap3";
-	}
-	
-	@RequestMapping("/guest/eleMap")
+		return "guest/restMap";
+	} */
+
+	/*@RequestMapping("/guest/eleMap")
 	public String getNearbyEleData(@RequestParam(value="centerX", required=false) Double centerX,
 								@RequestParam(value="centerY", required=false) Double centerY,
-								@RequestParam(value="radius", defaultValue = ".02") double radius, Model model) {
+								@RequestParam(value="radius", defaultValue = ".03") double radius, Model model) {
 		if (centerX == null||centerY==null) {
 			centerX = 127.0016;
 			centerY = 37.5642;
 		}
 		try {
-			/*
-			 * List<EleMap> eleDataList = firebaseMapService.getNearbyElevators(centerX,
-			 * centerY, radius); System.out.println("eleDataList: " + eleDataList);
-			 * model.addAttribute("eleDataList", eleDataList);
-			 */
-			List<EleMap> eleDataList = firebaseMapService.getNearbyElevators(centerX, centerY, radius);
-			// optime 필드만 URL 인코딩 처리
-			/*
-			 * for (EleMap item : eleDataList) {
-			 * item.setNode_cd(encodeString(item.getNode_cd())); }
-			 */
-			System.out.println("eleDataList: " + eleDataList);
-			model.addAttribute("eleDataList", eleDataList);
+			 List<EleMap> eleDataList = firebaseMapService.getNearbyElevators(centerX, centerY, radius);
+			 System.out.println("eleDataList: " + eleDataList);
+			 model.addAttribute("eleDataList", eleDataList);
 		} catch (Exception e) {
 			e.printStackTrace();		
 		}
 		
 		return "guest/eleMap";
-	}
-	
+	}*/
+
 	private String encodeString(String value) {
-        try {
-            return URLEncoder.encode(value, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-            return value;
-        }
-    }
-	
+		try {
+			return URLEncoder.encode(value, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+			return value;
+		}
+	}
+
 //	@GetMapping("/admin/insertRestInfo")
 //	public String insertRestInfo(@RequestParam RestMap restMap) throws InterruptedException, ExecutionException {
 //		return firebaseMapService.insertRestMap(restMap);

@@ -4,4 +4,5 @@
     <fullyQualifiedTypeName name="jakarta.enterprise.inject.Model"/>
     <fullyQualifiedTypeName name="org.springframework.security.core.Authentication"/>
     <fullyQualifiedTypeName name="java.security.Principal"/>
+    <fullyQualifiedTypeName name="java.util.Set"/>
 </qualifiedTypeNameHistroy>

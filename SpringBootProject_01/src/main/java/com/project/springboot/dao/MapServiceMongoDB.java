@@ -2,11 +2,12 @@ package com.project.springboot.dao;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
@@ -35,11 +36,13 @@ public class MapServiceMongoDB implements IMapServiceMongoDB {
             double x = restroom.getX_wgs84();
             double y = restroom.getY_wgs84();
             double distance = haversine(centerX, centerY, x, y);
-            System.out.println("distance: " + distance);
             restroom.setDistance(distance);
         }
 
         restrooms.sort(Comparator.comparingDouble(RestMap2::getDistance));
+        
+        Set<RestMap2> uniqueRestrooms = new HashSet<>(restrooms);
+        restrooms = new ArrayList<>(uniqueRestrooms);
 
         return restrooms.subList(0, Math.min(40, restrooms.size()));
     }
@@ -63,7 +66,6 @@ public class MapServiceMongoDB implements IMapServiceMongoDB {
             double y = elevator.getY_wgs84();
             double distance = haversine(centerX, centerY, x, y);
             elevator.setDistance(distance);
-            System.out.println("distance: " + distance);
         }
 
         elevators.sort(Comparator.comparingDouble(EleMap2::getDistance));
