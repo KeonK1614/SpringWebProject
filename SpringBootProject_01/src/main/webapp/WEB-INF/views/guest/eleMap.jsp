@@ -12,7 +12,7 @@
 		<meta name="description" content="">
 		<meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
 		<meta name="generator" content="Hugo 0.122.0">
-		<title>Carousel Template · Bootstrap v5.3</title>
+		<title>엘레베이터 지도</title>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
 		<link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
@@ -89,7 +89,7 @@
 		
 		}	 
 		
-		body { margin-top: 60px; } /* nav의 높이만큼 padding-top 추가 */
+		body { margin-top: 30px; } /* nav의 높이만큼 padding-top 추가 */
         
         /* 모달창 스타일 */
         .modal {
@@ -125,23 +125,6 @@
             text-decoration: none;
             cursor: pointer;
         }
-        
-        /* 지도와 현재 위치 버튼을 포함한 컨테이너 스타일 */
-		.map-container {
-		    position: relative; /* 자식 요소를 절대 위치로 배치하기 위해 */
-		    display: flex;
-		    justify-content: center;
-		    align-items: center;
-		    height: 400px; /* 필요에 따라 높이 조절 */
-		}
-		
-		/* 현재 위치 버튼 스타일 */
-		#currentLocationBtn {
-		    position: absolute; /* 부모 요소의 상대적 위치를 기준으로 위치 지정 */
-		    top: 10px; /* 상단에서 10px 떨어진 위치 */
-		    left: 10px; /* 왼쪽에서 10px 떨어진 위치 */
-		    z-index: 10; /* 다른 요소 위에 버튼이 오도록 z-index 설정 */
-		}
         
         </style>	 
 		
@@ -266,11 +249,18 @@
 		</header>
 	
 		<main>
-			<div class="map-container">	
-				<button id="currentLocationBtn" class="btn btn-danger btn-sm" onclick="Mylocation()">
-		            현재위치
-		        </button>		
-				<div id="map" style="width:900px;height:400px;"></div>
+			<div class="row">
+				<div class="col-12 text-center">
+					 <button id="currentLocationBtn" class="btn btn-danger btn-sm" onclick="Mylocation()">현재위치</button>
+					 &nbsp;&nbsp;
+					 <button  class="btn btn-primary btn-sm" onclick="location.href='restMap';">화장실지도</button>
+					 &nbsp;&nbsp;
+				</div>
+			</div>
+			<div class="row">
+				<div class="map-container">	
+			        <div id="map" style="width:100%;height:500px;"></div>
+				</div>
 			</div>
 			<!-- 모달창 -->
 		    <div id="myModal" class="modal">
@@ -283,80 +273,86 @@
 		   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3f7f9ab0116bd62797e2fbd361dac3a9&libraries=services,clusterer,drawing"></script>
 		   <script>
 				var map;
+				var markers = []; // 현재 지도에 표시된 마커들을 저장할 배열
 				
 				// 지도와 마커 초기화
 		        function initMap() {
-		        	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-		        	 	mapOption = { 
-				        /* center: new kakao.maps.LatLng(37.554674785645716, 126.9706120117342), */// 지도의 중심좌표
-				        center: new kakao.maps.LatLng(37.554674785645716, 126.9706120117342), // 지도의 중심좌표
-				        level: 3 // 지도의 확대 레벨 
-				    }; 
-	
-		            map = new kakao.maps.Map(mapContainer, mapOption);
-		            
-		         	// 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
-					var mapTypeControl = new kakao.maps.MapTypeControl();
-		
-					// 지도에 컨트롤을 추가해야 지도위에 표시됩니다
-					// kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
-					map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
-		
-					// 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
-					var zoomControl = new kakao.maps.ZoomControl();
-					// 지도의 우측에 확대 축소 컨트롤을 추가한다
-					map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
-		            
-		            // 마커 데이터 배열
-		            var positions = [
-		                 /* <c:forEach var="item1" items="${restDataList}">
-				            {
-				            	content: decodeURIComponent("${item1.optime}") + "<br/> 장소명   : ${item1.pname} <br/>주소 : ${item1.addr1} ${item1.addr2}<br/>전화번호 : ${item1.phonenum}<br/>장소유형 : ${item1.ptype}<br/> 건물유형 :  ${item1.btype} <br/> 상세정보 : ${item1.detail1} ${item1.detail2} <br/> 현재위치와의 거리 : ${item1.distance}km"
-				            	,
-				            	position: new kakao.maps.LatLng(${item1.y_wgs84}, ${item1.x_wgs84})
-				            }<c:if test="${not empty restDataList}">,</c:if>
-			            </c:forEach>  */ 
-		            	<c:forEach var="item2" items="${eleDataList }">
+				    var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+				        mapOption = { 
+				            center: new kakao.maps.LatLng(37.554674785645716, 126.9706120117342), // 지도의 중심좌표 
+				            level: 2 // 지도의 확대 레벨 
+				        }; 
+				
+				    map = new kakao.maps.Map(mapContainer, mapOption);
+				
+				    // 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+				    var mapTypeControl = new kakao.maps.MapTypeControl();
+				
+				    // 지도에 컨트롤을 추가해야 지도위에 표시됩니다
+				    map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+				
+				    // 지도 확대 축소를 제어할 수 있는 줌 컨트롤을 생성합니다
+				    var zoomControl = new kakao.maps.ZoomControl();
+				    // 지도의 우측에 확대 축소 컨트롤을 추가한다
+				    map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+				
+				    var positions = [
+				    	<c:forEach var="item2" items="${eleDataList }">
 		            	{
-			            	content: "지하철명 : ${item2.sbwy_stn_nm} <br/>" +
-			            			 "주소 : ${item2.sgg_nm}${item2.emd_nm} <br/>" +
-			            			 "구분 : ${item2.node_type_cd} (0 : 일반, 1 : 지하철 출입구, 2 : 버스정류장, 3 : 지하보도 출입구)"
+			            	content: "<ul>" +
+			            			 "<li>지하철명 : ${item2.sbwy_stn_nm}</li>" +
+			            			 "<li>주소     : ${item2.sgg_nm}${item2.emd_nm}</li>" +
+			            			 "<li>구분     : ${item2.node_type_cd} (0 : 일반, 1 : 지하철 출입구, 2 : 버스정류장, 3 : 지하보도 출입구)</li>" +
+			            			 "</ul>"
 			            	,
 			            	position: new kakao.maps.LatLng(${item2.y_wgs84}, ${item2.x_wgs84})
 		            	}<c:if test="${not empty eleDataList}">,</c:if>
 			    		</c:forEach>
-		            ];
-		            
-		            // 마커와 클릭 이벤트 설정
-		            positions.forEach(data => {
-		                const marker = new kakao.maps.Marker({
-		                    position: data.position
-		                });
-	
-		                marker.setMap(map);
-	
-		                kakao.maps.event.addListener(marker, 'click', function() {
-		                    document.getElementById('myModal').style.display = 'block';
-		                    document.getElementById('modalContent').innerHTML = data.content;
-		                });
-		            });
-	
-		            // 모달창 닫기 기능
-		            const modal = document.getElementById('myModal');
-		            const closeBtn = document.getElementsByClassName('close')[0];
-		            
-		           closeBtn.onclick = function() {
-		                modal.style.display = 'none';
-		            };
-		            
-		            window.onclick = function(event) {
-		                if (event.target === modal) {
-		                    modal.style.display = 'none';
-		                }
-		            };
-		        }
+				    ];
+				 	// 지도를 재설정할 범위정보를 가지고 있을 LatLngBounds 객체를 생성합니다
+				    var bounds = new kakao.maps.LatLngBounds(); 
 				
-		     // 현재 위치로 이동하는 함수
+				    var i, marker;
+				
+				    positions.forEach(data => {
+				        const marker = new kakao.maps.Marker({
+				            position: data.position
+				        });
+
+				        marker.setMap(map);
+				        bounds.extend(data.position);
+
+				        kakao.maps.event.addListener(marker, 'click', function() {
+				            document.getElementById('myModal').style.display = 'block';
+				            document.getElementById('modalContent').innerHTML = data.content;
+				        });
+				    });
+				    
+				 	// 지도의 범위를 설정합니다
+				  	map.setBounds(bounds);
+				    
+				    // 모달창 닫기 기능
+				    const modal = document.getElementById('myModal');
+				    const closeBtn = document.getElementsByClassName('close')[0];
+				    
+				    closeBtn.onclick = function() {
+				        modal.style.display = 'none';
+				    };
+				    
+				    window.onclick = function(event) {
+				        if (event.target === modal) {
+				            modal.style.display = 'none';
+				        }
+				    };
+
+				    // 지도 클릭 이벤트 리스너 추가
+				    kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
+				        var latlng = mouseEvent.latLng;
+				        map.setCenter(latlng); // 클릭한 위치를 지도의 중심으로 설정합니다
+				    });
+				}
+		            
+		        // 현재 위치로 이동하는 함수
 				function Mylocation() {
 				    if (navigator.geolocation) {
 				        navigator.geolocation.getCurrentPosition(function(position) {
@@ -381,22 +377,15 @@
 				            infowindow.open(map, marker);
 				            
 				        }, function(error) {
-				            console.error('Geolocation error:', error);
 				        });
 				    } else {
-				        alert("Geolocation is not supported by this browser.");
+				        alert("현재위치를 찾을 수 없습니다.");
 				    }
 				}
-				
+		        
 				window.onload = initMap;
-				
 			</script>	       
-			
-			
-			
-				
 		</main>	
-		 	
 		<hr/> 	
 		<!-- <footer class="container">
 		    <p class="float-end"><i class="bi bi-arrow-up-circle"></i><a href="#">Back to top</a></p>

@@ -10,7 +10,7 @@
 		<meta name="description" content="">
 		<meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
 		<meta name="generator" content="Hugo 0.122.0">
-		<title>Carousel Template · Bootstrap v5.3</title>
+		<title>공지사항 게시판</title>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
 		<link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">

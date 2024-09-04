@@ -1,5 +1,7 @@
 package com.project.springboot;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +19,7 @@ public class MapControllerMongoDB {
 	@Autowired
 	public MapServiceMongoDB mapService;
 	
-	@RequestMapping("/guest/nearbyData3")
+	@RequestMapping("/guest/restMap")
 	public String getNearbyRestData(@RequestParam(value="centerX", required=false) Double centerX,
 			@RequestParam(value="centerY", required=false) Double centerY,
 			@RequestParam(value="radius", defaultValue = ".03") double radius, Model model) {
@@ -28,15 +30,19 @@ public class MapControllerMongoDB {
 		}
 		try {
 			List<RestMap2> restDataList = mapService.getNearbyRestData(centerX, centerY, radius);
+			// optime 필드만 URL 인코딩 처리
+			for (RestMap2 item : restDataList) {
+				item.setOptime(encodeString(item.getOptime())); 
+			}
 			model.addAttribute("restDataList", restDataList);
 		} catch (Exception e) {
 			e.printStackTrace();		
 		}
 		
-		return "guest/map2";
+		return "guest/restMap";
 	}
 	
-	@RequestMapping("/guest/nearbyData4")
+	@RequestMapping("/guest/eleMap")
 	public String getNearbyEleData(@RequestParam(value="centerX", required=false) Double centerX,
 								@RequestParam(value="centerY", required=false) Double centerY,
 								@RequestParam(value="radius", defaultValue = ".03") double radius, Model model) {
@@ -46,12 +52,20 @@ public class MapControllerMongoDB {
 		}
 		try {
 			 List<EleMap2> eleDataList = mapService.getNearbyEleData(centerX, centerY, radius);
-			 System.out.println("eleDataList: " + eleDataList);
 			 model.addAttribute("eleDataList", eleDataList);
 		} catch (Exception e) {
 			e.printStackTrace();		
 		}
 		
-		return "guest/map2";
+		return "guest/eleMap";
 	}
+	
+	private String encodeString(String value) {
+        try {
+            return URLEncoder.encode(value, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            return value;
+        }
+    }
 }

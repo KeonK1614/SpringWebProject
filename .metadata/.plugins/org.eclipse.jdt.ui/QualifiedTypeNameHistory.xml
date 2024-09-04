@@ -5,6 +5,7 @@
     <fullyQualifiedTypeName name="jakarta.enterprise.inject.Model"/>
     <fullyQualifiedTypeName name="org.springframework.security.core.Authentication"/>
     <fullyQualifiedTypeName name="java.security.Principal"/>
+<<<<<<< HEAD
 =======
     <fullyQualifiedTypeName name="org.springframework.context.annotation.Configuration"/>
     <fullyQualifiedTypeName name="com.google.firebase.FirebaseOptions.Builder"/>
@@ -33,4 +34,7 @@
     <fullyQualifiedTypeName name="com.google.api.core.ApiFuture"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.DeleteMapping"/>
 >>>>>>> DV8
+=======
+    <fullyQualifiedTypeName name="java.util.Set"/>
+>>>>>>> NH13
 </qualifiedTypeNameHistroy>
