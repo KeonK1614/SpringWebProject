@@ -23,7 +23,7 @@
 <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="../carousel/carousel.css" rel="stylesheet">
 <script>
-	function chatPop(){
+	function chatPopup(){
 		var s_width = window.screen.width;
 		var s_height = window.screen.height;            
 		
@@ -71,7 +71,7 @@
 			</sec:authorize>
 			<button class="btn btn-bd-primary py-2 d-flex align-items-center"
 				id="bd-theme" type="button" aria-expanded="false"
-				data-bs-toggle="button" aria-label="채팅상담" onclick="chatPop();">
+				data-bs-toggle="button" aria-label="채팅상담" onclick="chatPopup();">
 				채팅상담
 				<svg class="bi my-1 theme-icon-active" width="1em" height="1em">
 					<use href="#chat"></use></svg>
