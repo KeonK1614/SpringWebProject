@@ -34,7 +34,7 @@
 	<main>
 	<div class="col-10 pt-3 mt-3 mx-auto">
 		<h4>
-			게시판 목록 - <small>정보게시판</small>
+			커뮤니티 - <small>정보게시판</small>
 		</h4>
 		<div class="row">
 			<!-- 검색부분 -->

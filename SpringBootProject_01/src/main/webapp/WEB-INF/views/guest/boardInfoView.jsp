@@ -36,7 +36,7 @@
 	<div class="row">
 		<div class="col-10 pt-3 mt-3 mx-auto">
 			<h4>
-				자유게시판- <small>게시판 보기 </small>
+				커뮤니티- <small>게시판 보기</small>
 			</h4>
 			<form enctype="multipart/form-data" method="post" action="write"
 				name="writeFrm">
