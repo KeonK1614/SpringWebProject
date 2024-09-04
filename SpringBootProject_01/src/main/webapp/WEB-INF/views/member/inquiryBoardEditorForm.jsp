@@ -149,6 +149,7 @@
 	    
 	    function passChangebtn() {
 	        let isPassChange = confirm("비밀번호를 변경하시겠습니까?");
+	        
 	        if (isPassChange) {
 	            let btn = document.getElementById('passbtn'); // 버튼 요소를 가져옵니다.
 	            let boardPassbox = document.getElementById('boardPassbox'); // 비밀번호 입력 박스 요소를 가져옵니다.

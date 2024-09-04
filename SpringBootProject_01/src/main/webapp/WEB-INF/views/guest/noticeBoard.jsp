@@ -316,14 +316,7 @@
 		             </table>
 		         </div>
 		         
-		   		 <!-- <div>
-	               <div class="col d-flex justify-content-end">
-	                   <button type="button" class="btn btn-primary" onclick="location.href='noticeBoard';">리스트보기</button>&nbsp;&nbsp;
-	                   <button type="button" class="btn btn-primary" onclick="location.href='../admin/noticeWriteForm';">공지사항 등록</button>
-	               </div>
-		         </div> -->
-		         
-		         <!-- 게스트 일 때 -->
+		   		 <!-- 게스트 일 때 -->
                  <sec:authorize access="isAnonymous()">
                 	 <div>
 		               <div class="col d-flex justify-content-end">
@@ -352,33 +345,12 @@
 	             <div class="row mt-3">
 		             <div class="col">
 		                 <!-- 페이지번호 부분 -->
-		                 
-		                  <ul class="pagination justify-content-center">
+						 <div class="pagination justify-content-center">
 		                     ${pagingImg}
-		                    <!--   <li class="page-item">
-		                          <a href="#" class="page-link"><i class='bi bi-skip-backward-fill'></i></a>
-		                      </li>
-		                      <li class="page-item">
-		                          <a href="#" class="page-link"><i class='bi bi-skip-start-fill'></i></a>
-		                      </li>
-		                      <li class="page-item"><a href="#" class="page-link">1</a></li>
-		                      <li class="page-item active"><a href="#" class="page-link">2</a></li>
-		                      <li class="page-item"><a href="#" class="page-link">3</a></li>
-		                      <li class="page-item"><a href="#" class="page-link">4</a></li>
-		                      <li class="page-item"><a href="#" class="page-link">5</a></li>
-		                      <li class="page-item">
-		                          <a href="#" class="page-link"><i class='bi bi-skip-end-fill'></i></a>
-		                      </li>
-		                      <li class="page-item">
-		                          <a href="#" class="page-link"><i class='bi bi-skip-forward-fill'></i></a>
-		                      </li> -->
-		                  </ul>
-		                 
-		                  
-				   </div>
-		          </div>
-		      </div>
-			</div>
+		                 </div>
+		             </div>
+		         </div>
+		     </div>
 		</main>	 	
 		<hr/> 	
 		<!-- <footer class="container">
@@ -414,7 +386,6 @@
 				 </div>
 			 </div>
 		 </div>	
-			
 	</body>
 </html>
 	

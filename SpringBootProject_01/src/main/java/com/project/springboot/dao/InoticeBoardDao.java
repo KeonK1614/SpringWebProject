@@ -13,7 +13,6 @@ public interface InoticeBoardDao
 {
 	public List<noticeBoardDto> listDao(Map<String, Object> map);
 	public int totalCountDao(Map<String, Object> map);
-
 	public noticeBoardDto viewDao(String idx);
 	public int writeDao(@Param("id") String id, @Param("title") String title, @Param("content") String content , @Param("ofile")String ofile, @Param("sfile") String sfile);
 	public int deleteDao(String idx);

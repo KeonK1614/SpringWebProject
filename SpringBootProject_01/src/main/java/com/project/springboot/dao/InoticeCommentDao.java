@@ -16,9 +16,7 @@ public interface InoticeCommentDao
 	//댓글 작성
 	public int writeDao(String idx, String id, String content);
 	//댓글삭제
-	public int deleteDao(String coidx);
-	//수정을 위한 댓글 내용 가져오기
-	public int getCommentDao(String coidx);
+    public int deleteDao(String coidx) ;
 	//댓글수정
 	public int editorDao(Map<String, Object> map);
 	

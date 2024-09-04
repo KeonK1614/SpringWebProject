@@ -270,7 +270,7 @@
 				<button id="currentLocationBtn" class="btn btn-danger btn-sm" onclick="Mylocation()">
 		            현재위치
 		        </button>		
-				<div id="map" style="width:900px;height:400px;"></div>
+		        <div id="map" style="width:900px;height:400px;"></div>
 			</div>
 			<!-- 모달창 -->
 		    <div id="myModal" class="modal">
@@ -283,98 +283,84 @@
 		   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3f7f9ab0116bd62797e2fbd361dac3a9&libraries=services,clusterer,drawing"></script>
 		   <script>
 				var map;
+				var markers = []; // 현재 지도에 표시된 마커들을 저장할 배열
 				
 				// 지도와 마커 초기화
 		        function initMap() {
-		        	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-		        	 	mapOption = { 
-				        center: new kakao.maps.LatLng(37.554674785645716, 126.9706120117342), // 지도의 중심좌표
-				        level: 3 // 지도의 확대 레벨 
-				    }; 
-	
-		            map = new kakao.maps.Map(mapContainer, mapOption);
-		            
-		         	// 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
-					var mapTypeControl = new kakao.maps.MapTypeControl();
-		
-					// 지도에 컨트롤을 추가해야 지도위에 표시됩니다
-					// kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
-					map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
-		
-					// 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
-					var zoomControl = new kakao.maps.ZoomControl();
-					// 지도의 우측에 확대 축소 컨트롤을 추가한다
-					map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
-		            
-		            // 마커 데이터 배열
-		            var positions = [
-		                 <c:forEach var="item1" items="${restDataList}">
-				            {
-				            	content: '<table border="1" style="width:600px;height:500px;">' +
-						                 '    <tr>' +
-						                 '        <th>장소명</th>' +
-						                 '        <td>${item1.pname}</td>' +
-						                 '    </tr>' +
-						                 '    <tr>' +
-						                 '        <th>주소</th>' +
-						                 '        <td>${item1.addr1} ${item1.addr2}</td>' +
-						                 '    </tr>' +
-						                 '    <tr>' +
-						                 '        <th>전화번호</th>' +
-						                 '        <td>${item1.phonenum}</td>' +
-						                 '    </tr>' +
-						                 '    <tr>' +
-						                 '        <th>장소유형</th>' +
-						                 '        <td>${item1.ptype}</td>' +
-						                 '    </tr>' +
-						                 /*'    <tr>' +
-						                 '        <th>운영시간</th>' +
-						                 '        <td>${item1.optime}</td>' +
-						                 '    </tr>' +
-						                 '    <tr>' +
-						                 '        <th>건물유형</th>' +
-						                 '        <td>${item1.btype}</td>' +
-						                 '    </tr>' +
-						                 '    <tr>' +
-						                 '        <th>상세정보</th>' +
-						                 '        <td>${item1.detail1} ${item1.detail2}</td>' +
-						                 '    </tr>' + */
-						                 '</table>',
-				            	position: new kakao.maps.LatLng(${item1.y_wgs84}, ${item1.x_wgs84})
-				            }<c:if test="${not empty restDataList}">,</c:if>
-			            </c:forEach>  
-		            ];
-		            
-		            // 마커와 클릭 이벤트 설정
-		            positions.forEach(data => {
-		                const marker = new kakao.maps.Marker({
-		                    position: data.position
-		                });
-	
-		                marker.setMap(map);
-	
-		                kakao.maps.event.addListener(marker, 'click', function() {
-		                    document.getElementById('myModal').style.display = 'block';
-		                    document.getElementById('modalContent').innerHTML = data.content;
-		                });
-		            });
-	
-		            // 모달창 닫기 기능
-		            const modal = document.getElementById('myModal');
-		            const closeBtn = document.getElementsByClassName('close')[0];
-		            
-		           closeBtn.onclick = function() {
-		                modal.style.display = 'none';
-		            };
-		            
-		            window.onclick = function(event) {
-		                if (event.target === modal) {
-		                    modal.style.display = 'none';
-		                }
-		            };
-		        }
+				    var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+				        mapOption = { 
+				            center: new kakao.maps.LatLng(37.554674785645716, 126.9706120117342), // 지도의 중심좌표 
+				            level: 2 // 지도의 확대 레벨 
+				        }; 
 				
-		     // 현재 위치로 이동하는 함수
+				    map = new kakao.maps.Map(mapContainer, mapOption);
+				
+				    // 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+				    var mapTypeControl = new kakao.maps.MapTypeControl();
+				
+				    // 지도에 컨트롤을 추가해야 지도위에 표시됩니다
+				    map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+				
+				    // 지도 확대 축소를 제어할 수 있는 줌 컨트롤을 생성합니다
+				    var zoomControl = new kakao.maps.ZoomControl();
+				    // 지도의 우측에 확대 축소 컨트롤을 추가한다
+				    map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+				
+				    var positions = [
+				        {content : '서울역', position: new kakao.maps.LatLng(37.556586, 126.983199)},
+				        {content : '경복궁', position: new kakao.maps.LatLng(37.575866, 126.979433)},
+				        {content : '동대문', position: new kakao.maps.LatLng(37.566985, 127.008279)},
+				        {content : '명동역', position: new kakao.maps.LatLng(37.561325, 126.985909)},
+				        {content : '리움미술관', position: new kakao.maps.LatLng(37.537847, 126.999364)},
+				        {content : '국립중앙박물관', position: new kakao.maps.LatLng(37.521317, 126.977907)},
+				        {content : '반포종합운동장', position: new kakao.maps.LatLng(37.498922, 126.995109)},
+				        {content : '샤로수길', position: new kakao.maps.LatLng(37.478680, 126.955568)},
+				        {content : '영등포공원', position: new kakao.maps.LatLng(37.514972, 126.911932)}
+				    ];
+				 	// 지도를 재설정할 범위정보를 가지고 있을 LatLngBounds 객체를 생성합니다
+				    var bounds = new kakao.maps.LatLngBounds(); 
+				
+				    var i, marker;
+				
+				    positions.forEach(data => {
+				        const marker = new kakao.maps.Marker({
+				            position: data.position
+				        });
+
+				        marker.setMap(map);
+				        bounds.extend(data.position);
+
+				        kakao.maps.event.addListener(marker, 'click', function() {
+				            document.getElementById('myModal').style.display = 'block';
+				            document.getElementById('modalContent').innerHTML = data.content;
+				        });
+				    });
+				    
+				 	// 지도의 범위를 설정합니다
+				  	map.setBounds(bounds);
+				    
+				    // 모달창 닫기 기능
+				    const modal = document.getElementById('myModal');
+				    const closeBtn = document.getElementsByClassName('close')[0];
+				    
+				    closeBtn.onclick = function() {
+				        modal.style.display = 'none';
+				    };
+				    
+				    window.onclick = function(event) {
+				        if (event.target === modal) {
+				            modal.style.display = 'none';
+				        }
+				    };
+
+				    // 지도 클릭 이벤트 리스너 추가
+				    kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
+				        var latlng = mouseEvent.latLng;
+				        map.setCenter(latlng); // 클릭한 위치를 지도의 중심으로 설정합니다
+				    });
+				}
+		            
+		        // 현재 위치로 이동하는 함수
 				function Mylocation() {
 				    if (navigator.geolocation) {
 				        navigator.geolocation.getCurrentPosition(function(position) {
@@ -399,22 +385,15 @@
 				            infowindow.open(map, marker);
 				            
 				        }, function(error) {
-				            console.error('Geolocation error:', error);
 				        });
 				    } else {
-				        alert("Geolocation is not supported by this browser.");
+				        alert("현재위치를 찾을 수 없습니다.");
 				    }
 				}
-				
+		        
 				window.onload = initMap;
-				
 			</script>	       
-			
-			
-			
-				
 		</main>	
-		 	
 		<hr/> 	
 		<!-- <footer class="container">
 		    <p class="float-end"><i class="bi bi-arrow-up-circle"></i><a href="#">Back to top</a></p>
