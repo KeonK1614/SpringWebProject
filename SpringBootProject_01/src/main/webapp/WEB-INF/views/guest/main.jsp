@@ -13,7 +13,7 @@
 	    <meta name="description" content="">
 	    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
 	    <meta name="generator" content="Hugo 0.122.0">
-	    <title>Carousel Template · Bootstrap v5.3</title>
+	    <title>스마일로드</title>
 	    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
 	    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/">
 	    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
@@ -118,14 +118,14 @@
 		<header>
 			<nav class="navbar navbar-expand-md fixed-top" style="background-color: #7FA1C3;">
 			  <div class="container-fluid">
-			    <a class="navbar-brand" href="/">로고</a>
+			    <a class="navbar-brand" href="/">스마일로드</a>
 			    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
 			      <span class="navbar-toggler-icon"></span>
 			    </button>
 			   <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
 			      <ul class="navbar-nav me-auto mb-2 mb-md-0">
 			      <li class="nav-item">
-			        <a class="nav-link" aria-current="page" href="#">홈페이지소개</a>
+			        <a class="nav-link" aria-current="page" href="/guest/homeInfo">홈페이지소개</a>
 			      </li>
 			      <li class="nav-item">
 			        <a class="nav-link" href="/guest/noticeBoard">공지사항</a>

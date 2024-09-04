@@ -10,7 +10,7 @@
 	    <meta name="description" content="">
 	    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
 	    <meta name="generator" content="Hugo 0.122.0">
-	    <title>Carousel Template · Bootstrap v5.3</title>
+	    <title>스마일로드</title>
 	    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
 	    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/">
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -100,17 +100,19 @@
 	<body>
 		<main class="form-signin w-100 m-auto">
 		<form method="post" name="find-id-form" id="find-id-form">
-	    <img class="mx-auto d-block mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+	    <a href="/"><img class="mx-auto d-block mb-4" src="../images/smailelogo.jpeg" width="72" height="57"></a>
 	    <h1 class="h3 mb-3 fw-normal text-center">비밀번호 찾기</h1>
 	    <div class="form-floating mb-3">
-		    <input type="text" name="id" class="form-control" id="id" placeholder="아이디를 입력하세요" required >
+		    <input type="text" name="id" class="form-control" id="id" placeholder="아이디를 입력하세요" 
+		    oninput="validateInput(this)" required >
 		    <label for="floatingInput">아이디</label>
 			<div class="invalid-feedback">
 				아이디를 입력해주세요.
 			</div>      
 	    </div>
 	    <div class="form-floating mb-3">
-		    <input type="email" name="eamil" class="form-control" id="email" placeholder="email을 입력하세요" required >
+		    <input type="email" name="email" class="form-control" id="email" placeholder="email을 입력하세요" 
+		     oninput="validateInput(this)" required >
 		    <label for="floatingInput">이메일</label>
 		    <span id="emailCheckMessage" class="error"></span>
 			<div class="invalid-feedback">
@@ -122,21 +124,32 @@
 	    	<button type="button" id="send-code-button" class="btn btn-primary btn-sm">인증번호 발송</button>
 	    </div>
 	    
-	    <div class="form-floating mb-3" id="verifyCodeSection">
-	        <input type="password" id="newPass" class="form-control" placeholder="임시 비밀번호" required>
-	        <label for="floatingInput">임시 비밀번호</label>
+	    <div class="form-floating mb-3" id="verifyCodeSection" style="display: none;">
+	        <input type="password" id="verificationCode" class="form-control" placeholder="인증번호" 
+	        oninput="validateInput(this)" required>
+	        <label for="verificationCode">인증번호</label>
 		  <div class="invalid-feedback">
-				임시 비밀번호를 입력해주세요.
+				인증번호를 입력해주세요.
 			</div> 
-		  <div>
-		  <label for="show" class="pw_show"><input type="checkbox" id="show">비밀번호 표시</label>
-		  </div>
 		</div>
 		
+		<div class="form-floating mb-3" id="newPasswordSection" style="display: none;">
+	        <input type="password" id="newPassword" class="form-control" placeholder="새 비밀번호" 
+	               oninput="validateInput(this)" required>
+	        <label for="newPassword">새 비밀번호</label>
+	        <div class="invalid-feedback">
+	            새 비밀번호를 입력해주세요.
+	        </div>
+	        <div>
+	            <label for="show" class="pw_show"><input type="checkbox" id="show"> 비밀번호 표시</label>
+	        </div>
+	        <div id="verificationMessage" class="text-danger" style="display:none;"></div>
+	    </div>
 		
-        <div id="verifyCodeSection1" class="text-end mb-3">
+		
+        <div id="verifyCodeSection1" class="text-end mb-3" style="display: none;">
            <button type="button" name="verify-temporary-password-button" 
-            		 id="verify-temporary-password-button" class="btn btn-primary btn-sm">임시 비밀번호 확인</button>
+            		 id="verify-temporary-password-button" class="btn btn-primary btn-sm">인증번호 확인 및 비밀번호 변경</button>
         </div>
 
 	   <div class="row">
@@ -152,98 +165,108 @@
 	  </form>
 	  
 	  <script type="text/javascript">
-	  	$(document).ready(function() {
-	        $('#verifyCodeSection').hide();
-	        $('#verifyCodeSection1').hide();
-	        $('#send-code-button').on('click', function() {
-	        	if($("#id").val()==""){
-	        		alert('아이디를 입력해주세요.');
-					$("#id").focus();
-					return false;
-				}
-				if($("#email").val()==""){
-					alert('이메일을 입력해주세요.');
-					$("#email").focus();
-					return false;
-				}
-	        	 let id = $('#id').val();
-	        	 let email = $('#email').val();
-	            $.ajax({ // 이메일이 데이터베이스에 있는지 확인
-	                url: '/security/findidemail',
-	                type: 'POST',
-	                contentType: 'application/json',
-	                data:JSON.stringify({ id: id, email: email }),
-	                success: function(response) {
-	                    if (response.exists) {
-	                        $.ajax({ // 이메일이 존재하면 임시 비밀번호 발송
-	                            url: '/security/sendresetpass',
-	                            type: 'POST',
-	                            contentType: 'application/json',
-	                            data: JSON.stringify({
-	                            	 "id": id,
-	                                 "email": email
-	        	                }),
-	                            success: function(response) {
-	                                $('#verifyCodeSection').slideDown(); // 인증 코드 입력 섹션 표시
-	                                $('#verifyCodeSection1').slideDown(); // 인증 코드 입력 섹션 표시
-	                                alert('임시 비밀번호가 이메일로 발송되었습니다. 이메일을 확인해주세요.');
-	                            },
-	                            error: function(error) {
-	                                alert('임시 비밀번호 발송에 실패했습니다. 다시 시도해주세요.');
-	                            }
-	                        });
-	                    } else {
-	                        $('#emailCheckMessage').text('해당 이메일로 가입된 사용자가 없습니다.').show();
-	                    }
-	                },
-	                error: function(error) {
-	                    alert('이메일 확인 중 오류가 발생했습니다. 다시 시도해주세요.');
-	                }
-	            });
-	        });
-	        
+	 	function validateInput(input) {
+    	  input.value = input.value.replace(/\s/g, ''); // 공백 제거
+    	}
+	 	
+	 	$(document).ready(function() {
+	 	    // 인증번호 발송 버튼 클릭 이벤트
+	 	    $('#send-code-button').on('click', function() {
+	 	        // 입력값 검증
+	 	        if ($("#id").val() === "") {
+	 	            alert('아이디를 입력해주세요.');
+	 	            $("#id").focus();
+	 	            return false;
+	 	        }
+	 	        if ($("#email").val() === "") {
+	 	            alert('이메일을 입력해주세요.');
+	 	            $("#email").focus();
+	 	            return false;
+	 	        }
+
+	 	        let id = $('#id').val();
+	 	        let email = $('#email').val();
+
+	 	        $.ajax({
+	 	            url: '/security/sendverificationcode',
+	 	            type: 'POST',
+	 	            contentType: 'application/json',
+	 	            data: JSON.stringify({ id: id, email: email }),
+	 	            success: function(response) {
+	 	                if (response.success) {
+	 	                    // 인증번호 입력 필드 및 버튼 표시
+			 	            $('#verifyCodeSection').slideDown();
+		                    $('#verifyCodeSection1').slideDown();
+		                    $('#newPasswordSection').slideDown();
+	 	                    alert(response.message);
+	 	                } else {
+	 	                    $('#emailCheckMessage').text(response.message).show();
+	 	                }
+	 	            },
+	 	            error: function() {
+	 	                alert('인증번호 발송에 실패했습니다. 다시 시도해주세요.');
+	 	            }
+	 	        });
+	 	    });
+	 	});
 
 
-	        $('#verify-temporary-password-button').on('click', function() {
-	        	if($("#id").val()==""){
-	        		alert('아이디를 입력해주세요.');
-					$("#id").focus();
-					return false;
-				}
-				if($("#email").val()==""){
-					alert('이메일을 입력해주세요.');
-					$("#email").focus();
-					return false;
-				}
-				if($("#newPass").val()==""){
-					alert('임시 비밀번호를 입력해주세요.');
-					$("#newPass").focus();
-					return false;
-				}
-	        	const id = $('#id').val();
-	            const email = $('#email').val();
-	            const newPass = $('#newPass').val();
-	            $.ajax({
-	                url: '/security/verifypass',
-	                type: 'POST',
-	                contentType: 'application/json',
-	                data: JSON.stringify({ id: id, email: email, newPass: newPass }),
-	                success: function(response) {
-	                    if (response.success) {
-	                        alert("임시 비밀번호가 확인되었습니다. 로그인하세요.");
-	                        window.location.href = "/security/loginform";
-	                    } else {
-	                        $('#verificationMessage').text("임시 비밀번호가 일치하지 않습니다. 다시 시도하세요.").show();
-	                    }
-	                },
-	                error: function(xhr, status, error) {
-	                    alert("임시 비밀번호 검증에 실패했습니다. 다시 시도하세요.");
-	                }
-	            });
-	        });
-	        
-	        $(function(){
-	        	const pwInput = $("#newPass");
+	 	$(document).ready(function() {
+	 	    // 인증번호 확인 및 비밀번호 변경 버튼 클릭 이벤트
+	 	    $('#verify-temporary-password-button').on('click', function() {
+	 	        // 입력값 검증
+	 	        if ($("#id").val() === "") {
+	 	            alert('아이디를 입력해주세요.');
+	 	            $("#id").focus();
+	 	            return false;
+	 	        }
+	 	        if ($("#email").val() === "") {
+	 	            alert('이메일을 입력해주세요.');
+	 	            $("#email").focus();
+	 	            return false;
+	 	        }
+	 	        if ($("#verificationCode").val() === "") {
+	 	            alert('인증번호를 입력해주세요.');
+	 	            $("#verificationCode").focus();
+	 	            return false;
+	 	        }
+	 	        if ($("#newPassword").val() === "") {
+	 	            alert('새 비밀번호를 입력해주세요.');
+	 	            $("#newPassword").focus();
+	 	            return false;
+	 	        }
+
+	 	        const id = $('#id').val();
+	 	        const email = $('#email').val();
+	 	        const verificationCode = $('#verificationCode').val();
+	 	        const newPassword = $('#newPassword').val();
+
+	 	        $.ajax({
+	 	            url: '/security/verifypass',
+	 	            type: 'POST',
+	 	            contentType: 'application/json',
+	 	            data: JSON.stringify({
+	 	                id: id,
+	 	                email: email,
+	 	                verificationCode: verificationCode,
+	 	                newPassword: newPassword
+	 	            }),
+	 	            success: function(response) {
+	 	                if (response.success) {
+	 	                    alert(response.message);
+	 	                    window.location.href = "/security/loginform"; // 비밀번호 변경 후 로그인 페이지로 이동
+	 	                } else {
+	 	                    $('#verificationMessage').text(response.message).show();
+	 	                }
+	 	            },
+	 	            error: function() {
+	 	                alert('비밀번호 변경에 실패했습니다. 다시 시도해주세요.');
+	 	            }
+	 	        });
+	 	    });
+	 	    
+	 	   $(function(){
+	        	const pwInput = $("#newPassword");
 	            $('.pw_show input[type="checkbox"]').on('change', function() {
 	                if (this.checked) {
 	                    pwInput.prop("type", "text");
@@ -252,7 +275,10 @@
 	                }
 	            });
 	        });
-	    });
+	 	});
+	        
+	        
+	    
       </script>
 	  
 	  <hr class="featurette-divider">

@@ -3,6 +3,7 @@ package com.project.springboot;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.core.user.OAuth2User;
@@ -23,6 +24,7 @@ public class UserService {
 	@Autowired
 	private AdminService admin;
 	
+	//일반로그인 비밀번호 인코딩
 	public int joinDao(UserDTO user) {
 		String encodedPassword = passwordEncoder.encode(user.getPass()); // 비밀번호 암호화
         user.setPass(encodedPassword);
@@ -35,16 +37,17 @@ public class UserService {
 
 	}
 	
-	public UserDTO findByUsername(String id) {
+	public UserDTO findByUsername(@Param("id")String id) {
 		
 		return idao.findByUsername(id);
 	};
 	
-	public UserDTO findByUsername(String id, String providerId) {
+	public UserDTO findBySocailrname(@Param("id")String id, @Param("providerId")String providerId) {
 		
 		return idao.findBySocailrname(id, providerId);
 	};
 	
+	//권한
 	public void updateUserAuth(String id, String authority) {
 		Map<String, Object> params = new HashMap<>();
         params.put("id", id);
@@ -57,6 +60,7 @@ public class UserService {
         }
     }
 	
+	//비활성화 관리
 	public void updateEnabled(String id, int enabled) {
 		Map<String, Object> params = new HashMap<>();
 		params.put("id", id);
@@ -69,9 +73,51 @@ public class UserService {
 		}
 	}
 	
+	//계정 잠금
+	public void updateLock(String id, int isLock) {
+		Map<String, Object> params = new HashMap<>();
+		params.put("id", id);
+		params.put("isLock", isLock);
+		
+		int rowsAffected = admin.updateLock(params);
+		if (rowsAffected == 0) {
+			// 처리: 업데이트된 행이 없다는 것은 사용자가 없거나 ID가 잘못된 경우일 수 있음
+			throw new RuntimeException("User not found or update failed");
+		}
+	}
+	
 	public int joinSocial(UserDTO user) {
 		return idao.joinSocial(user);
 	}
+	
+	//비밀번호 변경
+	@Transactional
+    public int  changePassword(String id, String currentPassword, String newPassword) {
+		
+        // 현재 비밀번호 확인
+        String existingPasswordHash = idao.passCheckDao(id);
+        
+        boolean passwordMatches = passwordEncoder.matches(currentPassword, existingPasswordHash);
+
+        if (!passwordMatches) {
+            return 0; // 현재 비밀번호가 틀린 경우
+        }
+
+        // 새 비밀번호 인코딩
+        String newPasswordHash = passwordEncoder.encode(newPassword);
+
+        // 비밀번호 업데이트
+        int rowsAffected = idao.passChangeDao(newPasswordHash, id);
+        
+        return rowsAffected;
+    }
+	
+	//회원탈퇴처리
+	public void deactivateMember(String id) {
+        idao.deleteDao(id);
+    }
+
+
 	
 	
 	@Transactional

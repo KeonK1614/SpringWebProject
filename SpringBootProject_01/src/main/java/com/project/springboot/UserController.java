@@ -101,9 +101,4 @@ public class UserController {
     }
     
 
-//	@RequestMapping("/member/myPageEdit")
-//	public String myPageEdit()	{
-//		
-//	}
-
 }

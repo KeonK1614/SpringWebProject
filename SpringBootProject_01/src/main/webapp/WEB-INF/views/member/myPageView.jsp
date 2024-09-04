@@ -11,7 +11,7 @@
 	    <meta name="description" content="">
 	    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
 	    <meta name="generator" content="Hugo 0.122.0">
-	    <title>Carousel Template · Bootstrap v5.3</title>
+	    <title>스마일로드</title>
 	    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
 	    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/">
 	    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
@@ -102,6 +102,7 @@
 
 	    </style>	    
 	    <link href="../carousel/carousel.css" rel="stylesheet">
+
 	  </head>
 	  <body>	   
 <header>
@@ -182,7 +183,7 @@
 			<div class="input-form-backgroud row">
 			      <div class="input-form col-md-12 mx-auto">
 			        <h4 class="mb-3">마이 페이지</h4>
-			        <form class="validation-form" novalidate>
+			        <form class="validation-form" novalidate method="post" action="/member/memberDelete">
 			        
 						<div class="mb-3">
 						  <label for="id">성명</label>
@@ -219,12 +220,24 @@
 						</div>				  
 	
 			          <hr class="mb-4">		          
-			          <div class="mb-4"></div>
+			          <div class="mb-3 text-end">	  
+			            <c:if test="${isNormalUser}">
+						  <button class="btn btn-outline-warning btn float-right" onclick="location.href='/member/pwUpdateView'" type="button">비밀번호 변경</button>
+					  </c:if>
+			          </div>
 			          <button class="btn btn-outline-primary" onclick="location.href='/member/myPageEdit'" type="button">수정 하기</button>
-			          <button class="btn btn-outline-danger" onclick="location.href='/member/memberDelete'" type="button">회원 탈퇴</button>
+			          <button class="btn btn-outline-danger" type="submit" onclick="confirmDeletion()">회원 탈퇴</button>
 			        </form>
 			      </div>
-			    </div>		 
+			    </div>
+			    <script>
+				    function confirmDeletion() {
+				        if (confirm("정말 회원 탈퇴를 하시겠습니까?")) {
+				            // 사용자 확인 후 폼 제출
+				            document.querySelector('form').submit();
+				        }
+				    }
+				</script> 
 		   <hr class="featurette-divider">  	
 		  <!-- FOOTER -->
 		   <footer class="container">

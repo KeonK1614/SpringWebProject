@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>스마일로드</title>
 </head>
 <body>
 	<h2>권한이 부족합니다.</h2>

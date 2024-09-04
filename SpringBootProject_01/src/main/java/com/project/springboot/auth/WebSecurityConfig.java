@@ -1,6 +1,5 @@
 package com.project.springboot.auth;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -8,7 +7,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -31,11 +29,8 @@ public class WebSecurityConfig {
 	
 	private final AuthenticationFailureHandler myAuthFailureHandler;
 	private final AuthenticationSuccessHandler myAuthSucceessHandler;
-	
-	@Autowired
-	private CustomSessionExpiredStrategy customSessionExpiredStrategy;
-	@Autowired
-	private CustomOAuth2UserService customOAuth2UserService;
+	private final CustomSessionExpiredStrategy customSessionExpiredStrategy;
+	private final CustomOAuth2UserService customOAuth2UserService;
 
 	@Value("${spring.security.debug:false}")
 	boolean securityDebug;
@@ -45,6 +40,8 @@ public class WebSecurityConfig {
 		return new BCryptPasswordEncoder();
 	}
 	
+	
+	
 	@Bean
 	protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http.csrf((csrf) -> csrf.disable())
@@ -52,11 +49,10 @@ public class WebSecurityConfig {
 	    	.authorizeHttpRequests(request -> request
 	    		.dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
 	    		.requestMatchers("/").permitAll()
-//	    		.requestMatchers("/**").permitAll()
 	    		.requestMatchers("/guest/joinform").permitAll()
 	    		.requestMatchers("/error").permitAll()
 	    		.requestMatchers("/static/**").permitAll()
-	            .requestMatchers("/assets/**", "/carousel/**","/css/**", "/js/**", "/img/**").permitAll()
+	            .requestMatchers("/assets/**", "/carousel/**","/css/**", "/js/**", "/img/**","/images/**").permitAll()
 	            .requestMatchers("/guest/**").permitAll()  // 모두에게 허용.
 	            .requestMatchers("/security/**").permitAll() 
 	            .requestMatchers("/member/**").hasAnyRole("USER", "ADMIN")
@@ -68,7 +64,7 @@ public class WebSecurityConfig {
 		http.formLogin((formLogin) -> formLogin
 				.loginPage("/security/loginform")
 				.permitAll()
-				.loginProcessingUrl("/security/loginform")
+				.loginProcessingUrl("/security/login")
 				.successHandler(myAuthSucceessHandler)
 		        .failureHandler(myAuthFailureHandler)
 		        .usernameParameter("id")
@@ -135,9 +131,9 @@ public class WebSecurityConfig {
 	    return new ServletListenerRegistrationBean<>(new HttpSessionEventPublisher());
 	}
 	
-    @Bean
-    public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.debug(securityDebug);
-    }
+//    @Bean
+//    public WebSecurityCustomizer webSecurityCustomizer() {
+//        return (web) -> web.debug(securityDebug);
+//    }
     
 }

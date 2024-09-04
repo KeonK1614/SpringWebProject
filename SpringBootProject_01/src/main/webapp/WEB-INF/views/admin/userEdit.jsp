@@ -125,15 +125,15 @@
 			        <a class="nav-link" aria-current="page" href="#">home</a>
 			      </li>
 			      <li class="nav-item">
-			        <a class="nav-link" href="#">공지사항</a>
+			        <a class="nav-link" href="/guest/noticeBoard">공지사항</a>
 			      </li>
 			      <li class="nav-item">
 			        <a class="nav-link" href="#">지도</a>
 			      </li>
 			      <li class="nav-item dropdown">
-			         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">커뮤니티</a>
+			         <a class="nav-link dropdown-toggle" href="guest/boardInfo" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">커뮤니티</a>
 			          <ul class="dropdown-menu">
-			            <li><a class="dropdown-item" href="#">정보 게시판</a></li>
+			            <li><a class="dropdown-item" href="/guest/boardInfo">정보 게시판</a></li>
 			            <li><a class="dropdown-item" href="#">인기 게시판</a></li>
 			         	</ul>
 			         </li>
@@ -141,7 +141,7 @@
 			         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">문의사항</a>
 			        <ul class="dropdown-menu">
 			          <li><a class="dropdown-item" href="#">자주 물어보는 질문</a></li>
-			          <li><a class="dropdown-item" href="#">1대1문의</a></li>
+			          <li><a class="dropdown-item" href="guest/inquiryBoard">1대1문의</a></li>
 			        </ul>
 			      </li>
 			   </ul>
@@ -212,6 +212,10 @@
 			       			<td>${dto.authority}</td>
 			       		</tr>
 			       		<tr>
+			       			<th>잠금계정</th>
+			       			<td>${dto.isLock}</td>
+			       		</tr>
+			       		<tr>
 			       			<th>휴면계정</th>
 			       			<td>${dto.enabled}</td>
 			       		</tr>
@@ -260,6 +264,16 @@
 						    <select name="enabled"  data-previous-value="${dto.enabled}">
 						        <option value="1" ${dto.enabled == '1' ? 'selected' : ''}>활성화</option>
 						        <option value="0" ${dto.enabled == '0' ? 'selected' : ''}>비활성화</option>
+						    </select>
+						    <button class="btn btn-outline-primary"  type="submit">변경</button>
+						</form>
+						</div>
+						<div class="justify-content-center">
+						<form action="/admin/updateLock" method="POST" onsubmit="handleSubmit(event, 'isLock');" class="form-control" style="border: none; box-shadow: none;">
+						    <input type="hidden" name="id" value="${dto.id}" />
+						    <select name="isLock"  data-previous-value="${dto.isLock}">
+						        <option value="1" ${dto.isLock == '1' ? 'selected' : ''}>잠금해제</option>
+						        <option value="0" ${dto.isLock == '0' ? 'selected' : ''}>잠금설정</option>
 						    </select>
 						    <button class="btn btn-outline-primary"  type="submit">변경</button>
 						</form>

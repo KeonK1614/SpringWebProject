@@ -14,7 +14,7 @@
 			VALUES (#{id}, #{name}, #{email}, #{provider}, #{providerId})
 	</insert>
 	
-	    <select id="idCheck" resultType="int">
+	<select id="idCheck" resultType="int">
         SELECT count(*) FROM member WHERE id = #{id}
     </select>
     
@@ -46,9 +46,9 @@
    
    	<update id="updateUserLockStatus">
 	   	UPDATE member
-		SET IsLock = #{IsLock},
+		SET isLock = #{isLock},
 		failCount = #{failCount},
-		LockTime = #{LockTime}
+		lockTime = #{lockTime}
 		WHERE id = #{id}
    	</update>
    	
@@ -61,13 +61,13 @@
 	
 	<update id="updateUnLock">
 	   	UPDATE member
-		SET IsLock = #{IsLock},
+		SET isLock = #{isLock},
 		failCount = #{failCount},
-		LockTime = NULL
+		lockTime = NULL
 		WHERE id = #{id}
    	</update>
 
-	<!-- 관리자 페이지 회원목록 -->
+	<!-- 관리자 페이지 전체 회원목록 카운트-->
 	<select id="getTotalCount" resultType="int"
     	parameterType="com.project.springboot.dto.ParameterDTO">
     	SELECT COUNT(*) from member

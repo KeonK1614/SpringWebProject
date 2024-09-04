@@ -168,11 +168,11 @@
 		         	}			         
 		         </script>
 		         <div class="list-group list-group-horizontal list-group-flush">
-					  <a href="#" class="list-group-item list-group-item-action">전체회원목록 보기</a>
-					  <a href="#" class="list-group-item list-group-item-action">소셜회원목록 보기</a>
-					  <a href="#" class="list-group-item list-group-item-action">계정잠금 회원</a>
-					  <a href="#" class="list-group-item list-group-item-action">비활성화 회원</a>
-					  <a href="#" class="list-group-item list-group-item-action disabled" tabindex="-1" aria-disabled="true">A disabled link item</a>
+					  <a href="/admin/list" class="list-group-item list-group-item-action">전체회원목록 보기</a>
+					  <a href="/admin/localList" class="list-group-item list-group-item-action">일반회원목록 보기</a>
+					  <a href="/admin/socialList" class="list-group-item list-group-item-action">소셜회원목록 보기</a>
+					  <a href="/admin/LockList" class="list-group-item list-group-item-action">계정잠금 회원</a>
+					  <a href="/admin/enabledList" class="list-group-item list-group-item-action">비활성화 회원</a>
 					</div>
 		         <div class="row" >
 		              <!-- 검색부분 -->
@@ -200,7 +200,6 @@
 		                     <tr style="background-color: rgb(133, 133, 133); " class="text-center text-white">
 		                     	<th>번호</th>
 		                         <th>아이디</th>
-		                         <th style="display:none;">패스워드</th>
 		                         <th>이름</th>
 		                         <th>핸드폰번호</th>
 		                         <th>이메일</th>
@@ -215,35 +214,34 @@
 		                 </thead>
 		                 <tbody>
 		                 	<c:choose>
-				                 <c:when test="${ empty lists }">
-				                 <tr>
-				                 	<td colspan="7" align="center">
-				                 		등록된 회원이 없습니다.
-				                 	</td>
-				                 </tr>
+				                <c:when test="${ empty list1 }">
+					                 <tr>
+					                 	<td colspan="12" align="center">
+					                 		등록된 회원이 없습니다.
+					                 	</td>
+					                 </tr>
 				                 </c:when>
 				                 <c:otherwise>
-				                 	<c:forEach items="${lists }" var="dto" varStatus="loop">
+				                 	<c:forEach items="${list1 }" var="local" varStatus="loop">
 				                    	<tr align="center">
 				                    		<td>
-								            <c:set var="vNum" value="${ maps.totalCount - 
+								            <c:set var="vNum1" value="${ maps.totalCount - 
 								                (((maps.pageNum-1) * maps.pageSize)	+ loop.index)}" />
-								            	${vNum}
+								            	${vNum1}
 								            </td>                
-				                         	<td class="text-center">${dto.id }</td>
-				                         	<td class="text-center" style="display:none;">${dto.pass }</td>
-				                         	<td class="text-center">${dto.name }</td>
-				                         	<td class="text-center">${dto.phoneNum }</td>
-				                         	<td class="text-center">${dto.email }</td>
-				                         	<td class="text-center">${dto.postcode }</td>
-				                         	<td class="text-center">${dto.address }</td>
-				                         	<td class="text-center">${dto.detailaddress }</td>
-				                         	<td class="text-center"><fmt:formatDate value="${dto.regidate}" pattern="yyyy-MM-dd"/></td>
-				                         	<td class="text-center">${dto.authority }</td>
-				                         	<td class="text-center">${dto.IsLock }</td>
-				                         	<td class="text-center">${dto.enabled }</td>
+				                         	<td class="text-center">${local.id }</td>
+				                         	<td class="text-center">${local.name }</td>
+				                         	<td class="text-center">${local.phoneNum }</td>
+				                         	<td class="text-center">${local.email }</td>
+				                         	<td class="text-center">${local.postcode }</td>
+				                         	<td class="text-center">${local.address }</td>
+				                         	<td class="text-center">${local.detailaddress }</td>
+				                         	<td class="text-center"><fmt:formatDate value="${local.regidate}" pattern="yyyy-MM-dd"/></td>
+				                         	<td class="text-center">${local.authority }</td>
+				                         	<td class="text-center">${local.isLock }</td>
+				                         	<td class="text-center">${local.enabled }</td>
 				                         	<td class="text-center">
-				                         		<a href="../admin/userEdit?id=${dto.id }">회원정보보기</a>
+				                         		<a href="../admin/userEdit?id=${local.id }">회원정보보기</a>
 				                         	</td>
 				                     	</tr>
 				                 	</c:forEach>  
@@ -251,8 +249,9 @@
 				             </c:choose>
 		                 </tbody>
 		             </table>
+		          </div>
 		          	<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-						 <a class="nav-link" href="/admin/list">
+						 <a class="nav-link" href="/admin/localList">
 						  <button class="btn btn-primary me-md-2" type="button">목록보기</button>
                         </a>
 					</div>
@@ -260,23 +259,11 @@
 		             <div class="col">
 		                 <!-- 페이지번호 부분 -->
 		                  <ul class="pagination justify-content-center">
-		                      <li class="page-item">
-		                          <a href="#" class="page-link"><i class='bi bi-skip-backward-fill'></i></a>
-		                      </li>
-		                      <li class="page-item">
-		                          <a href="#" class="page-link"><i class='bi bi-skip-start-fill'></i></a>
-		                      </li>
-		                      <li class="page-item"><a href="#" class="page-link">${ pagingImg }</a></li>
-		                      <li class="page-item">
-		                          <a href="#" class="page-link"><i class='bi bi-skip-end-fill'></i></a>
-		                      </li>
-		                      <li class="page-item">
-		                          <a href="#" class="page-link"><i class='bi bi-skip-forward-fill'></i></a>
-		                      </li>
-		                  </ul>
+					            ${pagingImgs}
+					      </ul>
 				   	</div>
-		          </div>
 		         </div>
+		      </div>
 		  
 </body>
 </html>

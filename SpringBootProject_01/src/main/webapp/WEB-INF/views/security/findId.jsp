@@ -10,7 +10,7 @@
 	    <meta name="description" content="">
 	    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
 	    <meta name="generator" content="Hugo 0.122.0">
-	    <title>Carousel Template · Bootstrap v5.3</title>
+	    <title>스마일로드</title>
 	    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
 	    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/">
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -101,17 +101,19 @@
 	<body>
 		<main class="form-signin w-100 m-auto">
 		<form method="post" name="find-id-form" id="find-id-form">
-	    <img class="mx-auto d-block mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+	    <a href="/"><img class="mx-auto d-block mb-4" src="../images/smailelogo.jpeg" width="72" height="57"></a>
 	    <h1 class="h3 mb-3 fw-normal text-center">아이디찾기</h1>
 	    <div class="form-floating mb-2">
-		    <input type="text" name="name"class="form-control" id="name" placeholder="이름을 입력하세요" required >
+		    <input type="text" name="name"class="form-control" id="name" placeholder="이름을 입력하세요"
+		    oninput="validateInput(this)" required >
 		    <label for="floatingInput">이름</label>
 			<div class="invalid-feedback">
 				이름을 입력해주세요.
 			</div>      
 	    </div>
 	    <div class="form-floating mb-2">
-		    <input type="email" name="eamil"class="form-control" id="email" placeholder="email을 입력하세요" required >
+		    <input type="email" name="eamil"class="form-control" id="email" placeholder="email을 입력하세요" 
+		    oninput="validateInput(this)" required >
 		    <label for="floatingInput">이메일</label>
 		    <span id="email-feedback"></span>
 			<div class="invalid-feedback">
@@ -124,7 +126,8 @@
 	    </div>
 	    
 	    <div id="mail_number" style="display:none;" >
-            <input type="text" name="code" id="code" style="width:250px; margin-top: -10px" placeholder="인증번호 입력">
+            <input type="text" name="code" id="code" style="width:250px; margin-top: -10px" placeholder="인증번호 입력"
+            oninput="validateInput(this)">
             <button type="button" name="confirmBtn" id="confirmBtn" class="btn btn-primary btn-sm">이메일 인증</button>
 	    </div>
 
@@ -145,6 +148,10 @@
 	  </form>
 	  
 	  <script type="text/javascript">
+	  function validateInput(input) {
+    	  input.value = input.value.replace(/\s/g, ''); // 공백 제거
+    	}
+	  
 	  $(document).ready(function() {
 	        // 이메일 입력 검증
 	        $('#email').on('input', function() {
