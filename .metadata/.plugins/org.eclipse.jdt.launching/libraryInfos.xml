@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <libraryInfos>
+<<<<<<< HEAD
     <libraryInfo home="C:\FrontEnd\sts-4.24.0.RELEASE\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_21.0.3.v20240426-1530\jre" version="21.0.3"/>
     <libraryInfo home="C:\FrontEnd\sts-4.24.0.RELEASE\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_21.0.3.v20240426-1530" version="21.0.3">
+=======
+    <libraryInfo home="C:\FrontEnd\dev\sts-4.24.0.RELEASE\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_21.0.3.v20240426-1530" version="21.0.3">
+>>>>>>> DV9
         <bootpath>
             <entry path="null"/>
         </bootpath>
@@ -12,4 +16,8 @@
             <entry path="null"/>
         </endorsedDirs>
     </libraryInfo>
+<<<<<<< HEAD
+=======
+    <libraryInfo home="C:\FrontEnd\dev\sts-4.24.0.RELEASE\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_21.0.3.v20240426-1530\jre" version="21.0.3"/>
+>>>>>>> DV9
 </libraryInfos>
