@@ -16,8 +16,8 @@
 	    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/">
 	    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
 		<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
-
-	    <style>
+	   	<link href="../carousel/carousel.css" rel="stylesheet">
+	   	   <style>
 	      .bd-placeholder-img {
 	        font-size: 1.125rem;
 	        text-anchor: middle;
@@ -100,85 +100,11 @@
 		        box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
 		      }
 
-	    </style>	    
-	    <link href="../carousel/carousel.css" rel="stylesheet">
-
+	    </style>
 	  </head>
 	  <body>	   
-<header>
-			<nav class="navbar navbar-expand-md fixed-top" style="background-color: #7FA1C3;">
-			  <div class="container-fluid">
-			    <a class="navbar-brand" href="main">Carousel</a>
-			    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-			      <span class="navbar-toggler-icon"></span>
-			    </button>
-			   <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-			      <ul class="navbar-nav me-auto mb-2 mb-md-0">
-			      <li class="nav-item">
-			        <a class="nav-link" aria-current="page" href="#">home</a>
-			      </li>
-			      <li class="nav-item">
-			        <a class="nav-link" href="#">공지사항</a>
-			      </li>
-			      <li class="nav-item">
-			        <a class="nav-link" href="#">지도</a>
-			      </li>
-			      <li class="nav-item dropdown">
-			         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">커뮤니티</a>
-			          <ul class="dropdown-menu">
-			            <li><a class="dropdown-item" href="#">정보 게시판</a></li>
-			            <li><a class="dropdown-item" href="#">인기 게시판</a></li>
-			         	</ul>
-			         </li>
-			      <li class="nav-item dropdown">
-			         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">문의사항</a>
-			        <ul class="dropdown-menu">
-			          <li><a class="dropdown-item" href="#">자주 물어보는 질문</a></li>
-			          <li><a class="dropdown-item" href="#">1대1문의</a></li>
-			        </ul>
-			      </li>
-			   </ul>
-				  	<sec:authorize access="isAnonymous()">
-				             <ul class="navbar-nav">
-				                 <li class="nav-item">
-				                     <a class="nav-link" href="/security/loginform">
-				                         <button type="button" class="btn btn-outline-light">
-				                             <i class='bi bi-box-arrow-in-right'></i> 로그인
-				                         </button>
-				                     </a>
-				                 </li>
-				                 <li class="nav-item">
-				                     <a class="nav-link" href="/guest/joinform">
-				                         <button type="button" class="btn btn-outline-light">
-				                             <i class='bi bi-person-plus-fill'></i> 회원가입
-				                         </button></a>
-				                 </li>
-				             </ul>
-				</sec:authorize>
-				             <!-- 로그인된 상태 -->
-				<sec:authorize access="isAuthenticated()">    
-				    <ul class="navbar-nav">
-				        <li class="nav-item">
-				            <a class="nav-link" href="/logout">
-				                <button type="button" class="btn btn-outline-light">
-				                    <i class="bi bi-box-arrow-right"></i> 로그아웃
-				                </button>
-				            </a>
-				        </li>
-				       <li class="nav-item">
-				            <a class="nav-link" href="/member/myPage">
-				                <button type="button" class="btn btn-outline-light">
-				                    <i class="bi bi-person-lines-fill"></i> 마이페이지
-				                </button>
-				            </a>
-				        </li>
-				    </ul>
-           </sec:authorize>
-			    </div>
-			  </div>
-			</nav>
-		</header>	
-	  
+	<%@ include file="../layout/header.jsp"%>
+
 		<main>
 			<div class="input-form-backgroud row">
 			      <div class="input-form col-md-12 mx-auto">
@@ -239,11 +165,8 @@
 				    }
 				</script> 
 		   <hr class="featurette-divider">  	
-		  <!-- FOOTER -->
-		   <footer class="container">
-		     <p class="float-end"><i class="bi bi-arrow-up-circle"></i><a href="#">Back to top</a></p>
-		     <p>&copy; 2017–2024 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-		   </footer>
+	<%@ include file="../layout/footer.jsp"%>
+
 		</main>
 	
 	<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>

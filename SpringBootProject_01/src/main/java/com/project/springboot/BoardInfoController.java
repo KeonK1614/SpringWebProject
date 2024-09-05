@@ -51,8 +51,6 @@ public class BoardInfoController
 		
 		String searchField = req.getParameter("searchField");
 		String searchWord = req.getParameter("searchWord");
-        System.out.println("searchField after getParam : " + searchField);
-		System.out.println("searchWord after getParam : " + searchWord);
 		
 		int pageNum = (req.getParameter("pageNum")) == null || req.getParameter("pageNum").equals("")
 				? 1 : Integer.parseInt(req.getParameter("pageNum"));
@@ -62,13 +60,9 @@ public class BoardInfoController
 		
 		
 		Map<String, Object> maps = new HashMap<>();
-        System.out.println("searchField before adding to map : " + searchField);
-		System.out.println("searchWord before adding to map : " + searchWord);
 		if (searchWord != null) {
             maps.put("searchField", searchField);
             maps.put("searchWord", searchWord);
-            System.out.println("searchField in maps : " + maps.get("searchField"));
-    		System.out.println("searchWord in maps : " + maps.get("searchWord"));
         }
 		
 		int totalCount = board.getTotalCount(maps);
@@ -83,7 +77,6 @@ public class BoardInfoController
 				pageNum, "../guest/boardInfo", searchField, searchWord);
 		
 		model.addAttribute("pagingImg", pagingImg); // 목록 하단에 출력할 페이지 번호
-		System.out.println("pagingImg: " + pagingImg);
 		model.addAttribute("maps" , maps);
 		model.addAttribute("searchField", searchField); // 받아온 검색위치
 		model.addAttribute("searchWord", searchWord); // 받아온 검색어
@@ -91,8 +84,6 @@ public class BoardInfoController
 		model.addAttribute("totalCount", totalCount); // 전체 게시물 갯수
 		model.addAttribute("pageSize", pageSize); // 한 페이지당 출력할 게시물 갯수(설정값)
 		model.addAttribute("pageNum", pageNum); // 현재 페이지 번호 
-		System.out.println("Total Count: " + totalCount); //전체 게시물 수
-		System.out.println("PageSize : " + pageSize); //게시판 페이지 크기
 		
 		model.addAttribute("list", board.listDao(maps));
 	

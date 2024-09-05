@@ -20,10 +20,10 @@ public class MapControllerMongoDB {
 	public MapServiceMongoDB mapService;
 	
 	@RequestMapping("/guest/restMap")
-	public String getNearbyRestData(@RequestParam(value="centerX", required=false) Double centerX,
-			@RequestParam(value="centerY", required=false) Double centerY,
+	public String getNearbyRestData(@RequestParam(value="latitude", required=false) Double centerX,
+			@RequestParam(value="longitude", required=false) Double centerY,
 			@RequestParam(value="radius", defaultValue = ".03") double radius, Model model) {
-		if (centerX == null||centerY==null) {
+		if (centerX == null|| centerY == null) {
 
 			centerX = 127.0016;
 			centerY = 37.5642;
@@ -43,8 +43,8 @@ public class MapControllerMongoDB {
 	}
 	
 	@RequestMapping("/guest/eleMap")
-	public String getNearbyEleData(@RequestParam(value="centerX", required=false) Double centerX,
-								@RequestParam(value="centerY", required=false) Double centerY,
+	public String getNearbyEleData(@RequestParam(value="latitude", required=false) Double centerX,
+								@RequestParam(value="longitude", required=false) Double centerY,
 								@RequestParam(value="radius", defaultValue = ".03") double radius, Model model) {
 		if (centerX == null||centerY==null) {
 			centerX = 127.0016;
@@ -52,6 +52,7 @@ public class MapControllerMongoDB {
 		}
 		try {
 			 List<EleMap2> eleDataList = mapService.getNearbyEleData(centerX, centerY, radius);
+			 System.out.println("centerX and Y: " + centerX + " " + centerY);
 			 model.addAttribute("eleDataList", eleDataList);
 		} catch (Exception e) {
 			e.printStackTrace();		

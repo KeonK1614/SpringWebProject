@@ -7,6 +7,7 @@
 <!doctype html>
 	<html lang="en" data-bs-theme="auto">
 	<head>	 
+	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>	    <meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="">
@@ -348,7 +349,27 @@
 				    // 지도 클릭 이벤트 리스너 추가
 				    kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
 				        var latlng = mouseEvent.latLng;
+				        var centerX = latlng.getLat();
+				        var centerY = latlng.getLng();
+				        
+				        console.log("centerX lat: " + centerX);
+				        console.log("centerY Lng: " + centerY);
 				        map.setCenter(latlng); // 클릭한 위치를 지도의 중심으로 설정합니다
+				        
+				        $.ajax({
+				        	url: '/guest/eleMap',
+				        	type: 'GET',
+				        	data: {
+				        		latitude: centerY,
+				        		longitude: centerX
+				        	},
+				        	success: function(response) {
+				        		console.log('좌표 전송 성공: ');
+				        	},
+				        	error: function(xhr, status, error) {
+				        		console.log('좌표 전송 실패: ');
+				        	}
+				        });
 				    });
 				}
 		            
@@ -387,21 +408,6 @@
 			</script>	       
 		</main>	
 		<hr/> 	
-		<!-- <footer class="container">
-		    <p class="float-end"><i class="bi bi-arrow-up-circle"></i><a href="#">Back to top</a></p>
-		    <h3><strong>더조은™</strong></h3>
-		    <p class="copy text-center">
-			    더조은아카데미일산 &nbsp;&nbsp;
-		        경기도 고양시 일산구 중앙로 1275번길 38-10 201호(장항동 우림로데오스위트) <br/>
-		        학생 : 김건, 김나현, 나예림, 장다빈 &nbsp;&nbsp;  
-		        사업자등록번호 : 584-85-00825 &nbsp;&nbsp;  
-		        TEL : 031.902.1777 &nbsp;&nbsp; 
-				FAX : 031.906.8777 <br>
-			</p>  
-		    <p>&copy; 2017–2024 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-	  	</footer>	 -->
-	  	
-	   <!-- footer 태그 없이 화면 꽉차게  -->
        <p class="float-end"><i class="bi bi-arrow-up-circle"></i><a href="#">Back to top</a></p>
        <div class="p-4 text-white text-center" style="background-color: #7FA1C3;">
 			 <div class="row">
