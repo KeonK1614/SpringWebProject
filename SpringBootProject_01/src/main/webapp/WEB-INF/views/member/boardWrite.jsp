@@ -52,9 +52,8 @@
 	<div class="row">
 		<div class="col-10 pt-3 mt-3 mx-auto">
 			<h4>
-				게시판 작성 - <small>자유게시판</small>
+			커뮤니티 - <small>정보게시판</small>
 			</h4>
-
 			<form enctype="multipart/form-data" action="write" method="post"
 				onsubmit="return validateForm(this)">
 				<table class="table table-bordered">

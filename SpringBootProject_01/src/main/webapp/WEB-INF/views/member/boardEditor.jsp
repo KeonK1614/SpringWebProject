@@ -72,7 +72,9 @@
 				</div>
 		       
 			<div class="col-10 pt-3 mt-3">
-            	<h3>자유게시판 - <small>게시물 수정하기</small></h3>
+				<h4>
+				커뮤니티 - <small>정보게시판</small>
+				</h4>
 	            <form enctype="multipart/form-data" action="/member/edit" method="post" onsubmit="return validateForm(this)">
 	            <input type="hidden" name="idx" value="${dto.idx}" />
 	            <input type="hidden" name="existingOfile" value="${existingOfile}" />

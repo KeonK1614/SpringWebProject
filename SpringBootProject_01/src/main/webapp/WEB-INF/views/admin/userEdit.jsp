@@ -112,60 +112,8 @@
 	    <link href="../carousel/carousel.css" rel="stylesheet">
 	  </head>
 	  <body>
-		<header>
-			<nav class="navbar navbar-expand-md fixed-top" style="background-color: #7FA1C3;">
-			  <div class="container-fluid">
-			    <a class="navbar-brand" href="main">Carousel</a>
-			    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-			      <span class="navbar-toggler-icon"></span>
-			    </button>
-			   <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-			      <ul class="navbar-nav me-auto mb-2 mb-md-0">
-			      <li class="nav-item">
-			        <a class="nav-link" aria-current="page" href="#">home</a>
-			      </li>
-			      <li class="nav-item">
-			        <a class="nav-link" href="/guest/noticeBoard">공지사항</a>
-			      </li>
-			      <li class="nav-item">
-			        <a class="nav-link" href="#">지도</a>
-			      </li>
-			      <li class="nav-item dropdown">
-			         <a class="nav-link dropdown-toggle" href="guest/boardInfo" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">커뮤니티</a>
-			          <ul class="dropdown-menu">
-			            <li><a class="dropdown-item" href="/guest/boardInfo">정보 게시판</a></li>
-			            <li><a class="dropdown-item" href="#">인기 게시판</a></li>
-			         	</ul>
-			         </li>
-			      <li class="nav-item dropdown">
-			         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">문의사항</a>
-			        <ul class="dropdown-menu">
-			          <li><a class="dropdown-item" href="#">자주 물어보는 질문</a></li>
-			          <li><a class="dropdown-item" href="guest/inquiryBoard">1대1문의</a></li>
-			        </ul>
-			      </li>
-			   </ul>
-			    <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/logout">
-                            <button type="button" class="btn btn-outline-light">
-                                <i class="bi bi-box-arrow-right"></i> 로그아웃
-                            </button>
-                        </a>
-                    </li>
-                   <li class="nav-item">
-                        <a class="nav-link" href="/admin/list">
-                            <button type="button" class="btn btn-outline-light">
-                                <i class="bi bi-person-lines-fill"></i> 회원관리페이지
-                            </button>
-                        </a>
-                    </li>
-                </ul>
-			    </div>
-			  </div>
-			</nav>
-		</header>
-	
+		<%@ include file="../layout/header.jsp"%>
+
 		<main>
 			<div class="input-form-backgroud row">
 			      <div class="input-form col-md-12 mx-auto">
@@ -317,6 +265,7 @@
 	
 		<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
 		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+		<%@ include file="../layout/footer.jsp"%>
 
 	 </body>
 	</html>

@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="jakarta.tags.core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+
 
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="auto">
@@ -30,7 +32,7 @@
 		var leftVar = s_width/2 - 500/2;
 		var topVar = s_height/2 - 500/2;
 		
-		window.open("../member/webscoketPopup", "popup", 
+		window.open("../member/chatPopup", "popup", 
 			"width=600,height=250,left="+leftVar+",top="+topVar);
 	}
 	
@@ -108,7 +110,6 @@
 							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 							role="button" data-bs-toggle="dropdown" aria-expanded="false">문의사항</a>
 							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="#">자주 물어보는 질문</a></li>
 								<li><a class="dropdown-item" href="../guest/inquiryBoard">문의게시판</a></li>
 							</ul></li>
 					</ul>

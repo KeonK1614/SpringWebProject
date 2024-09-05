@@ -44,7 +44,7 @@ public class MapServiceMongoDB implements IMapServiceMongoDB {
         Set<RestMap2> uniqueRestrooms = new HashSet<>(restrooms);
         restrooms = new ArrayList<>(uniqueRestrooms);
 
-        return restrooms.subList(0, Math.min(40, restrooms.size()));
+        return restrooms.subList(0, Math.min(50, restrooms.size()));
     }
 
     public List<EleMap2> getNearbyEleData(double centerX, double centerY, double radius) {
@@ -70,7 +70,7 @@ public class MapServiceMongoDB implements IMapServiceMongoDB {
 
         elevators.sort(Comparator.comparingDouble(EleMap2::getDistance));
 
-        return elevators.subList(0, Math.min(30, elevators.size()));
+        return elevators.subList(0, Math.min(50, elevators.size()));
     }
 	
     private double haversine(double lat1, double lon1, double lat2, double lon2) {
