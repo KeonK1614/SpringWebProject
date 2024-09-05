@@ -238,8 +238,26 @@
 				                         	<td class="text-center">${local.detailaddress }</td>
 				                         	<td class="text-center"><fmt:formatDate value="${local.regidate}" pattern="yyyy-MM-dd"/></td>
 				                         	<td class="text-center">${local.authority }</td>
-				                         	<td class="text-center">${local.isLock }</td>
-				                         	<td class="text-center">${local.enabled }</td>
+				                         	<td class="text-center">
+				                         		<c:choose>
+									                <c:when test="${local.isLock == 1 }">
+									                  NO
+									                </c:when>
+									                <c:otherwise>
+									                   LOCK
+									                </c:otherwise>
+									            </c:choose>
+				                         	</td>
+				                         	<td class="text-center">
+				                        		<c:choose>
+									                <c:when test="${local.enabled == 1 }">
+									                  	활성화
+									                </c:when>
+									                <c:otherwise>
+									                    휴면계정
+									                </c:otherwise>
+									            </c:choose>
+				                         	</td>
 				                         	<td class="text-center">
 				                         		<a href="../admin/userEdit?id=${local.id }">회원정보보기</a>
 				                         	</td>

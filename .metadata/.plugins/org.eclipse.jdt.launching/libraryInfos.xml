@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <libraryInfos>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <libraryInfo home="C:\FrontEnd\sts-4.24.0.RELEASE\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_21.0.3.v20240426-1530\jre" version="21.0.3"/>
     <libraryInfo home="C:\FrontEnd\sts-4.24.0.RELEASE\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_21.0.3.v20240426-1530" version="21.0.3">
 =======
@@ -20,4 +21,7 @@
 =======
     <libraryInfo home="C:\FrontEnd\dev\sts-4.24.0.RELEASE\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_21.0.3.v20240426-1530\jre" version="21.0.3"/>
 >>>>>>> DV9
+=======
+    <libraryInfo home="/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home" version="17.0.11"/>
+>>>>>>> yerim8
 </libraryInfos>

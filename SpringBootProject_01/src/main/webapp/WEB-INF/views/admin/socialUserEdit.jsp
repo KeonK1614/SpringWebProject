@@ -305,11 +305,11 @@
 					        <th>잠금계정</th>
 					        <td>
 					            <c:choose>
-					                <c:when test="${dto.isLock != null}">
-					                    ${dto.isLock}
+					                <c:when test="${dto.isLock == 1}">
+					                    NO
 					                </c:when>
 					                <c:otherwise>
-					                    정보 없음
+					                     LOCK
 					                </c:otherwise>
 					            </c:choose>
 					        </td>
@@ -318,11 +318,11 @@
 					        <th>휴면계정</th>
 					        <td>
 					        	 <c:choose>
-					                <c:when test="${dto.enabled != null}">
-					                    ${dto.enabled}
+					                <c:when test="${dto.enabled == 1}">
+					                   활성화
 					                </c:when>
 					                <c:otherwise>
-					                    정보 없음
+					                    휴면계정
 					                </c:otherwise>
 					            </c:choose>
 					        </td>

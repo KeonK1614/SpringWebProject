@@ -164,6 +164,17 @@
 		            	}
 
 		            });
+		            
+		            $(function(){
+			        	const pwInput = $("#pass");
+			            $('.pw_show input[type="checkbox"]').on('change', function() {
+			                if (this.checked) {
+			                    pwInput.prop("type", "text");
+			                } else {
+			                    pwInput.prop("type", "password");
+			                }
+			            });
+			        });
 		        });
 		    
 		    //아이디 조건 검사
@@ -181,6 +192,19 @@
 
 	            });
 	        });
+		    
+		    $(document).ready(function() {
+	            $('#name').on('input', function() {
+	                var name = $(this).val();  // 수정: 'name' 변수로 변경
+	                var regname = /^[a-zA-Z가-힣]*$/;
+	                if (!regname.test(name)) {
+	                    $('#name-feedback').text('이름은 한글 혹은 영어만 입력 가능합니다.').css('color', 'red');
+	                    $('#name').focus();
+	                } else {
+	                    $('#name-feedback').text('');
+	                }
+	            });
+		    });
 		    
 		    //휴대폰유효성 검사 및 자동하이픈 주
 		    $(document).ready(function() {
@@ -480,6 +504,9 @@
 						      비밀번호 확인을 해주세요.
 							</div>
 						</div>
+						<div class="text-end">
+	            		<label for="show" class="pw_show"><input type="checkbox" id="show"> 비밀번호 표시</label>
+	        			</div>
 					</div>
 					
 					<div class="mb-3">

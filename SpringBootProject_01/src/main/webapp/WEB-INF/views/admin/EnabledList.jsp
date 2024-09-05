@@ -236,7 +236,7 @@
 			             </table>
 			          </div>
 				     	<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-							 <a class="nav-link" href="/admin/localList">
+							 <a class="nav-link" href="/admin/enabledList">
 							  <button class="btn btn-primary me-md-2" type="button">목록보기</button>
 	                        </a>
 						</div>
@@ -244,7 +244,7 @@
 			             <div class="col">
 			                 <!-- 페이지번호 부분 -->
 			                 <ul class="pagination justify-content-center">
-					            ${pagingImgs}
+					            ${pagingImg3}
 					      </ul>
 					   	</div>
 			         </div>

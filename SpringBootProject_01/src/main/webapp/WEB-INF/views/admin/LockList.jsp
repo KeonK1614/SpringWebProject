@@ -239,26 +239,14 @@
 		          </div>
 		          	<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 						 <a class="nav-link" href="/admin/localList">
-						  <button class="btn btn-primary me-md-2" type="button">목록보기</button>
+						  <button class="btn btn-primary me-md-2" type="button">LockList</button>
                         </a>
 					</div>
 					<div class="row mt-3">
 		             <div class="col">
 		                 <!-- 페이지번호 부분 -->
 		                  <ul class="pagination justify-content-center">
-		                      <li class="page-item">
-		                          <a href="#" class="page-link"><i class='bi bi-skip-backward-fill'></i></a>
-		                      </li>
-		                      <li class="page-item">
-		                          <a href="#" class="page-link"><i class='bi bi-skip-start-fill'></i></a>
-		                      </li>
-		                      <li class="page-item"><a href="#" class="page-link">${ pagingImg2 }</a></li>
-		                      <li class="page-item">
-		                          <a href="#" class="page-link"><i class='bi bi-skip-end-fill'></i></a>
-		                      </li>
-		                      <li class="page-item">
-		                          <a href="#" class="page-link"><i class='bi bi-skip-forward-fill'></i></a>
-		                      </li>
+		                     ${ pagingImg2 }
 		                  </ul>
 				   	</div>
 		         </div>
