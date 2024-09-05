@@ -8,49 +8,11 @@
 		<section name="ImportExportWizard.dialogBounds">
 		</section>
 	</section>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> NH13
 	<section name="PropertyDialog.dialogBounds">
 		<item key="DIALOG_X_ORIGIN" value="439"/>
 		<item key="DIALOG_Y_ORIGIN" value="109"/>
 		<item key="DIALOG_WIDTH" value="1061"/>
 		<item key="DIALOG_HEIGHT" value="713"/>
 		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
-<<<<<<< HEAD
-=======
-	<section name="PropertyDialog.dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="85"/>
-		<item key="DIALOG_Y_ORIGIN" value="0"/>
-		<item key="DIALOG_WIDTH" value="989"/>
-		<item key="DIALOG_HEIGHT" value="728"/>
-		<item key="DIALOG_FONT_NAME" value="1|.AppleSystemUIFont|11.0|0|COCOA|1|.AppleSystemUIFont"/>
 	</section>
-	<section name="WorkbenchPreferenceDialog.dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="96"/>
-		<item key="DIALOG_Y_ORIGIN" value="27"/>
-		<item key="DIALOG_WIDTH" value="821"/>
-		<item key="DIALOG_HEIGHT" value="687"/>
-		<item key="DIALOG_FONT_NAME" value="1|.AppleSystemUIFont|11.0|0|COCOA|1|.AppleSystemUIFont"/>
->>>>>>> yerim7
-	</section>
-	<section name="NewWizardAction">
-		<item key="NewWizardSelectionPage.STORE_SELECTED_ID" value="org.eclipse.jst.jsp.ui.internal.wizard.NewJSPWizard"/>
-		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">
-			<item value="org.eclipse.wst.web.ui"/>
-		</list>
-		<section name="NewWizard.dialogBounds">
-			<item key="DIALOG_X_ORIGIN" value="277"/>
-			<item key="DIALOG_Y_ORIGIN" value="189"/>
-			<item key="DIALOG_WIDTH" value="613"/>
-			<item key="DIALOG_HEIGHT" value="505"/>
-			<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
-		</section>
-=======
->>>>>>> NH13
-	</section>
->>>>>>> DV8
 </section>

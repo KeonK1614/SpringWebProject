@@ -7,6 +7,8 @@
 <!doctype html>
 	<html lang="en" data-bs-theme="auto">
 	<head>	 
+		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3f7f9ab0116bd62797e2fbd361dac3a9&libraries=services,clusterer,drawing"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>	    <meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="">
@@ -254,7 +256,7 @@
 					 <button id="currentLocationBtn" class="btn btn-danger btn-sm" onclick="Mylocation()">현재위치</button>
 					 &nbsp;&nbsp;
 					 <button  class="btn btn-primary btn-sm" onclick="location.href='restMap';">화장실지도</button>
-					 &nbsp;&nbsp;
+					 &nbsp;<small>(원하는 위치로 이동하여 지도를 클릭해 보세요.)</small>
 				</div>
 			</div>
 			<div class="row">
@@ -275,83 +277,101 @@
 				var map;
 				var markers = []; // 현재 지도에 표시된 마커들을 저장할 배열
 				
-				// 지도와 마커 초기화
-		        function initMap() {
-				    var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-				        mapOption = { 
-				            center: new kakao.maps.LatLng(37.554674785645716, 126.9706120117342), // 지도의 중심좌표 
-				            level: 2 // 지도의 확대 레벨 
-				        }; 
-				
+				function initMap() {
+				    var mapContainer = document.getElementById('map'),
+				        mapOption = {
+				            center: new kakao.maps.LatLng(37.554674785645716, 126.9706120117342),
+				            level: 2
+				        };
+	
 				    map = new kakao.maps.Map(mapContainer, mapOption);
-				
-				    // 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+	
 				    var mapTypeControl = new kakao.maps.MapTypeControl();
-				
-				    // 지도에 컨트롤을 추가해야 지도위에 표시됩니다
 				    map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
-				
-				    // 지도 확대 축소를 제어할 수 있는 줌 컨트롤을 생성합니다
+	
 				    var zoomControl = new kakao.maps.ZoomControl();
-				    // 지도의 우측에 확대 축소 컨트롤을 추가한다
 				    map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
-				
-				    var positions = [
-				    	<c:forEach var="item2" items="${eleDataList }">
-		            	{
-			            	content: "<ul>" +
-			            			 "<li>지하철명 : ${item2.sbwy_stn_nm}</li>" +
-			            			 "<li>주소     : ${item2.sgg_nm}${item2.emd_nm}</li>" +
-			            			 "<li>구분     : ${item2.node_type_cd} (0 : 일반, 1 : 지하철 출입구, 2 : 버스정류장, 3 : 지하보도 출입구)</li>" +
-			            			 "</ul>"
-			            	,
-			            	position: new kakao.maps.LatLng(${item2.y_wgs84}, ${item2.x_wgs84})
-		            	}<c:if test="${not empty eleDataList}">,</c:if>
-			    		</c:forEach>
-				    ];
-				 	// 지도를 재설정할 범위정보를 가지고 있을 LatLngBounds 객체를 생성합니다
-				    var bounds = new kakao.maps.LatLngBounds(); 
-				
-				    var i, marker;
-				
-				    positions.forEach(data => {
-				        const marker = new kakao.maps.Marker({
-				            position: data.position
-				        });
-
-				        marker.setMap(map);
-				        bounds.extend(data.position);
-
-				        kakao.maps.event.addListener(marker, 'click', function() {
-				            document.getElementById('myModal').style.display = 'block';
-				            document.getElementById('modalContent').innerHTML = data.content;
-				        });
-				    });
-				    
-				 	// 지도의 범위를 설정합니다
-				  	map.setBounds(bounds);
-				    
-				    // 모달창 닫기 기능
-				    const modal = document.getElementById('myModal');
-				    const closeBtn = document.getElementsByClassName('close')[0];
-				    
-				    closeBtn.onclick = function() {
-				        modal.style.display = 'none';
-				    };
-				    
-				    window.onclick = function(event) {
-				        if (event.target === modal) {
-				            modal.style.display = 'none';
-				        }
-				    };
-
-				    // 지도 클릭 이벤트 리스너 추가
+	
+				    // 지도를 클릭했을 때
 				    kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
 				        var latlng = mouseEvent.latLng;
-				        map.setCenter(latlng); // 클릭한 위치를 지도의 중심으로 설정합니다
+				        map.setCenter(latlng);
+	
+				        var center = map.getCenter();
+				        addressAdd(center.getLat(), center.getLng());
 				    });
 				}
-		            
+				
+		        function addressAdd(centerY1, centerX1) {
+		            $.ajax({
+		                url: "/guest/eleMap1",
+		                type: "post",
+		                data: {
+		                    centerX: centerX1,
+		                    centerY: centerY1
+		                },
+		                dataType: "json",
+		                success: function (response) {
+		                    console.log("성공");
+		                    console.log(response);  // 응답 데이터를 출력합니다.
+		                    removeMarkers();
+		                    addMarkers(response);
+		                },
+		                error: function () {
+		                    console.log("오류");
+		                }
+		            });
+		        }
+		        
+		        function removeMarkers() {
+		        	markers.forEach(marker => marker.setMap(null));
+		        	markers = []; // 마커 배열 초기화
+		        }
+		        
+	            function addMarkers(data) {
+	                data.forEach(function(item) {
+	                    // 마커의 컨텐츠를 정의합니다.
+	                    var content = "<ul>" +
+				                          "<li>지하철명 : " + item.sbwy_stn_nm + "</li>" +
+				                          "<li>주소 : " + item.sgg_nm + " " + item.emd_nm + "</li>" +
+				                          "<li>구분 : " + item.node_type_cd + " (0 : 일반, 1 : 지하철 출입구, 2 : 버스정류장, 3 : 지하보도 출입구)</li>" +
+			                          "</ul>";
+	
+	                    // 마커의 위치를 정의합니다.
+	                    var position = new kakao.maps.LatLng(item.y_wgs84, item.x_wgs84);
+	
+	                    // 마커를 생성합니다.
+	                    var marker = new kakao.maps.Marker({
+	                        position: position
+	                    });
+	
+	                    // 마커를 지도에 추가합니다.
+	                    marker.setMap(map);
+						
+	                    kakao.maps.event.addListener(marker, 'click', function() {
+	                    	document.getElementById('myModal').style.display = 'block';
+				            document.getElementById('modalContent').innerHTML = content;
+	                    });
+	                    
+	                    // 마커를 배열에 추가합니다.
+	                    markers.push(marker);
+	                });
+	            }
+	            
+		        // 모달창 닫기 기능
+		        const modal = document.getElementById('myModal');
+		        const closeBtn = document.getElementsByClassName('close')[0];
+	
+		        closeBtn.onclick = function() {
+		            modal.style.display = 'none';
+		        };
+	
+		        window.onclick = function(event) {
+		            if (event.target === modal) {
+		                modal.style.display = 'none';
+		            }
+		        };
+			            
 		        // 현재 위치로 이동하는 함수
 				function Mylocation() {
 				    if (navigator.geolocation) {
@@ -382,9 +402,9 @@
 				        alert("현재위치를 찾을 수 없습니다.");
 				    }
 				}
-		        
-				window.onload = initMap;
-			</script>	       
+	        
+			window.onload = initMap;
+		</script>
 		</main>	
 		<hr/> 	
 		<!-- <footer class="container">
