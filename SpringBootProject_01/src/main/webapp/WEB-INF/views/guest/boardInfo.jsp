@@ -129,8 +129,7 @@
 		<div class="row mt-3">
 			<div class="col">
 				<!-- 페이지번호 부분 -->
-				<ul class="pagination justify-content-center">${pagingImg}
-				</ul>
+				<div class="pagination justify-content-center">${pagingImg}</div>
 			</div>
 		</div>
 	</div>

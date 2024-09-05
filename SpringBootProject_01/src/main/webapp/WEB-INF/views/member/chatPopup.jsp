@@ -1,24 +1,35 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
-  <head><script src="/docs/5.3/assets/js/color-modes.js"></script>
+<head>
+<script src="/docs/5.3/assets/js/color-modes.js"></script>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, 그리고 Bootstrap 기여자들">
-    <meta name="generator" content="Hugo 0.122.0">
-    <title>채팅 상담</title>
-    <link rel="canonical" href="https://getbootstrap.kr/docs/5.3/examples/modals/">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
-	<link href="/docs/5.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    
-	<script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author"
+	content="Mark Otto, Jacob Thornton, 그리고 Bootstrap 기여자들">
+<meta name="generator" content="Hugo 0.122.0">
+<title>채팅 상담</title>
+<link rel="canonical"
+	href="https://getbootstrap.kr/docs/5.3/examples/modals/">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+<link href="/docs/5.3/dist/css/bootstrap.min.css" rel="stylesheet"
+	integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+	crossorigin="anonymous">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<link href="../carousel/carousel.css" rel="stylesheet">
+
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+
+<script>
 	    function chatWinOpen() {
 	    	var chatRoomId = "${Id}chatRoom";
 	        var s_width = window.screen.width;
@@ -42,8 +53,6 @@
 	        }
 	    }
 	</script>
-
-
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -123,31 +132,36 @@
       }
     </style>
 
-    
-    <link href="modals.css" rel="stylesheet">
-  </head>
-  <body>
-		<div class="modal modal-sheet position-static d-block bg-body-secondary p-4 py-md-5" tabindex="-1" role="dialog" id="modalChoice">
-		  <div class="modal-dialog" role="document">
-		    <div class="modal-content rounded-3 shadow">
-		      <div class="modal-body p-4 text-center">
-		        <h5 class="mb-0">채팅 상담을 시작하시겠습니까?</h5>
-		        <p class="mb-0">채팅 상담시 상담사와 연결됩니다.</p>
-		      </div>
-		      <div class="modal-footer flex-nowrap p-0">
-		        <!-- <button type="button" class="btn btn-lg btn-link fs-6 text-decoration-none col-6 py-3 m-0 rounded-0 border-end"
+<link href="modals.css" rel="stylesheet">
+</head>
+<body>
+	<div
+		class="modal modal-sheet position-static d-block bg-body-secondary p-4 py-md-5"
+		tabindex="-1" role="dialog" id="modalChoice">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content rounded-3 shadow">
+				<div class="modal-body p-4 text-center">
+					<h5 class="mb-0">채팅 상담을 시작하시겠습니까?</h5>
+					<p class="mb-0">채팅 상담시 상담사와 연결됩니다.</p>
+				</div>
+				<div class="modal-footer flex-nowrap p-0">
+					<!-- <button type="button" class="btn btn-lg btn-link fs-6 text-decoration-none col-6 py-3 m-0 rounded-0 border-end"
 		        	onclick="chatWinOpen();" id="enterBtn"> -->
-		        <button type="button" onclick="chatWinOpen()" class="btn btn-lg btn-link fs-6 text-decoration-none col-6 py-3 m-0 rounded-0 border-end"
-		        	 id="enterBtn">
-		        	<strong>네, 채팅 상담을 시작합니다.</strong>
-		        </button>
-		        <button type="button" class="btn btn-lg btn-link fs-6 text-decoration-none col-6 py-3 m-0 rounded-0" data-bs-dismiss="modal"  onClick='window.close();' >
-		        	아니요. 다음에 할게요.
-		        </button>
-		      </div>
-		    </div>
-		  </div>
+					<button type="button" onclick="chatWinOpen()"
+						class="btn btn-lg btn-link fs-6 text-decoration-none col-6 py-3 m-0 rounded-0 border-end"
+						id="enterBtn">
+						<strong>네, 채팅 상담을 시작합니다.</strong>
+					</button>
+					<button type="button"
+						class="btn btn-lg btn-link fs-6 text-decoration-none col-6 py-3 m-0 rounded-0"
+						data-bs-dismiss="modal" onClick='window.close();'>아니요.
+						다음에 할게요.</button>
+				</div>
+			</div>
 		</div>
-		<script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    </body>
+	</div>
+	<script src="/docs/5.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+		crossorigin="anonymous"></script>
+</body>
 </html>

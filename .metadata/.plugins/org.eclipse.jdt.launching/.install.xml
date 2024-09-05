@@ -2,6 +2,7 @@
 <dirs>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     <entry loc="C:\FrontEnd\sts-4.24.0.RELEASE\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_21.0.3.v20240426-1530\jre" stamp="1722433807577"/>
     <entry loc="C:\FrontEnd\sts-4.24.0.RELEASE\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_21.0.3.v20240426-1530" stamp="1722433797922"/>
 =======
@@ -11,4 +12,9 @@
 =======
     <entry loc="/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home" stamp="1720013469272"/>
 >>>>>>> yerim8
+=======
+    <entry loc="/opt/homebrew/Cellar/openjdk@17/17.0.12/libexec/openjdk.jdk/Contents/Home" stamp="1720513186000"/>
+    <entry loc="/Users/gupro/Library/Java/JavaVirtualMachines/openjdk-22.0.1/Contents/Home" stamp="1717337801860"/>
+    <entry loc="/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home" stamp="1717423130789"/>
+>>>>>>> feature/map3
 </dirs>

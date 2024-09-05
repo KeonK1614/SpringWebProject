@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <qualifiedTypeNameHistroy>
 <<<<<<< HEAD
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMethod"/>
@@ -17,3 +18,6 @@
 =======
 <qualifiedTypeNameHistroy/>
 >>>>>>> yerim8
+=======
+<qualifiedTypeNameHistroy/>
+>>>>>>> feature/map3

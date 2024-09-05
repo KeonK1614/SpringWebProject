@@ -4,10 +4,14 @@
 eclipse.preferences.version=1
 org.eclipse.debug.ui.BreakpointView+org.eclipse.debug.ui.actions.SkipAllBreakpoints=true
 <<<<<<< HEAD
+<<<<<<< HEAD
 org.eclipse.debug.ui.PREF_LAUNCH_PERSPECTIVES=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<launchPerspectives/>\r\n
 =======
 org.eclipse.debug.ui.PREF_LAUNCH_PERSPECTIVES=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\n<launchPerspectives/>\n
 >>>>>>> yerim8
+=======
+org.eclipse.debug.ui.PREF_LAUNCH_PERSPECTIVES=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\n<launchPerspectives/>\n
+>>>>>>> feature/map3
 org.eclipse.debug.ui.changedDebugElement=255,128,128
 org.eclipse.debug.ui.consoleBackground=53,53,53
 org.eclipse.debug.ui.errorColor=225,30,70

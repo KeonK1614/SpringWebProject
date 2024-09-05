@@ -1,16 +1,21 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 !SESSION 2024-09-04 22:35:56.340 -----------------------------------------------
 =======
 !SESSION 2024-09-04 22:49:29.600 -----------------------------------------------
 >>>>>>> DV9
+=======
+!SESSION 2024-09-04 23:30:13.468 -----------------------------------------------
+>>>>>>> feature/map3
 eclipse.buildId=4.24.0.202407191504
 java.version=21.0.3
 java.vendor=Eclipse Adoptium
-BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=ko_KR
-Framework arguments:  -product org.springframework.boot.ide.branding.sts4
-Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.springframework.boot.ide.branding.sts4
+BootLoader constants: OS=macosx, ARCH=aarch64, WS=cocoa, NL=en_US
+Framework arguments:  -product org.springframework.boot.ide.branding.sts4 -keyring /Users/gupro/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch aarch64 -product org.springframework.boot.ide.branding.sts4 -keyring /Users/gupro/.eclipse_keyring
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 This is a continuation of log file C:\FrontEnd\teamproject\.metadata\.bak_0.log
 Created Time: 2024-09-04 22:37:14.128
@@ -54,6 +59,18 @@ Created Time: 2024-09-04 17:09:26.791
 !STACK 0
 org.eclipse.emf.ecore.resource.impl.ResourceSetImpl$1DiagnosticWrappedException: org.xml.sax.SAXParseExceptionpublicId: file:/Users/yerim/DevData/SpringWebProject/.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi; systemId: file:/Users/yerim/DevData/SpringWebProject/.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi; lineNumber: 2; columnNumber: 2; The markup in the document preceding the root element must be well-formed.
 >>>>>>> yerim8
+=======
+This is a continuation of log file /Users/gupro/Documents/DevData/SpringWebProject/.metadata/.bak_0.log
+Created Time: 2024-09-04 23:30:17.609
+
+!ENTRY ch.qos.logback.classic 1 0 2024-09-04 23:30:17.610
+!MESSAGE Logback config file: /Users/gupro/Documents/DevData/SpringWebProject/.metadata/.plugins/org.eclipse.m2e.logback/logback.2.6.1.20240411-1122.xml
+
+!ENTRY org.eclipse.e4.ui.workbench 4 0 2024-09-04 23:30:17.684
+!MESSAGE Unable to load resource file:/Users/gupro/Documents/DevData/SpringWebProject/.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi
+!STACK 0
+org.eclipse.emf.ecore.resource.impl.ResourceSetImpl$1DiagnosticWrappedException: org.xml.sax.SAXParseExceptionpublicId: file:/Users/gupro/Documents/DevData/SpringWebProject/.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi; systemId: file:/Users/gupro/Documents/DevData/SpringWebProject/.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi; lineNumber: 2; columnNumber: 2; The markup in the document preceding the root element must be well-formed.
+>>>>>>> feature/map3
 	at org.eclipse.emf.ecore.resource.impl.ResourceSetImpl.handleDemandLoadException(ResourceSetImpl.java:319)
 	at org.eclipse.emf.ecore.resource.impl.ResourceSetImpl.demandLoadHelper(ResourceSetImpl.java:278)
 	at org.eclipse.emf.ecore.resource.impl.ResourceSetImpl.getResource(ResourceSetImpl.java:406)
@@ -79,6 +96,7 @@ org.eclipse.emf.ecore.resource.impl.ResourceSetImpl$1DiagnosticWrappedException:
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1481)
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 Caused by: org.xml.sax.SAXParseExceptionpublicId: file:/C:/FrontEnd/teamproject/.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi; systemId: file:/C:/FrontEnd/teamproject/.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi; lineNumber: 2; columnNumber: 2; 문서에서 루트 요소 앞에 오는 마크업은 올바른 형식이어야 합니다.
 =======
 Caused by: org.xml.sax.SAXParseExceptionpublicId: file:/C:/FrontEnd/new/.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi; systemId: file:/C:/FrontEnd/new/.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi; lineNumber: 2; columnNumber: 2; 문서에서 루트 요소 앞에 오는 마크업은 올바른 형식이어야 합니다.
@@ -86,6 +104,9 @@ Caused by: org.xml.sax.SAXParseExceptionpublicId: file:/C:/FrontEnd/new/.metadat
 =======
 Caused by: org.xml.sax.SAXParseExceptionpublicId: file:/Users/yerim/DevData/SpringWebProject/.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi; systemId: file:/Users/yerim/DevData/SpringWebProject/.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi; lineNumber: 2; columnNumber: 2; The markup in the document preceding the root element must be well-formed.
 >>>>>>> yerim8
+=======
+Caused by: org.xml.sax.SAXParseExceptionpublicId: file:/Users/gupro/Documents/DevData/SpringWebProject/.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi; systemId: file:/Users/gupro/Documents/DevData/SpringWebProject/.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi; lineNumber: 2; columnNumber: 2; The markup in the document preceding the root element must be well-formed.
+>>>>>>> feature/map3
 	at java.xml/com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:204)
 	at java.xml/com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.fatalError(ErrorHandlerWrapper.java:178)
 	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:400)
@@ -111,6 +132,7 @@ Caused by: org.xml.sax.SAXParseExceptionpublicId: file:/Users/yerim/DevData/Spri
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 !ENTRY org.eclipse.e4.ui.workbench 4 0 2024-09-04 22:37:14.988
 =======
 !ENTRY org.eclipse.e4.ui.workbench 4 0 2024-09-04 22:49:44.099
@@ -118,6 +140,9 @@ Caused by: org.xml.sax.SAXParseExceptionpublicId: file:/Users/yerim/DevData/Spri
 =======
 !ENTRY org.eclipse.e4.ui.workbench 4 0 2024-09-04 17:09:27.048
 >>>>>>> yerim8
+=======
+!ENTRY org.eclipse.e4.ui.workbench 4 0 2024-09-04 23:30:17.685
+>>>>>>> feature/map3
 !MESSAGE The persisted application model has no top-level window. Reinitializing with the default application model.
 !STACK 0
 java.lang.Exception
@@ -140,6 +165,7 @@ java.lang.Exception
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:605)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1481)
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 !ENTRY org.eclipse.ui 2 0 2024-09-04 22:37:15.409
@@ -185,6 +211,22 @@ org.eclipse.ui.WorkbenchException: 요소 콘텐츠는 올바른 형식의 문�
 !STACK 1
 org.eclipse.ui.WorkbenchException: The content of elements must consist of well-formed character data or markup.
 >>>>>>> yerim8
+=======
+!ENTRY org.eclipse.ui 2 0 2024-09-04 23:30:17.715
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2024-09-04 23:30:17.715
+!MESSAGE Commands should really have a category: plug-in='org.springframework.tooling.boot.ls', id='spring.initializr.addStarters', categoryId='org.eclipse.lsp4e.commandCategory'
+
+!ENTRY org.eclipse.ui 2 0 2024-09-04 23:30:17.902
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2024-09-04 23:30:17.902
+!MESSAGE Commands should really have a category: plug-in='org.springframework.tooling.boot.ls', id='spring.initializr.addStarters', categoryId='org.eclipse.lsp4e.commandCategory'
+
+!ENTRY org.eclipse.ui 4 0 2024-09-04 23:30:18.776
+!MESSAGE Unable to restore working set state.
+!STACK 1
+org.eclipse.ui.WorkbenchException: The content of elements must consist of well-formed character data or markup.
+>>>>>>> feature/map3
 	at org.eclipse.ui.XMLMemento.createReadRoot(XMLMemento.java:136)
 	at org.eclipse.ui.XMLMemento.createReadRoot(XMLMemento.java:65)
 	at org.eclipse.ui.internal.WorkingSetManager.restoreState(WorkingSetManager.java:104)
@@ -287,10 +329,14 @@ org.eclipse.ui.WorkbenchException: The content of elements must consist of well-
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:605)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1481)
 <<<<<<< HEAD
+<<<<<<< HEAD
 Caused by: org.xml.sax.SAXParseException; lineNumber: 3; columnNumber: 2; 요소 콘텐츠는 올바른 형식의 문자 데이터 또는 마크업으로 구성되어야 합니다.
 =======
 Caused by: org.xml.sax.SAXParseException; lineNumber: 3; columnNumber: 2; The content of elements must consist of well-formed character data or markup.
 >>>>>>> yerim8
+=======
+Caused by: org.xml.sax.SAXParseException; lineNumber: 3; columnNumber: 2; The content of elements must consist of well-formed character data or markup.
+>>>>>>> feature/map3
 	at java.xml/com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:204)
 	at java.xml/com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.fatalError(ErrorHandlerWrapper.java:178)
 	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:400)
@@ -309,6 +355,7 @@ Caused by: org.xml.sax.SAXParseException; lineNumber: 3; columnNumber: 2; The co
 	... 100 more
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 !SUBENTRY 1 org.eclipse.ui 4 0 2024-09-04 22:37:21.441
 =======
 !SUBENTRY 1 org.eclipse.ui 4 0 2024-09-04 22:49:48.350
@@ -322,6 +369,12 @@ org.xml.sax.SAXParseException; lineNumber: 3; columnNumber: 2; 요소 콘텐츠�
 !STACK 0
 org.xml.sax.SAXParseException; lineNumber: 3; columnNumber: 2; The content of elements must consist of well-formed character data or markup.
 >>>>>>> yerim8
+=======
+!SUBENTRY 1 org.eclipse.ui 4 0 2024-09-04 23:30:18.777
+!MESSAGE The content of elements must consist of well-formed character data or markup.
+!STACK 0
+org.xml.sax.SAXParseException; lineNumber: 3; columnNumber: 2; The content of elements must consist of well-formed character data or markup.
+>>>>>>> feature/map3
 	at java.xml/com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:204)
 	at java.xml/com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.fatalError(ErrorHandlerWrapper.java:178)
 	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:400)
@@ -438,6 +491,7 @@ org.xml.sax.SAXParseException; lineNumber: 3; columnNumber: 2; The content of el
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:605)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1481)
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 !ENTRY org.eclipse.egit.ui 2 0 2024-09-04 22:37:28.725
@@ -606,6 +660,11 @@ org.xml.sax.SAXParseException; lineNumber: 3; columnNumber: 2; The content of el
 !MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
 !SUBENTRY 1 org.eclipse.jface 2 0 2024-09-04 17:09:46.837
 >>>>>>> yerim8
+=======
+!ENTRY org.eclipse.jface 2 0 2024-09-04 23:30:23.948
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2024-09-04 23:30:23.948
+>>>>>>> feature/map3
 !MESSAGE A conflict occurred for ALT+SHIFT+X R:
 Binding(ALT+SHIFT+X R,
 	ParameterizedCommand(Command(org.eclipse.wst.server.launchShortcut.run,Run on Server,
@@ -625,6 +684,7 @@ Binding(ALT+SHIFT+X R,
 	org.eclipse.ui.contexts.window,,,system)
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 !SUBENTRY 1 org.eclipse.jface 2 0 2024-09-04 22:37:37.971
 =======
 !SUBENTRY 1 org.eclipse.jface 2 0 2024-09-04 22:50:20.530
@@ -632,6 +692,9 @@ Binding(ALT+SHIFT+X R,
 =======
 !SUBENTRY 1 org.eclipse.jface 2 0 2024-09-04 17:09:46.837
 >>>>>>> yerim8
+=======
+!SUBENTRY 1 org.eclipse.jface 2 0 2024-09-04 23:30:23.948
+>>>>>>> feature/map3
 !MESSAGE A conflict occurred for ALT+SHIFT+D R:
 Binding(ALT+SHIFT+D R,
 	ParameterizedCommand(Command(org.eclipse.wst.server.launchShortcut.debug,Debug on Server,
@@ -650,6 +713,7 @@ Binding(ALT+SHIFT+D R,
 	org.eclipse.ui.defaultAcceleratorConfiguration,
 	org.eclipse.ui.contexts.window,,,system)
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 !ENTRY org.eclipse.core.jobs 4 2 2024-09-04 22:38:02.673
@@ -741,6 +805,9 @@ java.nio.file.InvalidPathException: Illegal char <:> at index 4: .git:
 
 !ENTRY org.eclipse.jdt.core 4 4 2024-09-04 17:11:08.506
 >>>>>>> yerim8
+=======
+!ENTRY org.eclipse.jdt.core 4 4 2024-09-04 23:30:41.773
+>>>>>>> feature/map3
 !MESSAGE Exception while reading /SpringBootProject_01/.classpath
 !STACK 0
 java.io.IOException: Bad format
@@ -803,6 +870,7 @@ Caused by: org.xml.sax.SAXParseException; lineNumber: 33; columnNumber: 2; 요�
 	at org.eclipse.jdt.internal.core.JavaProject.decodeClasspath(JavaProject.java:1279)
 	... 52 more
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 !ENTRY org.eclipse.buildship.core 4 0 2024-09-04 22:40:24.304
@@ -902,16 +970,225 @@ END
 !ENTRY org.eclipse.jdt.ui 4 10001 2024-09-05 00:11:08.276
 =======
 /Applications/SpringToolSuite4.app/Contents/Eclipse/plugins/org.springframework.tooling.boot.ls_1.55.1.202406141939/servers/spring-boot-language-server/BOOT-INF/classes:/Applications/SpringToolSuite4.app/Contents/Eclipse/plugins/org.springframework.tooling.boot.ls_1.55.1.202406141939/servers/spring-boot-language-server/BOOT-INF/lib/*
+=======
+!ENTRY org.eclipse.jdt.launching 4 4 2024-09-04 23:30:41.791
+!MESSAGE The content of elements must consist of well-formed character data or markup.
+!STACK 0
+org.xml.sax.SAXParseException; lineNumber: 3; columnNumber: 2; The content of elements must consist of well-formed character data or markup.
+	at java.xml/com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:204)
+	at java.xml/com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.fatalError(ErrorHandlerWrapper.java:178)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:400)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:327)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLScanner.reportFatalError(XMLScanner.java:1465)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.startOfMarkup(XMLDocumentFragmentScannerImpl.java:2589)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:2679)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:605)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:542)
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:889)
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:825)
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:141)
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:247)
+	at java.xml/com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:342)
+	at org.eclipse.jdt.internal.launching.LaunchingPlugin.restoreLibraryInfo(LaunchingPlugin.java:951)
+	at org.eclipse.jdt.internal.launching.LaunchingPlugin.getLibraryInfo(LaunchingPlugin.java:429)
+	at org.eclipse.jdt.internal.launching.StandardVMType.getLibraryInfo(StandardVMType.java:213)
+	at org.eclipse.jdt.internal.launching.StandardVMType.getVMVersion(StandardVMType.java:263)
+	at org.eclipse.jdt.internal.launching.macosx.MacOSXVMInstallType.getVMVersion(MacOSXVMInstallType.java:432)
+	at org.eclipse.jdt.internal.launching.macosx.MacOSXVMInstall.getJavaVersion(MacOSXVMInstall.java:53)
+	at org.eclipse.jdt.internal.launching.environments.ExecutionEnvironmentAnalyzer.analyze(ExecutionEnvironmentAnalyzer.java:130)
+	at org.eclipse.jdt.internal.launching.environments.Analyzer.analyze(Analyzer.java:43)
+	at org.eclipse.jdt.internal.launching.environments.EnvironmentsManager.analyze(EnvironmentsManager.java:418)
+	at org.eclipse.jdt.internal.launching.environments.EnvironmentsManager.vmAdded(EnvironmentsManager.java:460)
+	at org.eclipse.jdt.launching.JavaRuntime.fireVMAdded(JavaRuntime.java:2934)
+	at org.eclipse.jdt.launching.JavaRuntime.initializeVMs(JavaRuntime.java:3298)
+	at org.eclipse.jdt.launching.JavaRuntime.getVMInstallTypes(JavaRuntime.java:580)
+	at org.eclipse.jdt.internal.launching.environments.EnvironmentsManager.initializeCompatibilities(EnvironmentsManager.java:315)
+	at org.eclipse.jdt.internal.launching.environments.ExecutionEnvironment.init(ExecutionEnvironment.java:185)
+	at org.eclipse.jdt.internal.launching.environments.ExecutionEnvironment.getDefaultVM(ExecutionEnvironment.java:227)
+	at org.eclipse.jdt.internal.launching.JREContainerInitializer.resolveVM(JREContainerInitializer.java:179)
+	at org.eclipse.jdt.internal.launching.JREContainerInitializer.resolveVM(JREContainerInitializer.java:146)
+	at org.eclipse.jdt.internal.launching.JREContainerInitializer.initialize(JREContainerInitializer.java:63)
+	at org.eclipse.jdt.internal.core.JavaModelManager.initializeContainer(JavaModelManager.java:3281)
+	at org.eclipse.jdt.internal.core.JavaModelManager$11.run(JavaModelManager.java:3169)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2451)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2476)
+	at org.eclipse.jdt.internal.core.JavaModelManager.initializeAllContainers(JavaModelManager.java:3227)
+	at org.eclipse.jdt.internal.core.JavaModelManager.getClasspathContainer(JavaModelManager.java:2200)
+	at org.eclipse.jdt.core.JavaCore.getClasspathContainer(JavaCore.java:3950)
+	at org.eclipse.jdt.internal.core.JavaProject.resolveClasspath(JavaProject.java:3151)
+	at org.eclipse.jdt.internal.core.JavaProject.resolveClasspath(JavaProject.java:3075)
+	at org.eclipse.jdt.internal.core.ClasspathEntry.validateClasspath(ClasspathEntry.java:1885)
+	at org.eclipse.jdt.internal.core.SetClasspathOperation.verify(SetClasspathOperation.java:125)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:799)
+	at org.eclipse.jdt.internal.core.JavaProject.setRawClasspath(JavaProject.java:3518)
+	at org.eclipse.jdt.internal.core.JavaProject.setRawClasspath(JavaProject.java:3478)
+	at org.eclipse.jdt.internal.core.JavaProject.setRawClasspath(JavaProject.java:3534)
+	at org.eclipse.buildship.core.internal.workspace.ClasspathContainerUpdater.updateContainers(ClasspathContainerUpdater.java:79)
+	at org.eclipse.buildship.core.internal.workspace.ClasspathContainerUpdater.update(ClasspathContainerUpdater.java:172)
+	at org.eclipse.buildship.core.internal.workspace.BaseConfigurator.synchronizeJavaProjectInTransaction(BaseConfigurator.java:118)
+	at org.eclipse.buildship.core.internal.workspace.BaseConfigurator$1.run(BaseConfigurator.java:105)
+	at org.eclipse.jdt.internal.core.BatchOperation.executeOperation(BatchOperation.java:41)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:740)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2451)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2476)
+	at org.eclipse.jdt.core.JavaCore.run(JavaCore.java:6086)
+	at org.eclipse.jdt.core.JavaCore.run(JavaCore.java:6042)
+	at org.eclipse.buildship.core.internal.workspace.BaseConfigurator.synchronizeJavaProject(BaseConfigurator.java:101)
+	at org.eclipse.buildship.core.internal.workspace.BaseConfigurator.configure(BaseConfigurator.java:91)
+	at org.eclipse.buildship.core.internal.workspace.BaseConfigurator.configure(BaseConfigurator.java:66)
+	at org.eclipse.buildship.core.internal.extension.InternalProjectConfigurator.configure(InternalProjectConfigurator.java:66)
+	at org.eclipse.buildship.core.internal.workspace.ProjectConfigurators.configureConfigurators(ProjectConfigurators.java:70)
+	at org.eclipse.buildship.core.internal.workspace.SynchronizeGradleBuildOperation.synchronizeOpenWorkspaceProject(SynchronizeGradleBuildOperation.java:163)
+	at org.eclipse.buildship.core.internal.workspace.SynchronizeGradleBuildOperation.synchronizeWorkspaceProject(SynchronizeGradleBuildOperation.java:137)
+	at org.eclipse.buildship.core.internal.workspace.SynchronizeGradleBuildOperation.synchronizeGradleProjectWithWorkspaceProject(SynchronizeGradleBuildOperation.java:127)
+	at org.eclipse.buildship.core.internal.workspace.SynchronizeGradleBuildOperation$1.run(SynchronizeGradleBuildOperation.java:85)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2451)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2471)
+	at org.eclipse.buildship.core.internal.workspace.SynchronizeGradleBuildOperation.synchronizeProjectsWithWorkspace(SynchronizeGradleBuildOperation.java:82)
+	at org.eclipse.buildship.core.internal.workspace.SynchronizeGradleBuildOperation.run(SynchronizeGradleBuildOperation.java:64)
+	at org.eclipse.buildship.core.internal.DefaultGradleBuild$SynchronizeOperation.runInToolingApi(DefaultGradleBuild.java:238)
+	at org.eclipse.buildship.core.internal.operation.DefaultToolingApiOperationManager$WorkspaceRunnableAdapter.run(DefaultToolingApiOperationManager.java:58)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2451)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2476)
+	at org.eclipse.buildship.core.internal.operation.DefaultToolingApiOperationManager.run(DefaultToolingApiOperationManager.java:39)
+	at org.eclipse.buildship.core.internal.DefaultGradleBuild$SynchronizeOperation.run(DefaultGradleBuild.java:197)
+	at org.eclipse.buildship.core.internal.DefaultGradleBuild.synchronize(DefaultGradleBuild.java:105)
+	at org.eclipse.buildship.core.internal.workspace.SynchronizationJob.runInToolingApi(SynchronizationJob.java:64)
+	at org.eclipse.buildship.core.internal.workspace.SynchronizationJob.runInToolingApi(SynchronizationJob.java:30)
+	at org.eclipse.buildship.core.internal.operation.ToolingApiJob$1.runInToolingApi(ToolingApiJob.java:54)
+	at org.eclipse.buildship.core.internal.operation.DefaultToolingApiOperationManager$WorkspaceRunnableAdapter.run(DefaultToolingApiOperationManager.java:58)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2451)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2476)
+	at org.eclipse.buildship.core.internal.operation.DefaultToolingApiOperationManager.run(DefaultToolingApiOperationManager.java:39)
+	at org.eclipse.buildship.core.internal.operation.ToolingApiJob.run(ToolingApiJob.java:65)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.jdt.launching 4 4 2024-09-04 23:30:41.795
+!MESSAGE The content of elements must consist of well-formed character data or markup.
+!STACK 0
+org.xml.sax.SAXParseException; lineNumber: 3; columnNumber: 2; The content of elements must consist of well-formed character data or markup.
+	at java.xml/com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:204)
+	at java.xml/com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.fatalError(ErrorHandlerWrapper.java:178)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:400)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:327)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLScanner.reportFatalError(XMLScanner.java:1465)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.startOfMarkup(XMLDocumentFragmentScannerImpl.java:2589)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:2679)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:605)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:542)
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:889)
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:825)
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:141)
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:247)
+	at java.xml/com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:342)
+	at org.eclipse.jdt.internal.launching.LaunchingPlugin.readInstallInfo(LaunchingPlugin.java:1045)
+	at org.eclipse.jdt.internal.launching.LaunchingPlugin.timeStampChanged(LaunchingPlugin.java:1009)
+	at org.eclipse.jdt.internal.launching.StandardVMType.getLibraryInfo(StandardVMType.java:214)
+	at org.eclipse.jdt.internal.launching.StandardVMType.getVMVersion(StandardVMType.java:263)
+	at org.eclipse.jdt.internal.launching.macosx.MacOSXVMInstallType.getVMVersion(MacOSXVMInstallType.java:432)
+	at org.eclipse.jdt.internal.launching.macosx.MacOSXVMInstall.getJavaVersion(MacOSXVMInstall.java:53)
+	at org.eclipse.jdt.internal.launching.environments.ExecutionEnvironmentAnalyzer.analyze(ExecutionEnvironmentAnalyzer.java:130)
+	at org.eclipse.jdt.internal.launching.environments.Analyzer.analyze(Analyzer.java:43)
+	at org.eclipse.jdt.internal.launching.environments.EnvironmentsManager.analyze(EnvironmentsManager.java:418)
+	at org.eclipse.jdt.internal.launching.environments.EnvironmentsManager.initializeCompatibilities(EnvironmentsManager.java:325)
+	at org.eclipse.jdt.internal.launching.environments.ExecutionEnvironment.init(ExecutionEnvironment.java:185)
+	at org.eclipse.jdt.internal.launching.environments.ExecutionEnvironment.getDefaultVM(ExecutionEnvironment.java:227)
+	at org.eclipse.jdt.internal.launching.JREContainerInitializer.resolveVM(JREContainerInitializer.java:179)
+	at org.eclipse.jdt.internal.launching.JREContainerInitializer.resolveVM(JREContainerInitializer.java:146)
+	at org.eclipse.jdt.internal.launching.JREContainerInitializer.initialize(JREContainerInitializer.java:63)
+	at org.eclipse.jdt.internal.core.JavaModelManager.initializeContainer(JavaModelManager.java:3281)
+	at org.eclipse.jdt.internal.core.JavaModelManager$11.run(JavaModelManager.java:3169)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2451)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2476)
+	at org.eclipse.jdt.internal.core.JavaModelManager.initializeAllContainers(JavaModelManager.java:3227)
+	at org.eclipse.jdt.internal.core.JavaModelManager.getClasspathContainer(JavaModelManager.java:2200)
+	at org.eclipse.jdt.core.JavaCore.getClasspathContainer(JavaCore.java:3950)
+	at org.eclipse.jdt.internal.core.JavaProject.resolveClasspath(JavaProject.java:3151)
+	at org.eclipse.jdt.internal.core.JavaProject.resolveClasspath(JavaProject.java:3075)
+	at org.eclipse.jdt.internal.core.ClasspathEntry.validateClasspath(ClasspathEntry.java:1885)
+	at org.eclipse.jdt.internal.core.SetClasspathOperation.verify(SetClasspathOperation.java:125)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:799)
+	at org.eclipse.jdt.internal.core.JavaProject.setRawClasspath(JavaProject.java:3518)
+	at org.eclipse.jdt.internal.core.JavaProject.setRawClasspath(JavaProject.java:3478)
+	at org.eclipse.jdt.internal.core.JavaProject.setRawClasspath(JavaProject.java:3534)
+	at org.eclipse.buildship.core.internal.workspace.ClasspathContainerUpdater.updateContainers(ClasspathContainerUpdater.java:79)
+	at org.eclipse.buildship.core.internal.workspace.ClasspathContainerUpdater.update(ClasspathContainerUpdater.java:172)
+	at org.eclipse.buildship.core.internal.workspace.BaseConfigurator.synchronizeJavaProjectInTransaction(BaseConfigurator.java:118)
+	at org.eclipse.buildship.core.internal.workspace.BaseConfigurator$1.run(BaseConfigurator.java:105)
+	at org.eclipse.jdt.internal.core.BatchOperation.executeOperation(BatchOperation.java:41)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:740)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2451)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2476)
+	at org.eclipse.jdt.core.JavaCore.run(JavaCore.java:6086)
+	at org.eclipse.jdt.core.JavaCore.run(JavaCore.java:6042)
+	at org.eclipse.buildship.core.internal.workspace.BaseConfigurator.synchronizeJavaProject(BaseConfigurator.java:101)
+	at org.eclipse.buildship.core.internal.workspace.BaseConfigurator.configure(BaseConfigurator.java:91)
+	at org.eclipse.buildship.core.internal.workspace.BaseConfigurator.configure(BaseConfigurator.java:66)
+	at org.eclipse.buildship.core.internal.extension.InternalProjectConfigurator.configure(InternalProjectConfigurator.java:66)
+	at org.eclipse.buildship.core.internal.workspace.ProjectConfigurators.configureConfigurators(ProjectConfigurators.java:70)
+	at org.eclipse.buildship.core.internal.workspace.SynchronizeGradleBuildOperation.synchronizeOpenWorkspaceProject(SynchronizeGradleBuildOperation.java:163)
+	at org.eclipse.buildship.core.internal.workspace.SynchronizeGradleBuildOperation.synchronizeWorkspaceProject(SynchronizeGradleBuildOperation.java:137)
+	at org.eclipse.buildship.core.internal.workspace.SynchronizeGradleBuildOperation.synchronizeGradleProjectWithWorkspaceProject(SynchronizeGradleBuildOperation.java:127)
+	at org.eclipse.buildship.core.internal.workspace.SynchronizeGradleBuildOperation$1.run(SynchronizeGradleBuildOperation.java:85)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2451)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2471)
+	at org.eclipse.buildship.core.internal.workspace.SynchronizeGradleBuildOperation.synchronizeProjectsWithWorkspace(SynchronizeGradleBuildOperation.java:82)
+	at org.eclipse.buildship.core.internal.workspace.SynchronizeGradleBuildOperation.run(SynchronizeGradleBuildOperation.java:64)
+	at org.eclipse.buildship.core.internal.DefaultGradleBuild$SynchronizeOperation.runInToolingApi(DefaultGradleBuild.java:238)
+	at org.eclipse.buildship.core.internal.operation.DefaultToolingApiOperationManager$WorkspaceRunnableAdapter.run(DefaultToolingApiOperationManager.java:58)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2451)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2476)
+	at org.eclipse.buildship.core.internal.operation.DefaultToolingApiOperationManager.run(DefaultToolingApiOperationManager.java:39)
+	at org.eclipse.buildship.core.internal.DefaultGradleBuild$SynchronizeOperation.run(DefaultGradleBuild.java:197)
+	at org.eclipse.buildship.core.internal.DefaultGradleBuild.synchronize(DefaultGradleBuild.java:105)
+	at org.eclipse.buildship.core.internal.workspace.SynchronizationJob.runInToolingApi(SynchronizationJob.java:64)
+	at org.eclipse.buildship.core.internal.workspace.SynchronizationJob.runInToolingApi(SynchronizationJob.java:30)
+	at org.eclipse.buildship.core.internal.operation.ToolingApiJob$1.runInToolingApi(ToolingApiJob.java:54)
+	at org.eclipse.buildship.core.internal.operation.DefaultToolingApiOperationManager$WorkspaceRunnableAdapter.run(DefaultToolingApiOperationManager.java:58)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2451)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2476)
+	at org.eclipse.buildship.core.internal.operation.DefaultToolingApiOperationManager.run(DefaultToolingApiOperationManager.java:39)
+	at org.eclipse.buildship.core.internal.operation.ToolingApiJob.run(ToolingApiJob.java:65)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.buildship.core 4 0 2024-09-04 23:30:41.904
+!MESSAGE Unresolved dependency: com.google.firebase:firebase-firestore:25.0.0
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-09-04 23:30:42.019
+!MESSAGE Classpath changed for project: SpringBootProject_01
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-09-04 23:30:42.019
+!MESSAGE Boot project ADDED: SpringBootProject_01
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-09-04 23:30:42.019
+!MESSAGE Starting Boot LS...
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-09-04 23:30:42.028
+!MESSAGE Started Boot LS process
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2024-09-04 23:30:42.034
+!MESSAGE Command list starting LS: org.springframework.tooling.boot.ls
+START:
+/Applications/SpringToolSuite4.app/Contents/Eclipse/plugins/org.eclipse.justj.openjdk.hotspot.jre.full.macosx.aarch64_21.0.3.v20240426-1530/jre/bin/java
+-cp
+/Applications/SpringToolSuite4.app/Contents/Eclipse/plugins/org.springframework.tooling.boot.ls_1.56.0.202407191456/servers/spring-boot-language-server/BOOT-INF/classes:/Applications/SpringToolSuite4.app/Contents/Eclipse/plugins/org.springframework.tooling.boot.ls_1.56.0.202407191456/servers/spring-boot-language-server/BOOT-INF/lib/*
+>>>>>>> feature/map3
 -Dsts.lsp.client=eclipse
 -Xmx1024m
 -XX:TieredStopAtLevel=1
 -Xlog:jni+resolve=off
+<<<<<<< HEAD
 -Dspring.config.location=file:/Applications/SpringToolSuite4.app/Contents/Eclipse/plugins/org.springframework.tooling.boot.ls_1.55.1.202406141939/servers/spring-boot-language-server/BOOT-INF/classes/application.properties
 -XX:ErrorFile=/Users/yerim/DevData/SpringWebProject/.metadata/.plugins/org.springframework.tooling.boot.ls/fatal-error-spring-boot_1725437469150
+=======
+-Dspring.config.location=file:/Applications/SpringToolSuite4.app/Contents/Eclipse/plugins/org.springframework.tooling.boot.ls_1.56.0.202407191456/servers/spring-boot-language-server/BOOT-INF/classes/application.properties
+-XX:ErrorFile=/Users/gupro/Documents/DevData/SpringWebProject/.metadata/.plugins/org.springframework.tooling.boot.ls/fatal-error-spring-boot_1725460242034
+>>>>>>> feature/map3
 org.springframework.ide.vscode.boot.app.BootLanguageServerBootApp
 --languageserver.hover-timeout=225
 END
 
+<<<<<<< HEAD
 !ENTRY org.springframework.tooling.boot.ls 1 0 2024-09-04 17:11:09.151
 !MESSAGE DelegatingStreamConnectionProvider - Starting Boot LS
 
@@ -1980,6 +2257,21 @@ Caused by: java.lang.IllegalStateException: The Plug-in Development Environment 
 
 !ENTRY org.eclipse.jdt.ui 4 10001 2024-09-04 17:53:05.325
 >>>>>>> yerim8
+=======
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-09-04 23:30:42.034
+!MESSAGE DelegatingStreamConnectionProvider - Starting Boot LS
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2024-09-04 23:30:42.037
+!MESSAGE Started org.springframework.tooling.boot.ls LS process 30508
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-09-04 23:37:00.012
+!MESSAGE Classpath changed for project: SpringBootProject_01
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-09-04 23:37:09.831
+!MESSAGE Classpath changed for project: SpringBootProject_01
+
+!ENTRY org.eclipse.jdt.ui 4 10001 2024-09-05 00:04:33.022
+>>>>>>> feature/map3
 !MESSAGE Internal Error
 !STACK 1
 org.eclipse.jdt.internal.ui.JavaUIException: Problems reading information from XML 'QualifiedTypeNameHistory.xml'
@@ -1989,6 +2281,9 @@ org.eclipse.jdt.internal.ui.JavaUIException: Problems reading information from X
 	at org.eclipse.jdt.internal.corext.util.QualifiedTypeNameHistory.<init>(QualifiedTypeNameHistory.java:36)
 	at org.eclipse.jdt.internal.corext.util.QualifiedTypeNameHistory.getDefault(QualifiedTypeNameHistory.java:29)
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> feature/map3
 	at org.eclipse.jdt.internal.ui.text.java.LazyJavaTypeCompletionProposal.computeRelevance(LazyJavaTypeCompletionProposal.java:399)
 	at org.eclipse.jdt.internal.ui.text.java.LazyJavaCompletionProposal.getRelevance(LazyJavaCompletionProposal.java:384)
 	at org.eclipse.jdt.ui.text.java.CompletionProposalComparator.getRelevance(CompletionProposalComparator.java:85)
@@ -1996,7 +2291,11 @@ org.eclipse.jdt.internal.ui.JavaUIException: Problems reading information from X
 	at org.eclipse.jdt.ui.text.java.CompletionProposalComparator.compare(CompletionProposalComparator.java:1)
 	at org.eclipse.jdt.internal.ui.text.java.RelevanceSorter.compare(RelevanceSorter.java:40)
 	at java.base/java.util.TimSort.countRunAndMakeAscending(TimSort.java:355)
+<<<<<<< HEAD
 	at java.base/java.util.TimSort.sort(TimSort.java:234)
+=======
+	at java.base/java.util.TimSort.sort(TimSort.java:220)
+>>>>>>> feature/map3
 	at java.base/java.util.Arrays.sort(Arrays.java:1308)
 	at java.base/java.util.ArrayList.sort(ArrayList.java:1804)
 	at java.base/java.util.Collections$SynchronizedList.sort(Collections.java:2762)
@@ -2005,8 +2304,13 @@ org.eclipse.jdt.internal.ui.JavaUIException: Problems reading information from X
 	at org.eclipse.jface.text.contentassist.AsyncCompletionProposalPopup.lambda$4(AsyncCompletionProposalPopup.java:267)
 	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:40)
 	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:132)
+<<<<<<< HEAD
 	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4058)
 	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3676)
+=======
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4382)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:4005)
+>>>>>>> feature/map3
 	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1151)
 	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
 	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1042)
@@ -2026,6 +2330,7 @@ org.eclipse.jdt.internal.ui.JavaUIException: Problems reading information from X
 	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:668)
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:605)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1481)
+<<<<<<< HEAD
 Caused by: org.xml.sax.SAXParseException; lineNumber: 2; columnNumber: 2; 문서에서 루트 요소 앞에 오는 마크업은 올바른 형식이어야 합니다.
 =======
 	at org.eclipse.jdt.internal.ui.JavaPlugin.stop(JavaPlugin.java:537)
@@ -2046,6 +2351,8 @@ Caused by: org.xml.sax.SAXParseException; lineNumber: 2; columnNumber: 2; 문서
 	at org.eclipse.osgi.container.SystemModule.stop(SystemModule.java:212)
 	at org.eclipse.osgi.internal.framework.EquinoxBundle$SystemBundle$EquinoxSystemModule$1.run(EquinoxBundle.java:240)
 	at java.base/java.lang.Thread.run(Thread.java:1583)
+=======
+>>>>>>> feature/map3
 Caused by: org.xml.sax.SAXParseException; lineNumber: 2; columnNumber: 2; The markup in the document preceding the root element must be well-formed.
 >>>>>>> yerim8
 	at java.xml/com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:204)
@@ -2063,12 +2370,17 @@ Caused by: org.xml.sax.SAXParseException; lineNumber: 2; columnNumber: 2; The ma
 	at java.xml/com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:342)
 	at org.eclipse.jdt.internal.corext.util.History.load(History.java:237)
 <<<<<<< HEAD
+<<<<<<< HEAD
 	... 40 more
 !SUBENTRY 1 org.eclipse.jdt.ui 4 4 2024-09-05 00:11:08.281
 =======
 	... 21 more
 !SUBENTRY 1 org.eclipse.jdt.ui 4 4 2024-09-04 17:53:05.326
 >>>>>>> yerim8
+=======
+	... 40 more
+!SUBENTRY 1 org.eclipse.jdt.ui 4 4 2024-09-05 00:04:33.022
+>>>>>>> feature/map3
 !MESSAGE Problems reading information from XML 'QualifiedTypeNameHistory.xml'
 !STACK 0
 org.xml.sax.SAXParseException; lineNumber: 2; columnNumber: 2; 문서에서 루트 요소 앞에 오는 마크업은 올바른 형식이어야 합니다.
@@ -2090,6 +2402,9 @@ org.xml.sax.SAXParseException; lineNumber: 2; columnNumber: 2; 문서에서 루�
 	at org.eclipse.jdt.internal.corext.util.QualifiedTypeNameHistory.<init>(QualifiedTypeNameHistory.java:36)
 	at org.eclipse.jdt.internal.corext.util.QualifiedTypeNameHistory.getDefault(QualifiedTypeNameHistory.java:29)
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> feature/map3
 	at org.eclipse.jdt.internal.ui.text.java.LazyJavaTypeCompletionProposal.computeRelevance(LazyJavaTypeCompletionProposal.java:399)
 	at org.eclipse.jdt.internal.ui.text.java.LazyJavaCompletionProposal.getRelevance(LazyJavaCompletionProposal.java:384)
 	at org.eclipse.jdt.ui.text.java.CompletionProposalComparator.getRelevance(CompletionProposalComparator.java:85)
@@ -2097,7 +2412,11 @@ org.xml.sax.SAXParseException; lineNumber: 2; columnNumber: 2; 문서에서 루�
 	at org.eclipse.jdt.ui.text.java.CompletionProposalComparator.compare(CompletionProposalComparator.java:1)
 	at org.eclipse.jdt.internal.ui.text.java.RelevanceSorter.compare(RelevanceSorter.java:40)
 	at java.base/java.util.TimSort.countRunAndMakeAscending(TimSort.java:355)
+<<<<<<< HEAD
 	at java.base/java.util.TimSort.sort(TimSort.java:234)
+=======
+	at java.base/java.util.TimSort.sort(TimSort.java:220)
+>>>>>>> feature/map3
 	at java.base/java.util.Arrays.sort(Arrays.java:1308)
 	at java.base/java.util.ArrayList.sort(ArrayList.java:1804)
 	at java.base/java.util.Collections$SynchronizedList.sort(Collections.java:2762)
@@ -2106,8 +2425,13 @@ org.xml.sax.SAXParseException; lineNumber: 2; columnNumber: 2; 문서에서 루�
 	at org.eclipse.jface.text.contentassist.AsyncCompletionProposalPopup.lambda$4(AsyncCompletionProposalPopup.java:267)
 	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:40)
 	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:132)
+<<<<<<< HEAD
 	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4058)
 	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3676)
+=======
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4382)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:4005)
+>>>>>>> feature/map3
 	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1151)
 	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
 	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1042)
@@ -2127,6 +2451,7 @@ org.xml.sax.SAXParseException; lineNumber: 2; columnNumber: 2; 문서에서 루�
 	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:668)
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:605)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1481)
+<<<<<<< HEAD
 
 !ENTRY org.eclipse.lsp4e 4 0 2024-09-05 00:23:21.063
 =======
@@ -4471,6 +4796,10 @@ Binding(ALT+SHIFT+D R,
 =======
 !ENTRY org.eclipse.pde.core 4 0 2024-09-05 11:33:54.846
 >>>>>>> yerim8
+=======
+
+!ENTRY org.eclipse.pde.core 4 0 2024-09-05 11:46:22.672
+>>>>>>> feature/map3
 !MESSAGE FrameworkEvent ERROR
 !STACK 0
 org.osgi.framework.BundleException: Exception in org.eclipse.pde.internal.core.PDECore.stop() of bundle org.eclipse.pde.core.

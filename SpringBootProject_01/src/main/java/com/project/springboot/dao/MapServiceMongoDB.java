@@ -25,7 +25,7 @@ public class MapServiceMongoDB implements IMapServiceMongoDB {
         double lowerY = centerY - radius;
         double upperX = centerX + radius;
         double upperY = centerY + radius;
-
+        System.out.println("centerX and Y in service: " + centerX + " " + centerY );
         Query query = new Query();
         query.addCriteria(Criteria.where("x_wgs84").gte(lowerX).lte(upperX));
         query.addCriteria(Criteria.where("y_wgs84").gte(lowerY).lte(upperY));

@@ -23,13 +23,13 @@
 <!-- Custom styles for this template -->
 <link href="../carousel/carousel.css" rel="stylesheet">
 <body>
-	<footer class="container-fluid">
+	<footer>
 		<div class="p-4 text-white text-center"
 			style="background-color: #7FA1C3;">
 			<div class="row">
 				<div class="col-2 ps-4">
 					<h3>
-						<strong>더조은™</strong>
+						<strong><img alt="logo" src="../images/logo.png"></strong>
 					</h3>
 				</div>
 				<div class="col">

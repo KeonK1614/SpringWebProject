@@ -82,7 +82,7 @@
 		<nav class="navbar navbar-expand-md fixed-top"
 			style="background-color: #7FA1C3;">
 			<div class="container-fluid">
-				<a class="navbar-brand" href="/">로고</a>
+				<a class="navbar-brand" href="/"><img alt="logo" src="../images/logo.png"></a>
 				<button class="navbar-toggler" type="button"
 					data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
 					aria-controls="navbarCollapse" aria-expanded="false"
@@ -93,7 +93,7 @@
 					id="navbarCollapse">
 					<ul class="navbar-nav me-auto mb-2 mb-md-0">
 						<li class="nav-item"><a class="nav-link" aria-current="page"
-							href="#">홈페이지소개</a></li>
+							href="/guest/homeInfo">홈페이지소개</a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="/guest/noticeBoard">공지사항</a></li>
 						<li class="nav-item"><a class="nav-link" href="#">지도</a></li>
@@ -103,7 +103,6 @@
 							<ul class="dropdown-menu">
 								<li><a class="dropdown-item" href="/guest/boardInfo">정보
 										게시판</a></li>
-								<li><a class="dropdown-item" href="#">인기 게시판</a></li>
 							</ul></li>
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
@@ -162,13 +161,9 @@
 							</a></li>
 						</ul>
 					</sec:authorize>
-
 				</div>
 			</div>
 		</nav>
 	</header>
-
-
-
 </body>
 </html>
