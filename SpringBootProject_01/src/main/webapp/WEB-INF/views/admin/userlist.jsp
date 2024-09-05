@@ -187,7 +187,7 @@
 		             	</div>
 		             </form>  
 		         </div>
-		         <div class="row mt-3 mx-1 mx-auto">
+		         <div class="row col-10 pt-3 mt-3">
 		             <!-- 게시판리스트부분 -->
 		             <table class="table table-bordered table-hover table-striped">
 		                 <colgroup>
@@ -240,8 +240,26 @@
 				                         	<td class="text-center">${dto.detailaddress }</td>
 				                         	<td class="text-center"><fmt:formatDate value="${dto.regidate}" pattern="yyyy-MM-dd"/></td>
 				                         	<td class="text-center">${dto.authority }</td>
-				                         	<td class="text-center">${dto.enabled }</td>
-				                         	<td class="text-center">${dto.isLock }</td>
+				                         	<td class="text-center">
+				                         	 <c:choose>
+								                <c:when test="${dto.enabled == 1 }">
+								                  	활성화
+								                </c:when>
+								                <c:otherwise>
+								                    휴면계정
+								                </c:otherwise>
+								            </c:choose>
+					            			</td>
+				                         	<td class="text-center">
+				                         	 <c:choose>
+								                <c:when test="${dto.isLock == 1 }">
+								                  NO
+								                </c:when>
+								                <c:otherwise>
+								                   LOCK
+								                </c:otherwise>
+								            </c:choose>
+				                         	</td>
 				                         	<td class="text-center">
 				                         		<a href="../admin/userEdit?id=${dto.id }">회원정보보기</a>
 				                         	</td>
@@ -261,7 +279,7 @@
 		             <div class="col">
 		                 <!-- 페이지번호 부분 -->
 		                  <ul class="pagination justify-content-center">
-					            ${pagingImgs}
+					            ${pagingImg}
 					      </ul>
 				   	</div>
 		          </div>

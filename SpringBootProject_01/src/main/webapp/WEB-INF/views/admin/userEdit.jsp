@@ -213,11 +213,29 @@
 			       		</tr>
 			       		<tr>
 			       			<th>잠금계정</th>
-			       			<td>${dto.isLock}</td>
+			       			<td>
+					            <c:choose>
+					                <c:when test="${dto.isLock == 1}">
+					                    NO
+					                </c:when>
+					                <c:otherwise>
+					                     LOCK
+					                </c:otherwise>
+					            </c:choose>
+					        </td>
 			       		</tr>
 			       		<tr>
 			       			<th>휴면계정</th>
-			       			<td>${dto.enabled}</td>
+			       			<td>
+					        	 <c:choose>
+					                <c:when test="${dto.enabled == 1}">
+					                   활성화
+					                </c:when>
+					                <c:otherwise>
+					                    휴면계정
+					                </c:otherwise>
+					            </c:choose>
+					        </td>
 			       		</tr>
 			       </table>
 			       <script type="text/javascript">

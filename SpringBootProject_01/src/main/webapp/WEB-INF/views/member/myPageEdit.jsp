@@ -160,6 +160,19 @@
                 }
             });
             
+            $(document).ready(function() {
+	            $('#name').on('input', function() {
+	                var name = $(this).val();  // 수정: 'name' 변수로 변경
+	                var regname = /^[a-zA-Z가-힣]*$/;
+	                if (!regname.test(name)) {
+	                    $('#name-feedback').text('이름은 한글 혹은 영어만 입력 가능합니다.').css('color', 'red');
+	                    $('#name').focus();
+	                } else {
+	                    $('#name-feedback').text('');
+	                }
+	            });
+		    });
+            
             $('#phoneNum').on('input', function() {
                 var input = $(this).val().replace(/[^0-9]/g, ''); // 숫자만 추출
                 var formatted = '';
@@ -283,6 +296,7 @@
 						<div class="mb-3">
 						  <label for="id">성명</label>
 						  <input type="text" class="form-control border" id="name" name="name" value="${dto.name}" style="box-shadow: none;"> 
+						  <span id="name-feedback"></span>
 						</div>	
 						<div class="mb-3">
 						  <label for="id">휴대전화</label>

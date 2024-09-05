@@ -240,8 +240,26 @@
 				                         	<td class="text-center">${dto.detailaddress }</td>
 				                         	<td class="text-center"><fmt:formatDate value="${dto.regidate}" pattern="yyyy-MM-dd"/></td>
 				                         	<td class="text-center">${dto.authority }</td>
-				                         	<td class="text-center">${dto.isLock }</td>
-				                         	<td class="text-center">${dto.enabled }</td>
+				                         	<td class="text-center">
+					                         	<c:choose>
+									                <c:when test="${dto.isLock == 1 }">
+									                  NO
+									                </c:when>
+									                <c:otherwise>
+									                   LOCK
+									                </c:otherwise>
+									            </c:choose>
+				                         	</td>
+				                         	<td class="text-center">
+												<c:choose>
+									                <c:when test="${dto.enabled == 1 }">
+									                  	활성화
+									                </c:when>
+									                <c:otherwise>
+									                    휴면계정
+									                </c:otherwise>
+									            </c:choose>
+											</td>
 				                         	<td class="text-center">
 				                         		<a href="../admin/socialUserEdit?providerId=${dto.providerId }">회원정보보기</a>
 				                         	</td>
