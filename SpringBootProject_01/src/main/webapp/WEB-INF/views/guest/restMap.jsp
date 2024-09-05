@@ -6,7 +6,9 @@
 
 <!doctype html>
 	<html lang="en" data-bs-theme="auto">
-	<head>	 
+	<head>	
+		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3f7f9ab0116bd62797e2fbd361dac3a9&libraries=services,clusterer,drawing"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>	    <meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="">
@@ -270,142 +272,153 @@
 		        </div>
 		    </div>
 		    
-		   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3f7f9ab0116bd62797e2fbd361dac3a9&libraries=services,clusterer,drawing"></script>
+		  
 		   <script>
 				var map;
 				var markers = []; // 현재 지도에 표시된 마커들을 저장할 배열
 				
-				// 지도와 마커 초기화
-		        function initMap() {
-				    var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-				        mapOption = { 
-				            center: new kakao.maps.LatLng(37.554674785645716, 126.9706120117342), // 지도의 중심좌표 
-				            level: 2 // 지도의 확대 레벨 
-				        }; 
-				
+				function initMap() {
+				    var mapContainer = document.getElementById('map'),
+				        mapOption = {
+				            center: new kakao.maps.LatLng(37.554674785645716, 126.9706120117342),
+				            level: 2
+				        };
+
 				    map = new kakao.maps.Map(mapContainer, mapOption);
-				
-				    // 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+
 				    var mapTypeControl = new kakao.maps.MapTypeControl();
-				
-				    // 지도에 컨트롤을 추가해야 지도위에 표시됩니다
 				    map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
-				
-				    // 지도 확대 축소를 제어할 수 있는 줌 컨트롤을 생성합니다
+
 				    var zoomControl = new kakao.maps.ZoomControl();
-				    // 지도의 우측에 확대 축소 컨트롤을 추가한다
 				    map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
-				
-				    var positions = [
-				    	<c:forEach var="item1" items="${restDataList}">
-			            {
-			            	content : "<ul>" +
-			            			  "<li>장소명   : ${item1.pname}</li>" +
-			            			  "<li>주소     : ${item1.addr1} ${item1.addr2}</li>" +
-			            			  "<li>운영시간 : " + decodeURIComponent("${item1.optime}") + "</li>" +
-			            			  "<li>전화번호 : ${item1.phonenum}</li>" +
-			            			  "<li>장소유형 : ${item1.ptype}</li>" +
-			            			  "<li>건물유형 : ${item1.btype}</li>" +
-			            			  "<li>상세정보 : ${item1.detail1} ${item1.detail2}</li>" +
-			            			  "</ul>"
-			            	,
-			            	position: new kakao.maps.LatLng(${item1.y_wgs84}, ${item1.x_wgs84})
-			            }<c:if test="${not empty restDataList}">,</c:if>
-		                </c:forEach>  
-				    ];
-				 	// 지도를 재설정할 범위정보를 가지고 있을 LatLngBounds 객체를 생성합니다
-				    var bounds = new kakao.maps.LatLngBounds(); 
-				
-				    var i, marker;
-				
-				    positions.forEach(data => {
-				        const marker = new kakao.maps.Marker({
-				            position: data.position
-				        });
 
-				        marker.setMap(map);
-				        bounds.extend(data.position);
-
-				        kakao.maps.event.addListener(marker, 'click', function() {
-				            document.getElementById('myModal').style.display = 'block';
-				            document.getElementById('modalContent').innerHTML = data.content;
-				        });
-				    });
-				    
-				 	// 지도의 범위를 설정합니다
-				  	map.setBounds(bounds);
-				    
-				    // 모달창 닫기 기능
-				    const modal = document.getElementById('myModal');
-				    const closeBtn = document.getElementsByClassName('close')[0];
-				    
-				    closeBtn.onclick = function() {
-				        modal.style.display = 'none';
-				    };
-				    
-				    window.onclick = function(event) {
-				        if (event.target === modal) {
-				            modal.style.display = 'none';
-				        }
-				    };
-
-				    // 지도 클릭 이벤트 리스너 추가
-				    kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
+					 // 지도를 클릭했을 때
+				    /* kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
 				        var latlng = mouseEvent.latLng;
-				        map.setCenter(latlng); // 클릭한 위치를 지도의 중심으로 설정합니다
+				        map.setCenter(latlng);
+
+				        var center = map.getCenter();
+				        addressAdd(center.getLat(), center.getLng());
+				    });  */
+				    kakao.maps.event.addListener(map, 'idle', function() {
+				        var center = map.getCenter();
+				        console.log("지도 이동 후 중심 좌표: ", center.getLat(), center.getLng());
+
+				        // 원하는 함수 호출 (예: 주소 추가)
+				        addressAdd(center.getLat(), center.getLng());
 				    });
 				}
-		            
-		        // 현재 위치로 이동하는 함수
-				function Mylocation() {
-				    if (navigator.geolocation) {
-				        navigator.geolocation.getCurrentPosition(function(position) {
-				            var lat = position.coords.latitude;
-				            var lon = position.coords.longitude;
-				            
-				            var locPosition = new kakao.maps.LatLng(lat, lon);
-				            
-				            // 지도의 중심좌표를 현재 위치로 변경합니다
-				            map.setCenter(locPosition);
-				            
-				            // 현재 위치에 마커를 추가합니다
-				            var marker = new kakao.maps.Marker({
-				                map: map,
-				                position: locPosition
-				            });
-				            
-				            var message = '<div style="width:150px;text-align:center;padding:6px 0;">현재위치</div>';
-				            var infowindow = new kakao.maps.InfoWindow({
-				                content: message
-				            });
-				            infowindow.open(map, marker);
-				            
-				        }, function(error) {
-				        });
-				    } else {
-				        alert("현재위치를 찾을 수 없습니다.");
-				    }
-				}
+				
+		        function addressAdd(centerX1, centerY1) {
+		            $.ajax({
+		                url: "/guest/restMap4",
+		                type: "post",
+		                data: {
+		                    centerX: centerY1,
+		                    centerY: centerX1
+		                },
+		                dataType: "json",
+		                success: function (response) {
+		                    console.log("성공");
+		                    console.log(response);  // 응답 데이터를 출력합니다.
+		                    removeMarkers();
+		                    addMarkers(response);
+		                },
+		                error: function () {
+		                    console.log("오류");
+		                }
+		            });
+		        }
 		        
-				window.onload = initMap;
-			</script>	       
+		        function removeMarkers() {
+		        	markers.forEach(marker => marker.setMap(null));
+		        	markers = []; // 마커 배열 초기화
+		        }
+		        
+	            function addMarkers(data) {
+	                data.forEach(function(item) {
+	                    // 마커의 컨텐츠를 정의합니다.
+	                    var content = "<ul>" +
+	                        "<li>장소명   : " + item.pname + "</li>" +
+	                        "<li>주소     : " + item.addr1 + " " + item.addr2 + "</li>" +
+	                        "<li>운영시간 : " + decodeURIComponent(item.optime) + "</li>" +
+	                        "<li>전화번호 : " + item.phonenum + "</li>" +
+	                        "<li>장소유형 : " + item.ptype + "</li>" +
+	                        "<li>건물유형 : " + item.btype + "</li>" +
+	                        "<li>상세정보 : " + item.detail1 + " " + item.detail2 + "</li>" +
+	                        "</ul>";
+
+	                    // 마커의 위치를 정의합니다.
+	                    var position = new kakao.maps.LatLng(item.y_wgs84, item.x_wgs84);
+
+	                    // 마커를 생성합니다.
+	                    var marker = new kakao.maps.Marker({
+	                        position: position
+	                    });
+
+	                    // 마커를 지도에 추가합니다.
+	                    marker.setMap(map);
+						
+	                    kakao.maps.event.addListener(marker, 'click', function() {
+	                    	document.getElementById('myModal').style.display = 'block';
+				            document.getElementById('modalContent').innerHTML = content;
+	                    });
+	                    
+	                    // 마커를 배열에 추가합니다.
+	                    markers.push(marker);
+	                });
+	            }
+	            
+	        // 모달창 닫기 기능
+	        const modal = document.getElementById('myModal');
+	        const closeBtn = document.getElementsByClassName('close')[0];
+
+	        closeBtn.onclick = function() {
+	            modal.style.display = 'none';
+	        };
+
+	        window.onclick = function(event) {
+	            if (event.target === modal) {
+	                modal.style.display = 'none';
+	            }
+	        };
+		            
+	        // 현재 위치로 이동하는 함수
+			function Mylocation() {
+			    if (navigator.geolocation) {
+			        navigator.geolocation.getCurrentPosition(function(position) {
+			            var lat = position.coords.latitude;
+			            var lon = position.coords.longitude;
+			            
+			            var locPosition = new kakao.maps.LatLng(lat, lon);
+			            
+			            // 지도의 중심좌표를 현재 위치로 변경합니다
+			            map.setCenter(locPosition);
+			            
+			            // 현재 위치에 마커를 추가합니다
+			            var marker = new kakao.maps.Marker({
+			                map: map,
+			                position: locPosition
+			            });
+			            
+			            var message = '<div style="width:150px;text-align:center;padding:6px 0;">현재위치</div>';
+			            var infowindow = new kakao.maps.InfoWindow({
+			                content: message
+			            });
+			            infowindow.open(map, marker);
+			            
+			        }, function(error) {
+			        });
+			    } else {
+			        alert("현재위치를 찾을 수 없습니다.");
+			    }
+			}
+	        
+			window.onload = initMap;
+		</script>
+
 		</main>	
 		<hr/> 	
-		<!-- <footer class="container">
-		    <p class="float-end"><i class="bi bi-arrow-up-circle"></i><a href="#">Back to top</a></p>
-		    <h3><strong>더조은™</strong></h3>
-		    <p class="copy text-center">
-			    더조은아카데미일산 &nbsp;&nbsp;
-		        경기도 고양시 일산구 중앙로 1275번길 38-10 201호(장항동 우림로데오스위트) <br/>
-		        학생 : 김건, 김나현, 나예림, 장다빈 &nbsp;&nbsp;  
-		        사업자등록번호 : 584-85-00825 &nbsp;&nbsp;  
-		        TEL : 031.902.1777 &nbsp;&nbsp; 
-				FAX : 031.906.8777 <br>
-			</p>  
-		    <p>&copy; 2017–2024 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-	  	</footer>	 -->
-	  	
-	   <!-- footer 태그 없이 화면 꽉차게  -->
        <p class="float-end"><i class="bi bi-arrow-up-circle"></i><a href="#">Back to top</a></p>
        <div class="p-4 text-white text-center" style="background-color: #7FA1C3;">
 			 <div class="row">

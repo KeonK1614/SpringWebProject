@@ -89,45 +89,18 @@
 		<item key="WizardProjectsImportPage.STORE_CLOSE_CREATED_PROJECTS_ID" value="false"/>
 		<item key="WizardProjectsImportPage.STORE_HIDE_CONFLICTING_PROJECTS_ID" value="false"/>
 		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
-<<<<<<< HEAD
-<<<<<<< HEAD
-			<item value="/Users/gupro/Documents/DevData/SpringWebProject"/>
-			<item value="C:\FrontEnd\teamproject\Servers"/>
-=======
->>>>>>> NH13
-			<item value="C:\FrontEnd\teamproject\SpringBootProject_01"/>
-			<item value="C:\FrontEnd\teamproject\Servers"/>
+			<item value="C:\FrontEnd\new\Servers"/>
 			<item value="C:\FrontEnd\new\SpringBootProject_01"/>
-=======
-			<item value="/Users/yerim/DevData/SpringWebProject"/>
->>>>>>> yerim7
 		</list>
 		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
 			<item value=""/>
 		</list>
 		<section name="ExternalProjectImportWizard.dialogBounds">
-<<<<<<< HEAD
-			<item key="DIALOG_X_ORIGIN" value="463"/>
-			<item key="DIALOG_Y_ORIGIN" value="149"/>
-=======
-			<item key="DIALOG_X_ORIGIN" value="219"/>
-			<item key="DIALOG_Y_ORIGIN" value="61"/>
->>>>>>> yerim7
-			<item key="DIALOG_WIDTH" value="586"/>
-			<item key="DIALOG_HEIGHT" value="703"/>
-			<item key="DIALOG_FONT_NAME" value="1|.AppleSystemUIFont|11.0|0|COCOA|1|.AppleSystemUIFont"/>
+			<item key="DIALOG_X_ORIGIN" value="663"/>
+			<item key="DIALOG_Y_ORIGIN" value="142"/>
+			<item key="DIALOG_WIDTH" value="613"/>
+			<item key="DIALOG_HEIGHT" value="861"/>
+			<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
 		</section>
-	</section>
-	<section name="CleanDialogSettings">
-		<item key="TOGGLE_SELECTED" value="false"/>
-<<<<<<< HEAD
-		<item key="DIALOG_WIDTH" value="581"/>
-		<item key="DIALOG_HEIGHT" value="434"/>
-		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
-=======
-		<item key="DIALOG_WIDTH" value="540"/>
-		<item key="DIALOG_HEIGHT" value="367"/>
-		<item key="DIALOG_FONT_NAME" value="1|.AppleSystemUIFont|11.0|0|COCOA|1|.AppleSystemUIFont"/>
->>>>>>> yerim7
 	</section>
 </section>
