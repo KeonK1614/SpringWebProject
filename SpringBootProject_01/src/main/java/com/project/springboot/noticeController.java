@@ -92,12 +92,13 @@ public class noticeController {
 	public String noticeWrite(HttpServletRequest request, @RequestParam("file") MultipartFile file) throws Exception {
 		String ofileName = file.getOriginalFilename();
 		String uploadDir = context.getRealPath("/static/files");
-
+		String sfileName = "";
+		
 		File dir = new File(uploadDir);
 		if (!dir.exists()) {
 			dir.mkdirs();
 		}
-		String sfileName = UUID.randomUUID().toString() + "_" + ofileName;
+		sfileName = UUID.randomUUID().toString() + "_" + ofileName;
 
 		File destination = new File(dir, sfileName);
 		try {
@@ -105,13 +106,15 @@ public class noticeController {
 
 		} catch (IOException e) {
 			e.printStackTrace();
-			return "redirect:/member/boardWrite?status=fail";
+			return "redirect:/member/noticeWriteForm?status=fail";
 		}
 
 		String sId = SecurityContextHolder.getContext().getAuthentication().getName();
 
 		dao.writeDao(sId, request.getParameter("title"), request.getParameter("content"), ofileName, sfileName);
-
+		System.out.println(ofileName);
+		System.out.println(sfileName);
+		
 		return "redirect:../guest/noticeBoard";
 	}
 
@@ -197,12 +200,12 @@ public class noticeController {
 	}
 
 	@RequestMapping("/admin/noticeEditor")
-	public String noticeEditor(HttpServletRequest request, @RequestParam("ofile") MultipartFile file, Model model) {
+	public String noticeEditor(HttpServletRequest request, @RequestParam("file") MultipartFile file, Model model) {
 		String sIdx = request.getParameter("idx");
 
 		noticeBoardDto dto = dao.viewDao(sIdx);
 		String ofileName = dto.getOfile();
-		String sfileName = dto.getOfile();
+		String sfileName = dto.getSfile();
 
 		if (!file.isEmpty()) {
 			ofileName = file.getOriginalFilename();
@@ -223,10 +226,11 @@ public class noticeController {
 				e.printStackTrace();
 			}
 		}
-		System.out.println(sIdx);
 
 		model.addAttribute("dto", dao.editorDao(request.getParameter("idx"), request.getParameter("title"),
-				request.getParameter("content"), ofileName, sfileName));
+				request.getParameter("content"), ofileName, sfileName, request.getParameter("id")));
+		System.out.println(ofileName);
+		System.out.println(sfileName);
 
 		return "redirect:../guest/noticeView?idx=" + sIdx;
 	}

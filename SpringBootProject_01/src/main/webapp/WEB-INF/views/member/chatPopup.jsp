@@ -54,6 +54,12 @@
 	    }
 	</script>
     <style>
+    
+    body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* 화면의 공백을 제거 */
+        }
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

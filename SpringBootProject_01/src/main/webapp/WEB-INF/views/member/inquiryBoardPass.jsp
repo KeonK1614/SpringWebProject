@@ -120,7 +120,7 @@
     </body>
     
     <script type="text/javascript">
-   		/* function getValueInText(){
+   		 /* function getValueInText(){
    			let inputData = document.getElementById("Password1").value;
    			if(inputData == ${dto.boardPass}){
    				location.href='inquiryBoardview?idx=${dto.idx}';
@@ -128,7 +128,7 @@
    			else{
    				alert('비밀번호가 틀렸습니다.');
    			}
-   		} */
+   		} 
    		
 	   	 document.getElementById("Password1").addEventListener("keypress", function(event) {
 	         // 모든 브라우저에서 엔터키를 감지하도록 수정
@@ -147,7 +147,18 @@
            } else {
                alert('비밀번호가 틀렸습니다.');
            }
-       }
+       } */
+       
+      
+ 
+    	function getValueInText() {
+    	    let inputData = document.getElementById("Password1").value;
+    	    if (inputData === `${dto.boardPass}`) {
+    	        location.href = `inquiryBoardview?idx=${dto.idx}`;
+    	    } else {
+    	        alert('비밀번호가 틀렸습니다.');
+    	    }
+    	}
     </script>
     
 </html>

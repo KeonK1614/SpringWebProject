@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -67,12 +66,6 @@ public class ChatController {
 	            return "admin/chatRoomList"; // chatRoomList.jsp 페이지로 이동
 	        });
 	}
-	
-	 @PostMapping("admin/markMessagesAsRead")
-	    public ResponseEntity<String> markMessagesAsRead(@RequestParam String chatRoomId) {
-	        chatService.markMessagesAsRead(chatRoomId);
-	        return ResponseEntity.ok("Messages marked as read");
-	    }
 	
 	 @DeleteMapping("member/chatRoom/deleteChatRoom")
 	    public ResponseEntity<String> deleteChatRoom(HttpServletRequest request) {

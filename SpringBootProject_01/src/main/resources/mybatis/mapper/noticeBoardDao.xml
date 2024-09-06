@@ -42,7 +42,7 @@
 	</delete>
 	
 	<update id="editorDao">
-		update noticeBoard set title = #{title}, content = #{content}, ofile = #{ofile, jdbcType=VARCHAR}, sfile = #{ofile, jdbcType=VARCHAR} where idx=#{idx}
+		update noticeBoard set title = #{title}, content = #{content}, ofile = #{ofile, jdbcType=VARCHAR}, sfile = #{sfile, jdbcType=VARCHAR} where idx=#{idx}
 	</update>
 	
 	<update id="viewCountDao">

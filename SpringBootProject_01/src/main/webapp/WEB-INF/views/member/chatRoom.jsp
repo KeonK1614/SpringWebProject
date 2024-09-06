@@ -57,16 +57,10 @@
 
     // Firebase 초기화
 	const firebaseConfig = {
-	  apiKey: "AIzaSyCFicUJR5ltjGYdnbIxJJyrDg_SpXbf9GM",
-	  authDomain: "springbootstudy-ea537.firebaseapp.com",
-	  databaseURL: "https://springbootstudy-ea537-default-rtdb.asia-southeast1.firebasedatabase.app",
-	  projectId: "springbootstudy-ea537",
-	  storageBucket: "springbootstudy-ea537.appspot.com",
-	  messagingSenderId: "519354041411",
-	  appId: "1:519354041411:web:3e46f2f4fd871be6e6c0f6"
+		// firebase 서비스키 입력
 	};
 
-    var app = initializeApp(firebaseConfig);
+    const app = initializeApp(firebaseConfig);
 	var db = getDatabase(app);
 
 	// Connect function 수정
@@ -78,6 +72,8 @@
     	onChildAdded(dbRef, (data) => {
         	var name = data.val().sender;
 			var msg = data.val().message;
+			console.log(name);
+			console.log(msg);
         	appendMessage(name, msg);
     	});
 	}

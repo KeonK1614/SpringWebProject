@@ -126,7 +126,7 @@
 						            <input type="hidden" name="existingOfile" value="${dto.ofile}" />
 						            <input type="hidden" name="existingSfile" value="${dto.sfile}" />
 						        </c:if>
-						        <input type="file" name="ofile" class="form-control" />
+						        <input type="file" name="file" class="form-control" />
 						        <small>새 파일을 선택하지 않으면 기존 파일이 유지됩니다.</small>
 		                        </td>
 		                    </tr>

@@ -91,7 +91,7 @@
 		
 		}	 
 		
-		body { margin-top: 30px; } /* nav의 높이만큼 padding-top 추가 */
+		body { padding-top: 15%; } /* nav의 높이만큼 padding-top 추가 */
         
         /* 모달창 스타일 */
         .modal {
@@ -105,7 +105,6 @@
             overflow: auto;
             background-color: rgba(0,0,0,0.4);
         }
-
         .modal-content {
             background-color: #fefefe;
             margin: 15% auto;
@@ -113,14 +112,12 @@
             border: 1px solid #888;
             width: 50%;
         }
-
         .close {
             color: #aaa;
             float: right;
             font-size: 28px;
             font-weight: bold;
         }
-
         .close:hover,
         .close:focus {
             color: black;
@@ -128,16 +125,34 @@
             cursor: pointer;
         }
         
+        .map-container {
+            margin-top: 20px;
+        }
+
+        /* 헤더의 높이만큼 추가적인 상단 마진 */
+        .button-container {
+            margin-top: 30px; /* 헤더가 fixed-top이므로 헤더 높이만큼 마진 추가 */
+            text-align: center; /* 버튼을 가운데 정렬 */
+            z-index: 1;
+            position: relative;
+        }
+
+        /* 지도의 크기 및 배치 */
+        #map {
+            width: 100%;
+            height: 500px;
+            z-index: 0;
+        }
         </style>	 
 		
 		<link href="../carousel/carousel.css" rel="stylesheet">
 	</head>
+			<%@ include file="../layout/header.jsp"%>
 	
 	<body>	
-		<%@ include file="../layout/header.jsp"%>
 
 		<main>
-			<div class="row">
+			<div class="button-container">
 				<div class="col-12 text-center">
 					 <button id="currentLocationBtn" class="btn btn-danger btn-sm" onclick="Mylocation()">현재위치</button>
 					 &nbsp;&nbsp;
@@ -297,7 +312,7 @@
 		</script>
 
 		</main>	
-	<%@ include file="../layout/header.jsp"%>
+	<%@ include file="../layout/footer.jsp"%>
 
 	</body>
 </html>
