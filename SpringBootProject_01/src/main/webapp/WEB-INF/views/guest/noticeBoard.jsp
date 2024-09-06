@@ -96,25 +96,6 @@
 	<%@ include file="../layout/header.jsp"%>
 		<main>
 			<div class="col-10 pt-3 mt-3 mx-auto">
-		         <!-- <h4>게시판 목록 - <small>공지사항게시판</small></h4> -->
-		         <!-- <h4><strong>공지사항 게시판</strong></h4> -->
-		
-		         <!-- <div class="row">
-		             검색부분
-		             <h4><strong>공지사항 게시판</strong></h4>
-		             <form method="get" class="d-flex">
-		                <div class="input-group"style="width: 300px;">
-		                
-		                	<select name="searchField" class="form-control" dir="rtl">
-		                         <option value="title">제목</option>
-		                         <option value="content">내용</option>
-			                </select>
-						    <input class="form-control" type="text" name="searchWord" placeholder="Search" aria-label="Search" >
-				            <button class="btn btn-outline-primary" type="submit"><i class="bi bi-search" style='font-size:20px'></i></button>
-				        </div>
-				     </form>  
-		         </div> -->
-		         
 		         <nav class="navbar">
 				  <div class="container-fluid">
 				    <h4><strong>공지사항 게시판</strong></h4>

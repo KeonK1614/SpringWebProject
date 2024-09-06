@@ -202,7 +202,7 @@ public class noticeController {
 
 		noticeBoardDto dto = dao.viewDao(sIdx);
 		String ofileName = dto.getOfile();
-		String sfileName = dto.getOfile();
+		String sfileName = dto.getSfile();
 
 		if (!file.isEmpty()) {
 			ofileName = file.getOriginalFilename();

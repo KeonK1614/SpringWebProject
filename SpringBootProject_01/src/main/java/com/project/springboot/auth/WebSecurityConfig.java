@@ -52,8 +52,8 @@ public class WebSecurityConfig {
 	    		.requestMatchers("/guest/joinform").permitAll()
 	    		.requestMatchers("/error").permitAll()
 	    		.requestMatchers("/static/**").permitAll()
-	            .requestMatchers("/assets/**", "/carousel/**","/css/**", "/js/**", "/img/**","/images/**").permitAll()
-	            .requestMatchers("/guest/**").permitAll()  // 모두에게 허용.
+	    		.requestMatchers("/assets/**", "/carousel/**","/css/**", "/js/**", "/img/**","/images/**", "/files/**").permitAll()
+	            .requestMatchers("/guest/**", "/layout/**").permitAll()  // 모두에게 허용.
 	            .requestMatchers("/security/**").permitAll() 
 	            .requestMatchers("/member/**").hasAnyRole("USER", "ADMIN")
 	            .requestMatchers("/admin/**").hasAnyRole("ADMIN")
