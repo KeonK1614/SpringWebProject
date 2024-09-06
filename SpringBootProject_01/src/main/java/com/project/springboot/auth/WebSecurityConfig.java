@@ -52,7 +52,7 @@ public class WebSecurityConfig {
 	    		.requestMatchers("/guest/joinform").permitAll()
 	    		.requestMatchers("/error").permitAll()
 	    		.requestMatchers("/static/**").permitAll()
-	            .requestMatchers("/assets/**", "/carousel/**","/css/**", "/js/**", "/img/**","/images/**").permitAll()
+	            .requestMatchers("/assets/**", "/carousel/**","/css/**", "/js/**", "/img/**","/images/**","files/**","layout/**").permitAll()
 	            .requestMatchers("/guest/**").permitAll()  // 모두에게 허용.
 	            .requestMatchers("/security/**").permitAll() 
 	            .requestMatchers("/member/**").hasAnyRole("USER", "ADMIN")

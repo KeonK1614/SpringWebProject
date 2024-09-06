@@ -55,14 +55,16 @@ public class MyAuthSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
         }
     	 
         clearSession(request);
-
+        System.out.println("requestCache: " + requestCache);
         SavedRequest savedRequest = requestCache.getRequest(request, response);
+        System.out.println("savedRequest = " + savedRequest);
 
         /**
          * prevPage가 존재하는 경우 = 사용자가 직접 /security/loginform 경로로 로그인 요청
          * 기존 Session의 prevPage attribute 제거
          */
         String prevPage = (String) request.getSession().getAttribute("prevPage");
+        System.out.println("prevPage: " + prevPage);
 //        System.out.println("Previous Page: " + prevPage);
 
         /**
@@ -70,10 +72,11 @@ public class MyAuthSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
          * Security Filter가 인터셉트하여 savedRequest에 세션 저장
          */
         String uri;
-
         // SavedRequest가 있을 경우, savedRequest의 URL로 리다이렉트
         if (savedRequest != null) {
             uri = savedRequest.getRedirectUrl();
+            System.out.println("before uri: " + uri);
+
         } 
         // prevPage가 null이 아니고 비어있지 않을 경우
         else if (prevPage != null && !prevPage.isEmpty()) {

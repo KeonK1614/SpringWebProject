@@ -24,6 +24,8 @@
 	href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
 <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="../carousel/carousel.css" rel="stylesheet">
+<link href="../files/style.css" rel="stylesheet">
+
 <script>
 	function chatPopup(){
 		var s_width = window.screen.width;
@@ -98,7 +100,7 @@
 							href="/guest/homeInfo">홈페이지소개</a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="/guest/noticeBoard">공지사항</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">지도</a></li>
+						<li class="nav-item"><a class="nav-link" href="/guest/restMap">지도</a></li>
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 							role="button" data-bs-toggle="dropdown" aria-expanded="false">커뮤니티</a>

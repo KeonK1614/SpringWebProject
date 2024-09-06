@@ -22,6 +22,8 @@
 
 <!-- Custom styles for this template -->
 <link href="../carousel/carousel.css" rel="stylesheet">
+<link href="../files/style.css" rel="stylesheet">
+
 <body>
 	<footer>
 		<div class="p-4 text-white text-center"
