@@ -16,7 +16,7 @@ public interface InoticeBoardDao
 	public noticeBoardDto viewDao(String idx);
 	public int writeDao(@Param("id") String id, @Param("title") String title, @Param("content") String content , @Param("ofile")String ofile, @Param("sfile") String sfile);
 	public int deleteDao(String idx);
-	public int editorDao(@Param("idx") String idx, @Param("title") String title, @Param("content") String content , @Param("ofile") String ofile, @Param("sfile") String sfile);
+	public int editorDao(@Param("idx") String idx, @Param("title") String title, @Param("content") String content , @Param("ofile") String ofile, @Param("sfile") String sfile, @Param("id") String id);
 	public int viewCountDao(String idx);
 	public int likeCountDao(String idx);
 }

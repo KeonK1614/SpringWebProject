@@ -17,25 +17,25 @@ import com.google.firebase.database.FirebaseDatabase;
 @Configuration
 public class FirebaseRealTimeConfig {
 
-	@Bean
-    public FirebaseDatabase firebaseDatabase() throws IOException {
-        FileInputStream serviceAccount =
-            new FileInputStream("src/main/resources/ChatServiceAccountKey.json");
+  @Bean
+  public FirebaseDatabase firebaseDatabase() throws IOException {
+      FileInputStream serviceAccount =
+          new FileInputStream("src/main/resources/ChatServiceAccountKey.json");
 
-        FirebaseOptions options = FirebaseOptions.builder()
-            .setCredentials(GoogleCredentials.fromStream(serviceAccount))
-            .setDatabaseUrl("https://springbootstudy-ea537-default-rtdb.asia-southeast1.firebasedatabase.app")
-            .build();
+      FirebaseOptions options = FirebaseOptions.builder()
+          .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+          .setDatabaseUrl("https://springbootstudy-2d768-default-rtdb.asia-southeast1.firebasedatabase.app")
+          .build();
 
-        if (FirebaseApp.getApps().isEmpty()) {
-            FirebaseApp.initializeApp(options);
-        }
+      if (FirebaseApp.getApps().isEmpty()) {
+          FirebaseApp.initializeApp(options);
+      }
 
-        return FirebaseDatabase.getInstance();
-    }
+      return FirebaseDatabase.getInstance();
+  }
 
-    @Bean
-    public DatabaseReference databaseReference(FirebaseDatabase firebaseDatabase) {
-        return firebaseDatabase.getReference("messages");
-    }
+  @Bean
+  public DatabaseReference databaseReference(FirebaseDatabase firebaseDatabase) {
+      return firebaseDatabase.getReference("messages");
+  }
 }

@@ -53,10 +53,14 @@ public class WebSecurityConfig {
 	    		.requestMatchers("/error").permitAll()
 	    		.requestMatchers("/static/**").permitAll()
 <<<<<<< HEAD
+<<<<<<< HEAD
 	            .requestMatchers("/assets/**", "/carousel/**","/css/**", "/js/**", "/img/**","/images/**", "/files/**").permitAll()
 =======
 	    		.requestMatchers("/assets/**", "/carousel/**","/css/**", "/js/**", "/img/**","/images/**", "/files/**").permitAll()
 >>>>>>> NH17
+=======
+	    		.requestMatchers("/assets/**", "/carousel/**","/css/**", "/js/**", "/img/**","/images/**", "/files/**").permitAll()
+>>>>>>> DV12
 	            .requestMatchers("/guest/**", "/layout/**").permitAll()  // 모두에게 허용.
 	            .requestMatchers("/security/**").permitAll() 
 	            .requestMatchers("/member/**").hasAnyRole("USER", "ADMIN")

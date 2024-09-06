@@ -23,6 +23,7 @@
 <!-- Custom styles for this template -->
 <link href="../carousel/carousel.css" rel="stylesheet">
 <body>
+<hr/>
 	<footer>
 		<div class="p-4 text-white text-center"
 			style="background-color: #7FA1C3;">

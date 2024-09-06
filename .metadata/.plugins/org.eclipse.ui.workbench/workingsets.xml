@@ -4,8 +4,12 @@
 <workingSet editPageId="org.eclipse.jdt.internal.ui.DynamicSourcesWorkingSet" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1725504554695_1" label="Java Test Sources" name="Java Test Sources"/>
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1725504555253_2" label="Window Working Set" name="Aggregate for window 1725504555253"/>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1725514245280_3" label="Window Working Set" name="Aggregate for window 1725514245278"/>
 =======
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1725514907528_3" label="Window Working Set" name="Aggregate for window 1725514907526"/>
 >>>>>>> NH17
+=======
+<workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1725534890202_3" label="Window Working Set" name="Aggregate for window 1725534890202"/>
+>>>>>>> DV12
 </workingSetManager>
