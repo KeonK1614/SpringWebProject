@@ -151,11 +151,7 @@
 		<script type="text/javascript">
 			function formCheck(form){
 				
-				if(form.id.value == ""){
-					alert('아이디를 입력하세요');
-					form.id.focus();
-					return false;
-				}
+				
 				if(form.title.value == ""){
 					alert('제목를 입력하세요');
 					form.id.focus();

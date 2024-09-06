@@ -6,14 +6,9 @@
 <mapper namespace="com.project.springboot.dao.InoticeBoardDao">
 	
 	<select id="listDao" resultType="com.project.springboot.dto.noticeBoardDto">
-		<!-- select * from noticeBoard 
-			<if test="searchWord != null and searchWord != ''">
-				where ${searchField} like '%${searchWord}%' 
-			</if>
-			order by idx desc -->
-			select * from 
-	    (select Tb.*, rownum rNum from
-	    (select * from noticeBoard
+		 select * from 
+	     	(select Tb.*, rownum rNum from
+	     	(select * from noticeBoard
 	    <if test="searchWord != null and searchWord != ''">
 			where ${searchField} like '%${searchWord}%' 
 		</if>
@@ -42,7 +37,7 @@
 	</delete>
 	
 	<update id="editorDao">
-		update noticeBoard set title = #{title}, content = #{content}, ofile = #{ofile, jdbcType=VARCHAR}, sfile = #{ofile, jdbcType=VARCHAR} where idx=#{idx}
+		update noticeBoard set title = #{title}, content = #{content}, ofile = #{ofile, jdbcType=VARCHAR}, sfile = #{sfile, jdbcType=VARCHAR} where idx=#{idx}
 	</update>
 	
 	<update id="viewCountDao">
