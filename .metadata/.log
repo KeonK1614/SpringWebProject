@@ -5418,6 +5418,7 @@ END
 !MESSAGE Classpath changed for project: SpringBootProject_01
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 !SESSION 2024-09-05 14:12:31.462 -----------------------------------------------
 eclipse.buildId=4.23.1.202406150140
 java.version=21.0.3
@@ -7822,6 +7823,13 @@ java.util.concurrent.TimeoutException
 
 !ENTRY org.eclipse.pde.core 4 0 2024-09-05 17:49:28.895
 >>>>>>> NH17
+=======
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-09-05 14:11:48.188
+!MESSAGE Classpath changed for project: SpringBootProject_01
+
+!ENTRY org.eclipse.pde.core 4 0 2024-09-05 15:35:53.434
+>>>>>>> presentation2
 !MESSAGE FrameworkEvent ERROR
 !STACK 0
 org.osgi.framework.BundleException: Exception in org.eclipse.pde.internal.core.PDECore.stop() of bundle org.eclipse.pde.core.
@@ -7890,6 +7898,7 @@ Caused by: java.lang.IllegalStateException: The Plug-in Development Environment 
 	... 25 more
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 !ENTRY org.eclipse.jdt.ui 4 10001 2024-09-05 17:40:43.068
 =======
 !ENTRY org.eclipse.jdt.ui 4 10001 2024-09-05 17:49:28.955
@@ -7897,6 +7906,9 @@ Caused by: java.lang.IllegalStateException: The Plug-in Development Environment 
 =======
 !ENTRY org.eclipse.jdt.ui 4 10001 2024-09-05 17:13:15.813
 >>>>>>> DV12
+=======
+!ENTRY org.eclipse.jdt.ui 4 10001 2024-09-05 15:35:53.443
+>>>>>>> presentation2
 !MESSAGE Internal Error
 !STACK 1
 org.eclipse.jdt.internal.ui.JavaUIException: Problems reading information from XML 'QualifiedTypeNameHistory.xml'
@@ -7906,6 +7918,9 @@ org.eclipse.jdt.internal.ui.JavaUIException: Problems reading information from X
 	at org.eclipse.jdt.internal.corext.util.QualifiedTypeNameHistory.<init>(QualifiedTypeNameHistory.java:36)
 	at org.eclipse.jdt.internal.corext.util.QualifiedTypeNameHistory.getDefault(QualifiedTypeNameHistory.java:29)
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> presentation2
 	at org.eclipse.jdt.internal.ui.JavaPlugin.stop(JavaPlugin.java:537)
 	at org.eclipse.osgi.internal.framework.BundleContextImpl$3.run(BundleContextImpl.java:903)
 	at org.eclipse.osgi.internal.framework.BundleContextImpl$3.run(BundleContextImpl.java:1)
@@ -7924,6 +7939,7 @@ org.eclipse.jdt.internal.ui.JavaUIException: Problems reading information from X
 	at org.eclipse.osgi.container.SystemModule.stop(SystemModule.java:212)
 	at org.eclipse.osgi.internal.framework.EquinoxBundle$SystemBundle$EquinoxSystemModule$1.run(EquinoxBundle.java:240)
 	at java.base/java.lang.Thread.run(Thread.java:1583)
+<<<<<<< HEAD
 <<<<<<< HEAD
 Caused by: org.xml.sax.SAXParseException; lineNumber: 2; columnNumber: 2; The markup in the document preceding the root element must be well-formed.
 =======
@@ -7969,6 +7985,9 @@ Caused by: org.xml.sax.SAXParseException; lineNumber: 2; columnNumber: 2; 문서
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1481)
 Caused by: org.xml.sax.SAXParseException; lineNumber: 2; columnNumber: 2; 문서에서 루트 요소 앞에 오는 마크업은 올바른 형식이어야 합니다.
 >>>>>>> DV12
+=======
+Caused by: org.xml.sax.SAXParseException; lineNumber: 2; columnNumber: 2; The markup in the document preceding the root element must be well-formed.
+>>>>>>> presentation2
 	at java.xml/com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:204)
 	at java.xml/com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.fatalError(ErrorHandlerWrapper.java:178)
 	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:400)
@@ -7983,6 +8002,7 @@ Caused by: org.xml.sax.SAXParseException; lineNumber: 2; columnNumber: 2; 문서
 	at java.xml/com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:247)
 	at java.xml/com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:342)
 	at org.eclipse.jdt.internal.corext.util.History.load(History.java:237)
+<<<<<<< HEAD
 <<<<<<< HEAD
 	... 21 more
 <<<<<<< HEAD
@@ -8003,6 +8023,13 @@ org.xml.sax.SAXParseException; lineNumber: 2; columnNumber: 2; 문서에서 루�
 !STACK 0
 org.xml.sax.SAXParseException; lineNumber: 2; columnNumber: 2; 문서에서 루트 요소 앞에 오는 마크업은 올바른 형식이어야 합니다.
 >>>>>>> DV12
+=======
+	... 21 more
+!SUBENTRY 1 org.eclipse.jdt.ui 4 4 2024-09-05 15:35:53.443
+!MESSAGE Problems reading information from XML 'QualifiedTypeNameHistory.xml'
+!STACK 0
+org.xml.sax.SAXParseException; lineNumber: 2; columnNumber: 2; The markup in the document preceding the root element must be well-formed.
+>>>>>>> presentation2
 	at java.xml/com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:204)
 	at java.xml/com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.fatalError(ErrorHandlerWrapper.java:178)
 	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:400)
@@ -8021,6 +8048,9 @@ org.xml.sax.SAXParseException; lineNumber: 2; columnNumber: 2; 문서에서 루�
 	at org.eclipse.jdt.internal.corext.util.QualifiedTypeNameHistory.<init>(QualifiedTypeNameHistory.java:36)
 	at org.eclipse.jdt.internal.corext.util.QualifiedTypeNameHistory.getDefault(QualifiedTypeNameHistory.java:29)
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> presentation2
 	at org.eclipse.jdt.internal.ui.JavaPlugin.stop(JavaPlugin.java:537)
 	at org.eclipse.osgi.internal.framework.BundleContextImpl$3.run(BundleContextImpl.java:903)
 	at org.eclipse.osgi.internal.framework.BundleContextImpl$3.run(BundleContextImpl.java:1)
@@ -8039,6 +8069,7 @@ org.xml.sax.SAXParseException; lineNumber: 2; columnNumber: 2; 문서에서 루�
 	at org.eclipse.osgi.container.SystemModule.stop(SystemModule.java:212)
 	at org.eclipse.osgi.internal.framework.EquinoxBundle$SystemBundle$EquinoxSystemModule$1.run(EquinoxBundle.java:240)
 	at java.base/java.lang.Thread.run(Thread.java:1583)
+<<<<<<< HEAD
 <<<<<<< HEAD
 !SESSION 2024-09-05 22:01:21.269 -----------------------------------------------
 eclipse.buildId=4.23.1.202406150140
@@ -8132,10 +8163,52 @@ C:\FrontEnd\sts-4.24.0.RELEASE\plugins\org.eclipse.justj.openjdk.hotspot.jre.ful
 -cp
 C:\FrontEnd\sts-4.24.0.RELEASE\plugins\org.springframework.tooling.boot.ls_1.56.0.202407191456\servers\spring-boot-language-server\BOOT-INF\classes;C:\FrontEnd\sts-4.24.0.RELEASE\plugins\org.springframework.tooling.boot.ls_1.56.0.202407191456\servers\spring-boot-language-server\BOOT-INF\lib\*
 >>>>>>> NH17
+=======
+!SESSION 2024-09-05 15:35:55.034 -----------------------------------------------
+eclipse.buildId=4.24.0.202407191504
+java.version=21.0.3
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=macosx, ARCH=aarch64, WS=cocoa, NL=en_US
+Framework arguments:  -product org.springframework.boot.ide.branding.sts4 -keyring /Users/gupro/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch aarch64 -product org.springframework.boot.ide.branding.sts4 -keyring /Users/gupro/.eclipse_keyring -data file:/Users/gupro/Documents/DevData/SpringWebProject/
+
+!ENTRY ch.qos.logback.classic 1 0 2024-09-05 15:35:55.921
+!MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
+
+!ENTRY ch.qos.logback.classic 1 0 2024-09-05 15:35:56.636
+!MESSAGE Logback config file: /Users/gupro/Documents/DevData/SpringWebProject/.metadata/.plugins/org.eclipse.m2e.logback/logback.2.6.1.20240411-1122.xml
+
+!ENTRY org.eclipse.ui 2 0 2024-09-05 15:35:56.780
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2024-09-05 15:35:56.780
+!MESSAGE Commands should really have a category: plug-in='org.springframework.tooling.boot.ls', id='spring.initializr.addStarters', categoryId='org.eclipse.lsp4e.commandCategory'
+
+!ENTRY org.eclipse.ui 2 0 2024-09-05 15:35:57.042
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2024-09-05 15:35:57.042
+!MESSAGE Commands should really have a category: plug-in='org.springframework.tooling.boot.ls', id='spring.initializr.addStarters', categoryId='org.eclipse.lsp4e.commandCategory'
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-09-05 15:36:00.134
+!MESSAGE Boot project ADDED: SpringBootProject_01
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-09-05 15:36:00.134
+!MESSAGE Starting Boot LS...
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-09-05 15:36:00.145
+!MESSAGE Started Boot LS process
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2024-09-05 15:36:00.157
+!MESSAGE Command list starting LS: org.springframework.tooling.boot.ls
+START:
+/Applications/SpringToolSuite4.app/Contents/Eclipse/plugins/org.eclipse.justj.openjdk.hotspot.jre.full.macosx.aarch64_21.0.3.v20240426-1530/jre/bin/java
+-cp
+/Applications/SpringToolSuite4.app/Contents/Eclipse/plugins/org.springframework.tooling.boot.ls_1.56.0.202407191456/servers/spring-boot-language-server/BOOT-INF/classes:/Applications/SpringToolSuite4.app/Contents/Eclipse/plugins/org.springframework.tooling.boot.ls_1.56.0.202407191456/servers/spring-boot-language-server/BOOT-INF/lib/*
+>>>>>>> presentation2
 -Dsts.lsp.client=eclipse
 -Xmx1024m
 -XX:TieredStopAtLevel=1
 -Xlog:jni+resolve=off
+<<<<<<< HEAD
 <<<<<<< HEAD
 -Dspring.config.location=file:/Applications/SpringToolSuite4.app/Contents/Eclipse/plugins/org.springframework.tooling.boot.ls_1.55.1.202406141939/servers/spring-boot-language-server/BOOT-INF/classes/application.properties
 -XX:ErrorFile=/Users/yerim/DevData/SpringWebProject/.metadata/.plugins/org.springframework.tooling.boot.ls/fatal-error-spring-boot_1725541394342
@@ -8143,10 +8216,15 @@ C:\FrontEnd\sts-4.24.0.RELEASE\plugins\org.springframework.tooling.boot.ls_1.56.
 -Dspring.config.location=file:C:\FrontEnd\sts-4.24.0.RELEASE\plugins\org.springframework.tooling.boot.ls_1.56.0.202407191456\servers\spring-boot-language-server\BOOT-INF\classes\application.properties
 -XX:ErrorFile=C:/FrontEnd/teamproject/.metadata/.plugins/org.springframework.tooling.boot.ls/fatal-error-spring-boot_1725541400538
 >>>>>>> NH17
+=======
+-Dspring.config.location=file:/Applications/SpringToolSuite4.app/Contents/Eclipse/plugins/org.springframework.tooling.boot.ls_1.56.0.202407191456/servers/spring-boot-language-server/BOOT-INF/classes/application.properties
+-XX:ErrorFile=/Users/gupro/Documents/DevData/SpringWebProject/.metadata/.plugins/org.springframework.tooling.boot.ls/fatal-error-spring-boot_1725518160157
+>>>>>>> presentation2
 org.springframework.ide.vscode.boot.app.BootLanguageServerBootApp
 --languageserver.hover-timeout=225
 END
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 !ENTRY org.springframework.tooling.boot.ls 1 0 2024-09-05 22:03:14.343
 !MESSAGE DelegatingStreamConnectionProvider - Starting Boot LS
@@ -8166,6 +8244,17 @@ END
 !ENTRY org.eclipse.jface 2 0 2024-09-05 22:07:06.123
 !MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
 !SUBENTRY 1 org.eclipse.jface 2 0 2024-09-05 22:07:06.123
+=======
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-09-05 15:36:00.158
+!MESSAGE DelegatingStreamConnectionProvider - Starting Boot LS
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2024-09-05 15:36:00.164
+!MESSAGE Started org.springframework.tooling.boot.ls LS process 79986
+
+!ENTRY org.eclipse.jface 2 0 2024-09-05 15:39:22.878
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2024-09-05 15:39:22.878
+>>>>>>> presentation2
 !MESSAGE A conflict occurred for ALT+SHIFT+X R:
 Binding(ALT+SHIFT+X R,
 	ParameterizedCommand(Command(org.eclipse.wst.server.launchShortcut.run,Run on Server,
@@ -8183,7 +8272,11 @@ Binding(ALT+SHIFT+X R,
 		,,true),null),
 	org.eclipse.ui.defaultAcceleratorConfiguration,
 	org.eclipse.ui.contexts.window,,,system)
+<<<<<<< HEAD
 !SUBENTRY 1 org.eclipse.jface 2 0 2024-09-05 22:07:06.123
+=======
+!SUBENTRY 1 org.eclipse.jface 2 0 2024-09-05 15:39:22.878
+>>>>>>> presentation2
 !MESSAGE A conflict occurred for ALT+SHIFT+D R:
 Binding(ALT+SHIFT+D R,
 	ParameterizedCommand(Command(org.eclipse.wst.server.launchShortcut.debug,Debug on Server,
@@ -8202,6 +8295,7 @@ Binding(ALT+SHIFT+D R,
 	org.eclipse.ui.defaultAcceleratorConfiguration,
 	org.eclipse.ui.contexts.window,,,system)
 
+<<<<<<< HEAD
 !ENTRY org.eclipse.wildwebdeveloper.xml 2 0 2024-09-05 22:28:35.298
 !MESSAGE The given URI https://jakarta.ee/xml/ns/jakartaee/application-client_9.xsd from org.eclipse.jst.standard.schemas could not be resolved for local access
 
@@ -8540,6 +8634,9 @@ java.util.concurrent.TimeoutException
 <<<<<<< HEAD
 
 !ENTRY org.eclipse.pde.core 4 0 2024-09-06 00:12:16.070
+=======
+!ENTRY org.eclipse.pde.core 4 0 2024-09-05 16:40:42.017
+>>>>>>> presentation2
 !MESSAGE FrameworkEvent ERROR
 !STACK 0
 org.osgi.framework.BundleException: Exception in org.eclipse.pde.internal.core.PDECore.stop() of bundle org.eclipse.pde.core.
@@ -8606,6 +8703,7 @@ Caused by: java.lang.IllegalStateException: The Plug-in Development Environment 
 	at org.eclipse.pde.internal.build.BundleHelper.getPlatformAdmin(BundleHelper.java:84)
 	at org.eclipse.pde.internal.core.MinimalState.<clinit>(MinimalState.java:85)
 	... 25 more
+<<<<<<< HEAD
 !SESSION 2024-09-06 00:17:41.184 -----------------------------------------------
 eclipse.buildId=4.23.1.202406150140
 java.version=21.0.3
@@ -8743,16 +8841,63 @@ START:
 C:\FrontEnd\dev\sts-4.24.0.RELEASE\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_21.0.3.v20240426-1530\jre\bin\javaw.exe
 -cp
 C:\FrontEnd\dev\sts-4.24.0.RELEASE\plugins\org.springframework.tooling.boot.ls_1.56.0.202407191456\servers\spring-boot-language-server\BOOT-INF\classes;C:\FrontEnd\dev\sts-4.24.0.RELEASE\plugins\org.springframework.tooling.boot.ls_1.56.0.202407191456\servers\spring-boot-language-server\BOOT-INF\lib\*
+=======
+!SESSION 2024-09-05 16:49:58.172 -----------------------------------------------
+eclipse.buildId=4.24.0.202407191504
+java.version=21.0.3
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=macosx, ARCH=aarch64, WS=cocoa, NL=en_US
+Framework arguments:  -product org.springframework.boot.ide.branding.sts4 -keyring /Users/gupro/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch aarch64 -product org.springframework.boot.ide.branding.sts4 -keyring /Users/gupro/.eclipse_keyring
+
+!ENTRY ch.qos.logback.classic 1 0 2024-09-05 16:49:59.684
+!MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
+
+!ENTRY ch.qos.logback.classic 1 0 2024-09-05 16:50:19.488
+!MESSAGE Logback config file: /Users/gupro/Documents/DevData/SpringWebProject/.metadata/.plugins/org.eclipse.m2e.logback/logback.2.6.1.20240411-1122.xml
+
+!ENTRY org.eclipse.ui 2 0 2024-09-05 16:50:19.647
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2024-09-05 16:50:19.647
+!MESSAGE Commands should really have a category: plug-in='org.springframework.tooling.boot.ls', id='spring.initializr.addStarters', categoryId='org.eclipse.lsp4e.commandCategory'
+
+!ENTRY org.eclipse.ui 2 0 2024-09-05 16:50:19.833
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2024-09-05 16:50:19.833
+!MESSAGE Commands should really have a category: plug-in='org.springframework.tooling.boot.ls', id='spring.initializr.addStarters', categoryId='org.eclipse.lsp4e.commandCategory'
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-09-05 16:50:22.556
+!MESSAGE Boot project ADDED: SpringBootProject_01
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-09-05 16:50:22.556
+!MESSAGE Starting Boot LS...
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-09-05 16:50:22.565
+!MESSAGE Started Boot LS process
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2024-09-05 16:50:22.572
+!MESSAGE Command list starting LS: org.springframework.tooling.boot.ls
+START:
+/Applications/SpringToolSuite4.app/Contents/Eclipse/plugins/org.eclipse.justj.openjdk.hotspot.jre.full.macosx.aarch64_21.0.3.v20240426-1530/jre/bin/java
+-cp
+/Applications/SpringToolSuite4.app/Contents/Eclipse/plugins/org.springframework.tooling.boot.ls_1.56.0.202407191456/servers/spring-boot-language-server/BOOT-INF/classes:/Applications/SpringToolSuite4.app/Contents/Eclipse/plugins/org.springframework.tooling.boot.ls_1.56.0.202407191456/servers/spring-boot-language-server/BOOT-INF/lib/*
+>>>>>>> presentation2
 -Dsts.lsp.client=eclipse
 -Xmx1024m
 -XX:TieredStopAtLevel=1
 -Xlog:jni+resolve=off
+<<<<<<< HEAD
 -Dspring.config.location=file:C:\FrontEnd\dev\sts-4.24.0.RELEASE\plugins\org.springframework.tooling.boot.ls_1.56.0.202407191456\servers\spring-boot-language-server\BOOT-INF\classes\application.properties
 -XX:ErrorFile=C:/FrontEnd/new/.metadata/.plugins/org.springframework.tooling.boot.ls/fatal-error-spring-boot_1725534656657
+=======
+-Dspring.config.location=file:/Applications/SpringToolSuite4.app/Contents/Eclipse/plugins/org.springframework.tooling.boot.ls_1.56.0.202407191456/servers/spring-boot-language-server/BOOT-INF/classes/application.properties
+-XX:ErrorFile=/Users/gupro/Documents/DevData/SpringWebProject/.metadata/.plugins/org.springframework.tooling.boot.ls/fatal-error-spring-boot_1725522622571
+>>>>>>> presentation2
 org.springframework.ide.vscode.boot.app.BootLanguageServerBootApp
 --languageserver.hover-timeout=225
 END
 
+<<<<<<< HEAD
 !ENTRY org.springframework.tooling.boot.ls 1 0 2024-09-05 20:10:56.659
 !MESSAGE DelegatingStreamConnectionProvider - Starting Boot LS
 
@@ -8855,6 +9000,17 @@ END
 !MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
 !SUBENTRY 1 org.eclipse.jface 2 0 2024-09-05 20:13:09.657
 >>>>>>> DV12
+=======
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-09-05 16:50:22.572
+!MESSAGE DelegatingStreamConnectionProvider - Starting Boot LS
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2024-09-05 16:50:22.575
+!MESSAGE Started org.springframework.tooling.boot.ls LS process 87737
+
+!ENTRY org.eclipse.jface 2 0 2024-09-05 16:50:56.447
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2024-09-05 16:50:56.447
+>>>>>>> presentation2
 !MESSAGE A conflict occurred for ALT+SHIFT+X R:
 Binding(ALT+SHIFT+X R,
 	ParameterizedCommand(Command(org.eclipse.wst.server.launchShortcut.run,Run on Server,
@@ -8874,6 +9030,7 @@ Binding(ALT+SHIFT+X R,
 	org.eclipse.ui.contexts.window,,,system)
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 !SUBENTRY 1 org.eclipse.jface 2 0 2024-09-06 00:18:35.488
 =======
 !SUBENTRY 1 org.eclipse.jface 2 0 2024-09-06 09:53:18.408
@@ -8881,6 +9038,9 @@ Binding(ALT+SHIFT+X R,
 =======
 !SUBENTRY 1 org.eclipse.jface 2 0 2024-09-05 20:13:09.657
 >>>>>>> DV12
+=======
+!SUBENTRY 1 org.eclipse.jface 2 0 2024-09-05 16:50:56.447
+>>>>>>> presentation2
 !MESSAGE A conflict occurred for ALT+SHIFT+D R:
 Binding(ALT+SHIFT+D R,
 	ParameterizedCommand(Command(org.eclipse.wst.server.launchShortcut.debug,Debug on Server,
@@ -8899,6 +9059,7 @@ Binding(ALT+SHIFT+D R,
 	org.eclipse.ui.defaultAcceleratorConfiguration,
 	org.eclipse.ui.contexts.window,,,system)
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 !ENTRY org.eclipse.pde.core 4 0 2024-09-06 00:54:40.132
@@ -10607,6 +10768,9 @@ Binding(ALT+SHIFT+D R,
 
 !ENTRY org.eclipse.pde.core 4 0 2024-09-06 17:09:07.609
 >>>>>>> DV12
+=======
+!ENTRY org.eclipse.pde.core 4 0 2024-09-06 08:38:23.177
+>>>>>>> presentation2
 !MESSAGE FrameworkEvent ERROR
 !STACK 0
 org.osgi.framework.BundleException: Exception in org.eclipse.pde.internal.core.PDECore.stop() of bundle org.eclipse.pde.core.

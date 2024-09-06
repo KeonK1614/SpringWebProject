@@ -11,6 +11,7 @@
 	<section name="PropertyDialog.dialogBounds">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 		<item key="DIALOG_X_ORIGIN" value="331"/>
 		<item key="DIALOG_Y_ORIGIN" value="82"/>
 		<item key="DIALOG_WIDTH" value="974"/>
@@ -30,5 +31,19 @@
 		<item key="DIALOG_HEIGHT" value="713"/>
 		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
 >>>>>>> DV12
+=======
+		<item key="DIALOG_X_ORIGIN" value="466"/>
+		<item key="DIALOG_Y_ORIGIN" value="142"/>
+		<item key="DIALOG_WIDTH" value="989"/>
+		<item key="DIALOG_HEIGHT" value="728"/>
+		<item key="DIALOG_FONT_NAME" value="1|.AppleSystemUIFont|11.0|0|COCOA|1|.AppleSystemUIFont"/>
+	</section>
+	<section name="WorkbenchPreferenceDialog.dialogBounds">
+		<item key="DIALOG_X_ORIGIN" value="651"/>
+		<item key="DIALOG_Y_ORIGIN" value="142"/>
+		<item key="DIALOG_WIDTH" value="619"/>
+		<item key="DIALOG_HEIGHT" value="540"/>
+		<item key="DIALOG_FONT_NAME" value="1|.AppleSystemUIFont|11.0|0|COCOA|1|.AppleSystemUIFont"/>
+>>>>>>> presentation2
 	</section>
 </section>
