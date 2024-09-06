@@ -21,6 +21,8 @@ public class AccountDetailService implements UserDetailsService {
     public UserDetails loadUserByUsername(@RequestParam("id") String id) throws UsernameNotFoundException {
 //		System.out.println("user detail method called");
         UserDTO dto = idao.findByUsername(id);
+        
+        //계정 잠금 확인
         if (dto != null) {
             long currentTime = System.currentTimeMillis();
             long lockTimeMillis = dto.getLockTime() != null ? dto.getLockTime().getTime() : 0;
@@ -29,10 +31,10 @@ public class AccountDetailService implements UserDetailsService {
             if (dto.getIsLock() == 0 && (currentTime - lockTimeMillis) > LOCK_TIME_DURATION) {
                 // 잠금 해제
                 idao.updateUnLock(1, 0, id); // 잠금 해제 및 실패 횟수 리셋
+                dto.setIsLock(1);
+                dto.setFailCount(0);
+                dto.setLockTime(null);
                 
-            } else if(dto.getIsLock() == 1 && dto.getFailCount() < 5 && dto.getFailCount() >= 1) {
-              
-                idao.updateFailCount(0, id);
             }
             // 사용자 객체 반환
             return new AccountDetails(dto);

@@ -28,6 +28,7 @@ public class UserController {
 		return "guest/joinform";
 	}
 	
+	//회원가입
 	@PostMapping("/guest/join")
 	public String join(HttpServletRequest request, UserDTO user) {
 		String sId = request.getParameter("id");
@@ -75,25 +76,20 @@ public class UserController {
     public String loginform(Model model,  @RequestParam(value="error", required = false) String error,
             @RequestParam(value = "exception", required = false) String exception, HttpServletRequest request){
     	
+    	// 현재페이지 요청하기 전 마지막으로 방문했던 페이지 정보 갖고오기
         String referer = request.getHeader("Referer");
         if (referer != null && !referer.contains("/security/loginform")) {
             request.getSession().setAttribute("prevPage", referer);
         }
     	
+        //로그인 오류 예외 처리 보내기
     	model.addAttribute("userDTO", new UserDTO());
     	model.addAttribute("error", error);
         model.addAttribute("exception", exception);
         return "security/loginform";
     }  
 
-    
-// // 로그아웃
-//    @RequestMapping("/logout")
-//    public String logout(HttpSession session) {
-//        session.invalidate();
-//        return "redirect:/login";
-//    }
-    
+        
     //권한요청 실패시 뜨는 화
     @RequestMapping("/denied")
     public String login2() {

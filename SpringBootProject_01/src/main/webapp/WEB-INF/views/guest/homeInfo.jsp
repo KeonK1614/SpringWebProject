@@ -23,6 +23,7 @@
 <link href="../carousel/carousel.css" rel="stylesheet">
 <link href="../files/style.css" rel="stylesheet">
 </head>
+
 <body>
 	<%@ include file="../layout/header.jsp"%>
 	<main>
@@ -84,7 +85,7 @@
 					<br />
 					<p class="lead">
 						경기도 고양시 일산구 중앙로 1275번길 38-10 201호(장항동 우림로데오스위트) &nbsp;&nbsp;<br />
-						<br /> 이메일주소<br /> smailroad@test.com<br />
+						<br /> 이메일주소<br /> smaileroad@test.com<br />
 						<br /> 전화번호<br /> TEL : 031.902.1777 &nbsp;&nbsp; FAX :
 						031.906.8777 <br>
 						<br /> 스마일로드에 대한 문의나 지원이 필요하시면 언제든지 [이메일 주소] 또는 [전화번호]로 연락 주세요. <br />
@@ -92,7 +93,7 @@
 					</p>
 				</div>
 				<div class="col-md-5">
-					<div id="map" style="width: 400px; height: 400px;">
+					<div id="map" class="map-container" style="width: 500px; height: 600px;">
 						<script type="text/javascript"
 							src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5494458a10ba93010be318723f4042f8"></script>
 						<script>

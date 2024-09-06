@@ -198,7 +198,26 @@
 					   	</div>
 			         </div>
 			      </div>
-			  	<%@ include file="../layout/footer.jsp"%>
+			  	<footer>
+				<div class="p-4 text-white text-center"
+					style="background-color: #7FA1C3;">
+					<div class="row">
+						<div class="col-2 ps-4">
+							<h3>
+								<strong><img alt="logo" src="../images/logo.png"></strong>
+							</h3>
+						</div>
+						<div class="col">
+							<p class="copy text-center">
+								더조은아카데미일산 &nbsp;&nbsp; 경기도 고양시 일산구 중앙로 1275번길 38-10 201호(장항동
+								우림로데오스위트) &nbsp;&nbsp;<br /> 학생 : 김건, 김나현, 나예림, 장다빈 사업자등록번호 :
+								584-85-00825 &nbsp;&nbsp; TEL : 031.902.1777 &nbsp;&nbsp; FAX :
+								031.906.8777 <br>
+							</p>
+						</div>
+					</div>
+				</div>
+			</footer>
 			  
 	</body>
 	</html>

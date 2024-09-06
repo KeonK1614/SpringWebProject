@@ -27,46 +27,27 @@ public class pwdEmailService {
 
 	
 	private String createdPwCode() {  
-		int[] lowerCase = {97, 122}; // a-z
-        int[] upperCase = {65, 90};  // A-Z
-        int[] digits = {48, 57};     // 0-9
-        int[] specialChars = {33, 47, 58, 64, 91, 96, 123, 126}; // !@#$%^*+=- 
-
-        // Combine all ranges
-        int[] allRanges = new int[]{
-            lowerCase[0], lowerCase[1],
-            upperCase[0], upperCase[1],
-            digits[0], digits[1],
-            specialChars[0], specialChars[1],
-            specialChars[2], specialChars[3],
-            specialChars[4], specialChars[5],
-            specialChars[6], specialChars[7]
-        };
-
-        int targetStringLength = 8; // Adjust length as needed
-        Random random = new Random();
-
-        // Generate code
-        return random.ints(targetStringLength, 0, allRanges.length / 2)
-            .map(i -> {
-                int rangeIndex = i * 2;
-                int leftLimit = allRanges[rangeIndex];
-                int rightLimit = allRanges[rangeIndex + 1] + 1;
-                return random.nextInt(rightLimit - leftLimit) + leftLimit;
-            })
-            .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
-            .toString();
+		 int leftLimit = 48; // number '0'  
+		    int rightLimit = 122; // alphabet 'z'  
+		    int targetStringLength = 6;  
+		    Random random = new Random();  
+		  
+		    return random.ints(leftLimit, rightLimit + 1)  
+		            .filter(i -> (i <=57 || i >=65) && (i <= 90 || i>= 97))  
+		            .limit(targetStringLength)  
+		            .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)  
+		            .toString();  
 	}
 	
 	 public MimeMessage createPwEmail(String email, String verificationCode) {
 	    	 MimeMessage message = javaMailSender.createMimeMessage();
 	        
 	        try {
-	            message.setFrom("yenoraeng_42@naver.com");
+	            message.setFrom("본인이메일");
 	            message.setRecipients(MimeMessage.RecipientType.TO, email);
-	            message.setSubject("안녕하세요 이메일입니다.");
+	            message.setSubject("안녕하세요 스마일로드 인증번호 이메일입니다.");
 	            String body = "";
-	            body += "<h3>" + "비밀번호 찾기를 통한 인증번호 입니다." + "</h3>";
+	            body += "<h3>" + "비밀번호 찾기를 위한 인증번호 입니다." + "</h3>";
 	            body += "<h1>" + "인증번호 : " + verificationCode + "</h1>";
 	            body += "<h3>" + "인증번호 인증 후 비밀번호를 변경해주세요." + "</h3>";
 	            body += "<h3>" + "감사합니다." + "</h3>";

@@ -34,6 +34,7 @@ public class MyAuthSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
                                         Authentication authentication) throws IOException {
+    	clearSession(request);
     	
         if (authentication == null) {
             throw new IllegalStateException("Authentication object is null.");
@@ -41,21 +42,14 @@ public class MyAuthSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
         
     	String id = authentication.getName();
     	UserDTO user = idao.findByUsername(id);
-    	long currentTime = System.currentTimeMillis();
-        long lockTimeMillis = user.getLockTime() != null ? user.getLockTime().getTime() : 0;
-        long LOCK_TIME_DURATION = 15 * 60 * 1000;
     	
-        if (user.getIsLock() == 0 && (currentTime - lockTimeMillis) > LOCK_TIME_DURATION) {
-            // 잠금 해제
-            idao.updateUnLock(1, 0, id); // 잠금 해제 및 실패 횟수 리셋
-            
-        } else if(user.getIsLock() == 1 && user.getFailCount() < 5 && user.getFailCount() >= 1) {
+    	//계정 잠금 전 로그인 성공시 실패 카운트 리셋
+        if(user.getIsLock() == 1 && user.getFailCount() < 5 && user.getFailCount() >= 1) {
           
             idao.updateFailCount(0, id);
         }
     	 
-        clearSession(request);
-
+        //인증되지 ㅇ낳은 상태에서 접근하려 했던 url 저장
         SavedRequest savedRequest = requestCache.getRequest(request, response);
 
         /**

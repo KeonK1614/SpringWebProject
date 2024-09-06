@@ -41,11 +41,11 @@ public class emailService {
         MimeMessage message = javaMailSender.createMimeMessage();
 
         try {
-            message.setFrom("yenoraeng_42@naver.com");
+            message.setFrom("본인이메일");
             message.setRecipients(MimeMessage.RecipientType.TO, email);
-            message.setSubject("안녕하세요 이메일입니다.");
+            message.setSubject("안녕하세요 스마일로드 인증번호 이메일입니다.");
             String body = "";
-            body += "<h3>" + "요청하신 인증 번호입니다." + "</h3>";
+            body += "<h3>" + "요청하신 아이디 찾기 인증 번호입니다." + "</h3>";
             body += "<h1>" + code + "</h1>";
             body += "<h3>" + "감사합니다." + "</h3>";
             message.setText(body,"UTF-8", "html");

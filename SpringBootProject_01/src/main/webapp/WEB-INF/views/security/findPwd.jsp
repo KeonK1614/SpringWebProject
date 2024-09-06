@@ -125,7 +125,7 @@
 	    </div>
 	    
 	    <div class="form-floating mb-3" id="verifyCodeSection" style="display: none;">
-	        <input type="password" id="verificationCode" class="form-control" placeholder="인증번호" 
+	        <input type="text" id="verificationCode" class="form-control" placeholder="인증번호" 
 	        oninput="validateInput(this)" required>
 	        <label for="verificationCode">인증번호</label>
 		  <div class="invalid-feedback">
@@ -283,10 +283,25 @@
 	  
 	  <hr class="featurette-divider">
 	  
-	   <footer class="container">
-	    <p class="float-end"><i class="bi bi-arrow-up-circle"></i><a href="#">Back to top</a></p>
-	    <p>&copy; 2017–2024 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-	  </footer>
+	<footer>
+				<div class="p-4 text-white text-center"
+					style="background-color: #7FA1C3;">
+					<div class="row">
+						<div class="col-2 ps-4">
+							<h3>
+								<strong><img alt="logo" src="../images/logo.png"></strong>
+							</h3>
+						</div>
+						<div class="col">
+							<p class="copy text-center">
+								스마일로드 &nbsp;&nbsp;<br />
+								학생 : 김건, 김나현,<br/>
+								 나예림, 장다빈  <br>
+							</p>
+						</div>
+					</div>
+				</div>
+			</footer>
 	</main>
 	
 	<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>

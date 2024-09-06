@@ -1,10 +1,8 @@
-
-
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="jakarta.tags.core" prefix="c" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<%@ include file="../layout/header.jsp"%>
 	<!doctype html>
 	<html lang="en" data-bs-theme="auto">
 	  <head>
@@ -123,7 +121,6 @@
 	    <link href="../carousel/carousel.css" rel="stylesheet">
 	  </head>
 	  <body>
-	<%@ include file="../layout/header.jsp"%>
 
 	<main>
 	  <div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel">

@@ -182,10 +182,25 @@
 	  
 
 	  <!-- FOOTER -->
-	  <footer class="container">
-	    <p class="float-end"><i class="bi bi-arrow-up-circle"></i><a href="#">Back to top</a></p>
-	    <p>&copy; 2017–2024 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-	  </footer>
+	  	<footer>
+				<div class="p-4 text-white text-center"
+					style="background-color: #7FA1C3;">
+					<div class="row">
+						<div class="col-2 ps-4">
+							<h3>
+								<strong><img alt="logo" src="../images/logo.png"></strong>
+							</h3>
+						</div>
+						<div class="col">
+							<p class="copy text-center">
+								스마일로드 &nbsp;&nbsp;<br />
+								학생 : 김건, 김나현,<br/>
+								 나예림, 장다빈  <br>
+							</p>
+						</div>
+					</div>
+				</div>
+			</footer>
 	</main>
 	
 	<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
